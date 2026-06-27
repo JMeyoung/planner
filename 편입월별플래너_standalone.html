@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027 편입 월별 플래너</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ═══════════════════════════════════════
+   CSS Variables & Theme
+   ═══════════════════════════════════════ */
+:root {
+  --bg-primary: #f0f2f5;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --text-muted: #999;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(20px);
+  --accent-math: hsl(220, 70%, 55%);
+  --accent-eng: hsl(155, 60%, 40%);
+  --accent-routine: hsl(0, 72%, 55%);
+  --accent-dday: hsl(35, 90%, 55%);
+  --cal-full: hsl(150, 70%, 85%);
+  --cal-done: hsl(150, 55%, 90%);
+  --cal-partial: hsl(45, 90%, 88%);
+  --cal-rest: rgba(0,0,0,0.03);
+  --cal-nodata: rgba(0,0,0,0.03);
+  --cal-future: rgba(0,0,0,0.015);
+  --cal-today-glow: hsla(220, 80%, 55%, 0.5);
+  --stat-bg: rgba(255,255,255,0.6);
+  --drawer-bg: #ffffff;
+  --overlay-bg: rgba(0,0,0,0.4);
+  --toast-bg: rgba(40,40,40,0.92);
+  --toast-color: #fff;
+  --tl-line: #e0e0e0;
+  --tl-dot: #d0d0d0;
+  --tl-dot-past: hsl(155, 60%, 45%);
+  --tl-dot-active: hsl(220, 70%, 55%);
+  --weekly-bar-bg: rgba(0,0,0,0.06);
+  --weekly-bar-fill: linear-gradient(90deg, hsl(155,55%,50%), hsl(220,65%,55%));
+  --heatmap-empty: #ebedf0;
+  --heatmap-l1: #9be9a8;
+  --heatmap-l2: #40c463;
+  --heatmap-l3: #216e39;
+  --heatmap-l4: #39d353;
+  --heatmap-rest: #bfdbfe;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: rgba(30, 30, 50, 0.6);
+  --text-primary: #e8e8f0;
+  --text-secondary: #aaa;
+  --text-muted: #666;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --cal-full: hsl(150, 40%, 25%);
+  --cal-done: hsl(150, 30%, 20%);
+  --cal-partial: hsl(45, 50%, 22%);
+  --cal-rest: rgba(255,255,255,0.04);
+  --cal-nodata: rgba(255,255,255,0.04);
+  --cal-future: rgba(255,255,255,0.02);
+  --cal-today-glow: hsla(220, 80%, 55%, 0.4);
+  --stat-bg: rgba(30,30,50,0.5);
+  --drawer-bg: #1a1a2e;
+  --overlay-bg: rgba(0,0,0,0.6);
+  --toast-bg: rgba(60,60,80,0.95);
+  --toast-color: #e8e8f0;
+  --tl-line: rgba(255,255,255,0.1);
+  --tl-dot: rgba(255,255,255,0.2);
+  --tl-dot-past: hsl(155, 50%, 35%);
+  --tl-dot-active: hsl(220, 60%, 50%);
+  --weekly-bar-bg: rgba(255,255,255,0.08);
+  --weekly-bar-fill: linear-gradient(90deg, hsl(155,40%,35%), hsl(220,50%,45%));
+  --heatmap-empty: #161b22;
+  --heatmap-l1: #0e4429;
+  --heatmap-l2: #006d32;
+  --heatmap-l3: #26a641;
+  --heatmap-l4: #39d353;
+  --heatmap-rest: #1e3a5f;
+}
+
+/* ═══════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes todayPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--cal-today-glow); }
+  50%      { box-shadow: 0 0 0 5px transparent; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes slideDrawerUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes toastSlide {
+  0%   { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  15%  { transform: translateX(-50%) translateY(0); opacity: 1; }
+  85%  { transform: translateX(-50%) translateY(0); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+}
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.3); }
+}
+
+/* ═══════════════════════════════════════
+   Base
+   ═══════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Noto Sans KR', BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 16px;
+  min-height: 100vh;
+  transition: background .35s, color .35s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+  position: fixed; top: 14px; right: 14px; z-index: 300;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  cursor: pointer; font-size: 1.15rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.theme-toggle:hover { transform: scale(1.08); }
+.theme-toggle:active { transform: scale(0.95); }
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--toast-bg);
+  color: var(--toast-color);
+  padding: 10px 20px; border-radius: 12px;
+  font-size: 0.82rem; font-weight: 500;
+  z-index: 400;
+  animation: toastSlide 3.5s ease forwards;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ═══════════════════════════════════════
+   Header
+   ═══════════════════════════════════════ */
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px; padding-right: 48px;
+  animation: fadeSlideUp .5s ease both;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.month-nav { display: flex; align-items: center; gap: 8px; }
+.nav-btn {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 34px; height: 34px; cursor: pointer;
+  font-size: 1rem; color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.nav-btn:hover { background: var(--bg-secondary); transform: scale(1.05); }
+.nav-btn:active { transform: scale(0.95); }
+.month-title {
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--text-primary);
+  min-width: 120px; text-align: center;
+  transition: opacity .2s;
+}
+.header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dday-chip {
+  background: linear-gradient(135deg, hsl(35,90%,55%), hsl(25,90%,50%));
+  color: #fff; border-radius: 20px;
+  padding: 5px 14px; font-size: 0.78rem; font-weight: 700;
+  box-shadow: 0 2px 8px hsla(35,90%,50%,0.25);
+  white-space: nowrap;
+}
+.streak-badge {
+  background: linear-gradient(135deg, hsl(15,85%,55%), hsl(5,80%,50%));
+  color: #fff; border-radius: 20px;
+  padding: 5px 12px; font-size: 0.75rem; font-weight: 700;
+  box-shadow: 0 2px 8px hsla(15,85%,50%,0.25);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   Glass Card Mixin
+   ═══════════════════════════════════════ */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: background .35s, border .35s, box-shadow .35s;
+}
+
+/* ═══════════════════════════════════════
+   Goal Card
+   ═══════════════════════════════════════ */
+.goal-card {
+  animation: fadeSlideUp .5s ease .05s both;
+}
+.card-title {
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.goal-row {
+  display: flex; gap: 8px; font-size: 0.84rem;
+  margin-bottom: 6px; align-items: flex-start; line-height: 1.5;
+}
+.goal-row.math { color: var(--accent-math); }
+.goal-row.eng  { color: var(--accent-eng); }
+.goal-extra {
+  font-size: 0.78rem; color: var(--text-muted);
+  padding-top: 8px; margin-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════
+   Calendar
+   ═══════════════════════════════════════ */
+.cal-card {
+  animation: fadeSlideUp .5s ease .1s both;
+}
+.cal-dow {
+  display: grid; grid-template-columns: repeat(7,1fr);
+  gap: 4px; margin-bottom: 6px;
+}
+.dow-cell {
+  text-align: center; font-size: 0.72rem;
+  font-weight: 600; color: var(--text-muted); padding: 3px 0;
+}
+.dow-cell:first-child { color: var(--accent-routine); }
+.dow-cell:last-child  { color: var(--accent-math); }
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7,1fr); gap: 4px;
+}
+
+.day-cell {
+  border-radius: 10px; padding: 6px 4px; min-height: 56px;
+  display: flex; flex-direction: column; align-items: center;
+  font-size: 0.8rem; position: relative;
+  border: 1.5px solid transparent;
+  transition: all .2s ease;
+  cursor: default;
+}
+.day-cell.clickable { cursor: pointer; }
+.day-cell.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.day-cell.clickable:active { transform: translateY(0); }
+.day-cell.empty   { background: transparent; pointer-events: none; }
+.day-cell.future  { background: var(--cal-future); }
+.day-cell.no-data { background: var(--cal-nodata); }
+.day-cell.rest    { background: var(--cal-rest); }
+.day-cell.partial { background: var(--cal-partial); }
+.day-cell.done    { background: var(--cal-done); }
+.day-cell.full    { background: var(--cal-full); }
+.day-cell.today {
+  border-color: var(--accent-math) !important;
+  animation: todayPulse 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+.day-num {
+  font-size: 0.83rem; font-weight: 700;
+  line-height: 1; margin-bottom: 3px;
+  color: var(--text-primary);
+}
+.cal-grid .day-cell:nth-child(7n+1) .day-num { color: var(--accent-routine); }
+.cal-grid .day-cell:nth-child(7n)   .day-num { color: var(--accent-math); }
+.day-pct  { font-size: 0.62rem; color: var(--text-secondary); font-weight: 500; }
+.day-loops{ font-size: 0.58rem; color: var(--text-muted); }
+.day-rest-icon { font-size: 0.8rem; margin-top: 3px; }
+
+/* ═══════════════════════════════════════
+   Stats Row
+   ═══════════════════════════════════════ */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 8px; margin-bottom: 14px;
+  animation: fadeSlideUp .5s ease .15s both;
+}
+.stat-card {
+  background: var(--stat-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px; text-align: center;
+  transition: transform .2s, box-shadow .2s;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.stat-num {
+  font-size: 1.4rem; font-weight: 800;
+  color: var(--text-primary); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 0.65rem; color: var(--text-muted);
+  margin-top: 4px; font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   Legend
+   ═══════════════════════════════════════ */
+.legend {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 14px;
+  animation: fadeSlideUp .5s ease .18s both;
+}
+.leg-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.7rem; color: var(--text-secondary); font-weight: 500;
+}
+.leg-box {
+  width: 12px; height: 12px; border-radius: 4px; flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════
+   Weekly Summary Bars
+   ═══════════════════════════════════════ */
+.weekly-summary {
+  animation: fadeSlideUp .5s ease .2s both;
+}
+.weekly-bars {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.week-bar-wrap {
+  flex: 1; min-width: 60px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.week-label {
+  font-size: 0.68rem; font-weight: 600;
+  color: var(--text-muted); text-align: center;
+}
+.week-bar-outer {
+  height: 8px; border-radius: 4px;
+  background: var(--weekly-bar-bg);
+  overflow: hidden;
+}
+.week-bar-inner {
+  height: 100%; border-radius: 4px;
+  background: var(--weekly-bar-fill);
+  transition: width .8s ease;
+  min-width: 0;
+}
+.week-pct {
+  font-size: 0.65rem; font-weight: 700;
+  color: var(--text-secondary); text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════
+   Timeline
+   ═══════════════════════════════════════ */
+.timeline-card {
+  animation: fadeSlideUp .5s ease .25s both;
+}
+.tl-container { position: relative; padding-left: 24px; }
+.tl-line {
+  position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--tl-line);
+  border-radius: 1px;
+}
+.tl-row {
+  display: flex; gap: 12px; margin-bottom: 14px;
+  align-items: flex-start; position: relative;
+}
+.tl-row:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -20px; top: 6px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--tl-dot);
+  border: 2px solid var(--bg-primary);
+  transition: background .3s;
+  z-index: 1;
+}
+.tl-row.past .tl-dot {
+  background: var(--tl-dot-past);
+}
+.tl-row.active .tl-dot {
+  background: var(--tl-dot-active);
+  animation: dotPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 3px hsla(220,70%,55%,0.2);
+}
+.tl-month-badge {
+  font-size: 0.7rem; font-weight: 700; color: #fff;
+  border-radius: 8px; padding: 3px 10px;
+  flex-shrink: 0; min-width: 50px;
+  text-align: center; margin-top: 1px;
+  background: var(--tl-dot);
+  transition: background .3s;
+}
+.tl-row.past .tl-month-badge { background: var(--tl-dot-past); }
+.tl-row.active .tl-month-badge { background: var(--tl-dot-active); }
+.tl-content { flex: 1; }
+.tl-math {
+  font-size: 0.8rem; color: var(--accent-math);
+  font-weight: 600; margin-bottom: 3px;
+}
+.tl-eng {
+  font-size: 0.8rem; color: var(--accent-eng);
+  font-weight: 600; margin-bottom: 3px;
+}
+.tl-extra { font-size: 0.72rem; color: var(--text-muted); }
+.tl-row.past .tl-content { opacity: 0.7; }
+.tl-checkmark {
+  font-size: 0.65rem; margin-left: 4px;
+  vertical-align: middle; opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════
+   Drawer (smooth CSS transition)
+   ═══════════════════════════════════════ */
+#overlay {
+  position: fixed; inset: 0;
+  background: var(--overlay-bg);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+#overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+#drawer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--drawer-bg);
+  border-radius: 20px 20px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom);
+  z-index: 201;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.15);
+  transform: translateY(100%);
+  transition: transform .35s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+#drawer.open {
+  transform: translateY(0);
+}
+.drawer-handle {
+  width: 40px; height: 4px;
+  background: var(--border);
+  border-radius: 2px; margin: 12px auto 0;
+}
+.drawer-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.drawer-date {
+  font-size: 1.05rem; font-weight: 800;
+  color: var(--text-primary);
+}
+.drawer-meta {
+  font-size: 0.78rem; color: var(--text-muted);
+  margin-top: 3px; font-weight: 500;
+}
+.drawer-close {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 30px; height: 30px;
+  font-size: 0.9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: all .2s;
+}
+.drawer-close:hover { transform: scale(1.1); }
+.drawer-body { padding: 14px 18px 24px; }
+
+.d-section { margin-bottom: 14px; }
+.d-section-hdr {
+  font-size: 0.78rem; font-weight: 700;
+  padding: 5px 10px; border-radius: 8px;
+  margin-bottom: 8px; display: inline-block;
+}
+.d-section-hdr.routine {
+  background: hsla(0,72%,55%,0.1);
+  color: var(--accent-routine);
+}
+.d-section-hdr.math {
+  background: hsla(220,70%,55%,0.1);
+  color: var(--accent-math);
+}
+.d-section-hdr.eng {
+  background: hsla(155,60%,40%,0.1);
+  color: var(--accent-eng);
+}
+.d-section-hdr.carry {
+  background: hsla(35,90%,55%,0.1);
+  color: var(--accent-dday);
+}
+.d-task {
+  display: flex; gap: 10px; padding: 6px 2px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem; line-height: 1.5;
+  transition: opacity .2s;
+}
+.d-task:last-child { border-bottom: none; }
+.d-task.done { opacity: 0.55; }
+.d-task.done .d-text { text-decoration: line-through; }
+.d-cb {
+  flex-shrink: 0; margin-top: 4px;
+  width: 16px; height: 16px;
+  border: 2px solid var(--text-muted);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.d-cb.on {
+  background: var(--accent-eng);
+  border-color: var(--accent-eng);
+}
+.d-text { color: var(--text-primary); }
+.d-empty {
+  color: var(--text-muted);
+  font-size: 0.84rem; text-align: center;
+  padding: 28px 0;
+}
+
+/* ═══════════════════════════════════════
+   Loading
+   ═══════════════════════════════════════ */
+.loading-msg {
+  text-align: center; padding: 60px 20px;
+  color: var(--text-muted); font-size: 0.9rem;
+}
+.loading-msg .spinner {
+  display: inline-block; width: 24px; height: 24px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent-math);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin-bottom: 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════
+   Heatmap
+   ═══════════════════════════════════════ */
+.heatmap-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  animation: fadeSlideUp .5s ease both;
+  animation-delay: .35s;
+}
+.heatmap-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.heatmap-month-row {
+  display: flex;
+  gap: 2px;
+  margin-left: 22px;
+  margin-bottom: 4px;
+  min-width: max-content;
+}
+.heatmap-month-lbl {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 13px;
+}
+.heatmap-body {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  min-width: max-content;
+}
+.heatmap-dow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 0;
+}
+.heatmap-dow span {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  height: 11px;
+  line-height: 11px;
+  width: 16px;
+  text-align: right;
+  padding-right: 3px;
+}
+.heatmap-weeks {
+  display: flex;
+  gap: 2px;
+}
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hm-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  transition: transform .1s, box-shadow .1s;
+  cursor: default;
+  position: relative;
+}
+.hm-cell:hover { transform: scale(1.5); z-index: 2; }
+.hm-cell.l4 { box-shadow: 0 0 5px rgba(57,211,83,.45); }
+.hm-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  justify-content: flex-end;
+}
+.hm-legend .hm-lbox {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════ */
+@media (min-width: 480px) {
+  body { padding: 20px 24px; max-width: 520px; margin: 0 auto; }
+}
+@media (max-width: 370px) {
+  .day-cell { min-height: 48px; padding: 4px 2px; }
+  .day-num { font-size: 0.76rem; }
+  .header-right { gap: 4px; }
+  .dday-chip, .streak-badge { font-size: 0.68rem; padding: 3px 8px; }
+}
+
+/* ══════════════════════════════════════════
+   RADAR CHART (SUBJECT BALANCE)
+   ══════════════════════════════════════════ */
+.radar-card {
+  margin-top: 24px;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.radar-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.radar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.radar-container {
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+.radar-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.radar-axis { stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+.radar-grid { stroke: rgba(255,255,255,0.05); stroke-width: 1; fill: none; }
+.radar-polygon { fill: rgba(99, 102, 241, 0.3); stroke: #6366f1; stroke-width: 2; transition: all 0.5s ease; }
+.radar-label {
+  font-size: 12px;
+  fill: var(--text-muted);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.radar-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+}
+.r-stat { display: flex; align-items: center; gap: 4px; }
+.r-dot.math { color: var(--accent-math); }
+.r-dot.eng { color: var(--accent-eng); }
+.r-dot.rtn { color: #ec4899; }
+</style>
+
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
+<button class="open-window-btn" title="Notion 토큰 설정" onclick="showTokenSetup()" style="font-size:.8rem">🔑</button>
+
+<!-- Notion 토큰 설정 모달 -->
+<div id="tokenSetup" style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+  <div style="background:var(--bg-secondary,#fff);border-radius:20px;padding:28px 24px;width:min(92vw,380px);box-shadow:0 24px 64px rgba(0,0,0,0.3);">
+    <div style="font-size:1.1rem;font-weight:800;margin-bottom:6px">🔑 Notion 토큰 설정</div>
+    <p style="font-size:0.78rem;color:var(--text-secondary,#555);margin-bottom:14px;line-height:1.6">
+      Notion 개발자 페이지에서 발급받은 토큰을 입력하세요.<br>
+      토큰은 이 브라우저에만 저장되며 외부로 전송되지 않습니다.
+    </p>
+    <input id="tokenInput" type="password" placeholder="secret_xxx 또는 ntn_xxx"
+      style="width:100%;padding:10px 12px;border:1.5px solid var(--border,#eee);border-radius:10px;
+             background:var(--bg-primary,#f5f5f5);color:var(--text-primary,#111);
+             font-size:0.84rem;font-family:monospace;outline:none;margin-bottom:14px;box-sizing:border-box">
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="closeTokenSetup()" style="padding:9px 18px;border:1.5px solid var(--border,#ddd);border-radius:10px;background:none;color:var(--text-secondary,#555);font-family:inherit;cursor:pointer;font-size:0.84rem">취소</button>
+      <button onclick="saveNotionToken()" style="padding:9px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-family:inherit;cursor:pointer;font-size:0.84rem;font-weight:700">저장 후 로드</button>
+    </div>
+  </div>
+</div>
+
+<div id="root">
+  <div class="loading-msg">
+    <div class="spinner"></div><br>
+    📅 월별 플래너 불러오는 중…
+  </div>
+</div>
+
+<!-- 드로어 -->
+<div id="overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-header">
+    <div>
+      <div class="drawer-date" id="drawer-date"></div>
+      <div class="drawer-meta" id="drawer-meta"></div>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   Constants & MCP
+   ═══════════════════════════════════════ */
+const FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
+const SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
+const PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
+const EXAM_DATE  = new Date('2027-01-05T00:00:00');
+const CACHE_KEY  = 'planner-monthly-dayStatus';
+const CACHE_TTL  = 30 * 60 * 1000; // 30분
+
+/* ═══════════════════════════════════════
+   State
+   ═══════════════════════════════════════ */
+let dispYear  = new Date().getFullYear();
+let dispMonth = new Date().getMonth() + 1;
+let dayStatus = {}; // 'YYYY-MM-DD' → {pct,loops,isRest,checked,total,sectionLines}
+let fetchedPageIds = new Set();
+let studyStreak = 0;
+
+/* ═══════════════════════════════════════
+   MACRO Timeline
+   ═══════════════════════════════════════ */
+const MACRO = {
+  '2026-6':  { math: 'White S1 미적분·급수 진행', eng: '1단계 완료 → 2단계 진입 (문법301·논리101·단문101)', extra: '어휘 하루 100개 루틴 확립' },
+  '2026-7':  { math: 'White S1 완강 + 고완풀 문풀', eng: '2단계 완료 (문법301·논리101·단문101·장문101)', extra: '공인영어 1회 응시' },
+  '2026-8':  { math: 'S2 선형대수', eng: '3단계 (논리201·문법202·어휘401)', extra: '정보/C언어 시작' },
+  '2026-9':  { math: 'S2 선형대수 · S3 다변수미적분', eng: '4단계 (단문201·장문201·문법302)', extra: '일요일 오전·오후 활성화' },
+  '2026-10': { math: 'S3 다변수미적분 완료 · S4 공학수학 시작', eng: '5단계 (논리·단문·장문301 + D Series)', extra: '고려대 면접 트랙 시작' },
+  '2026-11': { math: 'S4 공학수학 + 기출(시간측정)', eng: '5단계 D Series 완료', extra: '고려대 면접·학업계획서 본격화' },
+  '2026-12': { math: '기출·오답 집중', eng: '6단계 (논리·단문·장문401 + 기출)', extra: '고려대 면접 최종 준비' },
+  '2027-1':  { math: '기출·오답 최종', eng: '6단계 실전마감 + 기출', extra: '🎯 시험!' },
+};
+
+/* ═══════════════════════════════════════
+   Utilities
+   ═══════════════════════════════════════ */
+function dday() {
+  const t = new Date(); t.setHours(0,0,0,0);
+  return Math.ceil((EXAM_DATE - t) / 86400000);
+}
+function padZ(n) { return String(n).padStart(2, '0'); }
+function dateKey(y, m, d) { return `${y}-${padZ(m)}-${padZ(d)}`; }
+function isToday(y, m, d) {
+  const t = new Date();
+  return t.getFullYear() === y && t.getMonth() + 1 === m && t.getDate() === d;
+}
+function esc(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// Bug #7: Improved cleanMd to handle nested markdown and more escape sequences
+function cleanMd(s) {
+  return String(s || '')
+    .replace(/\*\*\*(.*?)\*\*\*/g, '$1')   // bold italic
+    .replace(/\*\*(.*?)\*\*/g, '$1')        // bold
+    .replace(/\*(.*?)\*/g, '$1')            // italic
+    .replace(/__(.*?)__/g, '$1')            // underline bold
+    .replace(/_(.*?)_/g, '$1')              // underline italic
+    .replace(/~~(.*?)~~/g, '$1')            // strikethrough
+    .replace(/`(.*?)`/g, '$1')             // inline code
+    .replace(/^#+\s*/gm, '')                // headings
+    .replace(/^✦\s*/gm, '')                // star prefix
+    .replace(/\\\~/g, '~')                 // escaped tilde
+    .replace(/\\~/g, '~')                  // escaped tilde
+    .replace(/\\\*/g, '*')                 // escaped asterisk
+    .replace(/\\\[/g, '[')                 // escaped bracket
+    .replace(/\\\]/g, ']')                 // escaped bracket
+    .replace(/\\`/g, '`')                  // escaped backtick
+    .replace(/\\\\/g, '\\')               // escaped backslash
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // markdown links → text only
+    .trim();
+}
+
+function checkSVG() {
+  return `<svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.2 5.8L8 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+function extractContent(text) {
+  const m = text.match(/<content>([\s\S]*?)<\/content>/);
+  return m ? m[1] : text;
+}
+
+// Bug #4: Dynamic year estimation
+function estimateYear(month) {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+  if (month >= 6) return currentMonth >= 6 ? currentYear : currentYear - 1;
+  return currentMonth >= 6 ? currentYear + 1 : currentYear;
+}
+
+/* ═══════════════════════════════════════
+   STANDALONE MODE — LOCAL SERVER API
+   ═══════════════════════════════════════ */
+const LOCAL_API = window.location.origin;
+
+function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
+function setNotionToken(t) { localStorage.setItem('notion_token', t); }
+
+function showTokenSetup() { document.getElementById('tokenSetup').style.display = 'flex'; }
+function closeTokenSetup() { document.getElementById('tokenSetup').style.display = 'none'; }
+function saveNotionToken() {
+  const v = document.getElementById('tokenInput').value.trim();
+  if (!v.startsWith('secret_') && !v.startsWith('ntn_')) {
+    alert('Notion 토큰은 secret_ 또는 ntn_ 으로 시작해야 합니다.');
+    return;
+  }
+  setNotionToken(v);
+  // 서버 파일에도 저장 (URL이 바뀌어도 유지)
+  fetch(`${LOCAL_API}/api/token`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({token: v})
+  }).catch(() => {});
+  closeTokenSetup();
+  fetchedPageIds.clear();
+  dayStatus = {};
+  init();
+}
+
+// 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
+async function restoreTokenFromServer() {
+  try {
+    const r = await fetch(`${LOCAL_API}/api/token`);
+    const d = await r.json();
+    if (d.token) {
+      // 서버에 토큰 있음 → localStorage에 저장
+      setNotionToken(d.token);
+    } else if (getNotionToken()) {
+      // localStorage에만 있음 → 서버에도 저장 (동기화)
+      await fetch(`${LOCAL_API}/api/token`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({token: getNotionToken()})
+      });
+    }
+  } catch {}
+}
+
+async function safeMcpCall(toolName, params, retries = 2) {
+  const token = getNotionToken();
+  if (!token) { showTokenSetup(); throw new Error('Notion 토큰을 먼저 설정해주세요'); }
+  const hdrs = { 'Content-Type': 'application/json', 'X-Notion-Token': token };
+  for (let i = 0; i <= retries; i++) {
+    try {
+      let data;
+      if (toolName.includes('notion-fetch')) {
+        const id = params.id || params.pageId || params.page_id;
+        const r = await fetch(`${LOCAL_API}/api/fetch?id=${id}`, { headers: hdrs });
+        if (!r.ok) throw new Error(`서버오류 ${r.status}: ${await r.text()}`);
+        data = await r.json();
+        if (data.error) throw new Error(data.error);
+      } else if (toolName.includes('notion-search')) {
+        const r = await fetch(`${LOCAL_API}/api/search`, {
+          method: 'POST', headers: hdrs,
+          body: JSON.stringify({ query: params.query, page_size: params.page_size || 5 })
+        });
+        if (!r.ok) throw new Error(`서버오류 ${r.status}`);
+        data = await r.json();
+        if (data.error) throw new Error(data.error);
+      }
+      return { structuredContent: data };
+    } catch (e) {
+      if (i === retries) throw e;
+      await new Promise(r => setTimeout(r, 800 * (i + 1)));
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   Toast
+   ═══════════════════════════════════════ */
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3600);
+}
+
+/* ═══════════════════════════════════════
+   Theme
+   ═══════════════════════════════════════ */
+function loadTheme() {
+  const saved = localStorage.getItem('planner-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('planner-theme', next);
+  updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+loadTheme();
+
+/* ═══════════════════════════════════════
+   localStorage Cache
+   ═══════════════════════════════════════ */
+function loadCache() {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return false;
+    const { timestamp, data } = JSON.parse(raw);
+    if (Date.now() - timestamp > CACHE_TTL) return false;
+    dayStatus = data;
+    return true;
+  } catch { return false; }
+}
+function saveCache() {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+      timestamp: Date.now(),
+      data: dayStatus
+    }));
+  } catch (e) { console.warn('Cache save failed:', e); }
+}
+
+/* ═══════════════════════════════════════
+   Study Streak
+   ═══════════════════════════════════════ */
+function calcStreak() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let streak = 0;
+  let d = new Date(today);
+  // Start from yesterday if today has no data yet
+  const todayKey = dateKey(d.getFullYear(), d.getMonth() + 1, d.getDate());
+  const todayData = dayStatus[todayKey];
+  if (!todayData || (todayData.pct <= 0 && !todayData.isRest)) {
+    d.setDate(d.getDate() - 1);
+  }
+  while (true) {
+    const key = dateKey(d.getFullYear(), d.getMonth() + 1, d.getDate());
+    const s = dayStatus[key];
+    if (s && (s.pct > 0 || s.isRest)) {
+      if (s.pct > 0) streak++;  // Count study days, skip rest in count but don't break
+      d.setDate(d.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  studyStreak = streak;
+  try { localStorage.setItem('planner-streak', String(streak)); } catch {}
+}
+function loadStreakCache() {
+  try {
+    const v = localStorage.getItem('planner-streak');
+    if (v) studyStreak = parseInt(v) || 0;
+  } catch {}
+}
+
+/* ═══════════════════════════════════════
+   Day Parsing from Content
+   ═══════════════════════════════════════ */
+function parseDaysFromContent(content) {
+  const lines = content.split('\n');
+  let curDate = null, sectionLines = [];
+
+  function flush() {
+    if (!curDate || !sectionLines.length) return;
+    const hdr = sectionLines[0] || '';
+    // Bug #6: isRest only if header says 휴식/성당 AND zero checklist items
+    const hasCheckItems = sectionLines.some(l => l.trim().match(/^- \[/));
+    const isRest = (hdr.includes('휴식') || hdr.includes('성당')) && !hasCheckItems;
+
+    let checked = 0, total = 0;
+    for (const l of sectionLines) {
+      if (l.trim().match(/^- \[x\]/i)) { checked++; total++; }
+      else if (l.trim().match(/^- \[ \]/)) total++;
+    }
+    const loopM = hdr.match(/(\d+)루프/);
+    const loops = loopM ? parseInt(loopM[1]) : 0;
+    const pct = total > 0 ? Math.round(checked / total * 100) : (isRest ? -1 : 0);
+
+    if (!dayStatus[curDate] || total > (dayStatus[curDate].total || 0)) {
+      dayStatus[curDate] = { pct, loops, isRest, checked, total, sectionLines: [...sectionLines] };
+    }
+  }
+
+  for (const line of lines) {
+    const hdrM = line.match(/###.*?(\d{1,2})\/(\d{1,2})/);
+    if (hdrM) {
+      flush();
+      const mo = parseInt(hdrM[1]), d = parseInt(hdrM[2]);
+      // Bug #4: dynamic year estimation
+      const y = estimateYear(mo);
+      curDate = dateKey(y, mo, d);
+      sectionLines = [line];
+    } else if (curDate) {
+      if (line.match(/^## (?!.*✦)/) || line.match(/^# /)) { flush(); curDate = null; sectionLines = []; }
+      else sectionLines.push(line);
+    }
+  }
+  flush();
+}
+
+/* ═══════════════════════════════════════
+   Section Parsing (Drawer)
+   ═══════════════════════════════════════ */
+function parseSection(lines) {
+  const hdr = lines[0] || '';
+  const stageM = hdr.match(/(\d)단계/), dayM = hdr.match(/Day(\d+)/), loopM = hdr.match(/(\d+)루프/);
+  const result = {
+    stage: stageM ? stageM[1] + '단계' : '',
+    studyDay: dayM ? 'Day' + dayM[1] : '',
+    totalLoops: loopM ? loopM[1] : '',
+    routines: [], blocks: [], isRest: false
+  };
+  // Bug #6: consistent rest detection
+  const hasCheckItems = lines.some(l => l.trim().match(/^- \[/));
+  if ((hdr.includes('휴식') || hdr.includes('성당')) && !hasCheckItems) {
+    result.isRest = true;
+    return result;
+  }
+
+  let inRoutine = false, curBlock = null;
+  for (let i = 1; i < lines.length; i++) {
+    const raw = lines[i], l = raw.trim();
+    if (!l || l.startsWith('>')) continue;
+
+    if ((l.startsWith('**') || l.startsWith('#')) && !l.match(/^- /)) {
+      const isRtn   = l.includes('비협상 루틴') || l.includes('🔴');
+      const isCarry = l.includes('📦') || l.includes('이월');
+      const isEve   = l.includes('저녁') || l.includes('🌙');
+      const isMorn  = l.includes('오전') || l.includes('🌅');
+      const isAft   = l.includes('오후') || l.includes('☀️');
+      if (isRtn) { inRoutine = true; curBlock = null; continue; }
+      if (isCarry || isMorn || isAft || isEve) {
+        inRoutine = false;
+        curBlock = { title: cleanMd(l), subject: isEve ? 'eng' : 'math', isCarry, items: [] };
+        result.blocks.push(curBlock);
+        continue;
+      }
+      continue;
+    }
+
+    const cxM = l.match(/^- \[x\]\s+(.*)/i), coM = l.match(/^- \[ \]\s+(.*)/);
+    if (cxM || coM) {
+      const item = { checked: !!cxM, text: cleanMd((cxM || coM)[1]) };
+      if (inRoutine) result.routines.push(item);
+      else if (curBlock) curBlock.items.push(item);
+    }
+  }
+  return result;
+}
+
+/* ═══════════════════════════════════════
+   Notion Data Load
+   ═══════════════════════════════════════ */
+async function fetchAllChecklists() {
+  const failedIds = [];
+  try {
+    const planRes  = await safeMcpCall(FETCH, { id: PLANNER_ID });
+    const planData = planRes.structuredContent ?? JSON.parse(planRes.content[0].text);
+    const planText = planData.text || '';
+    const subIds   = [...planText.matchAll(/<page url="([^"]+)">/g)]
+      .map(m => m[1]).map(u => { const m = u.match(/\/p\/([a-f0-9]+)/i); return m?.[1]; }).filter(Boolean);
+
+    const sr     = await safeMcpCall(SEARCH, { query: '일별 체크리스트', page_size: 10 });
+    const srData = sr.structuredContent ?? JSON.parse(sr.content[0].text);
+    const searchIds = (srData.results || []).filter(r => r.type === 'page').map(r => r.id.replace(/-/g, ''));
+
+    const allIds = [...new Set([...subIds, ...searchIds])];
+    for (const id of allIds) {
+      if (fetchedPageIds.has(id)) continue;
+      fetchedPageIds.add(id);
+      try {
+        const fr = await safeMcpCall(FETCH, { id });
+        const fd = fr.structuredContent ?? JSON.parse(fr.content[0].text);
+        if (fd.text) parseDaysFromContent(extractContent(fd.text));
+      } catch (e) {
+        // Bug #5: Log partial failures
+        console.warn(`Page ${id} fetch failed:`, e);
+        failedIds.push(id);
+      }
+    }
+  } catch (e) { console.error('fetchAllChecklists error:', e); }
+
+  // Bug #5: Show toast for partial failures
+  if (failedIds.length > 0) {
+    showToast(`⚠️ ${failedIds.length}개 페이지 로드 실패`);
+  }
+}
+
+/* ═══════════════════════════════════════
+   Drawer
+   ═══════════════════════════════════════ */
+window.openDay = function(y, m, d) {
+  const key = dateKey(y, m, d);
+  const s   = dayStatus[key];
+  const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+  const dow  = DAYS[new Date(y, m - 1, d).getDay()];
+
+  document.getElementById('drawer-date').textContent = `${m}월 ${d}일 ${dow}요일`;
+
+  const dateStr = `${y}-${padZ(m)}-${padZ(d)}`;
+  const dailyLink = `<a href="/daily?date=${dateStr}" style="display:block;margin-top:16px;padding:11px 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:0.88rem;text-decoration:none;">📋 일별 플래너 보기 →</a>`;
+
+  if (!s || !s.sectionLines) {
+    document.getElementById('drawer-meta').textContent = '기록 없음';
+    document.getElementById('drawer-body').innerHTML = `<div class="d-empty">이 날의 학습 기록이 없습니다</div>${dailyLink}`;
+    showDrawer(); return;
+  }
+
+  const parsed = parseSection(s.sectionLines);
+  document.getElementById('drawer-meta').textContent =
+    [parsed.stage, parsed.studyDay, parsed.totalLoops ? parsed.totalLoops + '루프' : ''].filter(Boolean).join(' · ') || '기록 있음';
+
+  if (parsed.isRest) {
+    document.getElementById('drawer-body').innerHTML = `<div class="d-empty">⛪ 휴식일</div>${dailyLink}`;
+    showDrawer(); return;
+  }
+
+  let html = '';
+
+  if (parsed.routines.length) {
+    html += `<div class="d-section">
+      <div class="d-section-hdr routine">🔴 비협상 루틴</div>
+      ${parsed.routines.map(renderDTask).join('')}
+    </div>`;
+  }
+
+  for (const b of parsed.blocks) {
+    if (!b.items.length) continue;
+    const cls  = b.isCarry ? 'carry' : b.subject === 'eng' ? 'eng' : 'math';
+    const icon = b.isCarry ? '📦' : b.subject === 'eng' ? '📘' : '📐';
+    const done = b.items.filter(i => i.checked).length;
+    html += `<div class="d-section">
+      <div class="d-section-hdr ${cls}">${icon} ${esc(b.title)} <span style="font-weight:400;opacity:.7">${done}/${b.items.length}</span></div>
+      ${b.items.map(renderDTask).join('')}
+    </div>`;
+  }
+
+  if (!html) html = `<div class="d-empty">할 일 항목이 없습니다</div>`;
+  document.getElementById('drawer-body').innerHTML = html + dailyLink;
+  showDrawer();
+};
+
+function renderDTask(item) {
+  return `<div class="d-task ${item.checked ? 'done' : ''}">
+    <div class="d-cb ${item.checked ? 'on' : ''}">${item.checked ? checkSVG() : ''}</div>
+    <span class="d-text">${esc(item.text)}</span>
+  </div>`;
+}
+
+function showDrawer() {
+  // Use requestAnimationFrame to ensure transition fires
+  const overlay = document.getElementById('overlay');
+  const drawer = document.getElementById('drawer');
+  requestAnimationFrame(() => {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+  });
+  document.body.style.overflow = 'hidden';
+}
+
+window.closeDrawer = function() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+/* ═══════════════════════════════════════
+   Count-Up Animation
+   ═══════════════════════════════════════ */
+function animateCountUp(el, target, duration = 800) {
+  const start = performance.now();
+  const from = 0;
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(from + (target - from) * eased);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+/* ═══════════════════════════════════════
+   Weekly Summary
+   ═══════════════════════════════════════ */
+function weeklyBarsHTML(year, month) {
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const firstDow = new Date(year, month - 1, 1).getDay();
+  const weeks = [];
+  let weekIdx = 0;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dow = (firstDow + d - 1) % 7;
+    if (d === 1 || dow === 0) {
+      weeks.push({ days: 0, totalPct: 0, studyDays: 0 });
+      if (d > 1) weekIdx++;
+    }
+    const s = dayStatus[dateKey(year, month, d)];
+    if (s && !s.isRest && s.total > 0) {
+      weeks[weekIdx].days++;
+      weeks[weekIdx].totalPct += s.pct;
+      weeks[weekIdx].studyDays++;
+    }
+  }
+
+  const bars = weeks.map((w, i) => {
+    const avg = w.studyDays > 0 ? Math.round(w.totalPct / w.studyDays) : 0;
+    return `<div class="week-bar-wrap">
+      <div class="week-label">W${i + 1}</div>
+      <div class="week-bar-outer">
+        <div class="week-bar-inner" style="width:${avg}%"></div>
+      </div>
+      <div class="week-pct">${w.studyDays > 0 ? avg + '%' : '—'}</div>
+    </div>`;
+  }).join('');
+
+  return `<div class="glass-card weekly-summary">
+    <div class="card-title">주간 달성률</div>
+    <div class="weekly-bars">${bars}</div>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════
+   Rendering
+   ═══════════════════════════════════════ */
+function monthGoalHTML(y, m) {
+  const g = MACRO[`${y}-${m}`];
+  if (!g) return `<div class="glass-card goal-card">
+    <div class="card-title">이번 달 목표</div>
+    <div style="color:var(--text-muted);font-size:.84rem">계획이 없는 달입니다</div>
+  </div>`;
+  return `<div class="glass-card goal-card">
+    <div class="card-title">이번 달 목표</div>
+    <div class="goal-row math">📐 <span>${esc(g.math)}</span></div>
+    <div class="goal-row eng">📘 <span>${esc(g.eng)}</span></div>
+    ${g.extra ? `<div class="goal-extra">✦ ${esc(g.extra)}</div>` : ''}
+  </div>`;
+}
+
+function calendarHTML(year, month) {
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const firstDow   = new Date(year, month - 1, 1).getDay();
+  const today      = new Date();
+
+  let studyDays = 0, restDays = 0, doneDays = 0, totalLoops = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const s = dayStatus[dateKey(year, month, d)];
+    if (!s) continue;
+    if (s.isRest) restDays++;
+    else if (s.total > 0) { studyDays++; totalLoops += s.loops || 0; if (s.pct >= 75) doneDays++; }
+  }
+
+  const dowHtml = ['일', '월', '화', '수', '목', '금', '토'].map(d => `<div class="dow-cell">${d}</div>`).join('');
+  let cells = '';
+  for (let i = 0; i < firstDow; i++) cells += '<div class="day-cell empty"></div>';
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = dateKey(year, month, d);
+    const s   = dayStatus[key];
+    const isTd  = isToday(year, month, d);
+    const isPast = new Date(year, month - 1, d) < today && !isTd;
+
+    let cls = 'day-cell';
+    let inner = `<div class="day-num">${d}</div>`;
+
+    if (s) {
+      if (s.isRest) {
+        cls += ' rest';
+        inner += `<div class="day-rest-icon">⛪</div>`;
+      } else if (s.pct >= 90) {
+        cls += ' full';
+        inner += `<div class="day-pct">${s.pct}%</div>`;
+        if (s.loops) inner += `<div class="day-loops">${s.loops}루프</div>`;
+      } else if (s.pct >= 40) {
+        cls += ' done';
+        inner += `<div class="day-pct">${s.pct}%</div>`;
+        if (s.loops) inner += `<div class="day-loops">${s.loops}루프</div>`;
+      } else if (s.pct > 0) {
+        cls += ' partial';
+        inner += `<div class="day-pct">${s.pct}%</div>`;
+      } else {
+        cls += ' no-data';
+      }
+    } else {
+      cls += isPast ? ' no-data' : ' future';
+    }
+    if (isTd) cls += ' today';
+    if (isPast || isTd) cls += ' clickable';
+
+    const clickAttr = (isPast || isTd) ? `onclick="openDay(${year},${month},${d})"` : '';
+    cells += `<div class="${cls}" ${clickAttr}>${inner}</div>`;
+  }
+
+  return `
+    <div class="glass-card cal-card">
+      <div class="cal-dow">${dowHtml}</div>
+      <div class="cal-grid">${cells}</div>
+    </div>
+    
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" data-count="${studyDays}">0</div><div class="stat-label">공부한 날</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="${doneDays}">0</div><div class="stat-label">완료 (75%↑)</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="${totalLoops}">0</div><div class="stat-label">총 루프</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="${restDays}">0</div><div class="stat-label">휴식일</div></div>
+    </div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-box" style="background:var(--cal-full)"></div>90%↑ 완료</div>
+      <div class="leg-item"><div class="leg-box" style="background:var(--cal-done)"></div>40%↑ 완료</div>
+      <div class="leg-item"><div class="leg-box" style="background:var(--cal-partial)"></div>진행 중</div>
+      <div class="leg-item"><div class="leg-box" style="background:var(--cal-nodata)"></div>휴식 / 없음</div>
+    </div>`;
+}
+
+function timelineHTML() {
+  const months = [
+    ['2026', 6, '6월'], ['2026', 7, '7월'], ['2026', 8, '8월'], ['2026', 9, '9월'],
+    ['2026', 10, '10월'], ['2026', 11, '11월'], ['2026', 12, '12월'], ['2027', 1, "'27.1월"]
+  ];
+  const nowKey = `${new Date().getFullYear()}-${new Date().getMonth() + 1}`;
+
+  const rows = months.map(([yr, mo, lbl]) => {
+    const key = `${yr}-${mo}`, g = MACRO[key] || {};
+    let cls = '';
+    if (key === nowKey) cls = 'active';
+    else if (`${yr}-${mo}` < nowKey || (parseInt(yr) < new Date().getFullYear()) || (parseInt(yr) === new Date().getFullYear() && mo < new Date().getMonth() + 1)) cls = 'past';
+
+    const checkmark = cls === 'past' ? '<span class="tl-checkmark">✓</span>' : '';
+
+    return `<div class="tl-row ${cls}">
+      <div class="tl-dot"></div>
+      <div class="tl-month-badge">${lbl}${checkmark}</div>
+      <div class="tl-content">
+        <div class="tl-math">📐 ${esc(g.math || '—')}</div>
+        <div class="tl-eng">📘 ${esc(g.eng || '—')}</div>
+        ${g.extra ? `<div class="tl-extra">✦ ${esc(g.extra)}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="glass-card timeline-card">
+    <div class="card-title">매크로 타임라인 (6월 ~ 2027.1월)</div>
+    <div class="tl-container">
+      <div class="tl-line"></div>
+      ${rows}
+    </div>
+  </div>`;
+}
+
+function heatmapHTML() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const startDate = new Date(today);
+  startDate.setDate(startDate.getDate() - today.getDay() - 25 * 7);
+
+  const MNAMES = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const DOW_LABELS = ['일','','화','','목','','토'];
+
+  let monthLabels = [];
+  let lastMonth = -1;
+  for (let w = 0; w < 26; w++) {
+    const d = new Date(startDate);
+    d.setDate(startDate.getDate() + w * 7);
+    const mo = d.getMonth();
+    if (mo !== lastMonth) { lastMonth = mo; monthLabels.push({w, label: MNAMES[mo]}); }
+    else monthLabels.push({w, label: ''});
+  }
+
+  const monthRowCells = monthLabels.map(({label}) =>
+    `<div class="heatmap-month-lbl">${label}</div>`
+  ).join('');
+
+  let weekCols = '';
+  for (let w = 0; w < 26; w++) {
+    let col = '';
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(startDate);
+      date.setDate(startDate.getDate() + w * 7 + d);
+      if (date > today) { col += `<div class="hm-cell" style="background:var(--heatmap-empty)"></div>`; continue; }
+      const y = date.getFullYear();
+      const m = String(date.getMonth()+1).padStart(2,'0');
+      const dd = String(date.getDate()).padStart(2,'0');
+      const s = dayStatus[`${y}-${m}-${dd}`];
+      let color = 'var(--heatmap-empty)';
+      let cls = 'hm-cell';
+      let tip = `${parseInt(m)}/${parseInt(dd)}: 기록 없음`;
+      if (s) {
+        if (s.isRest) { color='var(--heatmap-rest)'; tip=`${parseInt(m)}/${parseInt(dd)}: 휴식일`; }
+        else if (s.pct>=76) { color='var(--heatmap-l4)'; cls+=' l4'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
+        else if (s.pct>=41) { color='var(--heatmap-l3)'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
+        else if (s.pct>=1)  { color='var(--heatmap-l2)'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
+        else                { color='var(--heatmap-l1)'; tip=`${parseInt(m)}/${parseInt(dd)}: 0%`; }
+      }
+      col += `<div class="${cls}" style="background:${color}" title="${tip}"></div>`;
+    }
+    weekCols += `<div class="heatmap-week">${col}</div>`;
+  }
+
+  const dowLabels = DOW_LABELS.map(l => `<span>${l}</span>`).join('');
+
+  return `<div class="heatmap-card">
+    <div class="card-title">📅 학습 기록 (최근 26주)</div>
+    <div class="heatmap-scroll">
+      <div class="heatmap-month-row">${monthRowCells}</div>
+      <div class="heatmap-body">
+        <div class="heatmap-dow">${dowLabels}</div>
+        <div class="heatmap-weeks">${weekCols}</div>
+      </div>
+    </div>
+    <div class="hm-legend">
+      <span>적음</span>
+      <div class="hm-lbox" style="background:var(--heatmap-empty)"></div>
+      <div class="hm-lbox" style="background:var(--heatmap-l2)"></div>
+      <div class="hm-lbox" style="background:var(--heatmap-l3)"></div>
+      <div class="hm-lbox" style="background:var(--heatmap-l4)"></div>
+      <span>많음</span>
+      <div class="hm-lbox" style="background:var(--heatmap-rest)"></div>
+      <span>휴식</span>
+    </div>
+  </div>`;
+}
+
+function fullRender() {
+  const MNAMES = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+  const streakHTML = studyStreak > 0
+    ? `<span class="streak-badge">🔥 ${studyStreak}일 연속 학습 중</span>`
+    : '';
+
+  document.getElementById('root').innerHTML = `
+    <div class="header">
+      <div class="header-left">
+        <div class="month-nav">
+          <button class="nav-btn" onclick="navigate(-1)">‹</button>
+          <div class="month-title">${dispYear}년 ${MNAMES[dispMonth]}</div>
+          <button class="nav-btn" onclick="navigate(1)">›</button>
+        </div>
+      </div>
+      <div class="header-right">
+        ${streakHTML}
+        <span class="dday-chip">D-${dday()} 🎯</span>
+      </div>
+    </div>
+    ${monthGoalHTML(dispYear, dispMonth)}
+    ${calendarHTML(dispYear, dispMonth)}
+    ${weeklyBarsHTML(dispYear, dispMonth)}
+    ${heatmapHTML()}
+    ${timelineHTML()}`;
+
+  // Trigger count-up animations
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.stat-num[data-count]').forEach(el => {
+      const target = parseInt(el.getAttribute('data-count')) || 0;
+      animateCountUp(el, target, 800);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════
+   Navigation
+   ═══════════════════════════════════════ */
+window.navigate = function(dir) {
+  dispMonth += dir;
+  if (dispMonth > 12) { dispMonth = 1; dispYear++; }
+  if (dispMonth < 1)  { dispMonth = 12; dispYear--; }
+  fullRender();
+};
+
+/* ═══════════════════════════════════════
+   Init
+   ═══════════════════════════════════════ */
+async function init() {
+  // Token check for standalone mode
+  if (!getNotionToken()) { showTokenSetup(); return; }
+
+  // Load cached streak for instant display
+  loadStreakCache();
+
+  // Check localStorage cache
+  const hasCachedData = loadCache();
+  if (hasCachedData) {
+    calcStreak();
+    fullRender();
+  } else {
+    fullRender(); // Skeleton render
+  }
+
+  // Fetch fresh data from Notion in background
+  try {
+    const prevStatus = JSON.stringify(dayStatus);
+    await fetchAllChecklists();
+    saveCache();
+    calcStreak();
+    // Re-render if data changed or if we had no cache
+    if (!hasCachedData || JSON.stringify(dayStatus) !== prevStatus) {
+      fullRender();
+    }
+  } catch (e) {
+    console.error('Init fetch error:', e);
+    if (!hasCachedData) {
+      showToast('⚠️ 데이터를 불러올 수 없습니다');
+    }
+  }
+}
+
+loadTheme();
+// 서버에서 토큰 복원 후 init 실행
+restoreTokenFromServer().then(() => init());
+</script>
+</body>
+</html>
