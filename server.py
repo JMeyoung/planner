@@ -71,18 +71,7 @@ def notion_request(path, method='GET', body=None, token=''):
 
 
 def get_rich_text(rich_text_arr):
-    parts = []
-    for rt in (rich_text_arr or []):
-        text = rt.get('plain_text', '')
-        ann = rt.get('annotations', {})
-        if ann.get('code'):
-            text = f'`{text}`'
-        if ann.get('bold'):
-            text = f'**{text}**'
-        if ann.get('italic'):
-            text = f'_{text}_'
-        parts.append(text)
-    return ''.join(parts)
+    return ''.join(rt.get('plain_text', '') for rt in (rich_text_arr or []))
 
 def blocks_to_markdown(blocks):
     lines = []
