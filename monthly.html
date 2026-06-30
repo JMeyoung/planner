@@ -1375,7 +1375,7 @@ function calendarHTML(year, month) {
       cls += isPast ? ' no-data' : ' future';
     }
     if (isTd) cls += ' today';
-    if (isPast || isTd || !isPast) cls += ' clickable';
+    cls += ' clickable';
 
     const clickAttr = `onclick="openDrawer('${dk}')"`;
     cells += `<div class="${cls}" ${clickAttr}>${inner}</div>`;
