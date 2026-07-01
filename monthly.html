@@ -1420,13 +1420,15 @@ function timelineHTML() {
     ['2026', 6, '6월'], ['2026', 7, '7월'], ['2026', 8, '8월'], ['2026', 9, '9월'],
     ['2026', 10, '10월'], ['2026', 11, '11월'], ['2026', 12, '12월'], ['2027', 1, "'27.1월"]
   ];
-  const nowKey = `${new Date().getFullYear()}-${new Date().getMonth() + 1}`;
+  const now = new Date();
+  const nowNum = now.getFullYear() * 12 + (now.getMonth() + 1);
 
   const rows = months.map(([yr, mo, lbl]) => {
     const key = `${yr}-${mo}`, g = MACRO[key] || {};
+    const keyNum = parseInt(yr) * 12 + mo;
     let cls = '';
-    if (key === nowKey) cls = 'active';
-    else if (`${yr}-${mo}` < nowKey || (parseInt(yr) < new Date().getFullYear()) || (parseInt(yr) === new Date().getFullYear() && mo < new Date().getMonth() + 1)) cls = 'past';
+    if (keyNum === nowNum) cls = 'active';
+    else if (keyNum < nowNum) cls = 'past';
 
     const checkmark = cls === 'past' ? '<span class="tl-checkmark">✓</span>' : '';
 
