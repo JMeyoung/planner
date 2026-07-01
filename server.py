@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-편입 플래너 로컬 서버
+스터디 플래너 로컬 서버
 ============================
 사용법:
-  1. 이 파일과 편입플래너_standalone.html을 같은 폴더에 저장
+  1. 이 파일과 planner_standalone.html을 같은 폴더에 저장
   2. 터미널에서: python server.py
   3. Chrome에서: http://localhost:3000 접속
   4. 첫 실행 시 Notion 통합 토큰 입력 (secret_xxx 또는 ntn_xxx)
@@ -248,13 +248,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
 
-        if path in ('/', '/index.html', '/편입월별플래너_standalone.html'):
+        if path in ('/', '/index.html', '/planner_standalone.html'):
             # 월별 플래너 (메인)
-            self._serve_html(MONTHLY_HTML, '편입월별플래너_standalone.html')
+            self._serve_html(MONTHLY_HTML, 'planner_standalone.html')
 
-        elif path in ('/daily', '/daily/', '/편입플래너_standalone.html'):
+        elif path in ('/daily', '/daily/', '/daily_planner_standalone.html'):
             # 일별 플래너
-            self._serve_html(DAILY_HTML, '편입플래너_standalone.html')
+            self._serve_html(DAILY_HTML, 'daily_planner_standalone.html')
 
         elif path == '/api/token':
             # 저장된 토큰 반환 (페이지 로드 시 자동 적용용)
@@ -367,7 +367,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 if __name__ == '__main__':
     print()
     print('┌─────────────────────────────────────────┐')
-    print('│  편입 플래너 로컬 서버                  │')
+    print('│  스터디 플래너 로컬 서버                 │')
     print(f'│  월별: http://localhost:{PORT}            │')
     print(f'│  일별: http://localhost:{PORT}/daily      │')
     print('└─────────────────────────────────────────┘')
