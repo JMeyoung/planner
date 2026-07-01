@@ -1124,6 +1124,14 @@ function parseSection(lines) {
         result.blocks.push(curBlock);
         continue;
       }
+      const isMath = l.includes('📐') || l.includes('수학');
+      const isEng2 = l.includes('📘') || l.includes('영어');
+      if (isMath || isEng2) {
+        inRoutine = false;
+        curBlock = { title: cleanMd(l), subject: isEng2 ? 'eng' : 'math', isCarry: false, items: [] };
+        result.blocks.push(curBlock);
+        continue;
+      }
       continue;
     }
 
@@ -1131,7 +1139,13 @@ function parseSection(lines) {
     if (cxM || coM) {
       const item = { checked: !!cxM, text: cleanMd((cxM || coM)[1]) };
       if (inRoutine) result.routines.push(item);
-      else if (curBlock) curBlock.items.push(item);
+      else {
+        if (!curBlock) {
+          curBlock = { title: '할 일', subject: 'math', isCarry: false, items: [] };
+          result.blocks.push(curBlock);
+        }
+        curBlock.items.push(item);
+      }
     }
   }
   return result;
@@ -1598,3 +1612,4 @@ restoreTokenFromServer().then(() => init());
 </script>
 </body>
 </html>
+
