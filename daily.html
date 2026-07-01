@@ -1246,6 +1246,14 @@ body {
   transition: none !important;
   cursor: grabbing;
 }
+.loop-mode-btn {
+  padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+  border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6); cursor: pointer; transition: all .2s;
+}
+.loop-mode-btn.active {
+  background: var(--accent-math); color: #fff; border-color: var(--accent-math);
+}
 
 /* ══════════════════════════════════════════
    AI SETTINGS & ANALYZER
@@ -2417,6 +2425,8 @@ function renderApp(d) {
   initHeroBanner();
   // Init draggable pomodoro
   initPomoDrag();
+  // Init loop mode buttons
+  setLoopMode(loopMinutes);
 
   // Trigger celebration if already 100%
   if (pct === 100 && !celebrationFired) {
@@ -2522,6 +2532,11 @@ function renderPomoWidget() {
       </div>
     </div>
     <div class="pomo-mode" id="pomoMode">FOCUS</div>
+    <div style="display:flex;gap:6px;align-items:center;margin-top:2px;">
+      <span style="font-size:0.68rem;color:rgba(255,255,255,0.45);font-weight:600;">집중시간</span>
+      <button id="mode25" class="loop-mode-btn" onclick="setLoopMode(25)">25분</button>
+      <button id="mode50" class="loop-mode-btn" onclick="setLoopMode(50)">50분</button>
+    </div>
   </div>`;
 }
 
@@ -2590,10 +2605,25 @@ function initPomoDrag() {
 /* ══════════════════════════════════════════
    POMODORO TIMER
    ══════════════════════════════════════════ */
+let loopMinutes = parseInt(localStorage.getItem('loop-minutes') || '50');
 let pomoTimer = null;
-let pomoTimeLeft = 50 * 60; // 50 minutes in seconds
+let pomoTimeLeft = loopMinutes * 60;
 let isPomoRunning = false;
-let isFocusMode = true; // true = 50m, false = 10m
+let isFocusMode = true; // true = focus, false = rest
+
+function setLoopMode(min) {
+  loopMinutes = min;
+  localStorage.setItem('loop-minutes', String(min));
+  const btn25 = document.getElementById('mode25');
+  const btn50 = document.getElementById('mode50');
+  if (btn25) btn25.classList.toggle('active', min === 25);
+  if (btn50) btn50.classList.toggle('active', min === 50);
+  // 현재 멈춤 상태일 때만 시간 재설정
+  if (!isPomoRunning && isFocusMode) {
+    pomoTimeLeft = min * 60;
+    updatePomoDisplay();
+  }
+}
 
 function updatePomoDisplay() {
   const m = Math.floor(pomoTimeLeft / 60);
@@ -2616,7 +2646,7 @@ function togglePomodoro() {
       if (pomoTimeLeft <= 0) {
         // Switch modes
         isFocusMode = !isFocusMode;
-        pomoTimeLeft = isFocusMode ? 50 * 60 : 10 * 60;
+        pomoTimeLeft = isFocusMode ? loopMinutes * 60 : 10 * 60;
         const modeEl = document.getElementById('pomoMode');
         if(modeEl) {
           modeEl.textContent = isFocusMode ? 'FOCUS' : 'REST';
@@ -2645,7 +2675,7 @@ function resetPomodoro() {
   clearInterval(pomoTimer);
   isPomoRunning = false;
   isFocusMode = true;
-  pomoTimeLeft = 50 * 60;
+  pomoTimeLeft = loopMinutes * 60;
   const btn = document.getElementById('pomoToggleBtn');
   if(btn) btn.textContent = '▶';
   const modeEl = document.getElementById('pomoMode');
@@ -2982,3 +3012,4 @@ restoreTokenFromServer().then(() => {
 </script>
 </body>
 </html>
+
