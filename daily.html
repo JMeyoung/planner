@@ -2957,17 +2957,44 @@ async function init() {
 
   // Fetch from Notion
   try {
-    // 1. Planner main → extract checklist subpage ID
+    // 1. Planner main → extract checklist subpage matching TODAY's date range
     const planRes  = await safeMcpCall(FETCH, { id: PLANNER_ID });
     const planData = planRes.structuredContent ?? JSON.parse(planRes.content[0].text);
     const planText = planData.text || '';
 
-    const subUrls = [...planText.matchAll(/<page url="([^"]+)">[^<]*체크리스트[^<]*<\/page>/g)].map(m => m[1]);
-    if (subUrls.length > 0) {
-      const last = subUrls[subUrls.length - 1];
-      const idM  = last.match(/\/p\/([a-f0-9]+)/i);
-      if (idM) checklistPageId = idM[1];
+    const subMatches = [...planText.matchAll(/<page url="([^"]+)">([^<]*체크리스트[^<]*)<\/page>/g)];
+    const now = new Date();
+    const todayNum = (now.getMonth() + 1) * 100 + now.getDate();
+
+    const candidates = subMatches.map(m => {
+      const url = m[1], title = m[2];
+      const rangeM = title.match(/(\d{1,2})\s*\/\s*(\d{1,2})\s*[~～]\s*(\d{1,2})\s*\/\s*(\d{1,2})/);
+      const idM = url.match(/\/p\/([a-f0-9]+)/i);
+      if (!idM) return null;
+      let startNum = null, endNum = null;
+      if (rangeM) {
+        startNum = parseInt(rangeM[1]) * 100 + parseInt(rangeM[2]);
+        endNum   = parseInt(rangeM[3]) * 100 + parseInt(rangeM[4]);
+      }
+      return { id: idM[1], title, startNum, endNum };
+    }).filter(Boolean);
+
+    // Prefer the page whose date range contains today
+    let match = candidates.find(c => c.startNum !== null && todayNum >= c.startNum && todayNum <= c.endNum);
+    // Otherwise, the closest upcoming week (smallest startNum >= today)
+    if (!match) {
+      const upcoming = candidates.filter(c => c.startNum !== null && c.startNum >= todayNum).sort((a,b) => a.startNum - b.startNum);
+      match = upcoming[0];
     }
+    // Otherwise, the most recent past week (largest endNum <= today)
+    if (!match) {
+      const past = candidates.filter(c => c.endNum !== null && c.endNum <= todayNum).sort((a,b) => b.endNum - a.endNum);
+      match = past[0];
+    }
+    // Last resort: fall back to the last linked page (old behavior)
+    if (!match && candidates.length > 0) match = candidates[candidates.length - 1];
+
+    if (match) checklistPageId = match.id;
 
     // 2. Search fallback
     if (!checklistPageId) {
