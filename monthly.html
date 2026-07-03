@@ -1042,6 +1042,14 @@ function loadCache() {
     if (!raw) return false;
     const { timestamp, data } = JSON.parse(raw);
     if (Date.now() - timestamp > CACHE_TTL) return false;
+    
+    // Invalidate old cache without pageId
+    for (const key in data) {
+       if (data[key] && !data[key].pageId && data[key].total > 0 && !data[key].isRest) {
+           return false;
+       }
+    }
+    
     dayStatus = data;
     return true;
   } catch { return false; }
@@ -1293,8 +1301,8 @@ window.openDay = function(y, m, d) {
 function renderDTask(item, dayKey) {
   const safeText = item.text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
   const clickHandler = `onclick="toggleTask(this, '${dayKey}', '${safeText}', ${item.checked})"`;
-  return `<div class="d-task ${item.checked ? 'done' : ''}">
-    <div class="d-cb ${item.checked ? 'on' : ''}" style="cursor:pointer" ${clickHandler}>${item.checked ? checkSVG() : ''}</div>
+  return `<div class="d-task ${item.checked ? 'done' : ''}" style="cursor:pointer" ${clickHandler}>
+    <div class="d-cb ${item.checked ? 'on' : ''}">${item.checked ? checkSVG() : ''}</div>
     <span class="d-text">${esc(item.text)}</span>
   </div>`;
 }
@@ -1315,9 +1323,12 @@ window.toggleTask = async function(el, dateKey, text, isCurrentlyChecked) {
   }
 
   const isNowChecked = !isCurrentlyChecked;
-  el.classList.toggle('on', isNowChecked);
-  el.innerHTML = isNowChecked ? checkSVG() : '';
-  el.closest('.d-task').classList.toggle('done', isNowChecked);
+  el.classList.toggle('done', isNowChecked);
+  const cb = el.querySelector('.d-cb');
+  if (cb) {
+    cb.classList.toggle('on', isNowChecked);
+    cb.innerHTML = isNowChecked ? checkSVG() : '';
+  }
   el.setAttribute('onclick', `toggleTask(this, '${dateKey}', '${text.replace(/'/g, "\\'")}', ${isNowChecked})`);
 
   try {
@@ -1333,21 +1344,29 @@ window.toggleTask = async function(el, dateKey, text, isCurrentlyChecked) {
     const data = await res.json();
     if (!res.ok || data.error) throw new Error(data.error || '업데이트 실패');
     
+    // update internal state
     for(let i=0; i<s.sectionLines.length; i++) {
        if (s.sectionLines[i].includes(oldStr)) {
           s.sectionLines[i] = s.sectionLines[i].replace(oldStr, newStr);
           break;
        }
     }
+    s.checked += isNowChecked ? 1 : -1;
+    s.pct = s.total > 0 ? Math.round((s.checked / s.total) * 100) : 0;
+    saveCache(); // immediately save updated cache
   } catch(e) {
     console.error(e);
-    el.classList.toggle('on', isCurrentlyChecked);
-    el.innerHTML = isCurrentlyChecked ? checkSVG() : '';
-    el.closest('.d-task').classList.toggle('done', isCurrentlyChecked);
+    // revert
+    el.classList.toggle('done', isCurrentlyChecked);
+    if (cb) {
+      cb.classList.toggle('on', isCurrentlyChecked);
+      cb.innerHTML = isCurrentlyChecked ? checkSVG() : '';
+    }
     el.setAttribute('onclick', `toggleTask(this, '${dateKey}', '${text.replace(/'/g, "\\'")}', ${isCurrentlyChecked})`);
     showToast('업데이트 실패: ' + e.message);
   }
 };
+
 
 function showDrawer() {
   // Use requestAnimationFrame to ensure transition fires
