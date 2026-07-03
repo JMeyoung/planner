@@ -221,7 +221,7 @@ body::before, body::after {
   transform: scale(1.08);
 }
 .theme-toggle:active {
-  transform: scale(0.85);
+  transform: scale(0.95);
 }
 
 /* ══════════════════════════════════════════
@@ -431,9 +431,6 @@ body::before, body::after {
   transition: transform var(--transition-spring), box-shadow var(--transition-spring), background var(--transition-spring);
   animation: fadeSlideUp 0.5s var(--transition-spring) both;
 }
-.card:active {
-  transform: scale(0.98);
-}
 .card-header {
   display: flex;
   align-items: center;
@@ -490,7 +487,7 @@ body::before, body::after {
   background: var(--bg-card-hover);
 }
 .task:active {
-  transform: scale(0.96);
+  background: var(--bg-card-hover);
 }
 .task.done .task-text {
   text-decoration: line-through;
@@ -514,9 +511,6 @@ body::before, body::after {
   justify-content: center;
   transition: all var(--transition-fast);
   position: relative;
-}
-.cb:active {
-  transform: scale(0.7);
 }
 .cb.on {
   background: var(--checkbox-done);
