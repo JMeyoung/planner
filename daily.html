@@ -17,20 +17,21 @@
    CSS VARIABLES & THEMES
    ══════════════════════════════════════════ */
 :root {
+  --glass-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   --bg-primary: #f0f2f5;
   --bg-secondary: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.4);
-  --bg-card-hover: rgba(255, 255, 255, 0.7);
+  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+  --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
   --text-primary: #1a1a2e;
   --text-secondary: #555;
   --text-muted: #999;
-  --border: rgba(255, 255, 255, 0.5);
+  --border: rgba(255, 255, 255, 0.4);
   --border-subtle: rgba(0, 0, 0, 0.04);
-  --border-highlight: rgba(255, 255, 255, 0.8);
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-  --glass-blur: blur(40px) saturate(200%);
+  --border-highlight: rgba(255, 255, 255, 0.9);
+  --shadow: 0 16px 32px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.7), inset 0 -4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
+  --glass-blur: blur(40px) saturate(220%);
   --accent-math: hsl(220, 70%, 55%);
   --accent-eng: hsl(155, 60%, 40%);
   --accent-routine: hsl(0, 72%, 55%);
@@ -41,24 +42,26 @@
   --checkbox-done: #16a34a;
   --toast-bg: rgba(30, 30, 50, 0.9);
   --card-radius: 24px;
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-med: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-med: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-slow: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-theme="dark"] {
+  --glass-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
   --bg-primary: #05050c;
   --bg-secondary: #17172a;
-  --bg-card: rgba(30, 30, 40, 0.35);
-  --bg-card-hover: rgba(255, 255, 255, 0.09);
+  --bg-card: linear-gradient(135deg, rgba(40, 40, 55, 0.45) 0%, rgba(20, 20, 30, 0.15) 100%);
+  --bg-card-hover: linear-gradient(135deg, rgba(50, 50, 70, 0.55) 0%, rgba(30, 30, 45, 0.25) 100%);
   --text-primary: #f0f0f8;
   --text-secondary: #b3b3c6;
   --text-muted: #74748c;
   --border: rgba(255, 255, 255, 0.15);
   --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-highlight: rgba(255, 255, 255, 0.3);
-  --shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --border-highlight: rgba(255, 255, 255, 0.35);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.15), inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.1);
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
   --checkbox-done: #22c55e;
   --toast-bg: rgba(255,255,255,0.12);
@@ -125,6 +128,12 @@ body::before, body::after {
 @keyframes shimmer {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
+}
+
+@keyframes springPop {
+  0% { transform: scale(0.5); opacity: 0.5; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes checkBounce {
@@ -194,8 +203,8 @@ body::before, body::after {
   z-index: 1000;
   width: 44px;
   height: 44px;
-  border: 1px solid var(--border);
   border-radius: 50%;
+  border: 1px solid var(--border);
   background: var(--bg-card);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -204,16 +213,15 @@ body::before, body::after {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--border-highlight);
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring);
   user-select: none;
 }
 .theme-toggle:hover {
   transform: scale(1.08);
-  box-shadow: var(--shadow);
 }
 .theme-toggle:active {
-  transform: scale(0.95);
+  transform: scale(0.85);
 }
 
 /* ══════════════════════════════════════════
@@ -409,18 +417,22 @@ body::before, body::after {
    ══════════════════════════════════════════ */
 .card {
   background: var(--bg-card);
+  background-image: var(--glass-noise), var(--bg-card);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border);
+  border-top: 1.5px solid var(--border-highlight);
+  border-left: 1.5px solid var(--border-highlight);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: var(--card-radius);
   padding: 16px 18px;
   margin-bottom: 12px;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--border-highlight);
-  transition: all var(--transition-med);
-  animation: fadeSlideUp 0.5s ease both;
-}
-.card:hover {
   box-shadow: var(--shadow);
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring), background var(--transition-spring);
+  animation: fadeSlideUp 0.5s var(--transition-spring) both;
+}
+.card:active {
+  transform: scale(0.98);
 }
 .card-header {
   display: flex;
@@ -468,7 +480,7 @@ body::before, body::after {
   padding: 9px 8px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), background var(--transition-fast);
   position: relative;
 }
 .task:not(:last-child) {
@@ -476,10 +488,9 @@ body::before, body::after {
 }
 .task:hover {
   background: var(--bg-card-hover);
-  transform: translateY(-1px);
 }
 .task:active {
-  transform: translateY(0) scale(0.99);
+  transform: scale(0.96);
 }
 .task.done .task-text {
   text-decoration: line-through;
@@ -504,10 +515,13 @@ body::before, body::after {
   transition: all var(--transition-fast);
   position: relative;
 }
+.cb:active {
+  transform: scale(0.7);
+}
 .cb.on {
   background: var(--checkbox-done);
   border-color: var(--checkbox-done);
-  animation: checkBounce 0.3s ease;
+  animation: springPop 0.5s var(--transition-spring) forwards;
 }
 .cb.on svg {
   animation: checkDraw 0.3s ease forwards;
