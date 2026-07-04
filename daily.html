@@ -849,7 +849,7 @@ body::before, body::after {
 .qa-actions { display: flex; gap: 6px; margin-top: 6px; }
 .qa-submit {
   padding: 5px 14px; border: none; border-radius: 7px;
-  background: var(--accent-math); color: #fff;
+  background: var(--accent-math); color: #35235d;
   font-family: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer;
 }
 .qa-cancel {
@@ -1324,7 +1324,7 @@ body::before, body::after {
   color: rgba(255,255,255,0.6); cursor: pointer; transition: all .2s;
 }
 .loop-mode-btn.active {
-  background: var(--accent-math); color: #fff; border-color: var(--accent-math);
+  background: var(--accent-math); color: #35235d; border-color: var(--accent-math);
 }
 
 /* ══════════════════════════════════════════
@@ -1479,7 +1479,7 @@ body::before, body::after {
     <input id="apiKeyInput" type="password" placeholder="sk-ant-..." style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg-primary);color:var(--text-primary);font-size:0.84rem;font-family:inherit;outline:none;margin-bottom:12px;">
     <div style="display:flex;gap:8px;justify-content:flex-end;">
       <button onclick="closeAiModal()" style="padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:none;color:var(--text-secondary);font-family:inherit;cursor:pointer;font-size:0.82rem">취소</button>
-      <button onclick="saveApiKey()" style="padding:8px 16px;border:none;border-radius:8px;background:var(--gradient-progress);color:#fff;font-family:inherit;cursor:pointer;font-size:0.82rem;font-weight:700">저장</button>
+      <button onclick="saveApiKey()" style="padding:8px 16px;border:none;border-radius:8px;background:var(--gradient-progress);color:#35235d;font-family:inherit;cursor:pointer;font-size:0.82rem;font-weight:700">저장</button>
     </div>
   </div>
 </div>
@@ -1592,7 +1592,7 @@ function cleanMd(s) {
 
 function checkSVG() {
   return `<svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-    <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    <path d="M1 4.5L4 7.5L10 1" stroke="#35235d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
       style="stroke-dasharray:20;stroke-dashoffset:0"/>
   </svg>`;
 }
