@@ -16,59 +16,59 @@
 /* ══════════════════════════════════════════
    CSS VARIABLES & THEMES
    ══════════════════════════════════════════ */
-/* ── ⚪ True High-Contrast Black & White ── */
+/* ── 🌸 Lilac & Peach Pastel Theme ── */
 :root {
   --glass-noise: none;
-  --bg-primary: #ffffff;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f0f0f0;
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #444444;
-  --border: #000000;
-  --border-subtle: #000000;
-  --border-highlight: #000000;
-  --shadow: 4px 4px 0px #000000;
-  --shadow-sm: 2px 2px 0px #000000;
-  --shadow-lg: 6px 6px 0px #000000;
-  --glass-blur: none;
-  --accent-math: #000000;
-  --accent-eng: #000000;
-  --accent-routine: #000000;
-  --accent-dday: #000000;
-  --gradient-progress: #000000;
-  --gradient-hero: #ffffff;
-  --gradient-hero-overlay: none;
-  --checkbox-done: #000000;
-  --toast-bg: #000000;
-  --card-radius: 0px;
-  --transition-spring: 0.2s ease-out;
-  --transition-fast: 0.1s ease-out;
-  --transition-med: 0.2s ease-out;
-  --transition-slow: 0.3s ease-out;
+  --bg-primary: linear-gradient(180deg, #d3c4e3 0%, #e8c3d7 50%, #f4b4ba 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.15);
+  --bg-card: rgba(255, 255, 255, 0.15);
+  --bg-card-hover: rgba(255, 255, 255, 0.25);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.2);
+  --border-highlight: rgba(255, 255, 255, 0.7);
+  --shadow: 0 8px 32px rgba(200, 150, 180, 0.15);
+  --shadow-sm: 0 4px 12px rgba(200, 150, 180, 0.1);
+  --shadow-lg: 0 16px 48px rgba(200, 150, 180, 0.2);
+  --glass-blur: blur(12px) saturate(110%);
+  --accent-math: #ffffff;
+  --accent-eng: #ffffff;
+  --accent-routine: #ffffff;
+  --accent-dday: #ffffff;
+  --gradient-progress: #ffffff;
+  --gradient-hero: rgba(255, 255, 255, 0.15);
+  --gradient-hero-overlay: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  --checkbox-done: #ffffff;
+  --toast-bg: rgba(255, 255, 255, 0.9);
+  --card-radius: 16px;
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-med: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-slow: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-theme="dark"] {
   --glass-noise: none;
-  --bg-primary: #000000;
-  --bg-secondary: #000000;
-  --bg-card: #000000;
-  --bg-card-hover: #111111;
+  --bg-primary: linear-gradient(180deg, #3a2a4d 0%, #4a283b 50%, #52272a 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(0, 0, 0, 0.2);
+  --bg-card-hover: rgba(0, 0, 0, 0.3);
   --text-primary: #ffffff;
-  --text-secondary: #ffffff;
-  --text-muted: #bbbbbb;
-  --border: #ffffff;
-  --border-subtle: #ffffff;
-  --border-highlight: #ffffff;
-  --shadow: 4px 4px 0px #ffffff;
-  --shadow-sm: 2px 2px 0px #ffffff;
-  --shadow-lg: 6px 6px 0px #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(255, 255, 255, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
   --checkbox-done: #ffffff;
-  --toast-bg: #ffffff;
+  --toast-bg: rgba(0, 0, 0, 0.85);
   --gradient-progress: #ffffff;
-  --gradient-hero: #000000;
-  --gradient-hero-overlay: none;
+  --gradient-hero: rgba(0, 0, 0, 0.2);
+  --gradient-hero-overlay: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
 }
 
 /* ══════════════════════════════════════════
@@ -84,6 +84,7 @@ html {
 body {
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
   background: var(--bg-primary);
+  background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
@@ -420,7 +421,12 @@ body::before, body::after {
    ══════════════════════════════════════════ */
 .card {
   background: var(--bg-card);
-  border: 2px solid var(--border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--border-highlight);
+  border-left: 1px solid var(--border-highlight);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: var(--card-radius);
   padding: 16px 18px;
   margin-bottom: 12px;
@@ -746,7 +752,12 @@ body::before, body::after {
    ══════════════════════════════════════════ */
 .univ-card {
   background: var(--bg-card);
-  border: 2px solid var(--border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--border-highlight);
+  border-left: 1px solid var(--border-highlight);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: var(--card-radius);
   margin-bottom: 10px;
   overflow: hidden;
