@@ -38,9 +38,9 @@
   --accent-routine: #ffffff;
   --accent-dday: #ffffff;
   --cal-full: #ffffff;
-  --cal-done: rgba(255, 255, 255, 0.75);
-  --cal-partial: rgba(255, 255, 255, 0.4);
-  --cal-rest: rgba(255, 255, 255, 0.15);
+  --cal-done: rgba(255, 255, 255, 0.35);
+  --cal-partial: rgba(255, 255, 255, 0.18);
+  --cal-rest: rgba(255, 255, 255, 0.08);
   --cal-nodata: transparent;
   --cal-future: transparent;
   --cal-today-glow: rgba(255, 255, 255, 0.4);
@@ -77,8 +77,8 @@
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
   --cal-full: #ffffff;
-  --cal-done: rgba(255, 255, 255, 0.6);
-  --cal-partial: rgba(255, 255, 255, 0.3);
+  --cal-done: rgba(255, 255, 255, 0.25);
+  --cal-partial: rgba(255, 255, 255, 0.12);
   --cal-rest: rgba(0, 0, 0, 0.3);
   --cal-nodata: transparent;
   --cal-future: transparent;
@@ -314,7 +314,7 @@ body::before, body::after {
 }
 .week-stat-chip {
   flex: 1; text-align: center;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.08);
   border: 1px solid var(--border);
   border-radius: 12px; padding: 8px 4px;
 }
@@ -343,17 +343,17 @@ body::before, body::after {
 }
 .week-memo {
   width: 100%; min-height: 60px;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.08);
   border: 1.5px solid var(--border);
   border-radius: 10px; padding: 8px 10px;
   font-family: inherit; font-size: 0.82rem;
   color: var(--text-primary); resize: none;
   outline: none; line-height: 1.55;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 .week-memo:focus {
   border-color: var(--accent-math);
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.15);
 }
 .week-macro-ref {
   margin-top: 10px; padding-top: 10px;
@@ -401,6 +401,9 @@ body::before, body::after {
 .day-cell.partial { background: var(--cal-partial); }
 .day-cell.done    { background: var(--cal-done); }
 .day-cell.full    { background: var(--cal-full); }
+.day-cell.full .day-num { color: #35235d !important; }
+.day-cell.full .day-pct { color: rgba(53, 35, 93, 0.8) !important; }
+.day-cell.full .day-loops { color: rgba(53, 35, 93, 0.6) !important; }
 .day-cell.today {
   border-color: var(--accent-math) !important;
   animation: todayPulse 2.5s ease-in-out infinite;
@@ -543,7 +546,7 @@ body::before, body::after {
   transition: background .3s;
 }
 .tl-row.past .tl-month-badge { background: var(--tl-dot-past); }
-.tl-row.active .tl-month-badge { background: var(--tl-dot-active); }
+.tl-row.active .tl-month-badge { background: var(--tl-dot-active); color: #35235d; }
 .tl-content { flex: 1; }
 .tl-math {
   font-size: 0.8rem; color: var(--accent-math);
