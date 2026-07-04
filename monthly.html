@@ -16,89 +16,90 @@
 /* ═══════════════════════════════════════
    CSS Variables & Theme
    ═══════════════════════════════════════ */
+/* ── 🌅 Sunset Gradient Theme ── */
 :root {
-  --glass-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-  --bg-primary: #e6f2f8;
+  --glass-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+  --bg-primary: #fff4ef;
   --bg-secondary: #ffffff;
-  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(230, 245, 255, 0.3) 100%);
-  --text-primary: #1a2a3a;
-  --text-secondary: #4a5a6a;
-  --text-muted: #8a9aab;
-  --border: rgba(255, 255, 255, 0.6);
-  --border-highlight: rgba(255, 255, 255, 0.95);
-  --shadow: 0 16px 32px rgba(0, 100, 150, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -4px 8px rgba(0, 100, 150, 0.04);
-  --shadow-sm: 0 4px 12px rgba(0, 100, 150, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 228, 210, 0.35) 100%);
+  --text-primary: #2d1a10;
+  --text-secondary: #6b3e2a;
+  --text-muted: #b08070;
+  --border: rgba(255, 255, 255, 0.65);
+  --border-highlight: rgba(255, 255, 255, 0.97);
+  --shadow: 0 16px 32px rgba(200, 80, 40, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.85), inset 0 -4px 8px rgba(200, 80, 40, 0.04);
+  --shadow-sm: 0 4px 12px rgba(200, 80, 40, 0.07), inset 0 1px 2px rgba(255, 255, 255, 0.75);
   --glass-blur: blur(40px) saturate(180%);
   --radius-lg: 26px;
   --radius-md: 18px;
   --radius-sm: 12px;
-  --accent-math: hsl(200, 80%, 45%);
-  --accent-eng: hsl(170, 70%, 40%);
-  --accent-routine: hsl(0, 70%, 65%);
-  --accent-dday: hsl(35, 90%, 55%);
-  --cal-full: hsl(170, 70%, 80%);
-  --cal-done: hsl(170, 60%, 85%);
-  --cal-partial: hsl(45, 90%, 88%);
-  --cal-rest: rgba(0,0,0,0.03);
-  --cal-nodata: rgba(0,0,0,0.03);
-  --cal-future: rgba(0,0,0,0.015);
-  --cal-today-glow: hsla(200, 90%, 60%, 0.5);
-  --stat-bg: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(230,245,255,0.2) 100%);
-  --drawer-bg: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(230,245,255,0.4) 100%);
-  --overlay-bg: rgba(0,20,40,0.3);
-  --toast-bg: rgba(20,40,60,0.92);
+  --accent-math: hsl(28, 90%, 52%);    /* amber orange */
+  --accent-eng: hsl(345, 75%, 58%);    /* coral pink */
+  --accent-routine: hsl(320, 70%, 55%); /* hot magenta */
+  --accent-dday: hsl(10, 88%, 60%);    /* warm red-orange */
+  --cal-full: hsl(28, 80%, 82%);
+  --cal-done: hsl(15, 70%, 87%);
+  --cal-partial: hsl(45, 90%, 87%);
+  --cal-rest: rgba(200,80,40,0.04);
+  --cal-nodata: rgba(200,80,40,0.03);
+  --cal-future: rgba(200,80,40,0.015);
+  --cal-today-glow: hsla(28, 90%, 60%, 0.55);
+  --stat-bg: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,225,205,0.25) 100%);
+  --drawer-bg: linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,225,205,0.45) 100%);
+  --overlay-bg: rgba(45,20,10,0.35);
+  --toast-bg: rgba(60,25,10,0.92);
   --toast-color: #fff;
-  --tl-line: #e0e0e0;
-  --tl-dot: #d0d0d0;
-  --tl-dot-past: hsl(155, 60%, 45%);
-  --tl-dot-active: hsl(220, 70%, 55%);
-  --weekly-bar-bg: rgba(0,0,0,0.06);
-  --weekly-bar-fill: linear-gradient(90deg, hsl(155,55%,50%), hsl(220,65%,55%));
-  --heatmap-empty: #ebedf0;
-  --heatmap-l1: #9be9a8;
-  --heatmap-l2: #40c463;
-  --heatmap-l3: #216e39;
-  --heatmap-l4: #39d353;
-  --heatmap-rest: #bfdbfe;
+  --tl-line: #f0caba;
+  --tl-dot: #e0a88a;
+  --tl-dot-past: hsl(28, 70%, 55%);
+  --tl-dot-active: hsl(345, 70%, 58%);
+  --weekly-bar-bg: rgba(200,80,40,0.07);
+  --weekly-bar-fill: linear-gradient(90deg, hsl(28,88%,58%), hsl(345,72%,58%));
+  --heatmap-empty: #fde8dc;
+  --heatmap-l1: #fbc4a0;
+  --heatmap-l2: #f4845c;
+  --heatmap-l3: #e05530;
+  --heatmap-l4: #c73a16;
+  --heatmap-rest: #fce4f4;
   --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-fast: 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 [data-theme="dark"] {
   --glass-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  --bg-primary: #050a14;
-  --bg-secondary: #0a1428;
-  --bg-card: linear-gradient(135deg, rgba(10, 30, 60, 0.5) 0%, rgba(5, 15, 30, 0.2) 100%);
-  --text-primary: #e0f0ff;
-  --text-secondary: #8ca0b8;
-  --text-muted: #5a708a;
-  --border: rgba(0, 255, 255, 0.15);
-  --border-highlight: rgba(0, 255, 255, 0.4);
-  --shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(0, 255, 255, 0.2), inset 0 -4px 8px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(0, 255, 255, 0.15);
-  --cal-full: hsl(180, 50%, 25%);
-  --cal-done: hsl(180, 40%, 20%);
-  --cal-partial: hsl(200, 60%, 22%);
-  --cal-rest: rgba(0,255,255,0.03);
-  --cal-nodata: rgba(0,255,255,0.03);
-  --cal-future: rgba(0,255,255,0.015);
-  --cal-today-glow: hsla(190, 100%, 50%, 0.55);
-  --stat-bg: linear-gradient(135deg, rgba(10,30,60,0.3) 0%, rgba(5,15,30,0.1) 100%);
-  --drawer-bg: linear-gradient(135deg, rgba(10,25,50,0.55) 0%, rgba(5,15,30,0.35) 100%);
-  --overlay-bg: rgba(0,10,20,0.7);
-  --toast-bg: rgba(0,255,255,0.12);
-  --toast-color: #e0f0ff;
-  --tl-line: rgba(0,255,255,0.12);
-  --tl-dot: rgba(0,255,255,0.25);
-  --tl-dot-past: hsl(180, 60%, 40%);
-  --tl-dot-active: hsl(190, 100%, 55%);
-  --weekly-bar-bg: rgba(0,255,255,0.08);
-  --weekly-bar-fill: linear-gradient(90deg, hsl(180,60%,40%), hsl(190,100%,55%));
-  --heatmap-empty: #0a1428;
-  --heatmap-l1: #0a4045;
-  --heatmap-l2: #00707a;
-  --heatmap-l3: #00a0b0;
-  --heatmap-l4: #00e0f5;
-  --heatmap-rest: #102a45;
+  --bg-primary: #130800;
+  --bg-secondary: #1e0f04;
+  --bg-card: linear-gradient(135deg, rgba(60, 25, 8, 0.55) 0%, rgba(30, 12, 4, 0.25) 100%);
+  --text-primary: #ffe8d8;
+  --text-secondary: #c4907a;
+  --text-muted: #8a5540;
+  --border: rgba(255, 160, 80, 0.18);
+  --border-highlight: rgba(255, 180, 100, 0.45);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 2px 4px rgba(255, 160, 80, 0.18), inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 160, 80, 0.15);
+  --cal-full: hsl(28, 60%, 32%);
+  --cal-done: hsl(15, 50%, 26%);
+  --cal-partial: hsl(40, 55%, 28%);
+  --cal-rest: rgba(255,140,60,0.04);
+  --cal-nodata: rgba(255,140,60,0.03);
+  --cal-future: rgba(255,140,60,0.015);
+  --cal-today-glow: hsla(28, 90%, 60%, 0.5);
+  --stat-bg: linear-gradient(135deg, rgba(60,25,8,0.35) 0%, rgba(30,12,4,0.15) 100%);
+  --drawer-bg: linear-gradient(135deg, rgba(55,22,6,0.6) 0%, rgba(30,12,4,0.4) 100%);
+  --overlay-bg: rgba(0,4,8,0.72);
+  --toast-bg: rgba(255,140,60,0.14);
+  --toast-color: #ffe8d8;
+  --tl-line: rgba(255,140,60,0.14);
+  --tl-dot: rgba(255,140,60,0.28);
+  --tl-dot-past: hsl(28, 65%, 48%);
+  --tl-dot-active: hsl(345, 70%, 60%);
+  --weekly-bar-bg: rgba(255,140,60,0.09);
+  --weekly-bar-fill: linear-gradient(90deg, hsl(28,80%,52%), hsl(345,70%,60%));
+  --heatmap-empty: #200d04;
+  --heatmap-l1: #4a1a08;
+  --heatmap-l2: #8a3510;
+  --heatmap-l3: #c45520;
+  --heatmap-l4: #f47830;
+  --heatmap-rest: #3a0f28;
 }
 
 /* ═══════════════════════════════════════
@@ -172,30 +173,30 @@ body::before, body::after {
   transition: opacity .5s;
 }
 body::before {
-  opacity: 0.6;
+  opacity: 0.55;
   top: -10%; left: -15%; width: 60vw; height: 60vw;
-  background: radial-gradient(circle, #8ce2f0 0%, transparent 70%);
+  background: radial-gradient(circle, #ffb347 0%, transparent 70%);
   animation: orbDrift 26s ease-in-out infinite;
 }
 body::after {
-  opacity: 0.5;
+  opacity: 0.45;
   bottom: -15%; right: -15%; width: 55vw; height: 55vw;
-  background: radial-gradient(circle, #a2f5c4 0%, transparent 70%);
+  background: radial-gradient(circle, #ff6b8a 0%, transparent 70%);
   animation: orbDrift2 32s ease-in-out infinite;
 }
 [data-theme="dark"] body::before {
-  opacity: 0.45;
-  background: radial-gradient(circle, #00f0ff 0%, transparent 70%);
+  opacity: 0.4;
+  background: radial-gradient(circle, #ff8c42 0%, transparent 70%);
 }
 [data-theme="dark"] body::after {
-  opacity: 0.35;
-  background: radial-gradient(circle, #0099ff 0%, transparent 70%);
+  opacity: 0.3;
+  background: radial-gradient(circle, #e0295a 0%, transparent 70%);
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.25); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0, 200, 255, 0.4); }
+::-webkit-scrollbar-thumb { background: rgba(240, 120, 60, 0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(240, 120, 60, 0.5); }
 
 /* ── Theme Toggle ── */
 .theme-toggle {
@@ -315,6 +316,61 @@ body::after {
 .goal-extra {
   font-size: 0.78rem; color: var(--text-muted);
   padding-top: 8px; margin-top: 6px;
+  border-top: 1px solid var(--border);
+}
+.week-goal-range {
+  font-size: 0.72rem; color: var(--text-muted);
+  font-weight: 600; margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.week-stat-row {
+  display: flex; gap: 10px; margin-bottom: 12px;
+}
+.week-stat-chip {
+  flex: 1; text-align: center;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 8px 4px;
+}
+.week-stat-num {
+  font-size: 1.3rem; font-weight: 800;
+  color: var(--text-primary); line-height: 1;
+}
+.week-stat-label {
+  font-size: 0.62rem; color: var(--text-muted);
+  margin-top: 3px;
+}
+.week-progress-bar {
+  height: 6px; border-radius: 3px;
+  background: rgba(0,0,0,0.07);
+  overflow: hidden; margin-bottom: 12px;
+}
+.week-progress-fill {
+  height: 100%; border-radius: 3px;
+  background: var(--weekly-bar-fill);
+  transition: width 0.8s ease;
+}
+.week-memo-label {
+  font-size: 0.68rem; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 6px;
+}
+.week-memo {
+  width: 100%; min-height: 60px;
+  background: rgba(255,255,255,0.4);
+  border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 8px 10px;
+  font-family: inherit; font-size: 0.82rem;
+  color: var(--text-primary); resize: none;
+  outline: none; line-height: 1.55;
+  transition: border-color 0.2s;
+}
+.week-memo:focus {
+  border-color: var(--accent-math);
+  background: rgba(255,255,255,0.6);
+}
+.week-macro-ref {
+  margin-top: 10px; padding-top: 10px;
   border-top: 1px solid var(--border);
 }
 
@@ -1500,19 +1556,87 @@ function weeklyBarsHTML(year, month) {
 /* ═══════════════════════════════════════
    Rendering
    ═══════════════════════════════════════ */
-function monthGoalHTML(y, m) {
-  const g = MACRO[`${y}-${m}`];
-  if (!g) return `<div class="glass-card goal-card">
-    <div class="card-title">이번 달 목표</div>
-    <div style="color:var(--text-muted);font-size:.84rem">계획이 없는 달입니다</div>
-  </div>`;
+function weekGoalHTML() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  // Monday as week start
+  const dow = today.getDay();
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - (dow === 0 ? 6 : dow - 1));
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+
+  // Week key for localStorage memo
+  const weekKey = `week-goal-${monday.getFullYear()}-${padZ(monday.getMonth()+1)}-${padZ(monday.getDate())}`;
+
+  // Format date range label
+  const fmt = d => `${d.getMonth()+1}/${d.getDate()}`;
+  const rangeLabel = `${monday.getFullYear()}년 ${fmt(monday)} (월) ~ ${fmt(sunday)} (일)`;
+
+  // Gather this week's stats from dayStatus
+  let weekStudy = 0, weekDone = 0, weekRest = 0, totalPct = 0, pctCount = 0;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const k = `${d.getFullYear()}-${padZ(d.getMonth()+1)}-${padZ(d.getDate())}`;
+    const s = dayStatus[k];
+    if (!s) continue;
+    if (s.isRest) { weekRest++; continue; }
+    if (s.total > 0) {
+      weekStudy++;
+      totalPct += s.pct || 0;
+      pctCount++;
+      if (s.pct >= 75) weekDone++;
+    }
+  }
+  const avgPct = pctCount > 0 ? Math.round(totalPct / pctCount) : 0;
+
+  // Macro for current month reference
+  const cm = today.getMonth() + 1;
+  const cy = today.getFullYear();
+  const g = MACRO[`${cy}-${cm}`];
+  const macroRef = g ? `
+    <div class="week-macro-ref">
+      <div class="card-title" style="margin-bottom:8px">${cy}년 ${cm}월 매크로 목표</div>
+      <div class="goal-row math" style="font-size:.78rem">📐 <span>${esc(g.math)}</span></div>
+      <div class="goal-row eng" style="font-size:.78rem">📘 <span>${esc(g.eng)}</span></div>
+      ${g.extra ? `<div class="goal-extra"style="font-size:.72rem">✦ ${esc(g.extra)}</div>` : ''}
+    </div>` : '';
+
+  // Load saved memo
+  const savedMemo = localStorage.getItem(weekKey) || '';
+
   return `<div class="glass-card goal-card">
-    <div class="card-title">이번 달 목표</div>
-    <div class="goal-row math">📐 <span>${esc(g.math)}</span></div>
-    <div class="goal-row eng">📘 <span>${esc(g.eng)}</span></div>
-    ${g.extra ? `<div class="goal-extra">✦ ${esc(g.extra)}</div>` : ''}
+    <div class="card-title">이번 주 목표</div>
+    <div class="week-goal-range">${rangeLabel}</div>
+    <div class="week-stat-row">
+      <div class="week-stat-chip">
+        <div class="week-stat-num">${weekStudy}</div>
+        <div class="week-stat-label">공부한 날</div>
+      </div>
+      <div class="week-stat-chip">
+        <div class="week-stat-num">${weekDone}</div>
+        <div class="week-stat-label">목표 달성 (75%↑)</div>
+      </div>
+      <div class="week-stat-chip">
+        <div class="week-stat-num">${avgPct}%</div>
+        <div class="week-stat-label">평균 달성률</div>
+      </div>
+    </div>
+    <div class="week-progress-bar">
+      <div class="week-progress-fill" style="width:${avgPct}%"></div>
+    </div>
+    <div class="week-memo-label">📝 이번 주 할 일 · 메모</div>
+    <textarea class="week-memo" id="weekMemoArea"
+      placeholder="이번 주 집중할 것, 목표, 메모를 자유롭게 적어두세요..."
+      oninput="saveWeekMemo('${weekKey}', this.value)">${esc(savedMemo)}</textarea>
+    ${macroRef}
   </div>`;
 }
+
+window.saveWeekMemo = function(key, val) {
+  localStorage.setItem(key, val);
+};
 
 function calendarHTML(year, month) {
   const daysInMonth = new Date(year, month, 0).getDate();
@@ -1725,7 +1849,7 @@ function fullRender() {
         ${heatmapHTML()}
       </div>
       <div class="planner-right">
-        ${monthGoalHTML(dispYear, dispMonth)}
+        ${weekGoalHTML()}
         ${weeklyBarsHTML(dispYear, dispMonth)}
         ${timelineHTML()}
       </div>
