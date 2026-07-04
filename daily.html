@@ -1172,6 +1172,26 @@ body::after {
 @media (min-width: 520px) {
   .hero { border-radius: 0 0 32px 32px; }
 }
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 40px 48px;
+  }
+  .planner-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .planner-left, .planner-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .planner-left > *, .planner-right > * {
+    margin-bottom: 0 !important;
+  }
+}
 
 /* ══════════════════════════════════════════
    POMODORO & AUDIO WIDGET
@@ -2410,10 +2430,11 @@ function renderApp(d) {
   renderStreak(streak);
 
   // Build main content
-  let html = '';
+  let leftCol = '';
+  let rightCol = '';
 
   // Progress section
-  html += `
+  leftCol += `
     <div class="progress-section">
       <div class="progress-row">
         <span class="progress-label">오늘 진도</span>
@@ -2427,7 +2448,7 @@ function renderApp(d) {
   // Routine card
   if (d.routines.length) {
     const rDone = d.routines.filter(i => i.checked).length;
-    html += `
+    leftCol += `
       <div class="card">
         <div class="card-header">
           <div class="card-icon routine">🔴</div>
@@ -2439,8 +2460,9 @@ function renderApp(d) {
   }
 
   // Carryover banner
+  let carryoverHtml = '';
   if (d.hasCarryover) {
-    html += `<div class="banner">📦 이월 항목 포함 — 전날 미완료 루프가 오늘로 넘어왔습니다</div>`;
+    carryoverHtml = `<div class="banner">📦 이월 항목 포함 — 전날 미완료 루프가 오늘로 넘어왔습니다</div>`;
   }
 
   // Block cards
@@ -2465,16 +2487,26 @@ function renderApp(d) {
       </div>`;
   }).join('');
 
-  html += blockCards || '<div class="card"><div class="state" style="padding:16px">블록 데이터 없음</div></div>';
+  leftCol += blockCards || '<div class="card"><div class="state" style="padding:16px">블록 데이터 없음</div></div>';
 
   // University + Deca + Memo + Pomo
-  html += renderUnivCard();
-  html += renderDecaCard();
-  html += renderMemo();
-  html += renderPomoWidget();
+  rightCol += renderUnivCard();
+  rightCol += renderDecaCard();
+  rightCol += renderMemo();
+  rightCol += renderPomoWidget();
 
-  // Footer
-  html += `<div class="footer">클릭하면 Notion에 바로 반영됩니다</div>`;
+  // Combine columns
+  const html = `
+    ${carryoverHtml}
+    <div class="planner-layout">
+      <div class="planner-left">
+        ${leftCol}
+      </div>
+      <div class="planner-right">
+        ${rightCol}
+      </div>
+    </div>
+    <div class="footer">클릭하면 Notion에 바로 반영됩니다</div>`;
 
   document.getElementById('app').innerHTML = html;
 

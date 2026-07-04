@@ -751,6 +751,29 @@ body::after {
 @media (min-width: 480px) {
   body { padding: 20px 24px; max-width: 520px; margin: 0 auto; }
 }
+@media (min-width: 1024px) {
+  body { max-width: 1200px; padding: 30px 40px; }
+  .planner-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .planner-left, .planner-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .planner-left > *, .planner-right > * {
+    margin-bottom: 0 !important;
+  }
+  #drawer {
+    max-width: 600px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+}
 @media (max-width: 370px) {
   .day-cell { min-height: 48px; padding: 4px 2px; }
   .day-num { font-size: 0.76rem; }
@@ -1696,11 +1719,17 @@ function fullRender() {
         <span class="dday-chip">D-${dday()} 🎯</span>
       </div>
     </div>
-    ${monthGoalHTML(dispYear, dispMonth)}
-    ${calendarHTML(dispYear, dispMonth)}
-    ${weeklyBarsHTML(dispYear, dispMonth)}
-    ${heatmapHTML()}
-    ${timelineHTML()}`;
+    <div class="planner-layout">
+      <div class="planner-left">
+        ${calendarHTML(dispYear, dispMonth)}
+        ${heatmapHTML()}
+      </div>
+      <div class="planner-right">
+        ${monthGoalHTML(dispYear, dispMonth)}
+        ${weeklyBarsHTML(dispYear, dispMonth)}
+        ${timelineHTML()}
+      </div>
+    </div>`;
 
   // Trigger count-up animations
   requestAnimationFrame(() => {
