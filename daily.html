@@ -3016,7 +3016,7 @@ async function init() {
     const planText = planData.text || '';
 
     const subMatches = [...planText.matchAll(/<page url="([^"]+)">([^<]*체크리스트[^<]*)<\/page>/g)];
-    const now = new Date();
+    const now = _targetDate();
     const todayNum = (now.getMonth() + 1) * 100 + now.getDate();
 
     const candidates = subMatches.map(m => {
