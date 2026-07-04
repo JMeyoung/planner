@@ -1220,7 +1220,8 @@ function parseDaysFromContent(content, pageId) {
     const loops = loopM ? parseInt(loopM[1]) : 0;
     const pct = total > 0 ? Math.round(checked / total * 100) : (isRest ? -1 : 0);
 
-    if (!dayStatus[curDate] || total > (dayStatus[curDate].total || 0)) {
+    const existing = dayStatus[curDate];
+    if (!existing || existing.pageId === pageId || total > (existing.total || 0)) {
       dayStatus[curDate] = { pct, loops, isRest, checked, total, sectionLines: [...sectionLines], pageId };
     }
   }
