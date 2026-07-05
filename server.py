@@ -386,3 +386,4 @@ if __name__ == '__main__':
         srv.serve_forever()
     except KeyboardInterrupt:
         print('\n서버 종료')
+# Force auto-redeploy trigger
