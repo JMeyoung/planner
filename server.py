@@ -252,6 +252,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
             # 월별 플래너 (메인)
             self._serve_html(MONTHLY_HTML, 'planner_standalone.html')
 
+        elif path == '/favicon.ico':
+            # 파비콘은 HTML <link rel="icon">으로 처리되므로 여기선 204로 조용히 응답
+            self.send_response(204)
+            self.end_headers()
+
         elif path in ('/daily', '/daily/', '/daily_planner_standalone.html'):
             # 일별 플래너
             self._serve_html(DAILY_HTML, 'daily_planner_standalone.html')
