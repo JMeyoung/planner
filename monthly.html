@@ -742,17 +742,17 @@ body::before, body::after {
   padding-bottom: 4px;
 }
 .heatmap-month-row {
-  display: flex;
-  gap: 2px;
+  position: relative;
+  height: 14px;
   margin-left: 22px;
   margin-bottom: 4px;
-  min-width: max-content;
+  width: calc(26 * 13px - 2px);
 }
 .heatmap-month-lbl {
+  position: absolute;
   font-size: 0.6rem;
   color: var(--text-muted);
   white-space: nowrap;
-  min-width: 13px;
 }
 .heatmap-body {
   display: flex;
@@ -1773,11 +1773,10 @@ function heatmapHTML() {
     d.setDate(startDate.getDate() + w * 7);
     const mo = d.getMonth();
     if (mo !== lastMonth) { lastMonth = mo; monthLabels.push({w, label: MNAMES[mo]}); }
-    else monthLabels.push({w, label: ''});
   }
 
-  const monthRowCells = monthLabels.map(({label}) =>
-    `<div class="heatmap-month-lbl">${label}</div>`
+  const monthRowCells = monthLabels.map(({w, label}) =>
+    `<div class="heatmap-month-lbl" style="left: calc(${w} * 13px);">${label}</div>`
   ).join('');
 
   let weekCols = '';
