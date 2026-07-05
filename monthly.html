@@ -1780,7 +1780,8 @@ function heatmapHTML() {
   let lastMonth = -1;
   for (let w = 0; w < weeksCount; w++) {
     const d = new Date(startDate);
-    d.setDate(startDate.getDate() + w * 7);
+    // 해당 주차의 목요일(또는 수요일)을 기준으로 월을 판별하여 겹침 방지 및 다수결 원칙 적용
+    d.setDate(startDate.getDate() + w * 7 + 3);
     const mo = d.getMonth();
     if (mo !== lastMonth) { lastMonth = mo; monthLabels.push({w, label: MNAMES[mo]}); }
   }
