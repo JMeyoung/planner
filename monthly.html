@@ -746,7 +746,6 @@ body::before, body::after {
   height: 14px;
   margin-left: 22px;
   margin-bottom: 4px;
-  width: calc(26 * 13px - 2px);
 }
 .heatmap-month-lbl {
   position: absolute;
@@ -1760,15 +1759,26 @@ function timelineHTML() {
 function heatmapHTML() {
   const today = new Date();
   today.setHours(0,0,0,0);
-  const startDate = new Date(today);
-  startDate.setDate(startDate.getDate() - today.getDay() - 25 * 7);
+
+  // 6월 1일부터 시작하도록 시작일 설정 (일요일인 5월 31일로 시작주 정렬)
+  const startDate = new Date(2026, 5, 1);
+  const startDow = startDate.getDay();
+  startDate.setDate(startDate.getDate() - startDow); // 2026-05-31
+
+  // 현재 주 일요일 구하기
+  const currentSunday = new Date(today);
+  currentSunday.setDate(today.getDate() - today.getDay());
+
+  // 주차 개수 계산 (시작 주 일요일부터 현재 주 일요일까지)
+  const msDiff = currentSunday.getTime() - startDate.getTime();
+  const weeksCount = Math.max(1, Math.round(msDiff / (7 * 24 * 60 * 60 * 1000)) + 1);
 
   const MNAMES = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
   const DOW_LABELS = ['일','','화','','목','','토'];
 
   let monthLabels = [];
   let lastMonth = -1;
-  for (let w = 0; w < 26; w++) {
+  for (let w = 0; w < weeksCount; w++) {
     const d = new Date(startDate);
     d.setDate(startDate.getDate() + w * 7);
     const mo = d.getMonth();
@@ -1780,7 +1790,7 @@ function heatmapHTML() {
   ).join('');
 
   let weekCols = '';
-  for (let w = 0; w < 26; w++) {
+  for (let w = 0; w < weeksCount; w++) {
     let col = '';
     for (let d = 0; d < 7; d++) {
       const date = new Date(startDate);
@@ -1808,9 +1818,9 @@ function heatmapHTML() {
   const dowLabels = DOW_LABELS.map(l => `<span>${l}</span>`).join('');
 
   return `<div class="heatmap-card">
-    <div class="card-title">📅 학습 기록 (최근 26주)</div>
+    <div class="card-title">📅 학습 기록 (6월~)</div>
     <div class="heatmap-scroll">
-      <div class="heatmap-month-row">${monthRowCells}</div>
+      <div class="heatmap-month-row" style="width: calc(${weeksCount} * 13px - 2px);">${monthRowCells}</div>
       <div class="heatmap-body">
         <div class="heatmap-dow">${dowLabels}</div>
         <div class="heatmap-weeks">${weekCols}</div>
