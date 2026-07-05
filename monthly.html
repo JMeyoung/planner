@@ -960,7 +960,7 @@ const FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
 const SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
 const PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
 const EXAM_DATE  = new Date('2027-01-05T00:00:00');
-const CACHE_KEY  = 'planner-monthly-dayStatus';
+const CACHE_KEY  = 'planner-monthly-dayStatus-v3';
 const CACHE_TTL  = 30 * 60 * 1000; // 30분
 
 /* ═══════════════════════════════════════
@@ -1222,7 +1222,7 @@ function loadStreakCache() {
 /* ═══════════════════════════════════════
    Day Parsing from Content
    ═══════════════════════════════════════ */
-function parseDaysFromContent(content, pageId) {
+function parseDaysFromContent(content, pageId, allIds = []) {
   const lines = content.split('\n');
   let curDate = null, sectionLines = [];
 
@@ -1243,7 +1243,11 @@ function parseDaysFromContent(content, pageId) {
     const pct = total > 0 ? Math.round(checked / total * 100) : (isRest ? -1 : 0);
 
     const existing = dayStatus[curDate];
-    if (!existing || existing.pageId === pageId || total > (existing.total || 0)) {
+    const currentIdx = allIds.indexOf(pageId);
+    const existingIdx = existing ? allIds.indexOf(existing.pageId) : -1;
+
+    // 만약 더 최신 주차의 페이지(index가 더 큼)라면 기존 일정을 항상 덮어씌움 (순서상 최우선 보장)
+    if (!existing || currentIdx > existingIdx || existing.pageId === pageId || (currentIdx === existingIdx && total > (existing.total || 0))) {
       dayStatus[curDate] = { pct, loops, isRest, checked, total, sectionLines: [...sectionLines], pageId };
     }
   }
@@ -1352,7 +1356,7 @@ async function fetchAllChecklists() {
       try {
         const fr = await safeMcpCall(FETCH, { id });
         const fd = fr.structuredContent ?? JSON.parse(fr.content[0].text);
-        if (fd.text) parseDaysFromContent(extractContent(fd.text), id);
+        if (fd.text) parseDaysFromContent(extractContent(fd.text), id, allIds);
       } catch (e) {
         // Bug #5: Log partial failures
         console.warn(`Page ${id} fetch failed:`, e);
