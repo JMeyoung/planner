@@ -3017,7 +3017,7 @@ async function init() {
   try {
     // 1. Planner main → extract checklist subpage matching TODAY's date range
     const planRes  = await safeApiCall(FETCH, { id: PLANNER_ID });
-    const planData = planRes.structuredContent ?? JSON.parse(planRes.content[0].text);
+    const planData = planRes;
     const planText = planData.text || '';
 
     const subMatches = [...planText.matchAll(/<page url="([^"]+)">([^<]*체크리스트[^<]*)<\/page>/g)];
@@ -3057,7 +3057,7 @@ async function init() {
     // 2. Search fallback
     if (!checklistPageId) {
       const sr = await safeApiCall(SEARCH, { query: '일별 체크리스트', page_size: 5 });
-      const sd = sr.structuredContent ?? JSON.parse(sr.content[0].text);
+      const sd = sr;
       const pages = (sd.results || [])
         .filter(r => r.type === 'page' && r.title?.includes('체크리스트'))
         .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
