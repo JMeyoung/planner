@@ -178,6 +178,54 @@ def insert_todo_after_block(page_id, after_block_id, text, token):
     # Notion API: append children to parent page
     return notion_request(f'/blocks/{page_id}/children', method='PATCH', body=body, token=token)
 
+def append_retro_to_page(page_id, daily_memo, weekly_memo, ai_retro, token):
+    """Append the user's memos and AI retrospective to the bottom of the page"""
+    from datetime import datetime
+    import pytz
+    KST = pytz.timezone('Asia/Seoul')
+    today_str = datetime.now(KST).strftime("%Y-%m-%d")
+    
+    children = [
+        {
+            'object': 'block',
+            'type': 'heading_2',
+            'heading_2': {
+                'rich_text': [{'type': 'text', 'text': {'content': f"📝 회고록 ({today_str})"}}]
+            }
+        }
+    ]
+    
+    if daily_memo:
+        children.append({
+            'object': 'block',
+            'type': 'paragraph',
+            'paragraph': {
+                'rich_text': [{'type': 'text', 'text': {'content': "오늘의 회고:\n" + daily_memo}}]
+            }
+        })
+        
+    if weekly_memo:
+        children.append({
+            'object': 'block',
+            'type': 'paragraph',
+            'paragraph': {
+                'rich_text': [{'type': 'text', 'text': {'content': "이번 주 회고:\n" + weekly_memo}}]
+            }
+        })
+        
+    if ai_retro:
+        children.append({
+            'object': 'block',
+            'type': 'callout',
+            'callout': {
+                'rich_text': [{'type': 'text', 'text': {'content': ai_retro}}],
+                'icon': {'type': 'emoji', 'emoji': '✨'},
+                'color': 'gray_background'
+            }
+        })
+        
+    return notion_request(f'/blocks/{page_id}/children', method='PATCH', body={'children': children}, token=token)
+
 
 def apply_content_update(page_id, old_str, new_str, token):
     """

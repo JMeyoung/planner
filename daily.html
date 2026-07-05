@@ -1725,6 +1725,14 @@ async function safeApiCall(toolName, params, retries = 2) {
         if (!r.ok) throw new Error(`서버오류 ${r.status}`);
         data = await r.json();
         if (data.error) throw new Error(data.error);
+      } else if (toolName === 'notion-append-retro') {
+        const r = await fetch(`${LOCAL_API}/api/append_retro`, {
+          method: 'POST', headers: hdrs,
+          body: JSON.stringify(params)
+        });
+        if (!r.ok) throw new Error(`서버오류 ${r.status}`);
+        data = await r.json();
+        if (data.error) throw new Error(data.error);
       }
       return data;
     } catch (e) {
@@ -2334,6 +2342,11 @@ function renderMemo() {
           <span>✨ AI 멘토 주간 회고록 분석</span>
         </button>
         <div class="ai-result-box" id="aiResultBox"></div>
+        <div id="saveRetroWrap" style="display:none; text-align:right; margin-top:10px;">
+          <button class="ai-analyze-btn" id="saveRetroBtn" onclick="saveRetroToNotion()" style="background:var(--heatmap-l2); border-color:var(--heatmap-l3)">
+            💾 노션에 회고록 저장하기
+          </button>
+        </div>
       </div>
     </div>`;
 }
@@ -2897,6 +2910,30 @@ function saveApiKey() {
   }
 }
 
+async function saveRetroToNotion() {
+  const saveBtn = document.getElementById('saveRetroBtn');
+  if(saveBtn) { saveBtn.disabled = true; saveBtn.innerHTML = '<span>⏳ 저장 중...</span>'; }
+  try {
+    const weeklyMemo = document.getElementById('memoAreaWeekly')?.value || '';
+    const dailyMemo = document.getElementById('memoAreaDaily')?.value || '';
+    const aiRetro = window.lastAiRetro || '';
+    if (!checklistPageId) throw new Error("체크리스트 페이지 ID를 찾을 수 없습니다.");
+    
+    await safeApiCall('notion-append-retro', {
+      page_id: checklistPageId,
+      daily_memo: dailyMemo,
+      weekly_memo: weeklyMemo,
+      ai_retro: aiRetro
+    }, 0);
+    
+    toast('✅ 노션에 회고록이 성공적으로 저장되었습니다!');
+    if(saveBtn) { saveBtn.innerHTML = '<span>✅ 저장 완료</span>'; }
+  } catch(e) {
+    toast('❌ 저장 실패: ' + e.message, true);
+    if(saveBtn) { saveBtn.disabled = false; saveBtn.innerHTML = '<span>💾 다시 시도하기</span>'; }
+  }
+}
+
 async function analyzeWeeklyRetro() {
   const apiKey = localStorage.getItem('anthropic_api_key');
   if(!apiKey) {
@@ -2967,6 +3004,9 @@ ${weeklyMemo}`;
         if(i >= resultText.length) {
           clearInterval(typeInterval);
           if(btn) { btn.disabled = false; btn.innerHTML = '<span>✨ 분석 완료 (다시하기)</span>'; }
+          const saveWrap = document.getElementById('saveRetroWrap');
+          if(saveWrap) saveWrap.style.display = 'block';
+          window.lastAiRetro = resultText;
         }
       }, 30);
     }
