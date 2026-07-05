@@ -1003,7 +1003,7 @@ function esc(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// Bug #7: Improved cleanMd to handle nested markdown and more escape sequences
+
 function cleanMd(s) {
   return String(s || '')
     .replace(/\*\*\*(.*?)\*\*\*/g, '$1')   // bold italic
@@ -1034,7 +1034,7 @@ function extractContent(text) {
   return m ? m[1] : text;
 }
 
-// Bug #4: Dynamic year estimation
+
 function estimateYear(month) {
   const now = new Date();
   const currentYear = now.getFullYear();
@@ -1091,7 +1091,7 @@ async function restoreTokenFromServer() {
   } catch {}
 }
 
-async function safeMcpCall(toolName, params, retries = 2) {
+async function safeApiCall(toolName, params, retries = 2) {
   const token = getNotionToken();
   if (!token) { showTokenSetup(); throw new Error('Notion 토큰을 먼저 설정해주세요'); }
   const hdrs = { 'Content-Type': 'application/json', 'X-Notion-Token': token };
@@ -1113,7 +1113,7 @@ async function safeMcpCall(toolName, params, retries = 2) {
         data = await r.json();
         if (data.error) throw new Error(data.error);
       }
-      return { structuredContent: data };
+      return data;
     } catch (e) {
       if (i === retries) throw e;
       await new Promise(r => setTimeout(r, 800 * (i + 1)));
@@ -1229,7 +1229,7 @@ function parseDaysFromContent(content, pageId, allIds = []) {
   function flush() {
     if (!curDate || !sectionLines.length) return;
     const hdr = sectionLines[0] || '';
-    // Bug #6: isRest only if header says 휴식/성당 AND zero checklist items
+    
     const hasCheckItems = sectionLines.some(l => l.trim().match(/^- \[/));
     const isRest = (hdr.includes('휴식') || hdr.includes('성당')) && !hasCheckItems;
 
@@ -1257,7 +1257,7 @@ function parseDaysFromContent(content, pageId, allIds = []) {
     if (hdrM) {
       flush();
       const mo = parseInt(hdrM[1]), d = parseInt(hdrM[2]);
-      // Bug #4: dynamic year estimation
+      
       const y = estimateYear(mo);
       curDate = dateKey(y, mo, d);
       sectionLines = [line];
@@ -1281,7 +1281,7 @@ function parseSection(lines) {
     totalLoops: loopM ? loopM[1] : '',
     routines: [], blocks: [], isRest: false
   };
-  // Bug #6: consistent rest detection
+  
   const hasCheckItems = lines.some(l => l.trim().match(/^- \[/));
   if ((hdr.includes('휴식') || hdr.includes('성당')) && !hasCheckItems) {
     result.isRest = true;
@@ -1339,14 +1339,14 @@ function parseSection(lines) {
 async function fetchAllChecklists() {
   const failedIds = [];
   try {
-    const planRes  = await safeMcpCall(FETCH, { id: PLANNER_ID });
-    const planData = planRes.structuredContent ?? JSON.parse(planRes.content[0].text);
+    const planRes  = await safeApiCall(FETCH, { id: PLANNER_ID });
+    const planData = planRes;
     const planText = planData.text || '';
     const subIds   = [...planText.matchAll(/<page url="([^"]+)">/g)]
       .map(m => m[1]).map(u => { const m = u.match(/\/p\/([a-f0-9]+)/i); return m?.[1]; }).filter(Boolean);
 
-    const sr     = await safeMcpCall(SEARCH, { query: '일별 체크리스트', page_size: 10 });
-    const srData = sr.structuredContent ?? JSON.parse(sr.content[0].text);
+    const sr     = await safeApiCall(SEARCH, { query: '일별 체크리스트', page_size: 10 });
+    const srData = sr;
     const searchIds = (srData.results || []).filter(r => r.type === 'page').map(r => r.id.replace(/-/g, ''));
 
     const allIds = [...new Set([...subIds, ...searchIds])];
@@ -1354,18 +1354,18 @@ async function fetchAllChecklists() {
       if (fetchedPageIds.has(id)) continue;
       fetchedPageIds.add(id);
       try {
-        const fr = await safeMcpCall(FETCH, { id });
-        const fd = fr.structuredContent ?? JSON.parse(fr.content[0].text);
+        const fr = await safeApiCall(FETCH, { id });
+        const fd = fr;
         if (fd.text) parseDaysFromContent(extractContent(fd.text), id, allIds);
       } catch (e) {
-        // Bug #5: Log partial failures
+        
         console.warn(`Page ${id} fetch failed:`, e);
         failedIds.push(id);
       }
     }
   } catch (e) { console.error('fetchAllChecklists error:', e); }
 
-  // Bug #5: Show toast for partial failures
+  
   if (failedIds.length > 0) {
     showToast(`⚠️ ${failedIds.length}개 페이지 로드 실패`);
   }

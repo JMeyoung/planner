@@ -138,7 +138,7 @@ def fetch_page_as_text(page_id, token):
         pid = f'{pid[:8]}-{pid[8:12]}-{pid[12:16]}-{pid[16:20]}-{pid[20:]}'
     blocks = fetch_all_blocks(pid, token)
     md = blocks_to_markdown(blocks)
-    return f'<content>\n{md}\n</content>'
+    return md
 
 
 def find_todo_block_by_text(page_id, target_text, token):
@@ -172,6 +172,9 @@ def insert_todo_after_block(page_id, after_block_id, text, token):
             }
         }]
     }
+    if after_block_id and after_block_id != page_id:
+        body['after'] = after_block_id
+    
     # Notion API: append children to parent page
     return notion_request(f'/blocks/{page_id}/children', method='PATCH', body=body, token=token)
 
@@ -221,7 +224,7 @@ def apply_content_update(page_id, old_str, new_str, token):
                     anchor_id = block['id']
                     break
             if anchor_id:
-                insert_todo_after_block(page_id, page_id, new_text, token)
+                insert_todo_after_block(page_id, anchor_id, new_text, token)
 
 
 # ───────────────────────────────────────────────
