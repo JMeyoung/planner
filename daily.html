@@ -2321,12 +2321,12 @@ function quickAddHTML(blockId) {
    ══════════════════════════════════════════ */
 function getWeekKey() {
   const d = new Date();
-  const tempDate = new Date(d.valueOf());
-  // ISO week starts on Monday. Set to nearest Thursday: current date + 4 - weekday (Sunday=7)
-  tempDate.setDate(tempDate.getDate() + 4 - (tempDate.getDay() || 7));
-  const yearStart = new Date(tempDate.getFullYear(), 0, 1);
-  const weekNo = Math.ceil((((tempDate - yearStart) / 86400000) + 1) / 7);
-  return `planner-weekly-${tempDate.getFullYear()}-W${String(weekNo).padStart(2,'0')}`;
+  const monday = new Date(d);
+  monday.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+  const y = monday.getFullYear();
+  const m = String(monday.getMonth() + 1).padStart(2, '0');
+  const dateStr = String(monday.getDate()).padStart(2, '0');
+  return `planner-weekly-${y}-${m}-${dateStr}`;
 }
 
 function calcWeeklyAvg() {
