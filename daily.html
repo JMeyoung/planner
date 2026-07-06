@@ -2090,6 +2090,9 @@ function checkLoopCompletion() {
   const today = todayISO();
   if (data.lastDate !== today) { data.dailyLoops = 0; data.lastDate = today; }
   let completed = 0;
+  if (parsedData.routines && parsedData.routines.length > 0 && parsedData.routines.every(i => i.checked)) {
+    completed++;
+  }
   for (const block of parsedData.blocks) {
     if (block.items.length > 0 && block.items.every(i => i.checked)) completed++;
   }
