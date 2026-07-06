@@ -1148,6 +1148,46 @@ body::before, body::after {
 }
 .memo-pane { display: none; }
 .memo-pane.active { display: block; }
+
+/* Retro Vault */
+.retro-vault-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  z-index: 9999; display: flex; align-items: center; justify-content: center;
+}
+.retro-vault-modal {
+  background: var(--bg-card);
+  width: 90%; max-width: 500px; max-height: 80vh;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-highlight);
+}
+.retro-vault-header {
+  padding: 16px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.retro-vault-header h3 { margin: 0; font-size: 1.1rem; color: #fff; }
+.retro-vault-content {
+  padding: 16px; overflow-y: auto; flex: 1;
+}
+.retro-vault-item {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-md);
+  padding: 12px; margin-bottom: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.retro-vault-item-header {
+  display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center;
+}
+.retro-vault-type {
+  font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; font-weight: bold;
+}
+.retro-vault-type.daily { background: rgba(59,130,246,0.3); color: #93c5fd; }
+.retro-vault-type.weekly { background: rgba(16,185,129,0.3); color: #6ee7b7; }
+.retro-vault-date { font-size: 0.8rem; color: var(--text-muted); }
+.retro-vault-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; white-space: pre-wrap; }
 .weekly-summary-mini {
   font-size: 0.72rem; color: var(--text-muted);
   background: var(--border-subtle); border-radius: 6px;
@@ -2314,11 +2354,18 @@ function renderMemo() {
   try { weeklySaved = localStorage.getItem(weeklyKey) || ''; } catch {}
   const savedTab = localStorage.getItem('memo-active-tab') || 'daily';
 
+  const isSunday = new Date().getDay() === 0;
+  const weeklyReadonly = isSunday ? '' : 'readonly';
+  const weeklyPlaceholder = isSunday ? '이번 주 전체를 돌아보며 감사한 점, 개선할 점을 적어보세요...' : '🔒 주간 회고는 일요일에만 작성할 수 있습니다.';
+
   return `
     <div class="memo-card" style="animation-delay:0.5s;">
-      <div class="memo-tabs">
-        <button class="memo-tab-btn ${savedTab==='daily'?'active':''}" onclick="switchMemoTab('daily')">하루 회고</button>
-        <button class="memo-tab-btn ${savedTab==='weekly'?'active':''}" onclick="switchMemoTab('weekly')">주간 회고</button>
+      <div class="memo-tabs" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <button class="memo-tab-btn ${savedTab==='daily'?'active':''}" onclick="switchMemoTab('daily')">하루 회고</button>
+          <button class="memo-tab-btn ${savedTab==='weekly'?'active':''}" onclick="switchMemoTab('weekly')">주간 회고</button>
+        </div>
+        <button onclick="openRetroVault()" class="retro-vault-btn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.85rem; padding-right:10px;">🗂️ 모아보기</button>
       </div>
       <div class="memo-pane ${savedTab==='daily'?'active':''}" id="memoPaneDaily">
         <div class="memo-header">
@@ -2335,8 +2382,8 @@ function renderMemo() {
           <div class="memo-title">📝 이번 주 회고</div>
           <span class="memo-charcount" id="memoCountWeekly">${weeklySaved.length}자</span>
         </div>
-        <textarea class="memo-textarea" id="memoAreaWeekly"
-          placeholder="이번 주 전체를 돌아보며 감사한 점, 개선할 점을 적어보세요..." maxlength="2000">${esc(weeklySaved)}</textarea>
+        <textarea class="memo-textarea" id="memoAreaWeekly" ${weeklyReadonly}
+          placeholder="${weeklyPlaceholder}" maxlength="2000">${esc(weeklySaved)}</textarea>
         <div class="memo-saved" id="memoSavedWeekly">저장됨 ✓</div>
         <button class="ai-analyze-btn" id="aiAnalyzeBtn" onclick="analyzeWeeklyRetro()">
           <span>✨ AI 멘토 주간 회고록 분석</span>
@@ -2908,6 +2955,56 @@ function saveApiKey() {
     toast('✅ API 키가 저장되었습니다.');
     closeAiModal();
   }
+}
+
+function openRetroVault() {
+  let html = \`<div class="retro-vault-overlay" id="retroVaultOverlay" onclick="closeRetroVault(event)">
+    <div class="retro-vault-modal" onclick="event.stopPropagation()">
+      <div class="retro-vault-header">
+        <h3>🗂️ 내 회고록 모아보기</h3>
+        <button onclick="closeRetroVault()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+      </div>
+      <div class="retro-vault-content">\`;
+      
+  const items = [];
+  for(let i=0; i<localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if(key.startsWith('planner-memo-') || key.startsWith('planner-weekly-')) {
+      const content = localStorage.getItem(key);
+      if(content.trim().length > 0) {
+        items.push({
+          key: key,
+          content: content,
+          type: key.includes('weekly') ? '주간 회고' : '하루 회고',
+          date: key.replace('planner-memo-', '').replace('planner-weekly-', '')
+        });
+      }
+    }
+  }
+  
+  items.sort((a,b) => b.date.localeCompare(a.date));
+  
+  if(items.length === 0) {
+    html += \`<div style="padding:20px; text-align:center; color:var(--text-muted);">저장된 회고록이 없습니다.</div>\`;
+  } else {
+    items.forEach(it => {
+      html += \`<div class="retro-vault-item">
+        <div class="retro-vault-item-header">
+          <span class="retro-vault-type \${it.type==='주간 회고'?'weekly':'daily'}">\${it.type}</span>
+          <span class="retro-vault-date">\${it.date}</span>
+        </div>
+        <div class="retro-vault-text">\${esc(it.content).replace(/\\n/g, '<br>')}</div>
+      </div>\`;
+    });
+  }
+  
+  html += \`</div></div></div>\`;
+  document.body.insertAdjacentHTML('beforeend', html);
+}
+
+function closeRetroVault(e) {
+  const el = document.getElementById('retroVaultOverlay');
+  if(el) el.remove();
 }
 
 async function saveRetroToNotion() {
