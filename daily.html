@@ -2958,13 +2958,13 @@ function saveApiKey() {
 }
 
 function openRetroVault() {
-  let html = \`<div class="retro-vault-overlay" id="retroVaultOverlay" onclick="closeRetroVault(event)">
+  let html = `<div class="retro-vault-overlay" id="retroVaultOverlay" onclick="closeRetroVault(event)">
     <div class="retro-vault-modal" onclick="event.stopPropagation()">
       <div class="retro-vault-header">
         <h3>🗂️ 내 회고록 모아보기</h3>
         <button onclick="closeRetroVault()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
       </div>
-      <div class="retro-vault-content">\`;
+      <div class="retro-vault-content">`;
       
   const items = [];
   for(let i=0; i<localStorage.length; i++) {
@@ -2985,20 +2985,20 @@ function openRetroVault() {
   items.sort((a,b) => b.date.localeCompare(a.date));
   
   if(items.length === 0) {
-    html += \`<div style="padding:20px; text-align:center; color:var(--text-muted);">저장된 회고록이 없습니다.</div>\`;
+    html += `<div style="padding:20px; text-align:center; color:var(--text-muted);">저장된 회고록이 없습니다.</div>`;
   } else {
     items.forEach(it => {
-      html += \`<div class="retro-vault-item">
+      html += `<div class="retro-vault-item">
         <div class="retro-vault-item-header">
-          <span class="retro-vault-type \${it.type==='주간 회고'?'weekly':'daily'}">\${it.type}</span>
-          <span class="retro-vault-date">\${it.date}</span>
+          <span class="retro-vault-type ${it.type==='주간 회고'?'weekly':'daily'}">${it.type}</span>
+          <span class="retro-vault-date">${it.date}</span>
         </div>
-        <div class="retro-vault-text">\${esc(it.content).replace(/\\n/g, '<br>')}</div>
-      </div>\`;
+        <div class="retro-vault-text">${esc(it.content).replace(/\n/g, '<br>')}</div>
+      </div>`;
     });
   }
   
-  html += \`</div></div></div>\`;
+  html += `</div></div></div>`;
   document.body.insertAdjacentHTML('beforeend', html);
 }
 
