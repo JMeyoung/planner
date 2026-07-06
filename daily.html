@@ -890,7 +890,7 @@ body::before, body::after {
 
 /* Desk scene */
 .deca-scene {
-  position: relative; width: 100%; height: 240px;
+  position: relative; width: 100%; height: 160px;
   background: linear-gradient(180deg, #0d0500 0%, #1a0a02 40%, #2c1408 100%);
   overflow: hidden;
   transition: all .8s ease;
@@ -2019,7 +2019,8 @@ function initHeroBanner() {
 
 function renderUnivCard() {
   const savedTab = localStorage.getItem('univ-active-tab') || 'ku';
-  const savedOpen = localStorage.getItem('univ-card-open') !== 'false';
+  const stored = localStorage.getItem('univ-card-open');
+  const savedOpen = stored === 'true';
   const bodyClass = savedOpen ? 'open' : '';
   const iconClass = savedOpen ? 'open' : '';
 
@@ -2378,6 +2379,15 @@ function renderMemo() {
         <textarea class="memo-textarea" id="memoAreaDaily"
           placeholder="오늘 학습을 돌아보며 느낌 점을 자유롭게 적어보세요..." maxlength="2000">${esc(dailySaved)}</textarea>
         <div class="memo-saved" id="memoSavedDaily">저장됨 ✓</div>
+        <button class="ai-analyze-btn" id="aiAnalyzeBtnDaily" onclick="analyzeRetro('daily')">
+          <span>✨ AI 멘토 하루 회고록 분석</span>
+        </button>
+        <div class="ai-result-box" id="aiResultBoxDaily"></div>
+        <div id="saveRetroWrapDaily" style="display:none; text-align:right; margin-top:10px;">
+          <button class="ai-analyze-btn save-retro-btn" onclick="saveRetroToNotion()" style="background:var(--heatmap-l2); border-color:var(--heatmap-l3)">
+            💾 노션에 회고록 저장하기
+          </button>
+        </div>
       </div>
       <div class="memo-pane ${savedTab==='weekly'?'active':''}" id="memoPaneWeekly">
         <div class="weekly-summary-mini">📅 이번 주 눅적 스트릭: ${localStorage.getItem('planner-streak-data') ? JSON.parse(localStorage.getItem('planner-streak-data')||'{}').streak || 0 : 0}일</div>
@@ -2388,12 +2398,12 @@ function renderMemo() {
         <textarea class="memo-textarea" id="memoAreaWeekly" ${weeklyReadonly}
           placeholder="${weeklyPlaceholder}" maxlength="2000">${esc(weeklySaved)}</textarea>
         <div class="memo-saved" id="memoSavedWeekly">저장됨 ✓</div>
-        <button class="ai-analyze-btn" id="aiAnalyzeBtn" onclick="analyzeWeeklyRetro()">
+        <button class="ai-analyze-btn" id="aiAnalyzeBtnWeekly" onclick="analyzeRetro('weekly')" style="display: ${isSunday ? 'flex' : 'none'}">
           <span>✨ AI 멘토 주간 회고록 분석</span>
         </button>
-        <div class="ai-result-box" id="aiResultBox"></div>
-        <div id="saveRetroWrap" style="display:none; text-align:right; margin-top:10px;">
-          <button class="ai-analyze-btn" id="saveRetroBtn" onclick="saveRetroToNotion()" style="background:var(--heatmap-l2); border-color:var(--heatmap-l3)">
+        <div class="ai-result-box" id="aiResultBoxWeekly"></div>
+        <div id="saveRetroWrapWeekly" style="display:none; text-align:right; margin-top:10px;">
+          <button class="ai-analyze-btn save-retro-btn" onclick="saveRetroToNotion()" style="background:var(--heatmap-l2); border-color:var(--heatmap-l3)">
             💾 노션에 회고록 저장하기
           </button>
         </div>
@@ -2543,7 +2553,7 @@ function renderApp(d) {
       </div>`;
   }).join('');
 
-  leftCol += blockCards || '<div class="card"><div class="state" style="padding:16px">블록 데이터 없음</div></div>';
+  leftCol += blockCards;
 
   // University + Deca + Memo + Pomo
   rightCol += renderUnivCard();
@@ -2779,6 +2789,125 @@ function updatePomoDisplay() {
   if(timeEl) timeEl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
+async function analyzeRetro(type) {
+  const apiKey = localStorage.getItem('anthropic_api_key');
+  if(!apiKey) {
+    openAiModal();
+    toast('⚠️ Anthropic API 키를 먼저 설정해주세요.', true);
+    return;
+  }
+
+  const isWeekly = type === 'weekly';
+  const btn = document.getElementById(isWeekly ? 'aiAnalyzeBtnWeekly' : 'aiAnalyzeBtnDaily');
+  const box = document.getElementById(isWeekly ? 'aiResultBoxWeekly' : 'aiResultBoxDaily');
+  const memoText = document.getElementById(isWeekly ? 'memoAreaWeekly' : 'memoAreaDaily')?.value || '';
+  
+  if(!memoText.trim()) {
+    toast('⚠️ 분석할 회고록 내용이 부족합니다.', true);
+    return;
+  }
+
+  if(btn) { btn.disabled = true; btn.innerHTML = '<span>⏳ AI가 분석 중입니다...</span>'; }
+  if(box) { box.style.display = 'block'; box.innerHTML = '<span style="color:var(--text-muted)">응답을 기다리는 중...</span>'; }
+
+  const prompt = isWeekly ? `당신은 시험(수학, 영어)을 준비하는 학생의 페이스메이커이자 멘토입니다.
+학생이 작성한 이번 주 회고록을 읽고, 따뜻하면서도 뼈있는 조언을 3~4문장으로 간결하게 작성해주세요.
+응원, 과목 밸런스 점검, 멘탈 케어 요소를 포함해주세요.
+
+[이번 주 회고]
+${memoText}`
+  : `당신은 시험(수학, 영어)을 준비하는 학생의 페이스메이커이자 멘토입니다.
+학생이 작성한 오늘 하루 회고록을 읽고, 따뜻하면서도 뼈있는 조언을 3~4문장으로 간결하게 작성해주세요.
+응원, 오늘 하루의 잘한 점과 아쉬운 점 점검, 멘탈 케어 요소를 포함해주세요.
+
+[오늘의 회고]
+${memoText}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    if(!response.ok) {
+      const errText = await response.text();
+      try {
+        const errJson = JSON.parse(errText);
+        throw new Error(errJson.error?.message || JSON.stringify(errJson));
+      } catch(e) {
+        throw new Error(errText);
+      }
+    }
+
+    const data = await response.json();
+    const resultText = data.content[0].text;
+    
+    // Typewriter effect
+    if(box) {
+      box.innerHTML = '';
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        box.innerHTML += resultText.charAt(i);
+        i++;
+        if(i >= resultText.length) {
+          clearInterval(typeInterval);
+          if(btn) { 
+            btn.disabled = false; 
+            btn.innerHTML = `<span>✨ 분석 완료 (다시하기)</span>`; 
+          }
+          const saveWrap = document.getElementById(isWeekly ? 'saveRetroWrapWeekly' : 'saveRetroWrapDaily');
+          if(saveWrap) saveWrap.style.display = 'block';
+          window.lastAiRetro = resultText;
+        }
+      }, 30);
+    }
+  } catch(e) {
+    if(btn) { btn.disabled = false; btn.innerHTML = `<span>✨ 분석 실패 (재시도)</span>`; }
+    if(box) { box.innerHTML = `<span style="color:var(--danger)">분석 중 오류가 발생했습니다: ${e.message}</span>`; }
+    toast('⚠️ 분석 요청 실패: ' + e.message, true);
+  }
+}
+
+async function saveRetroToNotion() {
+  const btns = document.querySelectorAll('.save-retro-btn');
+  btns.forEach(b => { b.disabled = true; b.innerHTML = '<span>⏳ 저장 중...</span>'; });
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.5;
+    masterGain.connect(audioCtx.destination);
+  }
+  try {
+    const weeklyMemo = document.getElementById('memoAreaWeekly')?.value || '';
+    const dailyMemo = document.getElementById('memoAreaDaily')?.value || '';
+    const aiRetro = window.lastAiRetro || '';
+    if (!checklistPageId) throw new Error("체크리스트 페이지 ID를 찾을 수 없습니다.");
+    
+    await safeApiCall('notion-append-retro', {
+      page_id: checklistPageId,
+      daily_memo: dailyMemo,
+      weekly_memo: weeklyMemo,
+      ai_retro: aiRetro
+    }, 0);
+    
+    toast('✅ 노션에 회고록이 성공적으로 저장되었습니다!');
+    btns.forEach(b => { b.innerHTML = '<span>✅ 저장 완료</span>'; });
+  } catch(e) {
+    toast('❌ 저장 실패: ' + e.message, true);
+    btns.forEach(b => { b.disabled = false; b.innerHTML = '<span>💾 다시 시도하기</span>'; });
+  }
+}
+
 function togglePomodoro() {
   const btn = document.getElementById('pomoToggleBtn');
   if (isPomoRunning) {
@@ -3010,111 +3139,7 @@ function closeRetroVault(e) {
   if(el) el.remove();
 }
 
-async function saveRetroToNotion() {
-  const saveBtn = document.getElementById('saveRetroBtn');
-  if(saveBtn) { saveBtn.disabled = true; saveBtn.innerHTML = '<span>⏳ 저장 중...</span>'; }
-  try {
-    const weeklyMemo = document.getElementById('memoAreaWeekly')?.value || '';
-    const dailyMemo = document.getElementById('memoAreaDaily')?.value || '';
-    const aiRetro = window.lastAiRetro || '';
-    if (!checklistPageId) throw new Error("체크리스트 페이지 ID를 찾을 수 없습니다.");
-    
-    await safeApiCall('notion-append-retro', {
-      page_id: checklistPageId,
-      daily_memo: dailyMemo,
-      weekly_memo: weeklyMemo,
-      ai_retro: aiRetro
-    }, 0);
-    
-    toast('✅ 노션에 회고록이 성공적으로 저장되었습니다!');
-    if(saveBtn) { saveBtn.innerHTML = '<span>✅ 저장 완료</span>'; }
-  } catch(e) {
-    toast('❌ 저장 실패: ' + e.message, true);
-    if(saveBtn) { saveBtn.disabled = false; saveBtn.innerHTML = '<span>💾 다시 시도하기</span>'; }
-  }
-}
 
-async function analyzeWeeklyRetro() {
-  const apiKey = localStorage.getItem('anthropic_api_key');
-  if(!apiKey) {
-    openAiModal();
-    toast('⚠️ Anthropic API 키를 먼저 설정해주세요.', true);
-    return;
-  }
-
-  const btn = document.getElementById('aiAnalyzeBtn');
-  const box = document.getElementById('aiResultBox');
-  const weeklyMemo = document.getElementById('memoAreaWeekly')?.value || '';
-  const dailyMemo = document.getElementById('memoAreaDaily')?.value || '';
-  
-  if(!weeklyMemo && !dailyMemo) {
-    toast('⚠️ 분석할 회고록 내용이 부족합니다.', true);
-    return;
-  }
-
-  if(btn) { btn.disabled = true; btn.innerHTML = '<span>⏳ AI가 분석 중입니다...</span>'; }
-  if(box) { box.style.display = 'block'; box.innerHTML = '<span style="color:var(--text-muted)">응답을 기다리는 중...</span>'; }
-
-  const prompt = `당신은 시험(수학, 영어)을 준비하는 학생의 페이스메이커이자 멘토입니다.
-학생이 작성한 이번 주 회고록과 오늘 회고록을 읽고, 따뜻하면서도 뼈있는 조언을 3~4문장으로 간결하게 작성해주세요.
-응원, 과목 밸런스 점검, 멘탈 케어 요소를 포함해주세요.
-
-[오늘의 회고]
-${dailyMemo}
-
-[이번 주 회고]
-${weeklyMemo}`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 400,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    if(!response.ok) {
-      const errText = await response.text();
-      try {
-        const errJson = JSON.parse(errText);
-        throw new Error(errJson.error?.message || JSON.stringify(errJson));
-      } catch(e) {
-        throw new Error(errText);
-      }
-    }
-
-    const data = await response.json();
-    const resultText = data.content[0].text;
-    
-    // Typewriter effect
-    if(box) {
-      box.innerHTML = '';
-      let i = 0;
-      const typeInterval = setInterval(() => {
-        box.innerHTML += resultText.charAt(i);
-        i++;
-        if(i >= resultText.length) {
-          clearInterval(typeInterval);
-          if(btn) { btn.disabled = false; btn.innerHTML = '<span>✨ 분석 완료 (다시하기)</span>'; }
-          const saveWrap = document.getElementById('saveRetroWrap');
-          if(saveWrap) saveWrap.style.display = 'block';
-          window.lastAiRetro = resultText;
-        }
-      }, 30);
-    }
-  } catch(e) {
-    if(box) box.innerHTML = `<span style="color:var(--accent-math)">에러 발생: ${e.message}</span>`;
-    if(btn) { btn.disabled = false; btn.innerHTML = '<span>✨ 다시 시도하기</span>'; }
-  }
-}
 
 /* ══════════════════════════════════════════
    MAIN INITIALIZATION
