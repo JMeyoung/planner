@@ -2077,6 +2077,43 @@ window.switchUnivTab = function(id) {
    ══════════════════════════════════════════ */
 const DECA_KEY = 'deca-gardia-data';
 
+function getFixedRoutineState() {
+  const today = todayISO();
+  const key = `fixed-routine-${today}`;
+  try {
+    return JSON.parse(localStorage.getItem(key)) || [false, false, false];
+  } catch {
+    return [false, false, false];
+  }
+}
+
+window.toggleFixedRoutine = function(idx) {
+  const today = todayISO();
+  const key = `fixed-routine-${today}`;
+  const state = getFixedRoutineState();
+  state[idx] = !state[idx];
+  localStorage.setItem(key, JSON.stringify(state));
+  
+  const taskEl = document.getElementById(`t-fixed-${idx}`);
+  const cbEl = taskEl?.querySelector('.cb');
+  if (taskEl && cbEl) {
+    if (state[idx]) {
+      taskEl.classList.add('done');
+      cbEl.classList.add('on');
+      cbEl.innerHTML = checkSVG();
+    } else {
+      taskEl.classList.remove('done');
+      cbEl.classList.remove('on');
+      cbEl.innerHTML = '';
+    }
+  }
+  
+  const subEl = document.getElementById('sub-fixed');
+  if (subEl) subEl.textContent = `${state.filter(Boolean).length}/3`;
+  
+  updateProgress();
+};
+
 function getDecaData() {
   try { return JSON.parse(localStorage.getItem(DECA_KEY)) || {}; } catch { return {}; }
 }
@@ -2095,6 +2132,14 @@ function checkLoopCompletion() {
   }
   for (const block of parsedData.blocks) {
     if (block.items.length > 0 && block.items.every(i => i.checked)) completed++;
+  }
+  // Add fixed routine loops if not already duplicated in Notion
+  const hasFixedInNotion = parsedData.routines.some(i => i.text.includes('백지복습')) || parsedData.blocks.some(b => b.items.some(i => i.text.includes('백지복습')));
+  if (!hasFixedInNotion) {
+    const fixedState = getFixedRoutineState();
+    if (fixedState[0]) completed++;
+    if (fixedState[1]) completed++;
+    if (fixedState[2]) completed++;
   }
   const prev = data.dailyLoops || 0;
   if (completed > prev) {
@@ -2473,9 +2518,14 @@ function triggerCelebration() {
 
 function renderApp(d) {
   parsedData = d;
+  const hasFixedInNotion = d.routines.some(i => i.text.includes('백지복습')) || d.blocks.some(b => b.items.some(i => i.text.includes('백지복습')));
+  const fixedState = getFixedRoutineState();
+  const fixedDone = hasFixedInNotion ? 0 : fixedState.filter(Boolean).length;
+  const fixedTotal = hasFixedInNotion ? 0 : 3;
+
   const all  = [...d.routines, ...d.blocks.flatMap(b => b.items)];
-  const done = all.filter(i => i.checked).length;
-  const total = all.length;
+  const done = all.filter(i => i.checked).length + fixedDone;
+  const total = all.length + fixedTotal;
   const pct  = total ? Math.round(done / total * 100) : 0;
 
   // Hero section
@@ -2525,6 +2575,31 @@ function renderApp(d) {
           <span class="card-sub" id="sub-routine">${rDone}/${d.routines.length}</span>
         </div>
         ${d.routines.map((it, i) => taskHTML(it, 'routine', i)).join('')}
+      </div>`;
+  }
+
+  // App-level Fixed Routine block
+  if (!hasFixedInNotion) {
+    const fixedItems = [
+      { text: "📝 영어 백지복습 (문법 설명) + 오답 재풀이", emoji: "📘" },
+      { text: "📐 수학 백지복습 (공식·정의·유도) + 오답 재풀이", emoji: "📐" },
+      { text: "🔤 영단어 매일 100개 암기", emoji: "✏️" }
+    ];
+    leftCol += `
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon routine">🔥</div>
+          <span class="card-title routine">매일 고정 복습 루틴</span>
+          <span class="card-sub" id="sub-fixed">${fixedState.filter(Boolean).length}/3</span>
+        </div>
+        ${fixedItems.map((it, i) => {
+          const checked = fixedState[i];
+          const id = `t-fixed-${i}`;
+          return `<div class="task ${checked ? 'done' : ''}" id="${id}" onclick="toggleFixedRoutine(${i})">
+            <div class="cb ${checked ? 'on' : ''}">${checked ? checkSVG() : ''}</div>
+            <span class="task-text">${esc(it.text)}</span>
+          </div>`;
+        }).join('')}
       </div>`;
   }
 
@@ -2658,9 +2733,14 @@ function updateSubCounts() {
 
 function updateProgress() {
   if (!parsedData) return;
+  const hasFixedInNotion = parsedData.routines.some(i => i.text.includes('백지복습')) || parsedData.blocks.some(b => b.items.some(i => i.text.includes('백지복습')));
+  const fixedState = getFixedRoutineState();
+  const fixedDone = hasFixedInNotion ? 0 : fixedState.filter(Boolean).length;
+  const fixedTotal = hasFixedInNotion ? 0 : 3;
+
   const all  = [...parsedData.routines, ...parsedData.blocks.flatMap(b => b.items)];
-  const done = all.filter(i => i.checked).length;
-  const total = all.length;
+  const done = all.filter(i => i.checked).length + fixedDone;
+  const total = all.length + fixedTotal;
   const pct  = total ? Math.round(done / total * 100) : 0;
   const lbl = document.getElementById('prog-label');
   const fill = document.getElementById('prog-fill');
