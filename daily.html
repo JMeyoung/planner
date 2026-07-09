@@ -317,7 +317,7 @@ body::before, body::after {
   height: 100%;
   transform: rotate(-90deg);
 }
-.dday-ring-track { opacity: 0.2; }
+.dday-ring-track { stroke: var(--text-primary); opacity: 0.15; }
 .dday-ring-fill { transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1); }
 .dday-inner {
   position: relative;
@@ -1977,7 +1977,7 @@ body.theme-minimal-paper .dday-num {
   font-size: 1.75rem;
 }
 body.theme-minimal-paper #ddayRingFill { stroke: #1a1a1a !important; }
-body.theme-minimal-paper #ddayRingBg { stroke: #eeeeee !important; }
+body.theme-minimal-paper .dday-ring-track { stroke: #1a1a1a !important; opacity: 0.08 !important; }
 body.theme-minimal-paper .card {
   background: #ffffff !important;
   border: 1px solid #e5e5e5 !important;
