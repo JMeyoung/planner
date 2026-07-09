@@ -1508,9 +1508,9 @@ body.theme-aurora-deep .stat-card { background: rgba(3, 18, 52, 0.7) !important;
 /* ═══════════════════════════════════════
    Constants & MCP
    ═══════════════════════════════════════ */
-const FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
-const SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
-const PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
+var FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
+var SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
+var PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
 const EXAM_DATE  = new Date('2026-12-14T00:00:00');
 const CACHE_KEY  = 'planner-monthly-dayStatus-v3';
 const CACHE_TTL  = 30 * 60 * 1000; // 30분
@@ -1597,7 +1597,7 @@ function estimateYear(month) {
 /* ═══════════════════════════════════════
    STANDALONE MODE — LOCAL SERVER API
    ═══════════════════════════════════════ */
-const LOCAL_API = window.location.origin;
+var LOCAL_API = window.location.origin;
 
 function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
 function setNotionToken(t) { localStorage.setItem('notion_token', t); }
@@ -1620,7 +1620,7 @@ function saveNotionToken() {
   closeTokenSetup();
   fetchedPageIds.clear();
   dayStatus = {};
-  init();
+  initMonthly();
 }
 
 // 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
@@ -2455,7 +2455,7 @@ window.navigate = function(dir) {
 /* ═══════════════════════════════════════
    Init
    ═══════════════════════════════════════ */
-async function init() {
+async function initMonthly() {
   // Token check for standalone mode
   if (!getNotionToken()) { showTokenSetup(); return; }
 
@@ -2492,7 +2492,7 @@ async function init() {
 /* ══════════════════════════════════════════
    DESIGN SYSTEM STYLE LAB LOGIC
    ══════════════════════════════════════════ */
-const styleLabSettings = {
+var styleLabSettings = {
   shadows: false,
   gradient: false,
   blur: false,
@@ -2580,7 +2580,7 @@ window.triggerGooeyCelebration = function() {
 loadTheme();
 initStyleLab();
 
-const THEME_CLASS_MAP = {
+var THEME_CLASS_MAP = {
   terminal: 'theme-dark-terminal',
   paper:    'theme-minimal-paper',
   aurora:   'theme-aurora-deep',
@@ -2606,7 +2606,7 @@ window.applyTheme = function(themeName) {
 })();
 
 // 서버에서 토큰 복원 후 init 실행
-restoreTokenFromServer().then(() => init());
+restoreTokenFromServer().then(() => initMonthly());
 </script>
 </body>
 </html>

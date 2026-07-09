@@ -2338,11 +2338,11 @@ body.theme-aurora-deep .active-block {
 /* ══════════════════════════════════════════
    CONSTANTS
    ══════════════════════════════════════════ */
-const FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
-const SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
-const UPDATE = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-update-page';
-const EXAM   = new Date('2026-12-14T00:00:00');
-const PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
+var FETCH  = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-fetch';
+var SEARCH = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-search';
+var UPDATE = 'mcp__17090896-bf5b-4f0f-ab05-b0f011fedc1d__notion-update-page';
+var EXAM   = new Date('2026-12-14T00:00:00');
+var PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
 
 /* ──────────────────────────────────────────
    URL 파라미터에서 날짜 읽기 (?date=YYYY-MM-DD)
@@ -2550,7 +2550,7 @@ function toast(msg, isErr = false) {
 /* ══════════════════════════════════════════
    STANDALONE MODE — LOCAL SERVER API
    ══════════════════════════════════════════ */
-const LOCAL_API = window.location.origin;
+var LOCAL_API = window.location.origin;
 
 function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
 function setNotionToken(t) { localStorage.setItem('notion_token', t); }
@@ -2571,7 +2571,7 @@ function saveNotionToken() {
     body: JSON.stringify({token: v})
   }).catch(() => {});
   closeTokenSetup();
-  init();
+  initDaily();
 }
 
 // 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
@@ -4168,7 +4168,7 @@ function closeRetroVault(e) {
 /* ══════════════════════════════════════════
    MAIN INITIALIZATION
    ══════════════════════════════════════════ */
-async function init() {
+async function initDaily() {
   const app = document.getElementById('app');
 
   // Initialize hero immediately
@@ -4284,7 +4284,7 @@ async function init() {
       // 캐시 데이터는 있지만 최신 동기화 실패 — 에러 내용 + 재시도 버튼 표시
       const syncErr = document.getElementById('sync-err-banner');
       if (syncErr) {
-        syncErr.innerHTML = `⚠️ 동기화 실패: <em>${esc(errMsg.slice(0, 80))}</em> &nbsp;<button onclick="document.getElementById('sync-err-banner').remove();init()" style="font-size:.72rem;padding:2px 8px;border:1px solid rgba(255,255,255,.3);border-radius:6px;background:none;color:inherit;cursor:pointer">재시도</button>`;
+        syncErr.innerHTML = `⚠️ 동기화 실패: <em>${esc(errMsg.slice(0, 80))}</em> &nbsp;<button onclick="document.getElementById('sync-err-banner').remove();initDaily()" style="font-size:.72rem;padding:2px 8px;border:1px solid rgba(255,255,255,.3);border-radius:6px;background:none;color:inherit;cursor:pointer">재시도</button>`;
         syncErr.style.display = 'block';
       } else {
         toast('⚠️ 동기화 실패: ' + errMsg.slice(0, 60), true);
@@ -4298,7 +4298,7 @@ async function init() {
 /* ══════════════════════════════════════════
    DESIGN SYSTEM STYLE LAB LOGIC
    ══════════════════════════════════════════ */
-const styleLabSettings = {
+var styleLabSettings = {
   shadows: false,
   gradient: false,
   blur: false,
@@ -4357,7 +4357,7 @@ window.toggleGooeyActive = function() {
   }
 }
 
-const THEME_CLASS_MAP = {
+var THEME_CLASS_MAP = {
   terminal: 'theme-dark-terminal',
   paper:    'theme-minimal-paper',
   aurora:   'theme-aurora-deep',
@@ -4402,7 +4402,7 @@ restoreTokenFromServer().then(() => {
     showTokenSetup();
   } else {
     closeTokenSetup();
-    init();
+    initDaily();
   }
 });
 </script>
