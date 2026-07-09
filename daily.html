@@ -4378,7 +4378,7 @@ window.applyTheme = function(themeName) {
     if (btn) btn.classList.toggle('active', t === themeName);
   });
   toast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
-}
+};
 
 // Initialize theme first, then app
 initTheme();
