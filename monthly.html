@@ -2597,7 +2597,7 @@ window.applyTheme = function(themeName) {
     if (btn) btn.classList.toggle('active', t === themeName);
   });
   showToast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
-}
+};
 
 // Restore theme preset
 (function() {
