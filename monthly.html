@@ -819,19 +819,19 @@ body::before, body::after {
   body { padding: 20px 24px; max-width: 520px; margin: 0 auto; }
 }
 @media (min-width: 1024px) {
-  body { max-width: 1200px; padding: 30px 40px; }
-  .planner-layout {
+  body.use-split-layout { max-width: 1200px; padding: 30px 40px; }
+  body.use-split-layout .planner-layout {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
     gap: 24px;
     align-items: start;
   }
-  .planner-left, .planner-right {
+  body.use-split-layout .planner-left, body.use-split-layout .planner-right {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
-  .planner-left > *, .planner-right > * {
+  body.use-split-layout .planner-left > *, body.use-split-layout .planner-right > * {
     margin-bottom: 0 !important;
   }
   #drawer {
@@ -904,6 +904,300 @@ body::before, body::after {
 .r-dot.math { color: var(--accent-math); }
 .r-dot.eng { color: var(--accent-eng); }
 .r-dot.rtn { color: #ec4899; }
+/* ══════════════════════════════════════════
+   STYLE LAB (DESIGN SYSTEM CONTROLLER)
+   ══════════════════════════════════════════ */
+.style-lab-toggle {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-highlight);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring);
+  color: var(--text-primary);
+}
+.style-lab-toggle:hover {
+  transform: rotate(45deg) scale(1.08);
+}
+.style-lab-toggle:active {
+  transform: scale(0.95);
+}
+
+.style-lab-drawer {
+  position: fixed;
+  top: 0; right: -320px;
+  width: 320px;
+  height: 100vh;
+  background: rgba(15, 10, 25, 0.7);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.4);
+  z-index: 10000;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  border-left: 1px solid rgba(255,255,255,0.12);
+  overflow-y: auto;
+}
+.style-lab-drawer.open {
+  right: 0;
+}
+/* Progressive Blur Toggle Effect */
+body.use-progressive-blur .style-lab-drawer {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+body.use-progressive-blur .style-lab-drawer::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(135deg, rgba(15,10,25,0.73) 0%, rgba(15,10,25,0.35) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  mask: linear-gradient(to left, black 30%, transparent 100%);
+  -webkit-mask: linear-gradient(to left, black 30%, transparent 100%);
+}
+
+.style-lab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 12px;
+}
+.style-lab-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.style-lab-close {
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+.style-lab-close:hover { opacity: 1; }
+
+.style-lab-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.style-lab-group-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.4);
+}
+.style-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.style-option-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.style-option-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.style-option-desc {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0; width: 0; height: 0;
+}
+.slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background-color: rgba(255,255,255,0.2);
+  transition: .3s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute; content: "";
+  height: 18px; width: 18px; left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #a855f7;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ──────────────────────────────────────────
+   CSS TREATMENT CLASSES
+   ────────────────────────────────────────── */
+
+/* 1. Beautiful Shadows */
+body.use-beautiful-shadows .glass-card,
+body.use-beautiful-shadows .style-lab-toggle,
+body.use-beautiful-shadows #drawer {
+  box-shadow: 
+    0 1px 2px rgba(10, 2, 20, 0.05),
+    0 4px 12px rgba(10, 2, 20, 0.08),
+    0 12px 24px rgba(10, 2, 20, 0.12),
+    0 24px 48px rgba(10, 2, 20, 0.06) !important;
+  border-top-color: rgba(255, 255, 255, 0.25) !important;
+  border-left-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 2. Border Gradient & Alpha Masking */
+body.use-border-gradient .glass-card,
+body.use-border-gradient .style-lab-toggle,
+body.use-border-gradient #drawer {
+  position: relative;
+  border: 1px solid transparent !important;
+  background-clip: padding-box !important;
+}
+body.use-border-gradient .glass-card::before,
+body.use-border-gradient .style-lab-toggle::before,
+body.use-border-gradient #drawer::before {
+  content: '';
+  position: absolute;
+  top: -1px; bottom: -1px; left: -1px; right: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.4) 100%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* 3. Progressive Blur Header */
+body.use-progressive-blur .theme-toggle {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+body.use-progressive-blur .theme-toggle::before {
+  content: ''; position: absolute; inset: -4px; z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 4. Gooey Blob Menu System */
+.gooey-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 56px;
+  height: 56px;
+  z-index: 9999;
+  filter: url('#gooey-filter');
+  display: none;
+}
+body.use-gooey-blob .gooey-wrapper {
+  display: block;
+}
+body.use-gooey-blob .style-lab-toggle {
+  display: none;
+}
+.gooey-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #a855f7;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+  transition: transform 0.3s ease;
+}
+.gooey-btn:hover {
+  transform: scale(1.05);
+}
+.gooey-menu-item {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+.gooey-wrapper.active .gooey-menu-item:nth-child(1) {
+  opacity: 1;
+  transform: translateY(-70px) scale(1);
+  background: #ec4899;
+}
+.gooey-wrapper.active .gooey-menu-item:nth-child(2) {
+  opacity: 1;
+  transform: translateX(70px) scale(1);
+  background: #3b82f6;
+}
+.gooey-wrapper.active .gooey-menu-item:nth-child(3) {
+  opacity: 1;
+  transform: translate(50px, -50px) scale(1);
+  background: #10b981;
+.celebrate-wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  top: -10px;
+  animation: confetti-fall 2.5s ease-in forwards;
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
 </style>
 
 </head>
@@ -951,6 +1245,100 @@ body::before, body::after {
   </div>
   <div class="drawer-body" id="drawer-body"></div>
 </div>
+
+<div class="celebrate-wrap" id="celebrate"></div>
+
+<!-- Style Lab Drawer & UI -->
+<div class="style-lab-toggle" id="styleLabToggleBtn" onclick="toggleStyleLab()">🧪</div>
+
+<div class="style-lab-drawer" id="styleLabDrawer">
+  <div class="style-lab-header">
+    <h3>🧪 Design Style Lab</h3>
+    <span class="style-lab-close" onclick="toggleStyleLab()">✕</span>
+  </div>
+  
+  <div class="style-lab-group">
+    <div class="style-lab-group-title">CSS Treatments</div>
+    
+    <div class="style-option">
+      <div class="style-option-label">
+        <span class="style-option-name">Layered Shadows</span>
+        <span class="style-option-desc">입체감 있는 깊은 그림자</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-shadows" onchange="applyStyleSetting('shadows', this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="style-option">
+      <div class="style-option-label">
+        <span class="style-option-name">Border Gradient</span>
+        <span class="style-option-desc">그라데이션 테두리 광채</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-gradient" onchange="applyStyleSetting('gradient', this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="style-option">
+      <div class="style-option-label">
+        <span class="style-option-name">Progressive Blur</span>
+        <span class="style-option-desc">단계별 흐림 효과</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-blur" onchange="applyStyleSetting('blur', this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="style-option">
+      <div class="style-option-label">
+        <span class="style-option-name">Gooey Blob FAB</span>
+        <span class="style-option-desc">액체형 플로팅 메뉴 버튼</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-gooey" onchange="applyStyleSetting('gooey', this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="style-lab-group">
+    <div class="style-lab-group-title">Layout Systems</div>
+    
+    <div class="style-option">
+      <div class="style-option-label">
+        <span class="style-option-name">Split Tech Layout</span>
+        <span class="style-option-desc">태블릿/PC 2분할 레이아웃</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-split" onchange="applyStyleSetting('split', this.checked)">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Gooey Menu FAB Wrapper -->
+<div class="gooey-wrapper" id="gooeyMenuWrapper">
+  <button class="gooey-menu-item" onclick="triggerGooeyCelebration(); toggleGooeyActive();" title="축하 효과">🎉</button>
+  <button class="gooey-menu-item" onclick="toggleTheme(); toggleGooeyActive();" title="테마 변경">🌗</button>
+  <button class="gooey-menu-item" onclick="toggleStyleLab(); toggleGooeyActive();" title="설정 열기">🧪</button>
+  <button class="gooey-btn" onclick="toggleGooeyActive()">🔮</button>
+</div>
+
+<!-- SVG Gooey Filter -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none;">
+  <defs>
+    <filter id="gooey-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="gooey" />
+      <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+    </filter>
+  </defs>
+</svg>
 
 <script>
 /* ═══════════════════════════════════════
@@ -1937,7 +2325,96 @@ async function init() {
   }
 }
 
+/* ══════════════════════════════════════════
+   DESIGN SYSTEM STYLE LAB LOGIC
+   ══════════════════════════════════════════ */
+const styleLabSettings = {
+  shadows: false,
+  gradient: false,
+  blur: false,
+  gooey: false,
+  split: true
+};
+
+function initStyleLab() {
+  const saved = localStorage.getItem('style-lab-settings');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      Object.assign(styleLabSettings, parsed);
+    } catch(e) {}
+  }
+  
+  Object.keys(styleLabSettings).forEach(key => {
+    const val = styleLabSettings[key];
+    const checkbox = document.getElementById(`toggle-${key}`);
+    if (checkbox) checkbox.checked = val;
+    
+    const bodyClass = `use-${key === 'shadows' ? 'beautiful-shadows' : key === 'gradient' ? 'border-gradient' : key === 'blur' ? 'progressive-blur' : key === 'gooey' ? 'gooey-blob' : 'split-layout'}`;
+    if (val) {
+      document.body.classList.add(bodyClass);
+    } else {
+      document.body.classList.remove(bodyClass);
+    }
+  });
+}
+
+window.toggleStyleLab = function() {
+  const drawer = document.getElementById('styleLabDrawer');
+  if (drawer) {
+    drawer.classList.toggle('open');
+  }
+}
+
+window.applyStyleSetting = function(key, val) {
+  styleLabSettings[key] = val;
+  localStorage.setItem('style-lab-settings', JSON.stringify(styleLabSettings));
+  
+  const bodyClass = `use-${key === 'shadows' ? 'beautiful-shadows' : key === 'gradient' ? 'border-gradient' : key === 'blur' ? 'progressive-blur' : key === 'gooey' ? 'gooey-blob' : 'split-layout'}`;
+  if (val) {
+    document.body.classList.add(bodyClass);
+  } else {
+    document.body.classList.remove(bodyClass);
+  }
+  
+  showToast(`디자인 시스템: ${key} 효과 ${val ? '활성화' : '비활성화'}`);
+}
+
+window.toggleGooeyActive = function() {
+  const gooey = document.getElementById('gooeyMenuWrapper');
+  if (gooey) {
+    gooey.classList.toggle('active');
+  }
+}
+
+window.triggerGooeyCelebration = function() {
+  const container = document.getElementById('celebrate');
+  if (!container) return;
+
+  const colors = ['#667eea', '#764ba2', '#f093fb', '#10b981', '#f59e0b', '#ec4899', '#3b82f6'];
+  let html = '';
+  for (let i = 0; i < 40; i++) {
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const left = Math.random() * 100;
+    const delay = Math.random() * 1.5;
+    const size = 5 + Math.random() * 8;
+    const rotation = Math.random() * 360;
+    html += `<div class="confetti-piece" style="
+      left:${left}%;
+      background:${color};
+      width:${size}px;
+      height:${size}px;
+      animation-delay:${delay}s;
+      transform:rotate(${rotation}deg);
+    "></div>`;
+  }
+  container.innerHTML = html;
+  showToast('🎉 파이팅! 끝까지 완수해봅시다!');
+  setTimeout(() => { container.innerHTML = ''; }, 4000);
+}
+
 loadTheme();
+initStyleLab();
 // 서버에서 토큰 복원 후 init 실행
 restoreTokenFromServer().then(() => init());
 </script>
