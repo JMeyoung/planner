@@ -637,6 +637,7 @@ body::before, body::after {
   font-size: 0.78rem;
   color: var(--text-secondary);
   margin-bottom: 12px;
+  word-break: keep-all;
   animation: fadeSlideUp 0.5s ease both;
 }
 
@@ -1647,10 +1648,12 @@ body.use-progressive-blur .style-lab-drawer::before {
 .style-option-name {
   font-size: 0.85rem;
   font-weight: 600;
+  word-break: keep-all;
 }
 .style-option-desc {
   font-size: 0.72rem;
   color: rgba(255,255,255,0.5);
+  word-break: keep-all;
 }
 
 /* Switch styling */
@@ -1718,10 +1721,12 @@ input:checked + .slider:before {
 .theme-btn-name {
   font-size: 0.8rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 .theme-btn-desc {
   font-size: 0.65rem;
   color: rgba(255,255,255,0.5);
+  white-space: nowrap;
 }
 
 /* ──────────────────────────────────────────

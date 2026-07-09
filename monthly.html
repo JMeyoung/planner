@@ -1015,10 +1015,12 @@ body.use-progressive-blur .style-lab-drawer::before {
 .style-option-name {
   font-size: 0.85rem;
   font-weight: 600;
+  word-break: keep-all;
 }
 .style-option-desc {
   font-size: 0.72rem;
   color: rgba(255,255,255,0.5);
+  word-break: keep-all;
 }
 
 /* Switch styling */
@@ -1212,8 +1214,8 @@ body.use-gooey-blob .style-lab-toggle {
   box-shadow: 0 0 12px rgba(168,85,247,0.3);
 }
 .theme-btn-icon { font-size: 1.2rem; }
-.theme-btn-name { font-size: 0.8rem; font-weight: 700; }
-.theme-btn-desc { font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+.theme-btn-name { font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+.theme-btn-desc { font-size: 0.65rem; color: rgba(255,255,255,0.5); white-space: nowrap; }
 
 /* ══════════════════════════════════════════
    THEME PRESETS
