@@ -1683,6 +1683,47 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
+/* Theme Preset Buttons */
+.theme-btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.theme-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 12px 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.theme-btn:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+.theme-btn.active {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  box-shadow: 0 0 12px rgba(168,85,247,0.3);
+}
+.theme-btn-icon { font-size: 1.2rem; }
+.theme-btn-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.theme-btn-desc {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.5);
+}
+
 /* ──────────────────────────────────────────
    CSS TREATMENT CLASSES
    ────────────────────────────────────────── */
@@ -1812,6 +1853,276 @@ body.use-gooey-blob .style-lab-toggle {
   opacity: 1;
   transform: translate(50px, -50px) scale(1);
   background: #10b981;
+}
+
+/* ══════════════════════════════════════════
+   THEME PRESETS
+   ══════════════════════════════════════════ */
+
+/* ── 1. Dark Terminal ── */
+body.theme-dark-terminal {
+  --bg-primary: #050505;
+  --bg-secondary: rgba(0, 255, 136, 0.04);
+  --bg-card: rgba(0, 12, 8, 0.96);
+  --bg-card-hover: rgba(0, 22, 12, 0.98);
+  --text-primary: #e0ffe8;
+  --text-secondary: rgba(0, 255, 136, 0.9);
+  --text-muted: rgba(0, 255, 136, 0.5);
+  --border: rgba(0, 255, 136, 0.25);
+  --border-subtle: rgba(0, 255, 136, 0.1);
+  --border-highlight: rgba(0, 255, 136, 0.55);
+  --shadow: 0 0 24px rgba(0, 255, 136, 0.08), 0 4px 16px rgba(0,0,0,0.6);
+  --shadow-sm: 0 0 12px rgba(0, 255, 136, 0.06);
+  --shadow-lg: 0 0 48px rgba(0, 255, 136, 0.12);
+  --accent-math: #00ff88;
+  --accent-eng: #00d4ff;
+  --accent-routine: #ff6ec7;
+  --gradient-progress: linear-gradient(90deg, #00ff88, #00d4ff);
+  --glass-blur: blur(0px);
+  --card-radius: 6px;
+  background: #050505 !important;
+  background-attachment: fixed !important;
+}
+body.theme-dark-terminal .hero {
+  background: linear-gradient(180deg, #050505 0%, #0a1a0f 100%) !important;
+  border-bottom: 1px solid rgba(0,255,136,0.15);
+}
+body.theme-dark-terminal .card {
+  background: rgba(0,12,8,0.96) !important;
+  border: 1px solid rgba(0,255,136,0.2) !important;
+  border-radius: 6px !important;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+body.theme-dark-terminal .card:hover {
+  border-color: rgba(0,255,136,0.5) !important;
+  box-shadow: 0 0 20px rgba(0,255,136,0.1) !important;
+}
+body.theme-dark-terminal .card-title { color: #00ff88 !important; }
+body.theme-dark-terminal .card-title.eng { color: #00d4ff !important; }
+body.theme-dark-terminal .dday-num { color: #00ff88; font-family: 'JetBrains Mono','Courier New',monospace; }
+body.theme-dark-terminal #ddayRingFill { stroke: #00ff88 !important; }
+body.theme-dark-terminal .bar-fill {
+  background: linear-gradient(90deg, #00ff88 0%, #00d4ff 100%) !important;
+  box-shadow: 0 0 8px rgba(0,255,136,0.5);
+}
+body.theme-dark-terminal .cb.on {
+  background: #00ff88 !important;
+  border-color: #00ff88 !important;
+  box-shadow: 0 0 8px rgba(0,255,136,0.6) !important;
+}
+body.theme-dark-terminal .cb.on svg { stroke: #050505 !important; }
+body.theme-dark-terminal .stage-badge {
+  background: rgba(0,255,136,0.12) !important;
+  border: 1px solid rgba(0,255,136,0.4) !important;
+  color: #00ff88 !important;
+}
+body.theme-dark-terminal .hero-day,
+body.theme-dark-terminal .loop-info { color: rgba(0,255,136,0.7) !important; }
+body.theme-dark-terminal .progress-label { color: #00ff88 !important; }
+body.theme-dark-terminal .time-chip {
+  background: rgba(0,255,136,0.1) !important;
+  color: #00ff88 !important;
+  border: 1px solid rgba(0,255,136,0.3) !important;
+}
+body.theme-dark-terminal .active-block {
+  border-color: rgba(0,255,136,0.6) !important;
+  box-shadow: 0 0 20px rgba(0,255,136,0.15) !important;
+}
+/* Aurora orbs off in terminal */
+body.theme-dark-terminal::before,
+body.theme-dark-terminal::after { display: none !important; }
+
+/* ── 2. Minimal Paper ── */
+body.theme-minimal-paper {
+  --bg-primary: #faf9f7;
+  --bg-secondary: #f5f4f2;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f8f6;
+  --text-primary: #1a1a1a;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --border: #e5e5e5;
+  --border-subtle: #eeeeee;
+  --border-highlight: #cccccc;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+  --accent-math: #1a1a1a;
+  --accent-eng: #333333;
+  --accent-routine: #555555;
+  --gradient-progress: #1a1a1a;
+  --glass-blur: blur(0px);
+  --card-radius: 12px;
+  background: #faf9f7 !important;
+  background-attachment: fixed !important;
+}
+body.theme-minimal-paper .hero {
+  background: #faf9f7 !important;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: none !important;
+}
+body.theme-minimal-paper .dday-num {
+  color: #1a1a1a !important;
+  font-size: 3rem;
+}
+body.theme-minimal-paper #ddayRingFill { stroke: #1a1a1a !important; }
+body.theme-minimal-paper #ddayRingBg { stroke: #eeeeee !important; }
+body.theme-minimal-paper .card {
+  background: #ffffff !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 12px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.theme-minimal-paper .card:hover {
+  background: #f9f8f6 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
+  transform: translateY(-1px);
+}
+body.theme-minimal-paper .card-title { color: #888888 !important; }
+body.theme-minimal-paper .card-title.eng { color: #888888 !important; }
+body.theme-minimal-paper .card-sub { color: #bbbbbb !important; }
+body.theme-minimal-paper .bar-fill {
+  background: #1a1a1a !important;
+}
+body.theme-minimal-paper .cb.on {
+  background: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+body.theme-minimal-paper .stage-badge {
+  background: #f0f0f0 !important;
+  border: 1px solid #ddd !important;
+  color: #555 !important;
+}
+body.theme-minimal-paper .hero-day,
+body.theme-minimal-paper .loop-info { color: #888888 !important; }
+body.theme-minimal-paper .progress-label,
+body.theme-minimal-paper .progress-pct { color: #555555 !important; }
+body.theme-minimal-paper .time-chip {
+  background: #f0f0f0 !important;
+  color: #555 !important;
+  border: 1px solid #ddd !important;
+}
+body.theme-minimal-paper .active-block {
+  border-left: 3px solid #1a1a1a !important;
+}
+body.theme-minimal-paper::before,
+body.theme-minimal-paper::after { display: none !important; }
+body.theme-minimal-paper .theme-toggle {
+  background: #ffffff !important;
+  border: 1px solid #e5e5e5 !important;
+  color: #1a1a1a !important;
+}
+
+/* ── 3. Aurora Deep ── */
+body.theme-aurora-deep {
+  --bg-primary: #030611;
+  --bg-secondary: rgba(0, 212, 255, 0.04);
+  --bg-card: rgba(3, 18, 52, 0.7);
+  --bg-card-hover: rgba(5, 28, 75, 0.8);
+  --text-primary: #e8f8ff;
+  --text-secondary: rgba(127, 255, 212, 0.9);
+  --text-muted: rgba(0, 212, 255, 0.55);
+  --border: rgba(0, 212, 255, 0.18);
+  --border-subtle: rgba(0, 212, 255, 0.08);
+  --border-highlight: rgba(0, 212, 255, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 40, 0.8), 0 0 0 1px rgba(0,212,255,0.05);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 40, 0.6);
+  --shadow-lg: 0 16px 64px rgba(0, 0, 60, 0.9);
+  --accent-math: #7fffd4;
+  --accent-eng: #00d4ff;
+  --accent-routine: #a78bfa;
+  --gradient-progress: linear-gradient(90deg, #00d4ff, #7fffd4);
+  --glass-blur: blur(20px) saturate(150%);
+  --card-radius: 18px;
+  background: #030611 !important;
+  background-attachment: fixed !important;
+}
+/* Aurora floating orbs */
+body.theme-aurora-deep::before {
+  display: block !important;
+  content: '';
+  position: fixed;
+  width: 600px; height: 600px;
+  top: -150px; left: -150px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.18) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: orbDrift 14s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 1 !important;
+}
+body.theme-aurora-deep::after {
+  display: block !important;
+  content: '';
+  position: fixed;
+  width: 500px; height: 500px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(127, 255, 212, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: orbDrift2 18s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 1 !important;
+}
+/* Third orb via hero pseudo */
+body.theme-aurora-deep .hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: orbDrift 20s ease-in-out infinite reverse;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 0;
+}
+body.theme-aurora-deep .hero {
+  background: transparent !important;
+  position: relative;
+  overflow: hidden;
+}
+body.theme-aurora-deep .dday-num { color: #00d4ff !important; }
+body.theme-aurora-deep #ddayRingFill { stroke: #00d4ff !important; filter: drop-shadow(0 0 6px #00d4ff88); }
+body.theme-aurora-deep .card {
+  background: rgba(3, 18, 52, 0.65) !important;
+  border: 1px solid rgba(0, 212, 255, 0.18) !important;
+  border-radius: 18px !important;
+}
+body.theme-aurora-deep .card:hover {
+  border-color: rgba(0, 212, 255, 0.4) !important;
+  box-shadow: 0 0 32px rgba(0, 212, 255, 0.12) !important;
+}
+body.theme-aurora-deep .card-title { color: rgba(0, 212, 255, 0.7) !important; }
+body.theme-aurora-deep .card-title.eng { color: rgba(127, 255, 212, 0.7) !important; }
+body.theme-aurora-deep .bar-fill {
+  background: linear-gradient(90deg, #00d4ff, #7fffd4) !important;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+body.theme-aurora-deep .cb.on {
+  background: linear-gradient(135deg, #00d4ff, #7fffd4) !important;
+  border-color: #00d4ff !important;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5) !important;
+}
+body.theme-aurora-deep .stage-badge {
+  background: rgba(0, 212, 255, 0.12) !important;
+  border: 1px solid rgba(0, 212, 255, 0.3) !important;
+  color: #00d4ff !important;
+}
+body.theme-aurora-deep .hero-day,
+body.theme-aurora-deep .loop-info { color: rgba(127, 255, 212, 0.7) !important; }
+body.theme-aurora-deep .progress-label { color: rgba(0, 212, 255, 0.8) !important; }
+body.theme-aurora-deep .time-chip {
+  background: rgba(0, 212, 255, 0.1) !important;
+  color: #00d4ff !important;
+  border: 1px solid rgba(0, 212, 255, 0.25) !important;
+}
+body.theme-aurora-deep .active-block {
+  border-color: rgba(0, 212, 255, 0.5) !important;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.15) !important;
 }
 </style>
 </head>
@@ -1961,6 +2272,34 @@ body.use-gooey-blob .style-lab-toggle {
         <input type="checkbox" id="toggle-split" onchange="applyStyleSetting('split', this.checked)">
         <span class="slider"></span>
       </label>
+    </div>
+  </div>
+
+  <div class="style-lab-group">
+    <div class="style-lab-group-title">Theme Presets</div>
+    <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);margin-bottom:4px;">하나를 선택하면 나머지는 자동 해제됩니다</div>
+    
+    <div class="theme-btn-grid">
+      <button class="theme-btn" id="theme-btn-default" onclick="applyTheme('default')">
+        <span class="theme-btn-icon">🌅</span>
+        <span class="theme-btn-name">Sunset</span>
+        <span class="theme-btn-desc">기본 노을</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-terminal" onclick="applyTheme('terminal')">
+        <span class="theme-btn-icon">💻</span>
+        <span class="theme-btn-name">Terminal</span>
+        <span class="theme-btn-desc">해커 감성</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-paper" onclick="applyTheme('paper')">
+        <span class="theme-btn-icon">📄</span>
+        <span class="theme-btn-name">Paper</span>
+        <span class="theme-btn-desc">미니멀 노트</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-aurora" onclick="applyTheme('aurora')">
+        <span class="theme-btn-icon">🌌</span>
+        <span class="theme-btn-name">Aurora</span>
+        <span class="theme-btn-desc">딥 스페이스</span>
+      </button>
     </div>
   </div>
 </div>
@@ -4007,9 +4346,37 @@ window.toggleGooeyActive = function() {
   }
 }
 
+const THEME_CLASS_MAP = {
+  terminal: 'theme-dark-terminal',
+  paper:    'theme-minimal-paper',
+  aurora:   'theme-aurora-deep',
+};
+
+window.applyTheme = function(themeName) {
+  // Remove all theme classes
+  Object.values(THEME_CLASS_MAP).forEach(cls => document.body.classList.remove(cls));
+  // Apply selected
+  if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
+    document.body.classList.add(THEME_CLASS_MAP[themeName]);
+  }
+  // Save
+  localStorage.setItem('style-lab-theme', themeName);
+  // Update button states
+  ['default','terminal','paper','aurora'].forEach(t => {
+    const btn = document.getElementById(`theme-btn-${t}`);
+    if (btn) btn.classList.toggle('active', t === themeName);
+  });
+  toast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+}
+
 // Initialize theme first, then app
 initTheme();
 initStyleLab();
+// Restore theme preset
+(function() {
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  window.applyTheme(savedTheme);
+})();
 
 // 날짜 모드 (월별에서 넘어온 경우) → 뒤로 버튼 표시
 if (IS_DATE_MODE) {

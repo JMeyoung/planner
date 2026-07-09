@@ -1179,6 +1179,140 @@ body.use-gooey-blob .style-lab-toggle {
   opacity: 1;
   transform: translate(50px, -50px) scale(1);
   background: #10b981;
+}
+
+/* Theme Preset Buttons */
+.theme-btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.theme-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 12px 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.theme-btn:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+.theme-btn.active {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  box-shadow: 0 0 12px rgba(168,85,247,0.3);
+}
+.theme-btn-icon { font-size: 1.2rem; }
+.theme-btn-name { font-size: 0.8rem; font-weight: 700; }
+.theme-btn-desc { font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+
+/* ══════════════════════════════════════════
+   THEME PRESETS
+   ══════════════════════════════════════════ */
+
+/* ── 1. Dark Terminal ── */
+body.theme-dark-terminal {
+  --bg-primary: #050505;
+  --bg-card: rgba(0, 12, 8, 0.96);
+  --text-primary: #e0ffe8;
+  --text-secondary: rgba(0, 255, 136, 0.9);
+  --text-muted: rgba(0, 255, 136, 0.5);
+  --border: rgba(0, 255, 136, 0.25);
+  --border-highlight: rgba(0, 255, 136, 0.55);
+  --shadow: 0 0 24px rgba(0, 255, 136, 0.08), 0 4px 16px rgba(0,0,0,0.6);
+  --glass-blur: blur(0px);
+  background: #050505 !important;
+}
+body.theme-dark-terminal .glass-card {
+  background: rgba(0,12,8,0.96) !important;
+  border: 1px solid rgba(0,255,136,0.2) !important;
+  backdrop-filter: none !important;
+}
+body.theme-dark-terminal .glass-card:hover {
+  border-color: rgba(0,255,136,0.5) !important;
+}
+body.theme-dark-terminal .card-title { color: #00ff88 !important; }
+body.theme-dark-terminal::before, body.theme-dark-terminal::after { display: none !important; }
+
+/* ── 2. Minimal Paper ── */
+body.theme-minimal-paper {
+  --bg-primary: #faf9f7;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --border: #e5e5e5;
+  --border-highlight: #cccccc;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --glass-blur: blur(0px);
+  background: #faf9f7 !important;
+}
+body.theme-minimal-paper .glass-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e5e5 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.theme-minimal-paper .glass-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
+  transform: translateY(-1px);
+}
+body.theme-minimal-paper .card-title { color: #888 !important; }
+body.theme-minimal-paper .stat-card { background: #f5f4f2 !important; border: 1px solid #e5e5e5 !important; }
+body.theme-minimal-paper .theme-toggle { background: #ffffff !important; border: 1px solid #e5e5e5 !important; color: #1a1a1a !important; }
+body.theme-minimal-paper::before, body.theme-minimal-paper::after { display: none !important; }
+
+/* ── 3. Aurora Deep ── */
+body.theme-aurora-deep {
+  --bg-primary: #030611;
+  --bg-card: rgba(3, 18, 52, 0.7);
+  --text-primary: #e8f8ff;
+  --text-secondary: rgba(127, 255, 212, 0.9);
+  --text-muted: rgba(0, 212, 255, 0.55);
+  --border: rgba(0, 212, 255, 0.18);
+  --border-highlight: rgba(0, 212, 255, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 40, 0.8);
+  --glass-blur: blur(20px) saturate(150%);
+  background: #030611 !important;
+}
+body.theme-aurora-deep::before {
+  display: block !important; opacity: 1 !important;
+  content: '';
+  position: fixed; width: 600px; height: 600px;
+  top: -150px; left: -150px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.18) 0%, transparent 70%);
+  filter: blur(80px); z-index: -1; border-radius: 50%;
+  animation: orbDrift 14s ease-in-out infinite; pointer-events: none;
+}
+body.theme-aurora-deep::after {
+  display: block !important; opacity: 1 !important;
+  content: '';
+  position: fixed; width: 500px; height: 500px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(127, 255, 212, 0.15) 0%, transparent 70%);
+  filter: blur(80px); z-index: -1; border-radius: 50%;
+  animation: orbDrift2 18s ease-in-out infinite; pointer-events: none;
+}
+body.theme-aurora-deep .glass-card {
+  background: rgba(3, 18, 52, 0.65) !important;
+  border: 1px solid rgba(0, 212, 255, 0.18) !important;
+}
+body.theme-aurora-deep .glass-card:hover {
+  border-color: rgba(0, 212, 255, 0.4) !important;
+  box-shadow: 0 0 32px rgba(0, 212, 255, 0.12) !important;
+}
+body.theme-aurora-deep .card-title { color: rgba(0, 212, 255, 0.7) !important; }
+body.theme-aurora-deep .stat-card { background: rgba(3, 18, 52, 0.7) !important; border: 1px solid rgba(0,212,255,0.15) !important; }
+
 .celebrate-wrap {
   position: fixed;
   inset: 0;
@@ -1317,6 +1451,34 @@ body.use-gooey-blob .style-lab-toggle {
         <input type="checkbox" id="toggle-split" onchange="applyStyleSetting('split', this.checked)">
         <span class="slider"></span>
       </label>
+    </div>
+  </div>
+
+  <div class="style-lab-group">
+    <div class="style-lab-group-title">Theme Presets</div>
+    <div style="font-size:0.7rem;color:rgba(255,255,255,0.35);margin-bottom:4px;">하나를 선택하면 나머지는 자동 해제됩니다</div>
+    
+    <div class="theme-btn-grid">
+      <button class="theme-btn" id="theme-btn-default" onclick="applyTheme('default')">
+        <span class="theme-btn-icon">🌅</span>
+        <span class="theme-btn-name">Sunset</span>
+        <span class="theme-btn-desc">기본 노을</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-terminal" onclick="applyTheme('terminal')">
+        <span class="theme-btn-icon">💻</span>
+        <span class="theme-btn-name">Terminal</span>
+        <span class="theme-btn-desc">해커 감성</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-paper" onclick="applyTheme('paper')">
+        <span class="theme-btn-icon">📄</span>
+        <span class="theme-btn-name">Paper</span>
+        <span class="theme-btn-desc">미니멀 노트</span>
+      </button>
+      <button class="theme-btn" id="theme-btn-aurora" onclick="applyTheme('aurora')">
+        <span class="theme-btn-icon">🌌</span>
+        <span class="theme-btn-name">Aurora</span>
+        <span class="theme-btn-desc">딥 스페이스</span>
+      </button>
     </div>
   </div>
 </div>
@@ -2415,6 +2577,32 @@ window.triggerGooeyCelebration = function() {
 
 loadTheme();
 initStyleLab();
+
+const THEME_CLASS_MAP = {
+  terminal: 'theme-dark-terminal',
+  paper:    'theme-minimal-paper',
+  aurora:   'theme-aurora-deep',
+};
+
+window.applyTheme = function(themeName) {
+  Object.values(THEME_CLASS_MAP).forEach(cls => document.body.classList.remove(cls));
+  if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
+    document.body.classList.add(THEME_CLASS_MAP[themeName]);
+  }
+  localStorage.setItem('style-lab-theme', themeName);
+  ['default','terminal','paper','aurora'].forEach(t => {
+    const btn = document.getElementById(`theme-btn-${t}`);
+    if (btn) btn.classList.toggle('active', t === themeName);
+  });
+  showToast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+}
+
+// Restore theme preset
+(function() {
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  window.applyTheme(savedTheme);
+})();
+
 // 서버에서 토큰 복원 후 init 실행
 restoreTokenFromServer().then(() => init());
 </script>
