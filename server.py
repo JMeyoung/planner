@@ -25,6 +25,7 @@ NOTION_VERSION = '2022-06-28'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MONTHLY_HTML = os.path.join(BASE_DIR, 'monthly.html')
 DAILY_HTML   = os.path.join(BASE_DIR, 'daily.html')
+PLANNER_HTML = os.path.join(BASE_DIR, 'planner.html')
 TOKEN_FILE   = os.path.join(BASE_DIR, '.notion_token')
 
 
@@ -299,8 +300,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
 
-        if path in ('/', '/index.html', '/planner_standalone.html'):
-            # 월별 플래너 (메인)
+        if path in ('/', '/index.html', '/planner.html'):
+            # 통합 플래너 (메인)
+            self._serve_html(PLANNER_HTML, 'planner.html')
+
+        elif path in ('/monthly', '/monthly/', '/monthly.html', '/planner_standalone.html'):
+            # 월별 플래너 단독 실행
             self._serve_html(MONTHLY_HTML, 'planner_standalone.html')
 
         elif path == '/favicon.ico':
@@ -308,8 +313,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_response(204)
             self.end_headers()
 
-        elif path in ('/daily', '/daily/', '/daily_planner_standalone.html'):
-            # 일별 플래너
+        elif path in ('/daily', '/daily/', '/daily.html', '/daily_planner_standalone.html'):
+            # 일별 플래너 단독 실행
             self._serve_html(DAILY_HTML, 'daily_planner_standalone.html')
 
         elif path == '/api/token':

@@ -80,12 +80,13 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  background: var(--bg-primary);
+  background-attachment: fixed;
 }
 
 body {
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
-  background: var(--bg-primary);
-  background-attachment: fixed;
+  background: transparent !important;
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
@@ -1298,14 +1299,21 @@ body::before, body::after {
 }
 @media (min-width: 1024px) {
   body.use-split-layout .container {
-    max-width: 1200px;
+    max-width: 1400px;
     padding: 0 40px 48px;
   }
   body.use-split-layout .planner-layout {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
-    gap: 24px;
+    gap: 32px;
     align-items: start;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
   }
   body.use-split-layout .planner-left, body.use-split-layout .planner-right {
     display: flex;
@@ -1872,7 +1880,11 @@ body.use-gooey-blob .style-lab-toggle {
    ══════════════════════════════════════════ */
 
 /* ── 1. Dark Terminal ── */
-body.theme-dark-terminal {
+html.theme-dark-terminal {
+  background-color: #050505 !important;
+  background-image: none !important;
+}
+html.theme-dark-terminal, body.theme-dark-terminal {
   --bg-primary: #050505;
   --bg-secondary: rgba(0, 255, 136, 0.04);
   --bg-card: rgba(0, 12, 8, 0.96);
@@ -1892,8 +1904,14 @@ body.theme-dark-terminal {
   --gradient-progress: linear-gradient(90deg, #00ff88, #00d4ff);
   --glass-blur: blur(0px);
   --card-radius: 6px;
-  background: #050505 !important;
-  background-attachment: fixed !important;
+  --cal-full: #00ff88;
+  --cal-done: rgba(0, 255, 136, 0.45);
+  --cal-partial: rgba(0, 255, 136, 0.2);
+  --cal-rest: rgba(255, 110, 199, 0.15);
+  --cal-today-glow: rgba(0, 255, 136, 0.4);
+  --cal-full-text-num: #050505;
+  --cal-full-text-pct: rgba(5, 5, 5, 0.8);
+  --cal-full-text-loops: rgba(5, 5, 5, 0.6);
 }
 body.theme-dark-terminal .hero {
   background: linear-gradient(180deg, #050505 0%, #0a1a0f 100%) !important;
@@ -1945,7 +1963,11 @@ body.theme-dark-terminal::before,
 body.theme-dark-terminal::after { display: none !important; }
 
 /* ── 2. Minimal Paper ── */
-body.theme-minimal-paper {
+html.theme-minimal-paper {
+  background-color: #faf9f7 !important;
+  background-image: none !important;
+}
+html.theme-minimal-paper, body.theme-minimal-paper {
   --bg-primary: #faf9f7;
   --bg-secondary: #f5f4f2;
   --bg-card: #ffffff;
@@ -1965,8 +1987,14 @@ body.theme-minimal-paper {
   --gradient-progress: #1a1a1a;
   --glass-blur: blur(0px);
   --card-radius: 12px;
-  background: #faf9f7 !important;
-  background-attachment: fixed !important;
+  --cal-full: #1a1a1a;
+  --cal-done: #888888;
+  --cal-partial: #e5e5e5;
+  --cal-rest: #faf9f7;
+  --cal-today-glow: #1a1a1a;
+  --cal-full-text-num: #ffffff;
+  --cal-full-text-pct: rgba(255, 255, 255, 0.9);
+  --cal-full-text-loops: rgba(255, 255, 255, 0.7);
 }
 body.theme-minimal-paper .hero {
   background: #faf9f7 !important;
@@ -2027,7 +2055,11 @@ body.theme-minimal-paper .theme-toggle {
 }
 
 /* ── 3. Aurora Deep ── */
-body.theme-aurora-deep {
+html.theme-aurora-deep {
+  background-color: #030611 !important;
+  background-image: none !important;
+}
+html.theme-aurora-deep, body.theme-aurora-deep {
   --bg-primary: #030611;
   --bg-secondary: rgba(0, 212, 255, 0.04);
   --bg-card: rgba(3, 18, 52, 0.7);
@@ -2047,8 +2079,14 @@ body.theme-aurora-deep {
   --gradient-progress: linear-gradient(90deg, #00d4ff, #7fffd4);
   --glass-blur: blur(20px) saturate(150%);
   --card-radius: 18px;
-  background: #030611 !important;
-  background-attachment: fixed !important;
+  --cal-full: #00d4ff;
+  --cal-done: rgba(0, 212, 255, 0.4);
+  --cal-partial: rgba(0, 212, 255, 0.18);
+  --cal-rest: rgba(167, 139, 250, 0.15);
+  --cal-today-glow: rgba(0, 212, 255, 0.4);
+  --cal-full-text-num: #030611;
+  --cal-full-text-pct: rgba(3, 6, 17, 0.85);
+  --cal-full-text-loops: rgba(3, 6, 17, 0.65);
 }
 /* Aurora floating orbs */
 body.theme-aurora-deep::before {
@@ -2135,6 +2173,43 @@ body.theme-aurora-deep .time-chip {
 body.theme-aurora-deep .active-block {
   border-color: rgba(0, 212, 255, 0.5) !important;
   box-shadow: 0 0 24px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Theme adjustments for unified layout */
+body.theme-dark-terminal .planner-layout {
+  background: rgba(0, 12, 8, 0.55) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.05) !important;
+}
+body.theme-minimal-paper .planner-layout {
+  background: #ffffff !important;
+  border-color: #e5e5e5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+body.theme-aurora-deep .planner-layout {
+  background: rgba(3, 18, 52, 0.45) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Theme-specific scrollbars */
+body.theme-dark-terminal ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 136, 0.3) !important;
+}
+body.theme-dark-terminal ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 136, 0.5) !important;
+}
+body.theme-minimal-paper ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+body.theme-minimal-paper ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+body.theme-aurora-deep ::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3) !important;
+}
+body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5) !important;
 }
 </style>
 </head>
@@ -2349,7 +2424,7 @@ var PLANNER_ID = '37716b05-a4f9-81b5-8554-e89acef1739e';
    URL 파라미터에서 날짜 읽기 (?date=YYYY-MM-DD)
    없으면 오늘 날짜 사용
    ────────────────────────────────────────── */
-const _urlDate = (function() {
+let _urlDate = (function() {
   const p = new URLSearchParams(location.search).get('date');
   if (p && /^\d{4}-\d{2}-\d{2}$/.test(p)) {
     const d = new Date(p + 'T00:00:00');
@@ -2358,7 +2433,20 @@ const _urlDate = (function() {
   return null;
 })();
 // true면 특정 날짜 모드, false면 오늘 모드
-const IS_DATE_MODE = !!_urlDate;
+let IS_DATE_MODE = !!_urlDate;
+
+window.loadDailyDate = function(dateStr) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    const d = new Date(dateStr + 'T00:00:00');
+    if (!isNaN(d)) {
+      _urlDate = d;
+      IS_DATE_MODE = true;
+      initDaily();
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?date=' + dateStr;
+      window.history.pushState({path:newUrl}, '', newUrl);
+    }
+  }
+}
 
 /* ══════════════════════════════════════════
    GLOBAL STATE
@@ -2572,7 +2660,9 @@ function saveNotionToken() {
     body: JSON.stringify({token: v})
   }).catch(() => {});
   closeTokenSetup();
-  initDaily();
+  
+  if (typeof initDaily === 'function') initDaily();
+  if (typeof initMonthly === 'function') initMonthly();
 }
 
 // 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
@@ -3516,8 +3606,8 @@ function renderApp(d) {
   // App-level Fixed Routine block
   if (!hasFixedInNotion) {
     const tDate = _targetDate();
-    // 7월 7일이 Day 5가 되도록 기준일을 7월 3일로 설정 (월은 0부터 시작하므로 6이 7월)
-    const vocabStart = new Date(tDate.getFullYear(), 6, 3);
+    // 7월 6일이 Day 1이 되도록 기준일을 7월 5일로 설정 (7월 9일은 Day 4)
+    const vocabStart = new Date(tDate.getFullYear(), 6, 5);
     const diffDays = Math.floor((tDate - vocabStart) / (1000 * 60 * 60 * 24)) + 1;
     const vocabText = diffDays > 0 ? `🔤 영단어 매일 100개 암기 (Day ${diffDays})` : "🔤 영단어 매일 100개 암기";
 
@@ -4364,12 +4454,16 @@ var THEME_CLASS_MAP = {
   aurora:   'theme-aurora-deep',
 };
 
-window.applyTheme = function(themeName) {
+window.applyTheme = function(themeName, showToastNotify = true) {
   // Remove all theme classes
-  Object.values(THEME_CLASS_MAP).forEach(cls => document.body.classList.remove(cls));
+  Object.values(THEME_CLASS_MAP).forEach(cls => {
+    document.body.classList.remove(cls);
+    document.documentElement.classList.remove(cls);
+  });
   // Apply selected
   if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
+    document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
   }
   // Save
   localStorage.setItem('style-lab-theme', themeName);
@@ -4378,7 +4472,9 @@ window.applyTheme = function(themeName) {
     const btn = document.getElementById(`theme-btn-${t}`);
     if (btn) btn.classList.toggle('active', t === themeName);
   });
-  toast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+  if (showToastNotify) {
+    toast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+  }
 };
 
 // Initialize theme first, then app
@@ -4387,7 +4483,7 @@ initStyleLab();
 // Restore theme preset
 (function() {
   const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
-  window.applyTheme(savedTheme);
+  window.applyTheme(savedTheme, false);
 })();
 
 // 날짜 모드 (월별에서 넘어온 경우) → 뒤로 버튼 표시
@@ -4403,7 +4499,8 @@ restoreTokenFromServer().then(() => {
     showTokenSetup();
   } else {
     closeTokenSetup();
-    initDaily();
+    if (typeof initDaily === 'function') initDaily();
+    if (typeof initMonthly === 'function') initMonthly();
   }
 });
 </script>

@@ -45,6 +45,9 @@
   --cal-nodata: transparent;
   --cal-future: transparent;
   --cal-today-glow: rgba(255, 255, 255, 0.4);
+  --cal-full-text-num: #35235d;
+  --cal-full-text-pct: rgba(53, 35, 93, 0.8);
+  --cal-full-text-loops: rgba(53, 35, 93, 0.6);
   --stat-bg: rgba(255, 255, 255, 0.12);
   --drawer-bg: linear-gradient(135deg, rgba(53, 35, 93, 0.95) 0%, rgba(216, 112, 86, 0.95) 100%);
   --overlay-bg: rgba(30, 20, 50, 0.6);
@@ -84,6 +87,9 @@
   --cal-nodata: transparent;
   --cal-future: transparent;
   --cal-today-glow: rgba(255, 255, 255, 0.2);
+  --cal-full-text-num: #35235d;
+  --cal-full-text-pct: rgba(53, 35, 93, 0.8);
+  --cal-full-text-loops: rgba(53, 35, 93, 0.6);
   --stat-bg: rgba(0, 0, 0, 0.3);
   --drawer-bg: linear-gradient(135deg, rgba(29, 18, 54, 0.95) 0%, rgba(140, 60, 42, 0.95) 100%);
   --overlay-bg: rgba(0, 0, 0, 0.75);
@@ -156,15 +162,19 @@
    Base
    ═══════════════════════════════════════ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg-primary); }
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Noto Sans KR', BlinkMacSystemFont, sans-serif;
-  background: var(--bg-primary);
-  background-attachment: fixed;
+  background: transparent !important;
   color: var(--text-primary);
-  padding: 16px;
+  padding: 0;
   min-height: 100vh;
   transition: background .35s, color .35s;
+}
+body:not(:has(.view-container)) {
+  padding: 16px;
+}
+#view-monthly {
+  padding: 16px;
   -webkit-font-smoothing: antialiased;
   position: relative;
   isolation: isolate;
@@ -425,9 +435,9 @@ body::before, body::after {
 .day-cell.partial { background: var(--cal-partial); }
 .day-cell.done    { background: var(--cal-done); }
 .day-cell.full    { background: var(--cal-full); }
-.day-cell.full .day-num { color: #35235d !important; }
-.day-cell.full .day-pct { color: rgba(53, 35, 93, 0.8) !important; }
-.day-cell.full .day-loops { color: rgba(53, 35, 93, 0.6) !important; }
+.day-cell.full .day-num { color: var(--cal-full-text-num) !important; }
+.day-cell.full .day-pct { color: var(--cal-full-text-pct) !important; }
+.day-cell.full .day-loops { color: var(--cal-full-text-loops) !important; }
 .day-cell.today {
   border-color: var(--accent-math) !important;
   animation: todayPulse 2.5s ease-in-out infinite;
@@ -817,22 +827,30 @@ body::before, body::after {
    Responsive
    ═══════════════════════════════════════ */
 @media (min-width: 480px) {
-  body { padding: 20px 24px; max-width: 520px; margin: 0 auto; }
+  body { padding: 20px 24px; }
+  #root { max-width: 520px; margin: 0 auto; }
 }
 @media (min-width: 1024px) {
-  body.use-split-layout { max-width: 1200px; padding: 30px 40px; }
-  body.use-split-layout .planner-layout {
+  #root { max-width: 1400px; margin: 0 auto; }
+  .planner-layout {
     display: grid;
     grid-template-columns: 1.25fr 1fr;
-    gap: 24px;
+    gap: 32px;
     align-items: start;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
   }
-  body.use-split-layout .planner-left, body.use-split-layout .planner-right {
+  .planner-left, .planner-right {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
-  body.use-split-layout .planner-left > *, body.use-split-layout .planner-right > * {
+  .planner-left > *, .planner-right > * {
     margin-bottom: 0 !important;
   }
   #drawer {
@@ -1223,7 +1241,11 @@ body.use-gooey-blob .style-lab-toggle {
    ══════════════════════════════════════════ */
 
 /* ── 1. Dark Terminal ── */
-body.theme-dark-terminal {
+html.theme-dark-terminal {
+  background-color: #050505 !important;
+  background-image: none !important;
+}
+html.theme-dark-terminal, body.theme-dark-terminal {
   --bg-primary: #050505;
   --bg-card: rgba(0, 12, 8, 0.96);
   --text-primary: #e0ffe8;
@@ -1233,7 +1255,14 @@ body.theme-dark-terminal {
   --border-highlight: rgba(0, 255, 136, 0.55);
   --shadow: 0 0 24px rgba(0, 255, 136, 0.08), 0 4px 16px rgba(0,0,0,0.6);
   --glass-blur: blur(0px);
-  background: #050505 !important;
+  --cal-full: #00ff88;
+  --cal-done: rgba(0, 255, 136, 0.45);
+  --cal-partial: rgba(0, 255, 136, 0.2);
+  --cal-rest: rgba(255, 110, 199, 0.15);
+  --cal-today-glow: rgba(0, 255, 136, 0.4);
+  --cal-full-text-num: #050505;
+  --cal-full-text-pct: rgba(5, 5, 5, 0.8);
+  --cal-full-text-loops: rgba(5, 5, 5, 0.6);
 }
 body.theme-dark-terminal .glass-card {
   background: rgba(0,12,8,0.96) !important;
@@ -1247,7 +1276,11 @@ body.theme-dark-terminal .card-title { color: #00ff88 !important; }
 body.theme-dark-terminal::before, body.theme-dark-terminal::after { display: none !important; }
 
 /* ── 2. Minimal Paper ── */
-body.theme-minimal-paper {
+html.theme-minimal-paper {
+  background-color: #faf9f7 !important;
+  background-image: none !important;
+}
+html.theme-minimal-paper, body.theme-minimal-paper {
   --bg-primary: #faf9f7;
   --bg-card: #ffffff;
   --text-primary: #1a1a1a;
@@ -1257,7 +1290,14 @@ body.theme-minimal-paper {
   --border-highlight: #cccccc;
   --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
   --glass-blur: blur(0px);
-  background: #faf9f7 !important;
+  --cal-full: #1a1a1a;
+  --cal-done: #888888;
+  --cal-partial: #e5e5e5;
+  --cal-rest: #faf9f7;
+  --cal-today-glow: #1a1a1a;
+  --cal-full-text-num: #ffffff;
+  --cal-full-text-pct: rgba(255, 255, 255, 0.9);
+  --cal-full-text-loops: rgba(255, 255, 255, 0.7);
 }
 body.theme-minimal-paper .glass-card {
   background: #ffffff !important;
@@ -1275,7 +1315,11 @@ body.theme-minimal-paper .theme-toggle { background: #ffffff !important; border:
 body.theme-minimal-paper::before, body.theme-minimal-paper::after { display: none !important; }
 
 /* ── 3. Aurora Deep ── */
-body.theme-aurora-deep {
+html.theme-aurora-deep {
+  background-color: #030611 !important;
+  background-image: none !important;
+}
+html.theme-aurora-deep, body.theme-aurora-deep {
   --bg-primary: #030611;
   --bg-card: rgba(3, 18, 52, 0.7);
   --text-primary: #e8f8ff;
@@ -1285,7 +1329,14 @@ body.theme-aurora-deep {
   --border-highlight: rgba(0, 212, 255, 0.4);
   --shadow: 0 8px 32px rgba(0, 0, 40, 0.8);
   --glass-blur: blur(20px) saturate(150%);
-  background: #030611 !important;
+  --cal-full: #00d4ff;
+  --cal-done: rgba(0, 212, 255, 0.4);
+  --cal-partial: rgba(0, 212, 255, 0.18);
+  --cal-rest: rgba(167, 139, 250, 0.15);
+  --cal-today-glow: rgba(0, 212, 255, 0.4);
+  --cal-full-text-num: #030611;
+  --cal-full-text-pct: rgba(3, 6, 17, 0.85);
+  --cal-full-text-loops: rgba(3, 6, 17, 0.65);
 }
 body.theme-aurora-deep::before {
   display: block !important; opacity: 1 !important;
@@ -1334,6 +1385,43 @@ body.theme-aurora-deep .stat-card { background: rgba(3, 18, 52, 0.7) !important;
 @keyframes confetti-fall {
   0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Theme adjustments for unified layout */
+body.theme-dark-terminal .planner-layout {
+  background: rgba(0, 12, 8, 0.55) !important;
+  border-color: rgba(0, 255, 136, 0.15) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.05) !important;
+}
+body.theme-minimal-paper .planner-layout {
+  background: #ffffff !important;
+  border-color: #e5e5e5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+body.theme-aurora-deep .planner-layout {
+  background: rgba(3, 18, 52, 0.45) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Theme-specific scrollbars */
+body.theme-dark-terminal ::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 136, 0.3) !important;
+}
+body.theme-dark-terminal ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 136, 0.5) !important;
+}
+body.theme-minimal-paper ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+body.theme-minimal-paper ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+body.theme-aurora-deep ::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3) !important;
+}
+body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5) !important;
 }
 </style>
 
@@ -1603,8 +1691,8 @@ var LOCAL_API = window.location.origin;
 function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
 function setNotionToken(t) { localStorage.setItem('notion_token', t); }
 
-function showTokenSetup() { document.getElementById('tokenSetup').style.display = 'flex'; }
-function closeTokenSetup() { document.getElementById('tokenSetup').style.display = 'none'; }
+function showTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'flex'); }
+function closeTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'none'); }
 function saveNotionToken() {
   const v = document.getElementById('tokenInput').value.trim();
   if (!v.startsWith('secret_') && !v.startsWith('ntn_')) {
@@ -1621,7 +1709,9 @@ function saveNotionToken() {
   closeTokenSetup();
   fetchedPageIds.clear();
   dayStatus = {};
-  initMonthly();
+  
+  if (typeof initDaily === 'function') initDaily();
+  if (typeof initMonthly === 'function') initMonthly();
 }
 
 // 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
@@ -1677,13 +1767,17 @@ async function safeApiCall(toolName, params, retries = 2) {
    Toast
    ═══════════════════════════════════════ */
 function showToast(msg) {
-  const existing = document.querySelector('.toast');
-  if (existing) existing.remove();
-  const el = document.createElement('div');
-  el.className = 'toast';
-  el.textContent = msg;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 3600);
+  if (typeof toast === 'function') {
+    toast(msg);
+  } else {
+    const existing = document.querySelector('.toast-standalone');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.className = 'toast toast-standalone';
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3600);
+  }
 }
 
 /* ═══════════════════════════════════════
@@ -2587,28 +2681,41 @@ var THEME_CLASS_MAP = {
   aurora:   'theme-aurora-deep',
 };
 
-window.applyTheme = function(themeName) {
-  Object.values(THEME_CLASS_MAP).forEach(cls => document.body.classList.remove(cls));
+window.applyTheme = function(themeName, showToastNotify = true) {
+  Object.values(THEME_CLASS_MAP).forEach(cls => {
+    document.body.classList.remove(cls);
+    document.documentElement.classList.remove(cls);
+  });
   if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
+    document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
   }
   localStorage.setItem('style-lab-theme', themeName);
   ['default','terminal','paper','aurora'].forEach(t => {
     const btn = document.getElementById(`theme-btn-${t}`);
     if (btn) btn.classList.toggle('active', t === themeName);
   });
-  showToast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+  if (showToastNotify) {
+    showToast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
+  }
 };
 
 // Restore theme preset
 (function() {
   const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
-  window.applyTheme(savedTheme);
+  window.applyTheme(savedTheme, false);
 })();
 
-// 서버에서 토큰 복원 후 init 실행
-restoreTokenFromServer().then(() => initMonthly());
+if (typeof initDaily !== 'function') {
+  restoreTokenFromServer().then(() => {
+    if (!getNotionToken()) {
+      showTokenSetup();
+    } else {
+      closeTokenSetup();
+      initMonthly();
+    }
+  });
+}
 </script>
 </body>
 </html>
-

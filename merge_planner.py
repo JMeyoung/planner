@@ -17,16 +17,45 @@ with open("daily.html", "r") as f:
 with open("monthly.html", "r") as f:
     monthly = extract_sections(f.read())
 
-# Remove scripts from body
-daily['body'] = re.sub(r'<script>.*?</script>', '', daily['body'], flags=re.DOTALL)
-monthly['body'] = re.sub(r'<script>.*?</script>', '', monthly['body'], flags=re.DOTALL)
+# Extract global elements from daily.html body before cleaning
+theme_toggle_match = re.search(r'<button class="theme-toggle".*?</button>', daily['body'], flags=re.DOTALL)
+theme_toggle = theme_toggle_match.group(0) if theme_toggle_match else ''
 
-# Strip duplicate Style Lab and Gooey Menu elements from monthly body to prevent duplicate ID conflicts in planner.html
-monthly['body'] = re.sub(r'<!-- Style Lab Drawer & UI -->.*?<\/svg>', '', monthly['body'], flags=re.DOTALL)
+open_btn_match = re.search(r'<button class="open-window-btn".*?</button>', daily['body'], flags=re.DOTALL)
+open_btn = open_btn_match.group(0) if open_btn_match else ''
 
-# Combine
+token_setup_match = re.search(r'<!-- Notion 토큰 설정 모달 -->.*?</div>\s*</div>\s*</div>', daily['body'], flags=re.DOTALL)
+token_setup = token_setup_match.group(0) if token_setup_match else ''
+
+style_lab_match = re.search(r'<!-- Style Lab Drawer & UI -->.*?<\/svg>', daily['body'], flags=re.DOTALL)
+style_lab = style_lab_match.group(0) if style_lab_match else ''
+
+celebrate_block = '<div class="celebrate-wrap" id="celebrate"></div>'
+toast_block = '<div id="toast" class="toast"></div>'
+
+# Clean duplicate global elements from both daily and monthly bodies
+def clean_body(body_html):
+    # Remove script tags from body
+    body_html = re.sub(r'<script>.*?</script>', '', body_html, flags=re.DOTALL)
+    # Strip themeToggle button
+    body_html = re.sub(r'<button class="theme-toggle"[^>]*>.*?</button>', '', body_html, flags=re.DOTALL)
+    # Strip open-window-btn (token setup button)
+    body_html = re.sub(r'<button class="open-window-btn"[^>]*>.*?</button>', '', body_html, flags=re.DOTALL)
+    # Strip tokenSetup modal
+    body_html = re.sub(r'<!-- Notion 토큰 설정 모달 -->.*?</div>\s*</div>\s*</div>', '', body_html, flags=re.DOTALL)
+    # Strip Style Lab & Gooey Menu
+    body_html = re.sub(r'<!-- Style Lab Drawer & UI -->.*?<\/svg>', '', body_html, flags=re.DOTALL)
+    # Strip celebrate-wrap
+    body_html = re.sub(r'<div class="celebrate-wrap"[^>]*></div>', '', body_html, flags=re.DOTALL)
+    # Strip toast container
+    body_html = re.sub(r'<div id="toast"[^>]*></div>', '', body_html, flags=re.DOTALL)
+    return body_html
+
+cleaned_daily_body = clean_body(daily['body'])
+cleaned_monthly_body = clean_body(monthly['body'])
+
+# Combine style
 combined_style = daily['style'] + "\n/* MONTHLY STYLES */\n" + monthly['style']
-# we should remove duplicated root variables if possible, but browsers handle overrides gracefully.
 
 nav_html = """
 <style>
@@ -106,6 +135,22 @@ function switchTab(tab) {
     document.querySelectorAll('.nav-item')[1].classList.add('active');
   }
 }
+
+// Intercept all clicks on "/daily?date=YYYY-MM-DD" links to load date in single page!
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('a');
+  if (target && target.getAttribute('href') && target.getAttribute('href').startsWith('/daily?date=')) {
+    e.preventDefault();
+    const url = new URL(target.href, window.location.href);
+    const dateStr = url.searchParams.get('date');
+    if (dateStr) {
+      switchTab('daily');
+      if (window.loadDailyDate) {
+        window.loadDailyDate(dateStr);
+      }
+    }
+  }
+});
 """
 
 combined_html = f"""<!DOCTYPE html>
@@ -121,14 +166,22 @@ combined_html = f"""<!DOCTYPE html>
 </head>
 <body class="dark-theme">
 
+<!-- Global UI Elements -->
+{theme_toggle}
+{open_btn}
+{token_setup}
+{style_lab}
+{celebrate_block}
+
 <div id="view-daily" class="view-container active">
-{daily['body']}
+{cleaned_daily_body}
 </div>
 
 <div id="view-monthly" class="view-container">
-{monthly['body']}
+{cleaned_monthly_body}
 </div>
 
+{toast_block}
 {nav_html}
 
 <script>
@@ -137,9 +190,6 @@ combined_html = f"""<!DOCTYPE html>
 // ---------------------------------
 // MONTHLY SCRIPT
 // ---------------------------------
-// Some functions (like safeApiCall, extractContent, todayFmt) might be duplicated.
-// We will let the browser overwrite them since they are functionally identical in both files.
-
 {monthly['script']}
 
 {nav_js}
