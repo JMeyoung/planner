@@ -927,6 +927,7 @@ body::before, body::after {
    STYLE LAB (DESIGN SYSTEM CONTROLLER)
    ══════════════════════════════════════════ */
 .style-lab-toggle {
+  display: none !important;
   position: fixed;
   bottom: 24px;
   left: 24px;
@@ -1246,6 +1247,7 @@ html.theme-dark-terminal {
   background-image: none !important;
 }
 html.theme-dark-terminal, body.theme-dark-terminal {
+  --drawer-bg: linear-gradient(135deg, rgba(0, 12, 8, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
   --bg-primary: #050505;
   --bg-card: rgba(0, 12, 8, 0.96);
   --text-primary: #e0ffe8;
@@ -1281,6 +1283,7 @@ html.theme-minimal-paper {
   background-image: none !important;
 }
 html.theme-minimal-paper, body.theme-minimal-paper {
+  --drawer-bg: #faf9f7;
   --bg-primary: #faf9f7;
   --bg-card: #ffffff;
   --text-primary: #1a1a1a;
@@ -1320,6 +1323,7 @@ html.theme-aurora-deep {
   background-image: none !important;
 }
 html.theme-aurora-deep, body.theme-aurora-deep {
+  --drawer-bg: linear-gradient(135deg, rgba(3, 18, 52, 0.98) 0%, rgba(2, 6, 24, 0.98) 100%);
   --bg-primary: #030611;
   --bg-card: rgba(3, 18, 52, 0.7);
   --text-primary: #e8f8ff;
@@ -1474,7 +1478,7 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 <div class="celebrate-wrap" id="celebrate"></div>
 
 <!-- Style Lab Drawer & UI -->
-<div class="style-lab-toggle" id="styleLabToggleBtn" onclick="toggleStyleLab()">🧪</div>
+<!-- Hidden style-lab-toggle -->
 
 <div class="style-lab-drawer" id="styleLabDrawer">
   <div class="style-lab-header">

@@ -57,69 +57,7 @@ cleaned_monthly_body = clean_body(monthly['body'])
 # Combine style
 combined_style = daily['style'] + "\n/* MONTHLY STYLES */\n" + monthly['style']
 
-nav_html = """
-<style>
-/* Bottom Nav */
-.bottom-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 65px;
-  background: rgba(30,30,40,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-}
-.nav-item.active {
-  color: var(--accent-math);
-}
-.nav-icon {
-  font-size: 1.4rem;
-  margin-bottom: 3px;
-}
-.view-container {
-  display: none;
-  animation: fadeIn 0.3s ease;
-  padding-bottom: 80px; /* space for nav */
-}
-.view-container.active {
-  display: block;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-<div class="bottom-nav">
-  <div class="nav-item active" onclick="switchTab('daily')">
-    <span class="nav-icon">📝</span>
-    <span>일간 플래너</span>
-  </div>
-  <div class="nav-item" onclick="switchTab('monthly')">
-    <span class="nav-icon">📅</span>
-    <span>월간 플래너</span>
-  </div>
-</div>
-"""
+nav_html = ""
 
 nav_js = """
 // 탭 전환 로직

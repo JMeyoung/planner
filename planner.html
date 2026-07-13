@@ -1550,6 +1550,7 @@ body::before, body::after {
    STYLE LAB (DESIGN SYSTEM CONTROLLER)
    ══════════════════════════════════════════ */
 .style-lab-toggle {
+  display: none !important;
   position: fixed;
   bottom: 24px;
   left: 24px;
@@ -1878,6 +1879,7 @@ html.theme-dark-terminal {
   background-image: none !important;
 }
 html.theme-dark-terminal, body.theme-dark-terminal {
+  --drawer-bg: linear-gradient(135deg, rgba(0, 12, 8, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
   --bg-primary: #050505;
   --bg-secondary: rgba(0, 255, 136, 0.04);
   --bg-card: rgba(0, 12, 8, 0.96);
@@ -1961,6 +1963,7 @@ html.theme-minimal-paper {
   background-image: none !important;
 }
 html.theme-minimal-paper, body.theme-minimal-paper {
+  --drawer-bg: #faf9f7;
   --bg-primary: #faf9f7;
   --bg-secondary: #f5f4f2;
   --bg-card: #ffffff;
@@ -2053,6 +2056,7 @@ html.theme-aurora-deep {
   background-image: none !important;
 }
 html.theme-aurora-deep, body.theme-aurora-deep {
+  --drawer-bg: linear-gradient(135deg, rgba(3, 18, 52, 0.98) 0%, rgba(2, 6, 24, 0.98) 100%);
   --bg-primary: #030611;
   --bg-secondary: rgba(0, 212, 255, 0.04);
   --bg-card: rgba(3, 18, 52, 0.7);
@@ -3120,6 +3124,7 @@ body::before, body::after {
    STYLE LAB (DESIGN SYSTEM CONTROLLER)
    ══════════════════════════════════════════ */
 .style-lab-toggle {
+  display: none !important;
   position: fixed;
   bottom: 24px;
   left: 24px;
@@ -3439,6 +3444,7 @@ html.theme-dark-terminal {
   background-image: none !important;
 }
 html.theme-dark-terminal, body.theme-dark-terminal {
+  --drawer-bg: linear-gradient(135deg, rgba(0, 12, 8, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
   --bg-primary: #050505;
   --bg-card: rgba(0, 12, 8, 0.96);
   --text-primary: #e0ffe8;
@@ -3474,6 +3480,7 @@ html.theme-minimal-paper {
   background-image: none !important;
 }
 html.theme-minimal-paper, body.theme-minimal-paper {
+  --drawer-bg: #faf9f7;
   --bg-primary: #faf9f7;
   --bg-card: #ffffff;
   --text-primary: #1a1a1a;
@@ -3513,6 +3520,7 @@ html.theme-aurora-deep {
   background-image: none !important;
 }
 html.theme-aurora-deep, body.theme-aurora-deep {
+  --drawer-bg: linear-gradient(135deg, rgba(3, 18, 52, 0.98) 0%, rgba(2, 6, 24, 0.98) 100%);
   --bg-primary: #030611;
   --bg-card: rgba(3, 18, 52, 0.7);
   --text-primary: #e8f8ff;
@@ -3643,7 +3651,7 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
   </div>
 </div>
 <!-- Style Lab Drawer & UI -->
-<div class="style-lab-toggle" id="styleLabToggleBtn" onclick="toggleStyleLab()">🧪</div>
+<!-- Hidden style-lab-toggle -->
 
 <div class="style-lab-drawer" id="styleLabDrawer">
   <div class="style-lab-header">
@@ -3868,68 +3876,6 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 </div>
 
 <div id="toast" class="toast"></div>
-
-<style>
-/* Bottom Nav */
-.bottom-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 65px;
-  background: rgba(30,30,40,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-}
-.nav-item.active {
-  color: var(--accent-math);
-}
-.nav-icon {
-  font-size: 1.4rem;
-  margin-bottom: 3px;
-}
-.view-container {
-  display: none;
-  animation: fadeIn 0.3s ease;
-  padding-bottom: 80px; /* space for nav */
-}
-.view-container.active {
-  display: block;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-<div class="bottom-nav">
-  <div class="nav-item active" onclick="switchTab('daily')">
-    <span class="nav-icon">📝</span>
-    <span>일간 플래너</span>
-  </div>
-  <div class="nav-item" onclick="switchTab('monthly')">
-    <span class="nav-icon">📅</span>
-    <span>월간 플래너</span>
-  </div>
-</div>
 
 
 <script>
