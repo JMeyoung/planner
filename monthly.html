@@ -162,9 +162,14 @@
    Base
    ═══════════════════════════════════════ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  background-attachment: fixed;
+}
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Noto Sans KR', BlinkMacSystemFont, sans-serif;
-  background: transparent !important;
+  background: transparent;
   color: var(--text-primary);
   padding: 0;
   min-height: 100vh;
@@ -1257,6 +1262,8 @@ html.theme-dark-terminal, body.theme-dark-terminal {
   --border-highlight: rgba(0, 255, 136, 0.55);
   --shadow: 0 0 24px rgba(0, 255, 136, 0.08), 0 4px 16px rgba(0,0,0,0.6);
   --glass-blur: blur(0px);
+  --accent-routine: rgba(255, 100, 100, 0.85);
+  --accent-math: rgba(0, 255, 136, 0.85);
   --cal-full: #00ff88;
   --cal-done: rgba(0, 255, 136, 0.45);
   --cal-partial: rgba(0, 255, 136, 0.2);
@@ -1293,6 +1300,9 @@ html.theme-minimal-paper, body.theme-minimal-paper {
   --border-highlight: #cccccc;
   --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
   --glass-blur: blur(0px);
+  --accent-routine: #e05555;
+  --accent-math: #3b6fd4;
+  --accent-dday: #1a1a1a;
   --cal-full: #1a1a1a;
   --cal-done: #888888;
   --cal-partial: #e5e5e5;
@@ -1333,6 +1343,8 @@ html.theme-aurora-deep, body.theme-aurora-deep {
   --border-highlight: rgba(0, 212, 255, 0.4);
   --shadow: 0 8px 32px rgba(0, 0, 40, 0.8);
   --glass-blur: blur(20px) saturate(150%);
+  --accent-routine: rgba(255, 120, 120, 0.9);
+  --accent-math: rgba(0, 212, 255, 0.9);
   --cal-full: #00d4ff;
   --cal-done: rgba(0, 212, 255, 0.4);
   --cal-partial: rgba(0, 212, 255, 0.18);
