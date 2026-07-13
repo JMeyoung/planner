@@ -300,13 +300,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
 
-        if path in ('/', '/index.html', '/planner.html'):
-            # 통합 플래너 (메인)
-            self._serve_html(PLANNER_HTML, 'planner.html')
-
-        elif path in ('/monthly', '/monthly/', '/monthly.html', '/planner_standalone.html'):
-            # 월별 플래너 단독 실행
+        if path in ('/', '/index.html', '/monthly.html', '/planner_standalone.html'):
+            # 월별 플래너 (메인)
             self._serve_html(MONTHLY_HTML, 'planner_standalone.html')
+
+        elif path in ('/planner.html',):
+            # 통합 플래너
+            self._serve_html(PLANNER_HTML, 'planner.html')
 
         elif path == '/favicon.ico':
             # 파비콘은 HTML <link rel="icon">으로 처리되므로 여기선 204로 조용히 응답
