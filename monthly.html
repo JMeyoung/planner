@@ -1915,7 +1915,7 @@ function parseDaysFromContent(content, pageId, allIds = []) {
   }
 
   for (const line of lines) {
-    const hdrM = line.match(/###.*?(\d{1,2})\/(\d{1,2})/);
+    const hdrM = line.match(/^(?:###|#).*?(\d{1,2})\/(\d{1,2})/);
     if (hdrM) {
       flush();
       const mo = parseInt(hdrM[1]), d = parseInt(hdrM[2]);
@@ -2012,15 +2012,35 @@ async function fetchAllChecklists() {
     const searchIds = (srData.results || []).filter(r => r.type === 'page').map(r => r.id.replace(/-/g, ''));
 
     const allIds = [...new Set([...subIds, ...searchIds])];
-    for (const id of allIds) {
+
+    // dynamically find archive page ID and fetch its subpages
+    const archiveLinkM = planText.match(/<page url="([^"]+)">[^<]*?(?:아카이브|지난 주차)[^<]*?<\/page>/i);
+    const archiveId = archiveLinkM ? (archiveLinkM[1].match(/\/p\/([a-f0-9]+)/i)?.[1] || '') : '';
+    if (archiveId) {
+      try {
+        const arRes = await safeApiCall(FETCH, { id: archiveId });
+        const arText = arRes.text || '';
+        const archivedIds = [...arText.matchAll(/<page url="([^"]+)">/g)]
+          .map(m => m[1])
+          .map(u => { const m = u.match(/\/p\/([a-f0-9]+)/i); return m?.[1]; })
+          .filter(Boolean);
+        for (const aid of archivedIds) {
+          allIds.push(aid);
+        }
+      } catch (e) {
+        console.warn('Failed to fetch archive subpages:', e);
+      }
+    }
+
+    const uniqueIds = [...new Set(allIds)];
+    for (const id of uniqueIds) {
       if (fetchedPageIds.has(id)) continue;
       fetchedPageIds.add(id);
       try {
         const fr = await safeApiCall(FETCH, { id });
         const fd = fr;
-        if (fd.text) parseDaysFromContent(extractContent(fd.text), id, allIds);
+        if (fd.text) parseDaysFromContent(extractContent(fd.text), id, uniqueIds);
       } catch (e) {
-        
         console.warn(`Page ${id} fetch failed:`, e);
         failedIds.push(id);
       }
@@ -2197,6 +2217,8 @@ function animateCountUp(el, target, duration = 800) {
 function weeklyBarsHTML(year, month) {
   const daysInMonth = new Date(year, month, 0).getDate();
   const firstDow = new Date(year, month - 1, 1).getDay();
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
   const weeks = [];
   let weekIdx = 0;
 
@@ -2208,9 +2230,12 @@ function weeklyBarsHTML(year, month) {
     }
     const s = dayStatus[dateKey(year, month, d)];
     if (s && !s.isRest && s.total > 0) {
-      weeks[weekIdx].days++;
-      weeks[weekIdx].totalPct += s.pct;
-      weeks[weekIdx].studyDays++;
+      const isFuture = new Date(year, month - 1, d) > today;
+      if (!isFuture) {
+        weeks[weekIdx].days++;
+        weeks[weekIdx].totalPct += s.pct;
+        weeks[weekIdx].studyDays++;
+      }
     }
   }
 
@@ -2320,11 +2345,16 @@ function calendarHTML(year, month) {
   const daysInMonth = new Date(year, month, 0).getDate();
   const firstDow   = new Date(year, month - 1, 1).getDay();
   const today      = new Date();
+  today.setHours(23, 59, 59, 999);
 
   let studyDays = 0, restDays = 0, doneDays = 0, totalLoops = 0;
   for (let d = 1; d <= daysInMonth; d++) {
     const s = dayStatus[dateKey(year, month, d)];
     if (!s) continue;
+    
+    const isFuture = new Date(year, month - 1, d) > today;
+    if (isFuture) continue;
+    
     if (s.isRest) restDays++;
     else if (s.total > 0) { studyDays++; totalLoops += s.loops || 0; if (s.pct >= 75) doneDays++; }
   }

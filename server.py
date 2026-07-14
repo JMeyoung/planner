@@ -130,6 +130,19 @@ def fetch_all_blocks(block_id, token):
     return all_blocks
 
 
+def get_page_title(page_id, token):
+    """Retrieve Notion page to get its title"""
+    try:
+        data = notion_request(f'/pages/{page_id}', token=token)
+        properties = data.get('properties', {})
+        for prop in properties.values():
+            if prop.get('type') == 'title':
+                return get_rich_text(prop.get('title', []))
+    except Exception:
+        pass
+    return ''
+
+
 def fetch_page_as_text(page_id, token):
     """Fetch Notion page blocks → markdown text wrapped in <content> tags"""
     # Clean up page_id (remove dashes if present)
@@ -137,8 +150,12 @@ def fetch_page_as_text(page_id, token):
     # Format as UUID
     if len(pid) == 32:
         pid = f'{pid[:8]}-{pid[8:12]}-{pid[12:16]}-{pid[16:20]}-{pid[20:]}'
+    
+    title = get_page_title(pid, token)
     blocks = fetch_all_blocks(pid, token)
     md = blocks_to_markdown(blocks)
+    if title:
+        return f"# {title}\n\n{md}"
     return md
 
 
