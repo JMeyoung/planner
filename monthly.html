@@ -235,6 +235,23 @@ body::before, body::after {
 .open-window-btn:hover { transform: scale(1.08); }
 .open-window-btn:active { transform: scale(0.95); }
 
+/* ── Knowledge Button ── */
+.knowledge-btn {
+  position: fixed; top: 14px; left: 62px; z-index: 300;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow), inset 0 1px 0 var(--border-highlight);
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring);
+  text-decoration: none;
+}
+.knowledge-btn:hover { transform: scale(1.08); }
+.knowledge-btn:active { transform: scale(0.95); }
+
 /* ── Toast ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
@@ -1446,6 +1463,7 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 
 <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
 <button class="open-window-btn" title="Notion 토큰 설정" onclick="showTokenSetup()" style="display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><rect x="4" y="11" width="16" height="10" rx="3"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></button>
+<a href="/knowledge.html" class="knowledge-btn" title="오늘의 전공 지식">💡</a>
 
 <!-- Notion 토큰 설정 모달 -->
 <div id="tokenSetup" style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)">

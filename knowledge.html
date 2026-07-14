@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💡 오늘의 전공 지식 - 편입 면접 대비</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 🌆 Sunset Twilight Theme & Glassmorphism */
+:root {
+  --bg-primary: linear-gradient(180deg, #1d1236 0%, #521c3b 50%, #8c3c2a 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(0, 0, 0, 0.35);
+  --bg-card-hover: rgba(0, 0, 0, 0.45);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border: rgba(255, 255, 255, 0.18);
+  --border-highlight: rgba(255, 255, 255, 0.4);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --glass-blur: blur(14px) saturate(120%);
+  --accent-color: #ff7b93;
+  --correct-color: #10b981;
+  --wrong-color: #ef4444;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: var(--glass-blur);
+  transition: all 0.2s ease;
+}
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--border-highlight);
+  transform: translateX(-2px);
+}
+
+.header-title-wrap {
+  text-align: right;
+}
+.header-title-wrap h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.header-title-wrap p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Day Banner */
+.day-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 20px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.day-banner-left {
+  display: flex;
+  flex-direction: column;
+}
+.day-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent-color);
+}
+.day-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.day-badge {
+  background: linear-gradient(135deg, #8c4272, #d87056);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Flashcard Container (3D Flip Effect) */
+.card-perspective {
+  perspective: 1000px;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.card-perspective.flipped .flashcard {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* Front Face */
+.card-front {
+  background: linear-gradient(135deg, rgba(53, 35, 93, 0.45) 0%, rgba(0, 0, 0, 0.4) 100%);
+  justify-content: space-between;
+}
+/* Back Face */
+.card-back {
+  background: linear-gradient(135deg, rgba(82, 28, 59, 0.45) 0%, rgba(0, 0, 0, 0.5) 100%);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+.subject-tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.question-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  margin: auto 0;
+}
+
+.flip-hint {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.answer-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+.answer-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.points-list {
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.points-list li {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.points-list li::before {
+  content: '⚡';
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+/* Quiz Card */
+.quiz-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow);
+}
+.quiz-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+.quiz-option {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.quiz-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-highlight);
+  transform: translateY(-1px);
+}
+.quiz-option.correct {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: var(--correct-color) !important;
+  color: var(--text-primary) !important;
+}
+.quiz-option.wrong {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: var(--wrong-color) !important;
+  color: var(--text-primary) !important;
+}
+.quiz-option.disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.quiz-feedback {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: none;
+}
+.quiz-feedback.correct {
+  display: block;
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid var(--correct-color);
+  color: var(--correct-color);
+}
+.quiz-feedback.wrong {
+  display: block;
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid var(--wrong-color);
+  color: var(--wrong-color);
+}
+
+/* History Grid Calendar */
+.grid-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.grid-stats {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 40px;
+}
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.grid-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: var(--glass-blur);
+  position: relative;
+}
+.grid-item:hover {
+  transform: scale(1.08);
+  border-color: var(--border-highlight);
+}
+.grid-item.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 12px rgba(255, 123, 147, 0.4);
+}
+.grid-item.completed {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.6);
+}
+.grid-item.completed::after {
+  content: '✓';
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  font-size: 0.6rem;
+  color: var(--correct-color);
+}
+.grid-item.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.grid-item-sub {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* Particle Effect Canvas */
+#effect-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+</style>
+</head>
+<body>
+
+<canvas id="effect-canvas"></canvas>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <a href="/daily" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      일별 플래너
+    </a>
+    <div class="header-title-wrap">
+      <h1>💡 오늘의 전공 지식</h1>
+      <p>고려대 스마트보안 구술면접 대비</p>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div class="day-banner">
+    <div class="day-banner-left">
+      <div class="day-title" id="current-day-title">Day --</div>
+      <div class="day-desc" id="current-day-desc">정보를 불러오는 중입니다...</div>
+    </div>
+    <div class="day-badge" id="current-day-badge">암기 완료 시 점수 누적</div>
+  </div>
+
+  <!-- Flashcard -->
+  <div class="card-perspective" id="flashcard-wrap" onclick="toggleCardFlip()">
+    <div class="flashcard">
+      <!-- Front -->
+      <div class="card-face card-front">
+        <span class="subject-tag" id="card-subject">--</span>
+        <div class="question-text" id="card-question">질문을 불러오는 중...</div>
+        <div class="flip-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          클릭해서 답변 보기
+        </div>
+      </div>
+      <!-- Back -->
+      <div class="card-face card-back">
+        <div class="answer-title">💡 핵심 해설</div>
+        <div class="answer-text" id="card-answer">답변을 불러오는 중...</div>
+        <div class="answer-title">📌 기억해야 할 포인트</div>
+        <ul class="points-list" id="card-points">
+          <!-- Key points will load here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Card -->
+  <div class="quiz-card" id="quiz-block">
+    <div class="quiz-title">✏️ 오늘의 미니 퀴즈</div>
+    <div id="quiz-question" style="font-size:0.9rem;line-height:1.5;font-weight:700;">문제를 불러오는 중...</div>
+    <div class="quiz-options" id="quiz-options-container">
+      <!-- Options will load here -->
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback-box"></div>
+  </div>
+
+  <!-- History/Progress -->
+  <div class="grid-title">
+    <span>📅 진도 맵 (Day 1 ~ 30)</span>
+    <span class="grid-stats" id="completed-stats">완료: 0/30</span>
+  </div>
+  <div class="grid-container" id="grid-map-container">
+    <!-- Grid items will render here -->
+  </div>
+</div>
+
+<script>
+// Configuration
+const VOCAB_START_DATE = new Date(2026, 6, 5); // 7월 5일 (JS 월 인덱스는 0부터 시작하므로 6이 7월)
+let db = [];
+let currentDay = 1;
+let selectedDay = 1;
+
+// Load Completed State from LocalStorage
+let completedDays = JSON.parse(localStorage.getItem('completed_knowledge_days') || '[]');
+
+// DOM elements
+const flashcardWrap = document.getElementById('flashcard-wrap');
+const cardSubject = document.getElementById('card-subject');
+const cardQuestion = document.getElementById('card-question');
+const cardAnswer = document.getElementById('card-answer');
+const cardPoints = document.getElementById('card-points');
+
+const currentDayTitle = document.getElementById('current-day-title');
+const currentDayDesc = document.getElementById('current-day-desc');
+
+const quizQuestion = document.getElementById('quiz-question');
+const quizOptionsContainer = document.getElementById('quiz-options-container');
+const quizFeedbackBox = document.getElementById('quiz-feedback-box');
+const completedStats = document.getElementById('completed-stats');
+const gridMapContainer = document.getElementById('grid-map-container');
+
+// Sound/Confetti particles logic
+const canvas = document.getElementById('effect-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.size = Math.random() * 6 + 4;
+    this.speedX = Math.random() * 8 - 4;
+    this.speedY = Math.random() * -8 - 2;
+    this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    this.gravity = 0.2;
+    this.alpha = 1;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.speedY += this.gravity;
+    this.alpha -= 0.02;
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function spawnConfetti(x, y) {
+  for (let i = 0; i < 50; i++) {
+    particles.push(new Particle(x, y));
+  }
+  animate();
+}
+
+let animId = null;
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles = particles.filter(p => p.alpha > 0);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  if (particles.length > 0) {
+    animId = requestAnimationFrame(animate);
+  } else {
+    cancelAnimationFrame(animId);
+    animId = null;
+  }
+}
+
+// Day Calculation
+function calculateCurrentDay() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diffTime = today - VOCAB_START_DATE;
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+  return days > 0 ? days : 1;
+}
+
+// Fetch DB
+async function init() {
+  currentDay = calculateCurrentDay();
+  selectedDay = currentDay;
+  
+  try {
+    const res = await fetch('/api/knowledge');
+    if (!res.ok) throw new Error('API failed');
+    db = await res.json();
+  } catch (e) {
+    console.error('Failed to load JSON database, loading fallback mock data...');
+    // Fallback data
+    db = [
+      {
+        "day": 1,
+        "subject": "암호학",
+        "question": "대칭키 암호화와 비대칭키 암호화의 차이점은 무엇인가요?",
+        "answer": "대칭키는 암복호화 키가 같아 속도가 빠르지만 키 배송이 어렵고, 비대칭키는 공개키/개인키 한 쌍을 사용해 키 전달은 안전하지만 수학적 복잡도로 인해 속도가 느립니다.",
+        "key_points": ["대칭키: AES, 속도 빠름", "비대칭키: RSA, ECC, 속도 느림"],
+        "quiz": {
+          "question": "수학적 연산이 복잡하여 속도는 느리지만 키 분배 리스크가 적은 암호 방식은?",
+          "options": ["대칭키 암호화", "비대칭키 암호화", "해시 함수", "단방향 암호화"],
+          "answerIndex": 1
+        }
+      }
+    ];
+  }
+  
+  if (selectedDay > db.length) {
+    selectedDay = db.length; // Clamp to max days in db
+  }
+
+  renderDay(selectedDay);
+  renderGridMap();
+}
+
+function renderDay(dayNum) {
+  const item = db.find(x => x.day === dayNum);
+  if (!item) return;
+  
+  // Reset flipped card
+  flashcardWrap.classList.remove('flipped');
+
+  // Set titles
+  currentDayTitle.innerText = `Day ${item.day}`;
+  currentDayDesc.innerText = `[${item.subject}] 과목 면접 구술 핵심 내용`;
+
+  // Set card contents
+  cardSubject.innerText = item.subject;
+  cardQuestion.innerText = item.question;
+  cardAnswer.innerText = item.answer;
+  
+  // Set key points
+  cardPoints.innerHTML = '';
+  item.key_points.forEach(pt => {
+    const li = document.createElement('li');
+    li.innerText = pt;
+    cardPoints.appendChild(li);
+  });
+
+  // Set Quiz
+  quizQuestion.innerText = item.quiz.question;
+  quizOptionsContainer.innerHTML = '';
+  quizFeedbackBox.style.display = 'none';
+
+  const solvedQuizState = localStorage.getItem(`quiz_solved_day_${item.day}`);
+
+  item.quiz.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.innerText = `${idx + 1}. ${opt}`;
+    
+    if (solvedQuizState !== null) {
+      btn.classList.add('disabled');
+      if (idx === item.quiz.answerIndex) {
+        btn.classList.add('correct');
+      } else if (idx === parseInt(solvedQuizState)) {
+        btn.classList.add('wrong');
+      }
+    } else {
+      btn.onclick = (e) => selectQuizAnswer(idx, item.quiz.answerIndex, e);
+    }
+    
+    quizOptionsContainer.appendChild(btn);
+  });
+
+  if (solvedQuizState !== null) {
+    showQuizFeedback(parseInt(solvedQuizState) === item.quiz.answerIndex);
+  }
+}
+
+function selectQuizAnswer(selectedIndex, correctIndex, event) {
+  const buttons = quizOptionsContainer.querySelectorAll('.quiz-option');
+  buttons.forEach((btn, idx) => {
+    btn.classList.add('disabled');
+    if (idx === correctIndex) {
+      btn.classList.add('correct');
+    } else if (idx === selectedIndex) {
+      btn.classList.add('wrong');
+    }
+  });
+
+  // Save state
+  localStorage.setItem(`quiz_solved_day_${selectedDay}`, selectedIndex);
+  
+  const isCorrect = selectedIndex === correctIndex;
+  
+  if (isCorrect) {
+    // Add day to completed
+    if (!completedDays.includes(selectedDay)) {
+      completedDays.push(selectedDay);
+      localStorage.setItem('completed_knowledge_days', JSON.stringify(completedDays));
+      renderGridMap();
+    }
+    // Confetti effect
+    const rect = event.target.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width/2, rect.top + rect.height/2);
+  }
+
+  showQuizFeedback(isCorrect);
+}
+
+function showQuizFeedback(isCorrect) {
+  quizFeedbackBox.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  quizFeedbackBox.innerText = isCorrect 
+    ? '✨ 정답입니다! 포인트를 다시 읽어보고 머릿속에 기억하세요.' 
+    : '❌ 오답입니다. 오답의 원인을 카드를 플립하여 정답 해설에서 확인해 보세요.';
+  quizFeedbackBox.style.display = 'block';
+}
+
+function toggleCardFlip() {
+  flashcardWrap.classList.toggle('flipped');
+}
+
+function renderGridMap() {
+  gridMapContainer.innerHTML = '';
+  const totalDays = Math.max(db.length, 30);
+  
+  completedStats.innerText = `완료: ${completedDays.length}/${totalDays}`;
+
+  for (let i = 1; i <= totalDays; i++) {
+    const item = document.createElement('div');
+    const isCompleted = completedDays.includes(i);
+    const isLocked = i > currentDay;
+    
+    item.className = 'grid-item';
+    if (isCompleted) item.classList.add('completed');
+    if (i === selectedDay) item.classList.add('active');
+    if (isLocked) {
+      item.classList.add('locked');
+      item.innerHTML = `🔒<div class="grid-item-sub">Day ${i}</div>`;
+    } else {
+      const dbItem = db.find(x => x.day === i);
+      const subText = dbItem ? dbItem.subject : `Day ${i}`;
+      item.innerHTML = `${i}<div class="grid-item-sub">${subText}</div>`;
+      item.onclick = () => {
+        selectedDay = i;
+        renderDay(i);
+        renderGridMap();
+      };
+    }
+    gridMapContainer.appendChild(item);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

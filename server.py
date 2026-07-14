@@ -26,6 +26,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MONTHLY_HTML = os.path.join(BASE_DIR, 'monthly.html')
 DAILY_HTML   = os.path.join(BASE_DIR, 'daily.html')
 PLANNER_HTML = os.path.join(BASE_DIR, 'planner.html')
+KNOWLEDGE_HTML = os.path.join(BASE_DIR, 'knowledge.html')
+KNOWLEDGE_JSON = os.path.join(BASE_DIR, 'knowledge_db.json')
 TOKEN_FILE   = os.path.join(BASE_DIR, '.notion_token')
 
 
@@ -333,6 +335,19 @@ class Handler(http.server.BaseHTTPRequestHandler):
         elif path in ('/daily', '/daily/', '/daily.html', '/daily_planner_standalone.html'):
             # 일별 플래너 단독 실행
             self._serve_html(DAILY_HTML, 'daily_planner_standalone.html')
+
+        elif path in ('/knowledge', '/knowledge/', '/knowledge.html'):
+            # 오늘의 전공 지식 페이지
+            self._serve_html(KNOWLEDGE_HTML, 'knowledge.html')
+
+        elif path == '/api/knowledge':
+            # 오늘의 지식 데이터 반환 API
+            try:
+                with open(KNOWLEDGE_JSON, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                self._json(200, data)
+            except Exception as e:
+                self._json(500, {'error': str(e)})
 
         elif path == '/api/token':
             # 저장된 토큰 반환 (페이지 로드 시 자동 적용용)
