@@ -6321,8 +6321,9 @@ function parseDaysFromContent(content, pageId, allIds = []) {
   }
 
   for (const line of lines) {
-    const hdrM = line.match(/^(?:###|#).*?(\d{1,2})\/(\d{1,2})/);
-    if (hdrM) {
+    const hdrM = line.match(/^(?:###|#)(?!#).*?(\d{1,2})\/(\d{1,2})/);
+    const isTitle = line.includes('체크리스트') || line.includes('로드맵') || line.includes('아카이브');
+    if (hdrM && !isTitle) {
       flush();
       const mo = parseInt(hdrM[1]), d = parseInt(hdrM[2]);
       
