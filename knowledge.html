@@ -132,6 +132,56 @@ header {
   box-shadow: var(--shadow-sm);
 }
 
+/* Steps Indicator */
+.steps-indicator {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.step-badge {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+.step-badge.active {
+  background: rgba(255, 123, 147, 0.15);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+}
+.step-badge.completed {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--correct-color);
+  color: var(--text-primary);
+}
+.step-num {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+.step-badge.active .step-num {
+  background: var(--accent-color);
+  color: #fff;
+}
+.step-badge.completed .step-num {
+  background: var(--correct-color);
+  color: #fff;
+}
+
 /* Flashcard Container (3D Flip Effect) */
 .card-perspective {
   perspective: 1000px;
@@ -245,7 +295,41 @@ header {
   margin-bottom: 24px;
   backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Quiz Overlay (Lock until study) */
+.quiz-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 5, 20, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.quiz-overlay.unlocked {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.lock-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 .quiz-title {
   font-size: 0.95rem;
   font-weight: 800;
@@ -420,6 +504,18 @@ header {
     <div class="day-badge" id="current-day-badge">암기 완료 시 점수 누적</div>
   </div>
 
+  <!-- Steps Indicator (Study first, Quiz second) -->
+  <div class="steps-indicator">
+    <div class="step-badge active" id="step-1-badge">
+      <span class="step-num">1</span>
+      <span>개념 학습 (카드 탭하기)</span>
+    </div>
+    <div class="step-badge" id="step-2-badge">
+      <span class="step-num">2</span>
+      <span>미니 퀴즈 풀기</span>
+    </div>
+  </div>
+
   <!-- Flashcard -->
   <div class="card-perspective" id="flashcard-wrap" onclick="toggleCardFlip()">
     <div class="flashcard">
@@ -429,7 +525,7 @@ header {
         <div class="question-text" id="card-question">질문을 불러오는 중...</div>
         <div class="flip-hint">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-          클릭해서 답변 보기
+          클릭하여 개념 학습하기
         </div>
       </div>
       <!-- Back -->
@@ -446,6 +542,13 @@ header {
 
   <!-- Quiz Card -->
   <div class="quiz-card" id="quiz-block">
+    <!-- Lock Overlay -->
+    <div class="quiz-overlay" id="quiz-lock-overlay">
+      <div class="lock-icon">🔒</div>
+      <div style="font-weight:800; font-size:0.9rem; margin-bottom:4px; color:#ff7b93">퀴즈 비활성화</div>
+      <div style="font-size:0.75rem; line-height:1.4">위의 개념 카드를 클릭해 충분히 공부한 후<br>퀴즈에 도전해 보세요!</div>
+    </div>
+
     <div class="quiz-title">✏️ 오늘의 미니 퀴즈</div>
     <div id="quiz-question" style="font-size:0.9rem;line-height:1.5;font-weight:700;">문제를 불러오는 중...</div>
     <div class="quiz-options" id="quiz-options-container">
@@ -466,7 +569,7 @@ header {
 
 <script>
 // Configuration
-const VOCAB_START_DATE = new Date(2026, 6, 5); // 7월 5일 (JS 월 인덱스는 0부터 시작하므로 6이 7월)
+const VOCAB_START_DATE = new Date(2026, 6, 5); // 7월 5일
 let db = [];
 let currentDay = 1;
 let selectedDay = 1;
@@ -489,6 +592,10 @@ const quizOptionsContainer = document.getElementById('quiz-options-container');
 const quizFeedbackBox = document.getElementById('quiz-feedback-box');
 const completedStats = document.getElementById('completed-stats');
 const gridMapContainer = document.getElementById('grid-map-container');
+
+const step1Badge = document.getElementById('step-1-badge');
+const step2Badge = document.getElementById('step-2-badge');
+const quizLockOverlay = document.getElementById('quiz-lock-overlay');
 
 // Sound/Confetti particles logic
 const canvas = document.getElementById('effect-canvas');
@@ -573,7 +680,6 @@ async function init() {
     db = await res.json();
   } catch (e) {
     console.error('Failed to load JSON database, loading fallback mock data...');
-    // Fallback data
     db = [
       {
         "day": 1,
@@ -602,8 +708,10 @@ function renderDay(dayNum) {
   const item = db.find(x => x.day === dayNum);
   if (!item) return;
   
-  // Reset flipped card
+  // Reset flipped card and steps
   flashcardWrap.classList.remove('flipped');
+  step1Badge.className = 'step-badge active';
+  step2Badge.className = 'step-badge';
 
   // Set titles
   currentDayTitle.innerText = `Day ${item.day}`;
@@ -648,8 +756,16 @@ function renderDay(dayNum) {
     quizOptionsContainer.appendChild(btn);
   });
 
+  // Handle Lock Overlay
   if (solvedQuizState !== null) {
+    // If already solved, unlock immediately
+    quizLockOverlay.classList.add('unlocked');
+    step1Badge.className = 'step-badge completed';
+    step2Badge.className = 'step-badge completed';
     showQuizFeedback(parseInt(solvedQuizState) === item.quiz.answerIndex);
+  } else {
+    // Lock for new study flow
+    quizLockOverlay.classList.remove('unlocked');
   }
 }
 
@@ -670,7 +786,6 @@ function selectQuizAnswer(selectedIndex, correctIndex, event) {
   const isCorrect = selectedIndex === correctIndex;
   
   if (isCorrect) {
-    // Add day to completed
     if (!completedDays.includes(selectedDay)) {
       completedDays.push(selectedDay);
       localStorage.setItem('completed_knowledge_days', JSON.stringify(completedDays));
@@ -679,6 +794,9 @@ function selectQuizAnswer(selectedIndex, correctIndex, event) {
     // Confetti effect
     const rect = event.target.getBoundingClientRect();
     spawnConfetti(rect.left + rect.width/2, rect.top + rect.height/2);
+    step2Badge.className = 'step-badge completed';
+  } else {
+    step2Badge.className = 'step-badge active'; // remain active but solved
   }
 
   showQuizFeedback(isCorrect);
@@ -694,6 +812,20 @@ function showQuizFeedback(isCorrect) {
 
 function toggleCardFlip() {
   flashcardWrap.classList.toggle('flipped');
+  
+  // If flipped to back (concept shown), unlock quiz and update steps
+  if (flashcardWrap.classList.contains('flipped')) {
+    setTimeout(() => {
+      quizLockOverlay.classList.add('unlocked');
+      step1Badge.className = 'step-badge completed';
+      const solvedQuizState = localStorage.getItem(`quiz_solved_day_${selectedDay}`);
+      if (solvedQuizState === null) {
+        step2Badge.className = 'step-badge active';
+      } else {
+        step2Badge.className = 'step-badge completed';
+      }
+    }, 400); // smooth timing after card flip animation starts
+  }
 }
 
 function renderGridMap() {
