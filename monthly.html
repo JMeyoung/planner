@@ -2007,7 +2007,7 @@ async function fetchAllChecklists() {
     const subIds   = [...planText.matchAll(/<page url="([^"]+)">/g)]
       .map(m => m[1]).map(u => { const m = u.match(/\/p\/([a-f0-9]+)/i); return m?.[1]; }).filter(Boolean);
 
-    const sr     = await safeApiCall(SEARCH, { query: '일별 체크리스트', page_size: 10 });
+    const sr     = await safeApiCall(SEARCH, { query: '', page_size: 100 });
     const srData = sr;
     const searchIds = (srData.results || []).filter(r => r.type === 'page').map(r => r.id.replace(/-/g, ''));
 

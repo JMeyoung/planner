@@ -5817,12 +5817,38 @@ async function initDaily() {
 
     // 2. Search fallback
     if (!checklistPageId) {
-      const sr = await safeApiCall(SEARCH, { query: '일별 체크리스트', page_size: 5 });
-      const sd = sr;
-      const pages = (sd.results || [])
-        .filter(r => r.type === 'page' && r.title?.includes('체크리스트'))
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      if (pages.length) checklistPageId = pages[0].id;
+      const sr = await safeApiCall(SEARCH, { query: '', page_size: 100 });
+      const now = _targetDate();
+      const mo = now.getMonth() + 1;
+      const d = now.getDate();
+      const dateStr1 = `${mo}/${d}`;
+      const dateStr2 = `${mo}/${String(d).padStart(2,'0')}`;
+      
+      // Look for exact date match in title (e.g. "7/1" or "7/01")
+      let exactPage = (sr.results || []).find(r => {
+        if (r.type !== 'page') return false;
+        const title = r.title || '';
+        return title.includes(dateStr1) || title.includes(dateStr2);
+      });
+      
+      if (exactPage) {
+        checklistPageId = exactPage.id;
+      } else {
+        // Look for weekly range match
+        const todayNum = mo * 100 + d;
+        const weeklyPages = (sr.results || []).filter(r => r.type === 'page' && r.title?.includes('체크리스트'));
+        const candidates = weeklyPages.map(r => {
+          const title = r.title || '';
+          const rangeM = title.match(/(\d{1,2})\s*\/\s*(\d{1,2})\s*[~～]\s*(\d{1,2})\s*\/\s*(\d{1,2})/);
+          if (!rangeM) return null;
+          const startNum = parseInt(rangeM[1]) * 100 + parseInt(rangeM[2]);
+          const endNum   = parseInt(rangeM[3]) * 100 + parseInt(rangeM[4]);
+          return { id: r.id, startNum, endNum };
+        }).filter(Boolean);
+        
+        const match = candidates.find(c => todayNum >= c.startNum && todayNum <= c.endNum);
+        if (match) checklistPageId = match.id;
+      }
     }
 
     if (!checklistPageId) {
@@ -6387,7 +6413,7 @@ async function fetchAllChecklists() {
     const subIds   = [...planText.matchAll(/<page url="([^"]+)">/g)]
       .map(m => m[1]).map(u => { const m = u.match(/\/p\/([a-f0-9]+)/i); return m?.[1]; }).filter(Boolean);
 
-    const sr     = await safeApiCall(SEARCH, { query: '일별 체크리스트', page_size: 10 });
+    const sr     = await safeApiCall(SEARCH, { query: '', page_size: 100 });
     const srData = sr;
     const searchIds = (srData.results || []).filter(r => r.type === 'page').map(r => r.id.replace(/-/g, ''));
 
