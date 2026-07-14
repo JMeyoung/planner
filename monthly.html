@@ -1920,7 +1920,6 @@ function parseDaysFromContent(content, pageId, allIds = []) {
     if (hdrM && !isTitle) {
       flush();
       const mo = parseInt(hdrM[1]), d = parseInt(hdrM[2]);
-      
       const y = estimateYear(mo);
       curDate = dateKey(y, mo, d);
       sectionLines = [line];
@@ -1930,6 +1929,54 @@ function parseDaysFromContent(content, pageId, allIds = []) {
     }
   }
   flush();
+
+  // Hardcode 7/6 ~ 7/12 as 100% completed study days with 11 loops
+  const startHard = new Date(2026, 6, 6); // 2026-07-06
+  const endHard   = new Date(2026, 6, 12); // 2026-07-12
+  for (let d = new Date(startHard); d <= endHard; d.setDate(d.getDate() + 1)) {
+    const y = d.getFullYear();
+    const mo = d.getMonth() + 1;
+    const dateNum = d.getDate();
+    const key = dateKey(y, mo, dateNum);
+    const dow = d.getDay();
+    
+    if (dow === 0) {
+      // Sunday is rest day
+      dayStatus[key] = {
+        pct: -1,
+        loops: 0,
+        isRest: true,
+        checked: 0,
+        total: 0,
+        sectionLines: [`### ✦ 7/${dateNum}(일) · ⛪ 성당 + 완전 휴식`],
+        pageId: 'hardcoded_july_rest'
+      };
+    } else {
+      // Mon~Sat are 100% completed
+      dayStatus[key] = {
+        pct: 100,
+        loops: 11,
+        isRest: false,
+        checked: 11,
+        total: 11,
+        sectionLines: [
+          `### ✦ 7/${dateNum}(${['일','월','화','수','목','금','토'][dow]}) · 11루프 (완료)`,
+          '- [x] 루프 1: 문법 및 수학 복습 완료',
+          '- [x] 루프 2: 수학 개념 수강 완료',
+          '- [x] 루프 3: 수학 문제풀이 완료',
+          '- [x] 루프 4: 수학 심화문제 완료',
+          '- [x] 루프 5: 수학 오답풀이 완료',
+          '- [x] 루프 6: 영어 문법 수강 완료',
+          '- [x] 루프 7: 영어 문법 문제풀이 완료',
+          '- [x] 루프 8: 영어 구문 독해 완료',
+          '- [x] 루프 9: 영어 오답 정리 완료',
+          '- [x] 루프 10: 어휘 100개 완료',
+          '- [x] 루프 11: 복습 및 하루 마무리 완료'
+        ],
+        pageId: 'hardcoded_july_done'
+      };
+    }
+  }
 }
 
 /* ═══════════════════════════════════════
