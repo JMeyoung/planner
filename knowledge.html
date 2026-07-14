@@ -16,8 +16,8 @@
   --bg-card: rgba(0, 0, 0, 0.35);
   --bg-card-hover: rgba(0, 0, 0, 0.45);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.55);
   --border: rgba(255, 255, 255, 0.18);
   --border-highlight: rgba(255, 255, 255, 0.4);
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -132,103 +132,27 @@ header {
   box-shadow: var(--shadow-sm);
 }
 
-/* Steps Indicator */
-.steps-indicator {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.step-badge {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
+/* Study Step: Core Concept Card (Open Layout) */
+.concept-card {
+  background: linear-gradient(135deg, rgba(53, 35, 93, 0.45) 0%, rgba(0, 0, 0, 0.4) 100%);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted);
-  transition: all 0.3s ease;
-}
-.step-badge.active {
-  background: rgba(255, 123, 147, 0.15);
-  border-color: var(--accent-color);
-  color: var(--text-primary);
-}
-.step-badge.completed {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: var(--correct-color);
-  color: var(--text-primary);
-}
-.step-num {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 800;
-}
-.step-badge.active .step-num {
-  background: var(--accent-color);
-  color: #fff;
-}
-.step-badge.completed .step-num {
-  background: var(--correct-color);
-  color: #fff;
-}
-
-/* Flashcard Container (3D Flip Effect) */
-.card-perspective {
-  perspective: 1000px;
-  width: 100%;
-  height: 280px;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-.flashcard {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-.card-perspective.flipped .flashcard {
-  transform: rotateY(180deg);
-}
-
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
   border-radius: 20px;
-  border: 1px solid var(--border);
   padding: 24px;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
   box-shadow: var(--shadow-lg);
   backdrop-filter: var(--glass-blur);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Front Face */
-.card-front {
-  background: linear-gradient(135deg, rgba(53, 35, 93, 0.45) 0%, rgba(0, 0, 0, 0.4) 100%);
+.concept-header {
+  display: flex;
   justify-content: space-between;
-}
-/* Back Face */
-.card-back {
-  background: linear-gradient(135deg, rgba(82, 28, 59, 0.45) 0%, rgba(0, 0, 0, 0.5) 100%);
-  transform: rotateY(180deg);
-  overflow-y: auto;
+  align-items: center;
 }
 
 .subject-tag {
-  align-self: flex-start;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -239,39 +163,55 @@ header {
   letter-spacing: 0.5px;
 }
 
-.question-text {
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.5;
-  text-align: center;
-  margin: auto 0;
-}
-
-.flip-hint {
-  text-align: center;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.answer-title {
-  font-size: 0.85rem;
-  font-weight: 700;
+.concept-step-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
   color: var(--accent-color);
-  margin-bottom: 8px;
+  background: rgba(255, 123, 147, 0.15);
+  padding: 3px 8px;
+  border-radius: 6px;
 }
-.answer-text {
+
+.concept-question {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.5;
+  color: var(--text-primary);
+  border-left: 4px solid var(--accent-color);
+  padding-left: 12px;
+}
+
+.concept-body {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.concept-explanation-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 6px;
+}
+
+.concept-explanation-text {
   font-size: 0.92rem;
   line-height: 1.6;
-  color: var(--text-primary);
-  margin-bottom: 16px;
+  color: var(--text-secondary);
 }
+
+.concept-points-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--correct-color);
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
 .points-list {
   list-style: none;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
 }
 .points-list li {
@@ -299,45 +239,30 @@ header {
   overflow: hidden;
 }
 
-/* Quiz Overlay (Lock until study) */
-.quiz-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 5, 20, 0.75);
-  backdrop-filter: blur(5px);
-  z-index: 10;
+.quiz-title-wrap {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  color: var(--text-secondary);
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.quiz-overlay.unlocked {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.lock-icon {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-  animation: bounce 2s infinite;
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  margin-bottom: 12px;
 }
 
 .quiz-title {
   font-size: 0.95rem;
   font-weight: 800;
-  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
+
+.quiz-step-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--correct-color);
+  background: rgba(16, 185, 129, 0.15);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
 .quiz-options {
   display: flex;
   flex-direction: column;
@@ -504,52 +429,33 @@ header {
     <div class="day-badge" id="current-day-badge">암기 완료 시 점수 누적</div>
   </div>
 
-  <!-- Steps Indicator (Study first, Quiz second) -->
-  <div class="steps-indicator">
-    <div class="step-badge active" id="step-1-badge">
-      <span class="step-num">1</span>
-      <span>개념 학습 (카드 탭하기)</span>
+  <!-- 📚 Step 1: Core Concept Card (Open Layout) -->
+  <div class="concept-card" id="concept-block">
+    <div class="concept-header">
+      <span class="subject-tag" id="card-subject">--</span>
+      <span class="concept-step-badge">1단계: 핵심 개념 학습</span>
     </div>
-    <div class="step-badge" id="step-2-badge">
-      <span class="step-num">2</span>
-      <span>미니 퀴즈 풀기</span>
+    <div class="concept-question" id="card-question">질문을 불러오는 중...</div>
+    
+    <div class="concept-body">
+      <div class="concept-explanation-title">📝 개념 설명</div>
+      <div class="concept-explanation-text" id="card-answer">답변을 불러오는 중...</div>
+    </div>
+
+    <div>
+      <div class="concept-points-title">📌 기억해야 할 핵심 포인트</div>
+      <ul class="points-list" id="card-points">
+        <!-- Key points will load here -->
+      </ul>
     </div>
   </div>
 
-  <!-- Flashcard -->
-  <div class="card-perspective" id="flashcard-wrap" onclick="toggleCardFlip()">
-    <div class="flashcard">
-      <!-- Front -->
-      <div class="card-face card-front">
-        <span class="subject-tag" id="card-subject">--</span>
-        <div class="question-text" id="card-question">질문을 불러오는 중...</div>
-        <div class="flip-hint">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-          클릭하여 개념 학습하기
-        </div>
-      </div>
-      <!-- Back -->
-      <div class="card-face card-back">
-        <div class="answer-title">💡 핵심 해설</div>
-        <div class="answer-text" id="card-answer">답변을 불러오는 중...</div>
-        <div class="answer-title">📌 기억해야 할 포인트</div>
-        <ul class="points-list" id="card-points">
-          <!-- Key points will load here -->
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Quiz Card -->
+  <!-- ✏️ Step 2: Quiz Card -->
   <div class="quiz-card" id="quiz-block">
-    <!-- Lock Overlay -->
-    <div class="quiz-overlay" id="quiz-lock-overlay">
-      <div class="lock-icon">🔒</div>
-      <div style="font-weight:800; font-size:0.9rem; margin-bottom:4px; color:#ff7b93">퀴즈 비활성화</div>
-      <div style="font-size:0.75rem; line-height:1.4">위의 개념 카드를 클릭해 충분히 공부한 후<br>퀴즈에 도전해 보세요!</div>
+    <div class="quiz-title-wrap">
+      <div class="quiz-title">✏️ 오늘의 미니 퀴즈</div>
+      <span class="quiz-step-badge">2단계: 실력 확인</span>
     </div>
-
-    <div class="quiz-title">✏️ 오늘의 미니 퀴즈</div>
     <div id="quiz-question" style="font-size:0.9rem;line-height:1.5;font-weight:700;">문제를 불러오는 중...</div>
     <div class="quiz-options" id="quiz-options-container">
       <!-- Options will load here -->
@@ -578,7 +484,6 @@ let selectedDay = 1;
 let completedDays = JSON.parse(localStorage.getItem('completed_knowledge_days') || '[]');
 
 // DOM elements
-const flashcardWrap = document.getElementById('flashcard-wrap');
 const cardSubject = document.getElementById('card-subject');
 const cardQuestion = document.getElementById('card-question');
 const cardAnswer = document.getElementById('card-answer');
@@ -592,10 +497,6 @@ const quizOptionsContainer = document.getElementById('quiz-options-container');
 const quizFeedbackBox = document.getElementById('quiz-feedback-box');
 const completedStats = document.getElementById('completed-stats');
 const gridMapContainer = document.getElementById('grid-map-container');
-
-const step1Badge = document.getElementById('step-1-badge');
-const step2Badge = document.getElementById('step-2-badge');
-const quizLockOverlay = document.getElementById('quiz-lock-overlay');
 
 // Sound/Confetti particles logic
 const canvas = document.getElementById('effect-canvas');
@@ -697,7 +598,7 @@ async function init() {
   }
   
   if (selectedDay > db.length) {
-    selectedDay = db.length; // Clamp to max days in db
+    selectedDay = db.length;
   }
 
   renderDay(selectedDay);
@@ -707,11 +608,6 @@ async function init() {
 function renderDay(dayNum) {
   const item = db.find(x => x.day === dayNum);
   if (!item) return;
-  
-  // Reset flipped card and steps
-  flashcardWrap.classList.remove('flipped');
-  step1Badge.className = 'step-badge active';
-  step2Badge.className = 'step-badge';
 
   // Set titles
   currentDayTitle.innerText = `Day ${item.day}`;
@@ -756,16 +652,8 @@ function renderDay(dayNum) {
     quizOptionsContainer.appendChild(btn);
   });
 
-  // Handle Lock Overlay
   if (solvedQuizState !== null) {
-    // If already solved, unlock immediately
-    quizLockOverlay.classList.add('unlocked');
-    step1Badge.className = 'step-badge completed';
-    step2Badge.className = 'step-badge completed';
     showQuizFeedback(parseInt(solvedQuizState) === item.quiz.answerIndex);
-  } else {
-    // Lock for new study flow
-    quizLockOverlay.classList.remove('unlocked');
   }
 }
 
@@ -780,7 +668,6 @@ function selectQuizAnswer(selectedIndex, correctIndex, event) {
     }
   });
 
-  // Save state
   localStorage.setItem(`quiz_solved_day_${selectedDay}`, selectedIndex);
   
   const isCorrect = selectedIndex === correctIndex;
@@ -794,38 +681,18 @@ function selectQuizAnswer(selectedIndex, correctIndex, event) {
     // Confetti effect
     const rect = event.target.getBoundingClientRect();
     spawnConfetti(rect.left + rect.width/2, rect.top + rect.height/2);
-    step2Badge.className = 'step-badge completed';
-  } else {
-    step2Badge.className = 'step-badge active'; // remain active but solved
   }
 
   showQuizFeedback(isCorrect);
 }
 
+// Check feedback box
 function showQuizFeedback(isCorrect) {
   quizFeedbackBox.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'wrong');
   quizFeedbackBox.innerText = isCorrect 
-    ? '✨ 정답입니다! 포인트를 다시 읽어보고 머릿속에 기억하세요.' 
-    : '❌ 오답입니다. 오답의 원인을 카드를 플립하여 정답 해설에서 확인해 보세요.';
+    ? '✨ 정답입니다! 다음 날짜의 지식 학습도 힘내세요.' 
+    : '❌ 오답입니다. 오답의 원인을 위의 핵심 개념 설명을 다시 읽고 비교해 보세요.';
   quizFeedbackBox.style.display = 'block';
-}
-
-function toggleCardFlip() {
-  flashcardWrap.classList.toggle('flipped');
-  
-  // If flipped to back (concept shown), unlock quiz and update steps
-  if (flashcardWrap.classList.contains('flipped')) {
-    setTimeout(() => {
-      quizLockOverlay.classList.add('unlocked');
-      step1Badge.className = 'step-badge completed';
-      const solvedQuizState = localStorage.getItem(`quiz_solved_day_${selectedDay}`);
-      if (solvedQuizState === null) {
-        step2Badge.className = 'step-badge active';
-      } else {
-        step2Badge.className = 'step-badge completed';
-      }
-    }, 400); // smooth timing after card flip animation starts
-  }
 }
 
 function renderGridMap() {
