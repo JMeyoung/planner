@@ -185,9 +185,10 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 240px;
+  height: 240px;
   transform: rotate(-90deg);
+  overflow: visible; /* Prevents line width clipping */
 }
 
 .ring-bg {
@@ -201,7 +202,7 @@ header {
   stroke: #ffffff;
   stroke-width: 8;
   stroke-linecap: round;
-  transition: stroke-dashoffset 1s linear;
+  transition: stroke-dashoffset 0.1s linear;
 }
 
 .time-display {
@@ -569,14 +570,14 @@ select option {
   <!-- Timer Dashboard -->
   <div class="card">
     <div class="card-title">⏱️ 문법 타임어택 타이머</div>
-    <div class="card-subtitle">문법 201, 301용 20문제 (목표: 20분 / 문항당 60초)</div>
+    <div class="card-subtitle">문법 201, 301용 20문제 (목표: 10분 / 문항당 30초)</div>
     
     <div class="timer-container">
-      <svg class="timer-svg">
+      <svg class="timer-svg" viewBox="0 0 240 240">
         <circle class="ring-bg" cx="120" cy="120" r="105"></circle>
         <circle class="ring-fill" id="timerRing" cx="120" cy="120" r="105" stroke-dasharray="660" stroke-dashoffset="0"></circle>
       </svg>
-      <div class="time-display" id="timeStr">20:00</div>
+      <div class="time-display" id="timeStr">10:00</div>
     </div>
     
     <div class="wave-container" id="waveContainer">
@@ -657,7 +658,8 @@ select option {
 
 <script>
 // Timer Configuration
-const TOTAL_DURATION = 20 * 60; // 20 minutes in seconds
+const TOTAL_DURATION = 10 * 60; // 10 minutes in seconds (600s)
+const PACE_PER_QUESTION = 30; // 30s per question for 20 questions in 10 minutes
 let timerInterval = null;
 let remainingTime = TOTAL_DURATION;
 let isRunning = false;
@@ -665,10 +667,15 @@ let isRunning = false;
 // Audio Configuration
 let audioCtx = null;
 
+// High-accuracy tracking
+let startTime = null;
+let pausedTime = 0; // accumulated elapsed seconds
+let lastBellHalfMinutes = 0; // tracks how many 30-sec boundaries we've hit
+
 // Question Tracking
 let currentQuestion = 1;
 const totalQuestions = 20;
-const questionPaceTimes = new Array(totalQuestions + 1).fill(null); // stores elapsedTime when each question was reached/completed
+const questionPaceTimes = new Array(totalQuestions + 1).fill(null); // stores elapsedTime when each question was completed
 
 // SVG Ring Configuration
 const ring = document.getElementById('timerRing');
@@ -685,7 +692,7 @@ function updateProgress() {
 // Format seconds into MM:SS
 function formatTime(sec) {
   const m = Math.floor(sec / 60).toString().padStart(2, '0');
-  const s = (sec % 60).toString().padStart(2, '0');
+  const s = Math.floor(sec % 60).toString().padStart(2, '0');
   return `${m}:${s}`;
 }
 
@@ -712,41 +719,49 @@ function startTimer() {
   document.getElementById('startBtn').classList.remove('btn-primary');
   document.getElementById('waveContainer').classList.add('wave-active');
   
-  // AudioContext resume if suspended
   if (audioCtx && audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 
+  // Set precise start timestamp
+  startTime = performance.now() - (pausedTime * 1000);
+
+  // High-accuracy interval (100ms ticks to prevent background tab drift and skip bugs)
   timerInterval = setInterval(() => {
-    if (remainingTime > 0) {
-      remainingTime--;
-      updateTimeDisplay();
-      
-      const elapsedTime = TOTAL_DURATION - remainingTime;
-      
-      // Ring bell every 30 seconds (except when the timer just starts at 0 elapsed time)
-      if (elapsedTime > 0 && elapsedTime % 30 === 0) {
-        if (document.getElementById('bellEnabled').checked) {
-          playBellSound();
-          showToast(`🔔 ${elapsedTime / 60}분 경과 알림 종소리 재생`);
-        }
+    const now = performance.now();
+    const elapsedSeconds = (now - startTime) / 1000;
+    
+    remainingTime = Math.max(0, TOTAL_DURATION - elapsedSeconds);
+    updateTimeDisplay();
+    
+    // Check for 30-second interval bells
+    const currentHalfMinutes = Math.floor(elapsedSeconds / 30);
+    if (currentHalfMinutes > lastBellHalfMinutes) {
+      if (document.getElementById('bellEnabled').checked) {
+        playBellSound();
+        const displayMin = Math.floor((currentHalfMinutes * 30) / 60);
+        const displaySec = (currentHalfMinutes * 30) % 60;
+        const timeStr = displayMin > 0 ? `${displayMin}분 ${displaySec}초` : `${displaySec}초`;
+        showToast(`🔔 ${timeStr} 경과 알림 종소리 재생`);
       }
-      
-      // Update Pace Maker delta based on current time
-      updatePace();
-    } else {
-      // Timer finished
+      lastBellHalfMinutes = currentHalfMinutes;
+    }
+    
+    updatePace();
+    
+    if (remainingTime <= 0) {
       pauseTimer();
       playBellSound();
-      playBellSound(); // double ring
+      setTimeout(playBellSound, 500); // double chime
       showToast('🎉 타임어택 종료! 수고하셨습니다!');
     }
-  }, 1000);
+  }, 100);
 }
 
 function pauseTimer() {
   isRunning = false;
   clearInterval(timerInterval);
+  pausedTime = TOTAL_DURATION - remainingTime;
   document.getElementById('startBtn').textContent = '시작';
   document.getElementById('startBtn').classList.remove('btn-secondary');
   document.getElementById('startBtn').classList.add('btn-primary');
@@ -756,6 +771,8 @@ function pauseTimer() {
 function resetTimer() {
   pauseTimer();
   remainingTime = TOTAL_DURATION;
+  pausedTime = 0;
+  lastBellHalfMinutes = 0;
   updateTimeDisplay();
   currentQuestion = 1;
   questionPaceTimes.fill(null);
@@ -822,7 +839,7 @@ function updateQuestionUI() {
     // Check solved questions and color them green/red based on pace
     const completionTime = questionPaceTimes[i];
     if (completionTime !== null) {
-      const targetTime = i * 60; // 60s per question
+      const targetTime = i * PACE_PER_QUESTION; // 30s per question
       if (completionTime <= targetTime) {
         dot.className = 'q-dot completed-ahead';
       } else {
@@ -844,23 +861,20 @@ function updatePace() {
     return;
   }
   
-  // We should be starting/working on currentQuestion.
-  // The expected start time for currentQuestion is (currentQuestion - 1) * 60 seconds.
-  const expectedStartTime = (currentQuestion - 1) * 60;
+  // expected start time for currentQuestion is (currentQuestion - 1) * 30 seconds.
+  const expectedStartTime = (currentQuestion - 1) * PACE_PER_QUESTION;
   const delta = expectedStartTime - elapsedTime;
   
   if (delta > 0) {
-    // User is ahead (i.e. elapsedTime is less than expectedStartTime)
     const m = Math.floor(delta / 60);
-    const s = delta % 60;
+    const s = Math.floor(delta % 60);
     const timeStr = m > 0 ? `${m}분 ${s}초` : `${s}초`;
     badge.innerHTML = `🟢 권장 페이스 대비 <strong>${timeStr} 빠르게</strong> 풀이 중`;
     badge.className = 'pace-badge pace-ahead';
   } else if (delta < 0) {
-    // User is behind
     const absDelta = Math.abs(delta);
     const m = Math.floor(absDelta / 60);
-    const s = absDelta % 60;
+    const s = Math.floor(absDelta % 60);
     const timeStr = m > 0 ? `${m}분 ${s}초` : `${s}초`;
     badge.innerHTML = `🔴 권장 페이스 대비 <strong>${timeStr} 느리게</strong> 풀이 중`;
     badge.className = 'pace-badge pace-behind';
@@ -888,7 +902,6 @@ function playBellSound() {
   const now = audioCtx.currentTime;
   
   if (soundType === 'chime') {
-    // Sweet Chime: Tibetan Bowl / Tubular bell chime sound
     const frequencies = [880, 1100, 1320, 1760];
     const gains = [0.4, 0.25, 0.15, 0.1];
     
@@ -909,16 +922,15 @@ function playBellSound() {
       osc.stop(now + 2.5);
     });
   } else if (soundType === 'bell') {
-    // Classic Brass Bell: combination of fundamental and detuned triangle waves
     const osc1 = audioCtx.createOscillator();
     const osc2 = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
     
     osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(523.25, now); // C5
+    osc1.frequency.setValueAtTime(523.25, now);
     
     osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(789.99, now); // detuned fifth/harmonic
+    osc2.frequency.setValueAtTime(789.99, now);
     
     gainNode.gain.setValueAtTime(0.3 * volume, now);
     gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
@@ -932,7 +944,6 @@ function playBellSound() {
     osc1.stop(now + 1.8);
     osc2.stop(now + 1.8);
   } else {
-    // Soft Beep: simple electronic tone
     const osc = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
     
@@ -992,6 +1003,14 @@ function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
+
+// Audio context unlock on first user click anywhere
+document.addEventListener('click', () => {
+  initAudio();
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}, { once: true });
 
 // Init execution
 buildDots();
