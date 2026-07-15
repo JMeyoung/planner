@@ -27,6 +27,7 @@ MONTHLY_HTML = os.path.join(BASE_DIR, 'monthly.html')
 DAILY_HTML   = os.path.join(BASE_DIR, 'daily.html')
 PLANNER_HTML = os.path.join(BASE_DIR, 'planner.html')
 KNOWLEDGE_HTML = os.path.join(BASE_DIR, 'knowledge.html')
+TIMER_HTML   = os.path.join(BASE_DIR, 'timer.html')
 KNOWLEDGE_JSON = os.path.join(BASE_DIR, 'knowledge_db.json')
 TOKEN_FILE   = os.path.join(BASE_DIR, '.notion_token')
 
@@ -339,6 +340,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
         elif path in ('/knowledge', '/knowledge/', '/knowledge.html'):
             # 오늘의 전공 지식 페이지
             self._serve_html(KNOWLEDGE_HTML, 'knowledge.html')
+
+        elif path in ('/timer', '/timer/', '/timer.html'):
+            # 문법 타임어택 타이머 페이지
+            self._serve_html(TIMER_HTML, 'timer.html')
 
         elif path == '/api/knowledge':
             # 오늘의 지식 데이터 반환 API
