@@ -188,7 +188,7 @@ header {
   width: 240px;
   height: 240px;
   transform: rotate(-90deg);
-  overflow: visible; /* Prevents line width clipping */
+  overflow: visible;
 }
 
 .ring-bg {
@@ -255,138 +255,6 @@ header {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
-}
-
-/* Question Pace Maker Section */
-.pacer-section {
-  width: 100%;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 24px;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.pacer-title {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.q-selector {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.q-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-.q-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.08);
-}
-.q-btn:active {
-  transform: scale(0.95);
-}
-
-.q-display {
-  font-size: 1.8rem;
-  font-weight: 800;
-  min-width: 120px;
-}
-
-/* Pace Badge & Message */
-.pace-badge {
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid transparent;
-  transition: all var(--transition-med);
-}
-
-.pace-ahead {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border-color: rgba(16, 185, 129, 0.4);
-}
-
-.pace-behind {
-  background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
-  border-color: rgba(239, 68, 68, 0.4);
-}
-
-.pace-normal {
-  background: rgba(251, 191, 36, 0.2);
-  color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.4);
-}
-
-/* Questions Progress dots */
-.q-dots-grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 8px;
-  width: 100%;
-  max-width: 360px;
-  margin-top: 8px;
-}
-
-.q-dot {
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  position: relative;
-}
-.q-dot:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-.q-dot.active {
-  border-color: #ffffff;
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  font-weight: 800;
-  transform: scale(1.15);
-}
-.q-dot.completed-ahead {
-  background: #10b981;
-  border-color: #10b981;
-  color: #ffffff;
-}
-.q-dot.completed-behind {
-  background: #ef4444;
-  border-color: #ef4444;
-  color: #ffffff;
 }
 
 /* Settings Form */
@@ -553,7 +421,6 @@ select option {
   .time-display { font-size: 2.6rem; }
   .timer-container { width: 200px; height: 200px; }
   .btn { padding: 10px 20px; font-size: 0.88rem; }
-  .q-dots-grid { gap: 6px; }
 }
 </style>
 </head>
@@ -570,7 +437,7 @@ select option {
   <!-- Timer Dashboard -->
   <div class="card">
     <div class="card-title">⏱️ 문법 타임어택 타이머</div>
-    <div class="card-subtitle">문법 201, 301용 20문제 (목표: 10분 / 문항당 30초)</div>
+    <div class="card-subtitle">목표: 10분 (30초마다 자동으로 종소리 알림)</div>
     
     <div class="timer-container">
       <svg class="timer-svg" viewBox="0 0 240 240">
@@ -594,26 +461,6 @@ select option {
     <div class="btn-group">
       <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">시작</button>
       <button class="btn btn-secondary" onclick="resetTimer()">초기화</button>
-    </div>
-  </div>
-
-  <!-- Question Pace Maker -->
-  <div class="card">
-    <div class="pacer-title">🧭 실시간 페이스 메이커</div>
-    <div class="card-subtitle" style="margin-bottom: 12px;">각 문항 완료 시 다음 버튼을 눌러 속도를 확인하세요</div>
-    
-    <div class="q-selector">
-      <button class="q-btn" onclick="adjustQuestion(-1)">-</button>
-      <div class="q-display">Q<span id="currentQDisplay">1</span></div>
-      <button class="q-btn" onclick="adjustQuestion(1)">+</button>
-    </div>
-
-    <div class="pace-badge pace-normal" id="paceBadge">
-      대기 중
-    </div>
-    
-    <div class="q-dots-grid" id="qDotsGrid">
-      <!-- 20 Question Dots will be generated here -->
     </div>
   </div>
 
@@ -659,7 +506,6 @@ select option {
 <script>
 // Timer Configuration
 const TOTAL_DURATION = 10 * 60; // 10 minutes in seconds (600s)
-const PACE_PER_QUESTION = 30; // 30s per question for 20 questions in 10 minutes
 let timerInterval = null;
 let remainingTime = TOTAL_DURATION;
 let isRunning = false;
@@ -671,11 +517,6 @@ let audioCtx = null;
 let startTime = null;
 let pausedTime = 0; // accumulated elapsed seconds
 let lastBellHalfMinutes = 0; // tracks how many 30-sec boundaries we've hit
-
-// Question Tracking
-let currentQuestion = 1;
-const totalQuestions = 20;
-const questionPaceTimes = new Array(totalQuestions + 1).fill(null); // stores elapsedTime when each question was completed
 
 // SVG Ring Configuration
 const ring = document.getElementById('timerRing');
@@ -747,8 +588,6 @@ function startTimer() {
       lastBellHalfMinutes = currentHalfMinutes;
     }
     
-    updatePace();
-    
     if (remainingTime <= 0) {
       pauseTimer();
       playBellSound();
@@ -774,114 +613,6 @@ function resetTimer() {
   pausedTime = 0;
   lastBellHalfMinutes = 0;
   updateTimeDisplay();
-  currentQuestion = 1;
-  questionPaceTimes.fill(null);
-  updateQuestionUI();
-  updatePace();
-  
-  // Clear dot styles
-  const dots = document.querySelectorAll('.q-dot');
-  dots.forEach(dot => {
-    dot.className = 'q-dot';
-  });
-  document.getElementById('qDot1').classList.add('active');
-}
-
-// Question Pacer Logic
-function buildDots() {
-  const grid = document.getElementById('qDotsGrid');
-  grid.innerHTML = '';
-  for (let i = 1; i <= totalQuestions; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'q-dot' + (i === 1 ? ' active' : '');
-    dot.id = `qDot${i}`;
-    dot.textContent = i;
-    dot.onclick = () => selectQuestion(i);
-    grid.appendChild(dot);
-  }
-}
-
-function selectQuestion(qNum) {
-  if (qNum < 1 || qNum > totalQuestions) return;
-  currentQuestion = qNum;
-  updateQuestionUI();
-  updatePace();
-}
-
-function adjustQuestion(delta) {
-  const targetQ = currentQuestion + delta;
-  if (targetQ >= 1 && targetQ <= totalQuestions) {
-    // Save completion time of the previous question
-    const elapsedTime = TOTAL_DURATION - remainingTime;
-    if (delta > 0) {
-      questionPaceTimes[currentQuestion] = elapsedTime;
-    }
-    
-    currentQuestion = targetQ;
-    updateQuestionUI();
-    updatePace();
-  }
-}
-
-function updateQuestionUI() {
-  document.getElementById('currentQDisplay').textContent = currentQuestion;
-  
-  // Update Dot classes
-  for (let i = 1; i <= totalQuestions; i++) {
-    const dot = document.getElementById(`qDot${i}`);
-    if (!dot) continue;
-    
-    dot.classList.remove('active');
-    if (i === currentQuestion) {
-      dot.classList.add('active');
-    }
-    
-    // Check solved questions and color them green/red based on pace
-    const completionTime = questionPaceTimes[i];
-    if (completionTime !== null) {
-      const targetTime = i * PACE_PER_QUESTION; // 30s per question
-      if (completionTime <= targetTime) {
-        dot.className = 'q-dot completed-ahead';
-      } else {
-        dot.className = 'q-dot completed-behind';
-      }
-    } else if (i !== currentQuestion) {
-      dot.className = 'q-dot';
-    }
-  }
-}
-
-function updatePace() {
-  const badge = document.getElementById('paceBadge');
-  const elapsedTime = TOTAL_DURATION - remainingTime;
-  
-  if (elapsedTime === 0 && currentQuestion === 1) {
-    badge.textContent = '시작 대기 중';
-    badge.className = 'pace-badge pace-normal';
-    return;
-  }
-  
-  // expected start time for currentQuestion is (currentQuestion - 1) * 30 seconds.
-  const expectedStartTime = (currentQuestion - 1) * PACE_PER_QUESTION;
-  const delta = expectedStartTime - elapsedTime;
-  
-  if (delta > 0) {
-    const m = Math.floor(delta / 60);
-    const s = Math.floor(delta % 60);
-    const timeStr = m > 0 ? `${m}분 ${s}초` : `${s}초`;
-    badge.innerHTML = `🟢 권장 페이스 대비 <strong>${timeStr} 빠르게</strong> 풀이 중`;
-    badge.className = 'pace-badge pace-ahead';
-  } else if (delta < 0) {
-    const absDelta = Math.abs(delta);
-    const m = Math.floor(absDelta / 60);
-    const s = Math.floor(absDelta % 60);
-    const timeStr = m > 0 ? `${m}분 ${s}초` : `${s}초`;
-    badge.innerHTML = `🔴 권장 페이스 대비 <strong>${timeStr} 느리게</strong> 풀이 중`;
-    badge.className = 'pace-badge pace-behind';
-  } else {
-    badge.innerHTML = `🟡 권장 페이스와 정확히 일치함`;
-    badge.className = 'pace-badge pace-normal';
-  }
 }
 
 // Synthesized Audio engine (Web Audio API)
@@ -1013,7 +744,6 @@ document.addEventListener('click', () => {
 }, { once: true });
 
 // Init execution
-buildDots();
 updateTimeDisplay();
 loadTheme();
 </script>
