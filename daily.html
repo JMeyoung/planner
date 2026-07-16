@@ -3516,14 +3516,30 @@ function triggerCelebration() {
   setTimeout(() => { container.innerHTML = ''; }, 4000);
 }
 
+window.toggleReviewGuide = function() {
+  const el = document.getElementById('reviewGuideContent');
+  const icon = document.getElementById('reviewGuideToggleIcon');
+  if (!el) return;
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    if(icon) icon.classList.add('open');
+  } else {
+    el.style.display = 'none';
+    if(icon) icon.classList.remove('open');
+  }
+};
+
 function renderReviewGuide() {
   return `
     <div class="card review-guide-card">
-      <div class="card-header">
-        <div class="card-icon">🧠</div>
-        <span class="card-title">복습 방법 가이드</span>
+      <div class="card-header" onclick="toggleReviewGuide()" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="card-icon">🧠</div>
+          <span class="card-title">복습 방법 가이드</span>
+        </div>
+        <span class="univ-toggle-icon" id="reviewGuideToggleIcon">▾</span>
       </div>
-      <div class="review-guide-content">
+      <div class="review-guide-content" id="reviewGuideContent" style="display:none; margin-top:12px;">
         <div class="guide-section">
           <div class="guide-subject eng">📘 영어</div>
           <table class="guide-table">
@@ -3688,9 +3704,8 @@ function renderApp(d) {
 
   leftCol += blockCards;
 
-  // University + Deca + Memo + Pomo
+  // University + Memo + Pomo
   rightCol += renderUnivCard();
-  rightCol += renderDecaCard();
   rightCol += renderReviewGuide();
   rightCol += renderMemo();
   rightCol += renderPomoWidget();
