@@ -92,7 +92,7 @@ document.addEventListener('click', function(e) {
 """
 
 combined_html = f"""<!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="theme-minimal-paper">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -102,7 +102,7 @@ combined_html = f"""<!DOCTYPE html>
 {combined_style}
 </style>
 </head>
-<body class="dark-theme">
+<body class="theme-minimal-paper">
 
 <!-- Global UI Elements -->
 {theme_toggle}
