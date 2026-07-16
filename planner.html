@@ -6930,7 +6930,7 @@ function calendarHTML(year, month) {
 
 function timelineHTML() {
   const months = [
-    ['2026', 6, '6월'], ['2026', 7, '7월'], ['2026', 8, '8월'], ['2026', 9, '9월'],
+    ['2026', 7, '7월'], ['2026', 8, '8월'], ['2026', 9, '9월'],
     ['2026', 10, '10월'], ['2026', 11, '11월'], ['2026', 12, '12월']
   ];
   const now = new Date();
@@ -7082,7 +7082,6 @@ function fullRender() {
       </div>
       <div class="planner-right">
         ${weekGoalHTML()}
-        ${weeklyBarsHTML(dispYear, dispMonth)}
         ${timelineHTML()}
       </div>
     </div>`;
