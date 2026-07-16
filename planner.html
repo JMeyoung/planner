@@ -2432,6 +2432,40 @@ body::before, body::after {
 .open-window-btn:hover { transform: scale(1.08); }
 .open-window-btn:active { transform: scale(0.95); }
 
+/* ── Knowledge Button ── */
+.knowledge-btn {
+  position: fixed; top: 14px; left: 62px; z-index: 300;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow), inset 0 1px 0 var(--border-highlight);
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring);
+  text-decoration: none;
+}
+.knowledge-btn:hover { transform: scale(1.08); }
+.knowledge-btn:active { transform: scale(0.95); }
+
+/* ── Timer Button ── */
+.timer-btn {
+  position: fixed; top: 14px; left: 110px; z-index: 300;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow), inset 0 1px 0 var(--border-highlight);
+  transition: transform var(--transition-spring), box-shadow var(--transition-spring);
+  text-decoration: none;
+}
+.timer-btn:hover { transform: scale(1.08); }
+.timer-btn:active { transform: scale(0.95); }
+
 /* ── Toast ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
@@ -3857,6 +3891,8 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 
 
 
+<a href="/knowledge.html" class="knowledge-btn" title="오늘의 전공 지식">💡</a>
+<a href="/timer.html" class="timer-btn" title="타임어택 타이머">⏱️</a>
 
 
 
@@ -6797,6 +6833,22 @@ window.saveWeekMemo = function(key, val) {
   localStorage.setItem(key, val);
 };
 
+window.toggleTimeline = function() {
+  const container = document.getElementById('tl-body-container');
+  const icon = document.getElementById('tl-toggle-icon');
+  if (!container || !icon) return;
+  const isCollapsed = container.style.display === 'none';
+  if (isCollapsed) {
+    container.style.display = 'block';
+    icon.textContent = '▲';
+    localStorage.setItem('timeline-collapsed', 'false');
+  } else {
+    container.style.display = 'none';
+    icon.textContent = '▼';
+    localStorage.setItem('timeline-collapsed', 'true');
+  }
+};
+
 function calendarHTML(year, month) {
   const daysInMonth = new Date(year, month, 0).getDate();
   const firstDow   = new Date(year, month - 1, 1).getDay();
@@ -6904,9 +6956,14 @@ function timelineHTML() {
     </div>`;
   }).join('');
 
+  const isCollapsed = localStorage.getItem('timeline-collapsed') === 'true';
+
   return `<div class="glass-card timeline-card">
-    <div class="card-title">매크로 타임라인 (6월 ~ 12월 중순)</div>
-    <div class="tl-container">
+    <div class="card-title" onclick="toggleTimeline()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+      <span>📅 매크로 타임라인 (6월 ~ 12월 중순)</span>
+      <span id="tl-toggle-icon" style="font-size: 0.8rem; opacity: 0.8;">${isCollapsed ? '▼' : '▲'}</span>
+    </div>
+    <div class="tl-container" id="tl-body-container" style="display: ${isCollapsed ? 'none' : 'block'}; margin-top: 15px;">
       <div class="tl-line"></div>
       ${rows}
     </div>
