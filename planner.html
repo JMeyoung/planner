@@ -249,6 +249,8 @@ body::before, body::after {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  max-width: 520px;
+  margin: 0 auto;
 }
 .hero-left {
   flex: 1;
@@ -1294,6 +1296,9 @@ body::before, body::after {
   body.use-split-layout .container {
     max-width: 1400px;
     padding: 0 40px 48px;
+  }
+  body.use-split-layout .hero-content {
+    max-width: 1400px;
   }
   body.use-split-layout .planner-layout {
     display: grid;
