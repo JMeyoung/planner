@@ -231,7 +231,7 @@ body::before, body::after {
   background-size: 200% 200%;
   animation: heroGradient 8s ease infinite;
   border-radius: 0 0 28px 28px;
-  padding: 52px 24px 28px;
+  padding: 32px 24px 24px;
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
@@ -247,9 +247,10 @@ body::before, body::after {
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 520px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 600px;
   margin: 0 auto;
 }
 .hero-left {
@@ -1285,7 +1286,8 @@ body::before, body::after {
    RESPONSIVE
    ══════════════════════════════════════════ */
 @media (max-width: 400px) {
-  .hero { padding: 48px 18px 22px; }
+  .hero { padding: 32px 16px 22px; }
+  .hero-content { justify-content: center; text-align: center; }
   .dday-num { font-size: 2rem; }
   .container { padding: 0 12px 28px; }
 }
@@ -3831,16 +3833,16 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 
 
 <div class="hero" id="hero">
-  <div id="backToMonthly" style="display:flex;position:absolute;top:12px;left:16px;gap:8px;">
-    <a href="/" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 11px;border-radius:20px;backdrop-filter:blur(4px);">← 월별 플래너</a>
-    <a href="/knowledge.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 11px;border-radius:20px;backdrop-filter:blur(4px);">💡 오늘의 전공 지식</a>
-    <a href="/timer.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 11px;border-radius:20px;backdrop-filter:blur(4px);">⏱️ 타임어택 타이머</a>
-  </div>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-date" id="heroDate"></div>
       <div class="hero-stage" id="heroStage"></div>
       <div id="streakBadge"></div>
+    </div>
+    <div class="hero-center" style="display:flex; flex-direction:column; gap:6px; align-items:center; margin: 0 12px;">
+      <a href="/" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.75rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px);">← 월별 플래너</a>
+      <a href="/knowledge.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.75rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px);">💡 오늘의 전공 지식</a>
+      <a href="/timer.html" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:0.75rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.15);padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px);">⏱️ 타임어택 타이머</a>
     </div>
     <div class="hero-right">
       <div class="dday-ring-wrap">
