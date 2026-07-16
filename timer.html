@@ -212,6 +212,44 @@ header {
   letter-spacing: -1px;
   z-index: 10;
   text-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+.time-display:hover {
+  transform: scale(1.05);
+}
+
+/* Inline Time Editor */
+.time-edit-container {
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.time-input {
+  width: 76px;
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+}
+.time-input::-webkit-outer-spin-button,
+.time-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.time-input {
+  -moz-appearance: textfield;
+}
+.time-input:focus {
+  border-color: #ffffff;
 }
 
 /* Timer Actions */
@@ -437,15 +475,25 @@ select option {
   <!-- Timer Dashboard -->
   <div class="card">
     <div class="card-title">⏱️ 문법 타임어택 타이머</div>
-    <div class="card-subtitle">목표: 10분 (30초마다 자동으로 종소리 알림)</div>
+    <div class="card-subtitle" id="timerSubtitle">목표: 10분 (30초마다 자동으로 종소리 알림)</div>
     
     <div class="timer-container">
       <svg class="timer-svg" viewBox="0 0 240 240">
         <circle class="ring-bg" cx="120" cy="120" r="105"></circle>
         <circle class="ring-fill" id="timerRing" cx="120" cy="120" r="105" stroke-dasharray="660" stroke-dashoffset="0"></circle>
       </svg>
-      <div class="time-display" id="timeStr">10:00</div>
+      <!-- Clickable Time Display -->
+      <div class="time-display" id="timeStr" onclick="enterEditMode()" title="클릭하여 시간 수정">10:00</div>
+      
+      <!-- Inline Editors -->
+      <div class="time-edit-container" id="timeEdit" style="display: none;">
+        <input type="number" id="inputMin" class="time-input" min="0" max="999" value="10" onkeydown="handleEditKey(event)" onblur="exitEditMode(true)">
+        <span style="font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1;">:</span>
+        <input type="number" id="inputSec" class="time-input" min="0" max="59" value="00" onkeydown="handleEditKey(event)" onblur="exitEditMode(true)">
+      </div>
     </div>
+    
+    <div id="editHint" style="font-size: 0.72rem; color: var(--text-muted); margin-top: -12px; margin-bottom: 20px; transition: opacity var(--transition-fast);">시간을 클릭해 편집할 수 있습니다</div>
     
     <div class="wave-container" id="waveContainer">
       <div class="wave-bar"></div>
@@ -505,7 +553,7 @@ select option {
 
 <script>
 // Timer Configuration
-const TOTAL_DURATION = 10 * 60; // 10 minutes in seconds (600s)
+let TOTAL_DURATION = 10 * 60; // Default: 10 minutes in seconds (600s)
 let timerInterval = null;
 let remainingTime = TOTAL_DURATION;
 let isRunning = false;
@@ -544,6 +592,10 @@ function updateTimeDisplay() {
 
 // Timer Controls
 function toggleTimer() {
+  // If editing time, exit and save first
+  if (document.getElementById('timeEdit').style.display === 'flex') {
+    exitEditMode(true);
+  }
   initAudio();
   if (isRunning) {
     pauseTimer();
@@ -559,6 +611,8 @@ function startTimer() {
   document.getElementById('startBtn').classList.add('btn-secondary');
   document.getElementById('startBtn').classList.remove('btn-primary');
   document.getElementById('waveContainer').classList.add('wave-active');
+  document.getElementById('editHint').style.opacity = '0';
+  document.getElementById('timeStr').style.cursor = 'default';
   
   if (audioCtx && audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -605,6 +659,8 @@ function pauseTimer() {
   document.getElementById('startBtn').classList.remove('btn-secondary');
   document.getElementById('startBtn').classList.add('btn-primary');
   document.getElementById('waveContainer').classList.remove('wave-active');
+  document.getElementById('editHint').style.opacity = '1';
+  document.getElementById('timeStr').style.cursor = 'pointer';
 }
 
 function resetTimer() {
@@ -613,6 +669,74 @@ function resetTimer() {
   pausedTime = 0;
   lastBellHalfMinutes = 0;
   updateTimeDisplay();
+}
+
+// Interactive Time Edit Logic
+function enterEditMode() {
+  if (isRunning) return;
+  
+  const timeStrEl = document.getElementById('timeStr');
+  const timeEditEl = document.getElementById('timeEdit');
+  const inputMin = document.getElementById('inputMin');
+  const inputSec = document.getElementById('inputSec');
+  
+  const currentMin = Math.floor(remainingTime / 60);
+  const currentSec = Math.floor(remainingTime % 60);
+  
+  inputMin.value = currentMin;
+  inputSec.value = currentSec.toString().padStart(2, '0');
+  
+  timeStrEl.style.display = 'none';
+  timeEditEl.style.display = 'flex';
+  
+  inputMin.focus();
+  inputMin.select();
+}
+
+let isExitingEdit = false;
+function exitEditMode(save) {
+  if (isExitingEdit) return;
+  isExitingEdit = true;
+  
+  setTimeout(() => {
+    const timeStrEl = document.getElementById('timeStr');
+    const timeEditEl = document.getElementById('timeEdit');
+    
+    if (save) {
+      let min = parseInt(document.getElementById('inputMin').value) || 0;
+      let sec = parseInt(document.getElementById('inputSec').value) || 0;
+      
+      if (min < 0) min = 0;
+      if (sec < 0) sec = 0;
+      if (sec > 59) {
+        min += Math.floor(sec / 60);
+        sec = sec % 60;
+      }
+      
+      TOTAL_DURATION = min * 60 + sec;
+      remainingTime = TOTAL_DURATION;
+      pausedTime = 0;
+      lastBellHalfMinutes = 0;
+      
+      // Update subtitle dynamically
+      document.getElementById('timerSubtitle').textContent = `목표: ${min > 0 ? min + '분 ' : ''}${sec > 0 ? sec + '초' : ''} (30초마다 자동으로 종소리 알림)`;
+    }
+    
+    updateTimeDisplay();
+    
+    timeEditEl.style.display = 'none';
+    timeStrEl.style.display = 'block';
+    
+    isExitingEdit = false;
+  }, 100);
+}
+
+function handleEditKey(e) {
+  if (e.key === 'Enter') {
+    exitEditMode(true);
+  } else if (e.key === 'Escape') {
+    exitEditMode(false);
+  }
 }
 
 // Synthesized Audio engine (Web Audio API)
