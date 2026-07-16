@@ -2293,7 +2293,7 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 </div>
 
 <!-- Archive Vault Modal -->
-<div class="retro-vault-overlay" id="archiveVaultOverlay" onclick="closeArchiveModal(event)">
+<div class="retro-vault-overlay" id="archiveVaultOverlay" onclick="closeArchiveModal(event)" style="display: none;">
   <div class="retro-vault-modal" onclick="event.stopPropagation()">
     <div class="retro-vault-header">
       <h2>🗃️ 내 아카이브 (최근 200개)</h2>
@@ -2925,6 +2925,23 @@ function parsePage(content) {
     }
     if (l) prevRawLine = raw;
   }
+  
+  let totalTasks = result.routines.length;
+  if (totalTasks > 12) {
+    result.routines = result.routines.slice(0, 12);
+    totalTasks = 12;
+  }
+  for (let b of result.blocks) {
+    if (totalTasks >= 12) {
+      b.items = [];
+    } else if (totalTasks + b.items.length > 12) {
+      b.items = b.items.slice(0, 12 - totalTasks);
+      totalTasks = 12;
+    } else {
+      totalTasks += b.items.length;
+    }
+  }
+
   return result;
 }
 

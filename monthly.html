@@ -2415,10 +2415,6 @@ function weekGoalHTML() {
     <div class="week-progress-bar">
       <div class="week-progress-fill" style="width:${avgPct}%"></div>
     </div>
-    <div class="week-memo-label">📝 이번 주 할 일 · 메모</div>
-    <textarea class="week-memo" id="weekMemoArea"
-      placeholder="이번 주 집중할 것, 목표, 메모를 자유롭게 적어두세요..."
-      oninput="saveWeekMemo('${weekKey}', this.value)">${esc(savedMemo)}</textarea>
     ${macroRef}
   </div>`;
 }
