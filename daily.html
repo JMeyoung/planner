@@ -2287,6 +2287,19 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
   </div>
 </div>
 
+<!-- Archive Vault Modal -->
+<div class="retro-vault-overlay" id="archiveVaultOverlay" onclick="closeArchiveModal(event)">
+  <div class="retro-vault-modal" onclick="event.stopPropagation()">
+    <div class="retro-vault-header">
+      <h2>🗃️ 내 아카이브 (최근 200개)</h2>
+      <button onclick="closeArchiveModal()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+    </div>
+    <div class="retro-vault-body" id="archiveList" style="padding:20px; background:var(--bg-secondary);">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</div>
+
 <div id="sync-err-banner" style="display:none;background:rgba(220,38,38,0.88);color:#fff;font-size:0.78rem;padding:8px 16px;text-align:center;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)"></div>
 
 <div class="container">
@@ -3055,6 +3068,8 @@ window.toggleFixedRoutine = function(idx) {
       taskEl.classList.add('done');
       cbEl.classList.add('on');
       cbEl.innerHTML = checkSVG();
+      const txt = taskEl.querySelector('.task-text')?.textContent;
+      if (txt) archiveTask(txt, true);
     } else {
       taskEl.classList.remove('done');
       cbEl.classList.remove('on');
@@ -3399,7 +3414,10 @@ function renderMemo() {
           <button class="memo-tab-btn ${savedTab==='daily'?'active':''}" onclick="switchMemoTab('daily')">하루 회고</button>
           <button class="memo-tab-btn ${savedTab==='weekly'?'active':''}" onclick="switchMemoTab('weekly')">주간 회고</button>
         </div>
-        <button onclick="openRetroVault()" class="retro-vault-btn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.85rem; padding-right:10px;">🗂️ 모아보기</button>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <button onclick="openArchiveModal()" class="retro-vault-btn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.85rem;">🗃️ 내 아카이브</button>
+          <button onclick="openRetroVault()" class="retro-vault-btn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.85rem; padding-right:10px;">🗂️ 모아보기</button>
+        </div>
       </div>
       <div class="memo-pane ${savedTab==='daily'?'active':''}" id="memoPaneDaily">
         <div class="memo-header">
@@ -3735,6 +3753,7 @@ window.handleToggle = async function(groupId, idx) {
 
     taskEl.classList.remove('saving');
     taskEl.classList.toggle('done', item.checked);
+    if (item.checked) archiveTask(item.text, true);
     if (cbEl) {
       cbEl.classList.remove('saving');
       cbEl.classList.toggle('on', item.checked);
@@ -4535,6 +4554,64 @@ restoreTokenFromServer().then(() => {
     if (typeof initMonthly === 'function') initMonthly();
   }
 });
+
+/* ══════════════════════════════════════════
+   ARCHIVE LOGIC & VIEWER
+   ══════════════════════════════════════════ */
+function archiveTask(text, isChecked) {
+  if (!isChecked) return;
+  try {
+    const arr = JSON.parse(localStorage.getItem('archive-tasks') || '[]');
+    arr.unshift({ text, date: new Date().toISOString() });
+    if (arr.length > 200) arr.pop();
+    localStorage.setItem('archive-tasks', JSON.stringify(arr));
+  } catch (e) { console.error('Archive failed', e); }
+}
+
+function openArchiveModal() {
+  document.getElementById('archiveVaultOverlay').style.display = 'flex';
+  renderArchiveList();
+}
+function closeArchiveModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('archiveVaultOverlay').style.display = 'none';
+}
+function renderArchiveList() {
+  const arr = JSON.parse(localStorage.getItem('archive-tasks') || '[]');
+  const listEl = document.getElementById('archiveList');
+  if (!listEl) return;
+  if (arr.length === 0) {
+    listEl.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:40px 0;">아직 달성한 기록이 없습니다.</div>';
+    return;
+  }
+  
+  const groups = {};
+  arr.forEach(item => {
+    const d = new Date(item.date);
+    const dateKey = `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+    if (!groups[dateKey]) groups[dateKey] = [];
+    groups[dateKey].push(item);
+  });
+  
+  let html = '';
+  for (const [dateStr, items] of Object.entries(groups)) {
+    html += `<div style="font-weight:700; color:var(--text-secondary); font-size:0.85rem; margin:16px 0 8px; border-bottom:1px solid var(--border); padding-bottom:4px;">📅 ${dateStr}</div>`;
+    items.forEach(it => {
+      const timeStr = new Date(it.date).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+      html += `
+        <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; padding:10px; background:var(--bg-primary); border:1px solid var(--border); border-radius:10px;">
+          <div style="color:var(--heatmap-l4); font-size:1.1rem; margin-top:-2px;">✅</div>
+          <div style="flex:1;">
+            <div style="font-size:0.9rem; color:var(--text-primary); line-height:1.4;">${esc(it.text)}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">🕒 ${timeStr}</div>
+          </div>
+        </div>
+      `;
+    });
+  }
+  listEl.innerHTML = html;
+}
+
 </script>
 </body>
 </html>
