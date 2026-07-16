@@ -3014,7 +3014,7 @@ function renderUnivCard() {
   const iconClass = savedOpen ? 'open' : '';
 
   const tabsHtml = UNIVERSITIES.map(u =>
-    `<button class="univ-tab ${u.id} ${savedTab===u.id?'active':''}" onclick="switchUnivTab('${u.id}')">${u.emoji} ${u.name}</button>`
+    `<button class="univ-tab ${u.id} ${savedTab===u.id?'active':''}" onclick="switchUnivTab('${u.id}')">${u.name}</button>`
   ).join('');
 
   const reasonsHtml = UNIVERSITIES.map(u => {
@@ -3639,17 +3639,7 @@ function renderApp(d) {
   let leftCol = '';
   let rightCol = '';
 
-  // Progress section
-  leftCol += `
-    <div class="progress-section">
-      <div class="progress-row">
-        <span class="progress-label">오늘 진도</span>
-        <span class="progress-pct" id="prog-label">${done}/${total} 완료 · ${pct}%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill ${pct === 100 ? 'complete' : ''}" id="prog-fill" style="width:${pct}%"></div>
-      </div>
-    </div>`;
+  // Progress section moved to rightCol
 
   // Routine card
   if (d.routines.length) {
@@ -3725,6 +3715,18 @@ function renderApp(d) {
   }).join('');
 
   leftCol += blockCards;
+
+  // Progress section
+  rightCol += `
+    <div class="progress-section" style="margin-bottom: 16px;">
+      <div class="progress-row">
+        <span class="progress-label">오늘 진도</span>
+        <span class="progress-pct" id="prog-label">${done}/${total} 완료 · ${pct}%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill ${pct === 100 ? 'complete' : ''}" id="prog-fill" style="width:${pct}%"></div>
+      </div>
+    </div>`;
 
   // University + Memo + Pomo
   rightCol += renderUnivCard();
