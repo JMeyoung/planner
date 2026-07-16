@@ -2367,9 +2367,11 @@ function weekGoalHTML() {
     d.setDate(monday.getDate() + i);
     const k = `${d.getFullYear()}-${padZ(d.getMonth()+1)}-${padZ(d.getDate())}`;
     const s = dayStatus[k];
-    if (!s) continue;
-    if (s.isRest) { weekRest++; continue; }
-    if (s.total > 0) {
+    
+    const isRest = (s && s.isRest) || checkSystemRest(d.getFullYear(), d.getMonth()+1, d.getDate());
+    if (isRest) { weekRest++; continue; }
+    
+    if (s && s.total > 0) {
       weekStudy++;
       totalPct += s.pct || 0;
       pctCount++;
@@ -2441,6 +2443,26 @@ window.toggleTimeline = function() {
   }
 };
 
+function checkSystemRest(year, month, d) {
+  const dateObj = new Date(year, month - 1, d);
+  const dow = dateObj.getDay();
+  if (dow === 0) return true; // Every Sunday is a rest day
+  
+  const y = dateObj.getFullYear();
+  const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const dayStr = String(dateObj.getDate()).padStart(2, '0');
+  const key = `${y}-${m}-${dayStr}`;
+  
+  // Summer Camp (7/31 ~ 8/2)
+  if (key >= '2026-07-31' && key <= '2026-08-02') return true;
+  // Cursillo Retreat (8/20 ~ 8/23)
+  if (key >= '2026-08-20' && key <= '2026-08-23') return true;
+  // July 23rd
+  if (key === '2026-07-23') return true;
+  
+  return false;
+}
+
 function calendarHTML(year, month) {
   const daysInMonth = new Date(year, month, 0).getDate();
   const firstDow   = new Date(year, month - 1, 1).getDay();
@@ -2450,13 +2472,13 @@ function calendarHTML(year, month) {
   let studyDays = 0, restDays = 0, doneDays = 0, totalLoops = 0;
   for (let d = 1; d <= daysInMonth; d++) {
     const s = dayStatus[dateKey(year, month, d)];
-    if (!s) continue;
+    const isRest = (s && s.isRest) || checkSystemRest(year, month, d);
     
     const isFuture = new Date(year, month - 1, d) > today;
     if (isFuture) continue;
     
-    if (s.isRest) restDays++;
-    else if (s.total > 0) { studyDays++; totalLoops += s.loops || 0; if (s.pct >= 75) doneDays++; }
+    if (isRest) restDays++;
+    else if (s && s.total > 0) { studyDays++; totalLoops += s.loops || 0; if (s.pct >= 75) doneDays++; }
   }
 
   const dowHtml = ['일', '월', '화', '수', '목', '금', '토'].map(d => `<div class="dow-cell">${d}</div>`).join('');
@@ -2468,15 +2490,16 @@ function calendarHTML(year, month) {
     const s   = dayStatus[key];
     const isTd  = isToday(year, month, d);
     const isPast = new Date(year, month - 1, d) < today && !isTd;
+    
+    const isRest = (s && s.isRest) || checkSystemRest(year, month, d);
 
     let cls = 'day-cell';
     let inner = `<div class="day-num">${d}</div>`;
 
-    if (s) {
-      if (s.isRest) {
-        cls += ' rest';
-        inner += `<div class="day-rest-icon">⛪</div>`;
-      } else if (s.pct >= 90) {
+    if (isRest) {
+      cls += ' rest';
+      inner += `<div class="day-rest-icon">⛪</div>`;
+    } else if (s) {
         cls += ' full';
         inner += `<div class="day-pct">${s.pct}%</div>`;
         if (s.loops) inner += `<div class="day-loops">${s.loops}루프</div>`;
@@ -2610,9 +2633,13 @@ function heatmapHTML() {
       let color = 'var(--heatmap-empty)';
       let cls = 'hm-cell';
       let tip = `${parseInt(m)}/${parseInt(dd)}: 기록 없음`;
-      if (s) {
-        if (s.isRest) { color='var(--heatmap-rest)'; tip=`${parseInt(m)}/${parseInt(dd)}: 휴식일`; }
-        else if (s.pct>=76) { color='var(--heatmap-l4)'; cls+=' l4'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
+      
+      const isRest = (s && s.isRest) || checkSystemRest(parseInt(y), parseInt(m), parseInt(dd));
+      if (isRest) {
+        color = 'var(--heatmap-rest)';
+        tip = `${parseInt(m)}/${parseInt(dd)}: 휴식일`;
+      } else if (s) {
+        if (s.pct>=76) { color='var(--heatmap-l4)'; cls+=' l4'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
         else if (s.pct>=41) { color='var(--heatmap-l3)'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
         else if (s.pct>=1)  { color='var(--heatmap-l2)'; tip=`${parseInt(m)}/${parseInt(dd)}: ${s.pct}%`; }
         else                { color='var(--heatmap-l1)'; tip=`${parseInt(m)}/${parseInt(dd)}: 0%`; }
