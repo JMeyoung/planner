@@ -3860,7 +3860,6 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
       </div>
     </div>
   </div>
-  <div id="heroBannerStrip" class="hero-banner-strip"></div>
 </div>
 
 <!-- AI 분석 모달 -->
@@ -4510,14 +4509,6 @@ const UNIVERSITIES = [
   }
 ];
 
-function initHeroBanner() {
-  const allReasons = UNIVERSITIES.flatMap(u => u.reasons.map(r => `${r.icon} ${u.name} — ${r.title}: ${r.desc}`));
-  const today = new Date();
-  const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
-  const pick = allReasons[seed % allReasons.length];
-  const el = document.getElementById('heroBannerStrip');
-  if (el) el.textContent = pick;
-}
 
 function renderUnivCard() {
   const savedTab = localStorage.getItem('univ-active-tab') || 'ku';
@@ -5265,7 +5256,7 @@ function renderApp(d) {
   // Post-render init
   initMemo();
   renderDecaGardia();
-  initHeroBanner();
+
   // Init draggable pomodoro
   initPomoDrag();
   // Init loop mode buttons
