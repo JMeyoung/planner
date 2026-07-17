@@ -1706,9 +1706,9 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,2
     
     <div class="theme-btn-grid">
       <button class="theme-btn" id="theme-btn-default" onclick="applyTheme('default')">
-        <span class="theme-btn-icon">🌅</span>
-        <span class="theme-btn-name">Sunset</span>
-        <span class="theme-btn-desc">기본 노을</span>
+        <span class="theme-btn-icon">🫧</span>
+        <span class="theme-btn-name">Liquid Glass</span>
+        <span class="theme-btn-desc">기본 테마</span>
       </button>
       <button class="theme-btn" id="theme-btn-terminal" onclick="applyTheme('terminal')">
         <span class="theme-btn-icon">💻</span>
@@ -1724,11 +1724,6 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,2
         <span class="theme-btn-icon">🌌</span>
         <span class="theme-btn-name">Aurora</span>
         <span class="theme-btn-desc">딥 스페이스</span>
-      </button>
-      <button class="theme-btn" id="theme-btn-liquid" onclick="applyTheme('liquid')">
-        <span class="theme-btn-icon">🫧</span>
-        <span class="theme-btn-name">Liquid Glass</span>
-        <span class="theme-btn-desc">애플 리퀴드 글래스</span>
       </button>
     </div>
   </div>
@@ -2958,6 +2953,7 @@ loadTheme();
 initStyleLab();
 
 var THEME_CLASS_MAP = {
+  default:  'theme-liquid-glass',
   terminal: 'theme-dark-terminal',
   paper:    'theme-minimal-paper',
   aurora:   'theme-aurora-deep',
@@ -2969,23 +2965,23 @@ window.applyTheme = function(themeName, showToastNotify = true) {
     document.body.classList.remove(cls);
     document.documentElement.classList.remove(cls);
   });
-  if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
+  if (THEME_CLASS_MAP[themeName]) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
     document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
   }
   localStorage.setItem('style-lab-theme', themeName);
-  ['default','terminal','paper','aurora','liquid'].forEach(t => {
+  ['default','terminal','paper','aurora'].forEach(t => {
     const btn = document.getElementById(`theme-btn-${t}`);
     if (btn) btn.classList.toggle('active', t === themeName);
   });
   if (showToastNotify) {
-    showToast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : themeName === 'aurora' ? '🌌 Aurora Deep' : '🫧 Liquid Glass'}`);
+    showToast(`테마 변경: ${themeName === 'default' ? '🫧 Liquid Glass (기본)' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : '🌌 Aurora Deep'}`);
   }
 };
 
 // Restore theme preset
 (function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'liquid';
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
   window.applyTheme(savedTheme, false);
 })();
 
