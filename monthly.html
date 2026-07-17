@@ -185,17 +185,6 @@ body:not(:has(.view-container)) {
   position: relative;
   isolation: isolate;
 }
-body::before, body::after {
-  content: ''; position: fixed; z-index: -1; border-radius: 50%;
-  filter: blur(70px); opacity: 0; pointer-events: none;
-  transition: opacity .5s;
-}
-body::before, body::after {
-  display: none;
-}
-[data-theme="dark"] body::before, [data-theme="dark"] body::after {
-  display: none;
-}
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
