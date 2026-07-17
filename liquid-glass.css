@@ -384,3 +384,8 @@ body.theme-liquid-glass::after {
   border: 1px solid rgba(255,255,255,0.4) !important;
   color: #fff !important;
 }
+
+/* Ensure fixed position buttons retain their layout when using glass-circle */
+.theme-toggle, .open-window-btn, .knowledge-btn, .timer-btn {
+  position: fixed !important;
+}
