@@ -1477,13 +1477,12 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 /* ── 🫧 Liquid Glass (Pure Transparent Dark) ── */
 html.theme-liquid-glass {
   background: #0a0a0c !important;
-  background-color: #0a0a0c !important;
   background-attachment: fixed !important;
 }
 body.theme-liquid-glass {
   --bg-primary: #0a0a0c;
   --bg-secondary: rgba(255,255,255,0.02);
-  --bg-card: rgba(255,255,255,0.04);
+  --bg-card: transparent; /* Card background is handled via overrides below */
   --bg-card-hover: rgba(255,255,255,0.08);
   --text-primary: rgba(255,255,255,0.9);
   --text-secondary: rgba(255,255,255,0.6);
@@ -1510,65 +1509,42 @@ body.theme-liquid-glass {
   --cal-full-text-num: #ffffff;
   --cal-full-text-pct: rgba(255,255,255,0.6);
   --cal-full-text-loops: rgba(255,255,255,0.4);
-  background: #0a0a0c !important;
+  background-color: #0a0a0c !important;
+  /* 은은한 흰색 무채색 노이즈/그라데이션 배경 (카드 뒤로 비침) */
+  background-image: 
+    radial-gradient(circle at 85% 10%, rgba(255,255,255,0.03) 0%, transparent 40%),
+    radial-gradient(circle at 10% 80%, rgba(255,255,255,0.02) 0%, transparent 40%) !important;
   color: var(--text-primary) !important;
 }
-/* ambient glow orbs (은은한 노이즈/그라데이션, 색조 없음) */
-body.theme-liquid-glass::before {
-  display: block !important; content: ''; position: fixed;
-  width: 800px; height: 800px; top: -200px; left: -200px;
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-  filter: blur(80px); animation: orbDrift 16s ease-in-out infinite;
-  z-index: -1; pointer-events: none; border-radius: 50%; opacity: 1 !important;
-}
+
+body.theme-liquid-glass::before,
 body.theme-liquid-glass::after {
-  display: block !important; content: ''; position: fixed;
-  width: 600px; height: 600px; bottom: -160px; right: -140px;
-  background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 60%);
-  filter: blur(80px); animation: orbDrift2 20s ease-in-out infinite;
-  z-index: -1; pointer-events: none; border-radius: 50%; opacity: 1 !important;
+  display: none !important;
 }
-/* lensing glass surfaces: 4-Layer 구조 */
-body.theme-liquid-glass .card {
-  position: relative;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  z-index: 1;
-}
-body.theme-liquid-glass .card::before {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.10), inset 0 -1px 1px rgba(0,0,0,0.20);
+
+/* 4-Layer 구조 직접 적용 */
+body.theme-liquid-glass .card,
+body.theme-liquid-glass .planner-layout {
+  background-color: rgba(255,255,255,0.04) !important; /* Layer 1 */
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 50%), /* Layer 4 */
+    linear-gradient(to bottom, rgba(255,255,255,0.08), transparent) !important; /* Layer 2 */
+  backdrop-filter: blur(24px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important; /* Layer 3 */
+  box-shadow: 
+    inset 0 1px 1px rgba(255,255,255,0.10), 
+    inset 0 -1px 1px rgba(0,0,0,0.20),
+    0 12px 40px rgba(0,0,0,0.3) !important; /* Layer 3 */
   transition: all 0.3s ease;
 }
-body.theme-liquid-glass .card::after {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 50%);
-  pointer-events: none;
+
+body.theme-liquid-glass .card:hover {
+  background-color: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.15) !important;
 }
-body.theme-liquid-glass .card:hover::before {
-  background-color: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.15);
-}
-body.theme-liquid-glass .planner-layout {
-  position: relative; background: transparent !important; border: none !important;
-  box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; z-index: 1;
-}
-body.theme-liquid-glass .planner-layout::before {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.06), transparent);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.08), inset 0 -1px 1px rgba(0,0,0,0.20);
-}
-body.theme-liquid-glass .hero { background: transparent !important; }
+
+body.theme-liquid-glass .hero { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
 body.theme-liquid-glass .hero-day, body.theme-liquid-glass .hero-date, body.theme-liquid-glass .loop-info { color: rgba(255,255,255,0.9) !important; }
 body.theme-liquid-glass .dday-num { color: rgba(255,255,255,0.9) !important; text-shadow: 0 2px 12px rgba(255,255,255,0.2); }
 body.theme-liquid-glass .dday-label, body.theme-liquid-glass .dday-sub { color: rgba(255,255,255,0.5) !important; }
