@@ -76,9 +76,9 @@
       <div style="margin-bottom: 8px;">
         <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px; display: flex; justify-content: space-between;">
           <span>배경 불투명도 (Opacity)</span>
-          <span id="lg-opacity-val" style="color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums;">${Math.round(savedOpacity * 100)}%</span>
+          <span id="lg-opacity-val" style="color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums;">${(parseFloat(savedOpacity) * 100).toFixed(1)}%</span>
         </div>
-        <input type="range" id="lg-opacity-slider" min="0" max="40" value="${Math.round(savedOpacity * 100)}" style="width: 100%; accent-color: #21c48f; cursor: pointer;">
+        <input type="range" id="lg-opacity-slider" min="0" max="40" step="0.1" value="${parseFloat(savedOpacity) * 100}" style="width: 100%; accent-color: #21c48f; cursor: pointer;">
       </div>
     `;
     document.body.appendChild(panel);
@@ -116,9 +116,9 @@
     const opacityValText = document.getElementById('lg-opacity-val');
     
     opacitySlider.addEventListener('input', (e) => {
-      const v = e.target.value;
-      const opacityDecimal = (v / 100).toFixed(2);
-      opacityValText.textContent = v + '%';
+      const v = parseFloat(e.target.value);
+      const opacityDecimal = (v / 100).toFixed(3);
+      opacityValText.textContent = v.toFixed(1) + '%';
       document.documentElement.style.setProperty('--user-glass-opacity', opacityDecimal);
       localStorage.setItem('liquidGlassOpacity', opacityDecimal);
     });
