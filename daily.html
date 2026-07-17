@@ -2214,40 +2214,39 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 /* ── 🫧 Liquid Glass (Pure Transparent Dark) ── */
 
 body.theme-liquid-glass {
-  --bg-primary: #0a0a0c;
-  --bg-secondary: rgba(255,255,255,0.02);
-  --bg-card: transparent; /* Card background is handled via overrides below */
-  --bg-card-hover: rgba(255,255,255,0.08);
-  --text-primary: rgba(255,255,255,0.9);
-  --text-secondary: rgba(255,255,255,0.6);
-  --text-muted: rgba(255,255,255,0.4);
-  --border: rgba(255,255,255,0.1);
-  --border-subtle: rgba(255,255,255,0.05);
-  --border-highlight: rgba(255,255,255,0.15);
-  --shadow: 0 12px 40px rgba(0,0,0,0.5);
-  --shadow-sm: 0 4px 16px rgba(0,0,0,0.3);
-  --shadow-lg: 0 24px 70px rgba(0,0,0,0.6);
-  --glass-blur: blur(24px) saturate(120%);
+  --bg-primary: transparent;
+  --bg-secondary: rgba(255,255,255,0.08);
+  --bg-card: transparent;
+  --bg-card-hover: rgba(255,255,255,0.18);
+  --text-primary: #1e293b;
+  --text-secondary: rgba(30,41,59,0.75);
+  --text-muted: rgba(30,41,59,0.5);
+  --border: rgba(255,255,255,0.28);
+  --border-subtle: rgba(255,255,255,0.14);
+  --border-highlight: rgba(255,255,255,0.55);
+  --shadow: 0 12px 40px rgba(0,0,0,0.18);
+  --shadow-sm: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 24px 70px rgba(0,0,0,0.22);
+  --glass-blur: blur(15px) saturate(200%) brightness(1.1);
   --card-radius: 26px;
-  --accent-color: rgba(255,255,255,0.9);
-  --accent-math: rgba(255,255,255,0.9);
-  --accent-eng: rgba(255,255,255,0.9);
-  --accent-routine: rgba(255,255,255,0.9);
-  --gradient-progress: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.9));
-  --toast-bg: rgba(20,20,22,0.85);
-  --cal-full: rgba(255,255,255,0.08);
-  --cal-done: rgba(255,255,255,0.08);
-  --cal-partial: rgba(255,255,255,0.02);
-  --cal-rest: rgba(255,255,255,0.02);
-  --cal-today-glow: rgba(255,255,255,0.15);
-  --cal-full-text-num: #ffffff;
-  --cal-full-text-pct: rgba(255,255,255,0.6);
-  --cal-full-text-loops: rgba(255,255,255,0.4);
-  background-color: #0a0a0c !important;
-  /* 은은한 흰색 무채색 노이즈/그라데이션 배경 (카드 뒤로 비침) */
-  background-image: 
-    radial-gradient(circle at 85% 10%, rgba(255,255,255,0.03) 0%, transparent 40%),
-    radial-gradient(circle at 10% 80%, rgba(255,255,255,0.02) 0%, transparent 40%) !important;
+  --accent-color: rgba(30,41,59,0.9);
+  --accent-math: rgba(30,41,59,0.9);
+  --accent-eng: rgba(30,41,59,0.9);
+  --accent-routine: rgba(30,41,59,0.9);
+  --gradient-progress: linear-gradient(90deg, rgba(101,151,153,0.7), rgba(101,151,153,1.0));
+  --gradient-hero: rgba(255,255,255,0.12);
+  --toast-bg: rgba(255,255,255,0.9);
+  --toast-color: #1e293b;
+  --cal-full: rgba(255,255,255,0.9);
+  --cal-done: rgba(255,255,255,0.4);
+  --cal-partial: rgba(255,255,255,0.2);
+  --cal-rest: rgba(255,255,255,0.1);
+  --cal-today-glow: rgba(101,151,153,0.4);
+  --cal-full-text-num: #1e293b;
+  --cal-full-text-pct: rgba(30,41,59,0.8);
+  --cal-full-text-loops: rgba(30,41,59,0.6);
+  --checkbox-done: #659799;
+  background: transparent !important;
   color: var(--text-primary) !important;
 }
 
@@ -2257,17 +2256,17 @@ body.theme-liquid-glass {
 body.theme-liquid-glass .card,
 body.theme-liquid-glass .planner-layout {
   --layer2-opacity: calc(var(--user-glass-opacity) * 1.0);
-  background-color: var(--glass-bg) !important; /* Layer 1 */
+  background-color: rgba(255,255,255,0.06) !important;
   background-image: 
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 50%), /* Layer 4 */
-    linear-gradient(to bottom, rgba(255,255,255,var(--layer2-opacity)), transparent) !important; /* Layer 2 */
-  backdrop-filter: var(--glass-blur) !important;
-  -webkit-backdrop-filter: var(--glass-blur) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important; /* Layer 3 */
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28), transparent 45%),
+    linear-gradient(to bottom, rgba(255,255,255,0.22), transparent 42%) !important;
+  backdrop-filter: blur(15px) saturate(200%) brightness(1.1) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(200%) brightness(1.1) !important;
+  border: 1px solid rgba(255,255,255,0.28) !important;
   box-shadow: 
-    inset 0 1px 1px rgba(255,255,255,0.10), 
-    inset 0 -1px 1px rgba(0,0,0,0.20),
-    0 12px 40px rgba(0,0,0,0.3) !important; /* Layer 3 */
+    inset 0 1.5px 1px rgba(255,255,255,0.58),
+    inset 0 -2px 2px rgba(0,0,0,0.17),
+    0 22px 45px rgba(0,0,0,0.18) !important;
   transition: all 0.3s ease;
 }
 
@@ -2277,40 +2276,40 @@ body.theme-liquid-glass .card:hover {
 }
 
 body.theme-liquid-glass .hero { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-body.theme-liquid-glass .hero-day, body.theme-liquid-glass .hero-date, body.theme-liquid-glass .loop-info { color: rgba(255,255,255,0.9) !important; }
-body.theme-liquid-glass .dday-num { color: rgba(255,255,255,0.9) !important; text-shadow: 0 2px 12px rgba(255,255,255,0.2); }
-body.theme-liquid-glass .dday-label, body.theme-liquid-glass .dday-sub { color: rgba(255,255,255,0.5) !important; }
-body.theme-liquid-glass #ddayRingFill { stroke: rgba(255,255,255,0.7) !important; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+body.theme-liquid-glass .hero-day, body.theme-liquid-glass .hero-date, body.theme-liquid-glass .loop-info { color: #1e293b !important; }
+body.theme-liquid-glass .dday-num { color: #1e293b !important; text-shadow: none; }
+body.theme-liquid-glass .dday-label, body.theme-liquid-glass .dday-sub { color: rgba(30,41,59,0.6) !important; }
+body.theme-liquid-glass #ddayRingFill { stroke: #659799 !important; filter: none; }
 body.theme-liquid-glass .bar-fill {
-  background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.9)) !important;
-  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+  background: linear-gradient(90deg, #659799, #9fccce) !important;
+  box-shadow: 0 0 12px rgba(101,151,153,0.3);
 }
 body.theme-liquid-glass .cb.on {
-  background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.9)) !important;
-  border-color: rgba(255,255,255,0.9) !important;
-  box-shadow: 0 0 10px rgba(255,255,255,0.15) !important;
+  background: linear-gradient(135deg, #659799, #9fccce) !important;
+  border-color: #9fccce !important;
+  box-shadow: 0 0 10px rgba(101,151,153,0.4) !important;
 }
 body.theme-liquid-glass .stage-badge {
-  background: rgba(255,255,255,0.08) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
-  color: rgba(255,255,255,0.9) !important;
+  background: rgba(101,151,153,0.15) !important;
+  border: 1px solid rgba(101,151,153,0.3) !important;
+  color: #1e293b !important;
   border-radius: 999px !important;
 }
 body.theme-liquid-glass .time-chip {
-  background: rgba(255,255,255,0.08) !important;
-  color: rgba(255,255,255,0.8) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: rgba(255,255,255,0.35) !important;
+  color: #1e293b !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
   border-radius: 999px !important;
 }
 body.theme-liquid-glass .active-block {
-  border-color: rgba(255,255,255,0.3) !important;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 0 28px rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.45) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 0 28px rgba(101,151,153,0.12) !important;
 }
-body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius: 999px !important; color: rgba(255,255,255,0.9) !important; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15) !important; border-radius: 99px; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25) !important; }
+body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius: 999px !important; color: #1e293b !important; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(101,151,153,0.35) !important; border-radius: 99px; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,151,153,0.55) !important; }
 </style>
-<link rel="stylesheet" href="liquid-glass.css?v=7">
+<link rel="stylesheet" href="liquid-glass.css?v=8">
 </head>
 <body class="theme-liquid-glass">
 

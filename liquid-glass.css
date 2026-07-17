@@ -6,16 +6,16 @@
 
 :root {
   /* ── 1. Glass Tokens (Reference Demo Implementation) ── */
-  --user-glass-blur: 24px; /* default */
-  --user-glass-opacity: 0.04; /* default opacity, lowered further */
-  --glass-blur: blur(var(--user-glass-blur)) saturate(180%);
+  --user-glass-blur: 15px; /* default */
+  --user-glass-opacity: 0.06; /* default opacity for light bg */
+  --glass-blur: blur(var(--user-glass-blur)) saturate(200%) brightness(1.1);
   --glass-bg: rgba(255, 255, 255, var(--user-glass-opacity));
-  --glass-border: 1px solid rgba(255, 255, 255, 0.32);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.28);
   
   /* 프레넬 반사(상단 하이라이트)용 그라디언트 오버레이 */
-  --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 45%);
+  --glass-highlight: linear-gradient(to bottom, rgba(255, 255, 255, 0.22) 0%, transparent 42%);
   
-  --glass-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  --glass-shadow: inset 0 1.5px 1px rgba(255,255,255,0.58), inset 0 -2px 2px rgba(0,0,0,0.17), 0 22px 45px rgba(0,0,0,0.29);
 
   /* ── 2. Radii Tokens ── */
   --radius-pill: 999px; /* 캡슐형 */
@@ -30,9 +30,9 @@
   --tint-active-done: rgba(33, 196, 143, 0.55);
 
   /* ── 4. Typography ── */
-  --text-glass-primary: #ffffff;
-  --text-glass-secondary: rgba(255, 255, 255, 0.7);
-  --text-glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  --text-glass-primary: #1e293b;
+  --text-glass-secondary: rgba(30, 41, 59, 0.75);
+  --text-glass-shadow: 0 1px 1px rgba(255,255,255,0.4);
 }
 
 [data-theme="dark"] {
@@ -52,11 +52,13 @@
    Base Background (Vibrant Mesh for Glass Refraction)
    ========================================================= */
 html.theme-liquid-glass, html {
-  background-color: #10131f !important; /* bg-app background */
+  background: linear-gradient(160deg, #d2ebec 0%, #9fccce 45%, #659799 100%) fixed !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
 }
 
 body.theme-liquid-glass, body {
-  background-color: transparent !important;
+  background: transparent !important;
   color: var(--text-glass-primary) !important;
   position: relative;
   z-index: 0;
@@ -68,41 +70,11 @@ body.theme-liquid-glass * {
   --border: var(--glass-border);
 }
 
-/* 
-  bg-app 2-color blob background
-*/
-body.theme-liquid-glass::before, 
+/* Blobs removed — clean mint gradient background only */
+body.theme-liquid-glass::before,
 body.theme-liquid-glass::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px); /* Scaled for full viewport */
-  opacity: 0.55;
-  z-index: -1;
-  pointer-events: none;
-  animation: drift 20s ease-in-out infinite alternate;
-}
-
-body.theme-liquid-glass::before {
-  /* Blue Blob */
-  width: 45vw; height: 45vw; 
-  max-width: 600px; max-height: 600px;
-  background: #3c6ff0; 
-  top: -10%; right: -10%; 
-}
-
-body.theme-liquid-glass::after {
-  /* Green Blob */
-  width: 40vw; height: 40vw; 
-  max-width: 500px; max-height: 500px;
-  background: #21c48f; 
-  bottom: -10%; left: -10%; 
-  animation-delay: -7s;
-}
-
-@keyframes drift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -25px) scale(1.08); }
+  display: none !important;
+  content: none !important;
 }
 
 /* =========================================================
