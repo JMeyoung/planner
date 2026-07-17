@@ -34,27 +34,27 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Mode Adjustments */
-  --glass-bg: rgba(255, 255, 255, 0.10); 
-  --glass-border: 1px solid rgba(255, 255, 255, 0.20);
-  --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0) 45%);
-  --glass-shadow: 0 10px 26px rgba(0, 0, 0, 0.40);
+  /* Dark Mode Adjustments - Force match demo for exact visual */
+  --glass-bg: rgba(255, 255, 255, 0.14); 
+  --glass-border: 1px solid rgba(255, 255, 255, 0.32);
+  --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 45%);
+  --glass-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
   
-  --tint-active-math: rgba(60, 111, 240, 0.4);
-  --tint-active-eng: rgba(33, 196, 143, 0.4);
-  --tint-active-routine: rgba(255, 107, 74, 0.4);
-  --tint-active-done: rgba(33, 196, 143, 0.4);
+  --tint-active-math: rgba(60, 111, 240, 0.55);
+  --tint-active-eng: rgba(33, 196, 143, 0.55);
+  --tint-active-routine: rgba(255, 107, 74, 0.55);
+  --tint-active-done: rgba(33, 196, 143, 0.55);
 }
 
 /* =========================================================
    Base Background (Vibrant Mesh for Glass Refraction)
    ========================================================= */
 html.theme-liquid-glass, html {
-  background-color: #0b0b14 !important; /* Move solid background to html */
+  background-color: #10131f !important; /* bg-app background */
 }
 
 body.theme-liquid-glass, body {
-  background-color: transparent !important; /* Make body transparent to show pseudo-elements */
+  background-color: transparent !important;
   color: var(--text-glass-primary) !important;
   position: relative;
   z-index: 0;
@@ -62,46 +62,40 @@ body.theme-liquid-glass, body {
 }
 
 /* 
-  사용자가 원하신 "생동감 있는 컬러 메시 (가운데 패널)" 느낌을 구현합니다.
-  4가지 색상(오렌지, 블루, 그린, 퍼플)을 강하게 섞어 화려한 굴절을 만듭니다.
+  bg-app 2-color blob background
 */
 body.theme-liquid-glass::before, 
 body.theme-liquid-glass::after {
   content: '';
   position: fixed;
-  inset: -20%;
+  border-radius: 50%;
+  filter: blur(80px); /* Scaled for full viewport */
+  opacity: 0.55;
   z-index: -1;
   pointer-events: none;
-  filter: blur(80px); /* 강한 블러로 색상을 섞음 */
-  opacity: 0.9;
+  animation: drift 20s ease-in-out infinite alternate;
 }
 
 body.theme-liquid-glass::before {
-  /* Orange (#ff6b4a) & Purple (#a259ff) */
-  background-image: 
-    radial-gradient(circle at 20% 20%, #ff6b4a 0%, transparent 40%),
-    radial-gradient(circle at 80% 15%, #a259ff 0%, transparent 40%);
-  animation: meshDrift1 18s ease-in-out infinite alternate;
+  /* Blue Blob */
+  width: 45vw; height: 45vw; 
+  max-width: 600px; max-height: 600px;
+  background: #3c6ff0; 
+  top: -10%; right: -10%; 
 }
 
 body.theme-liquid-glass::after {
-  /* Blue (#3c6ff0) & Green (#21c48f) */
-  background-image: 
-    radial-gradient(circle at 80% 85%, #3c6ff0 0%, transparent 45%),
-    radial-gradient(circle at 30% 90%, #21c48f 0%, transparent 40%);
-  animation: meshDrift2 22s ease-in-out infinite alternate-reverse;
+  /* Green Blob */
+  width: 40vw; height: 40vw; 
+  max-width: 500px; max-height: 500px;
+  background: #21c48f; 
+  bottom: -10%; left: -10%; 
+  animation-delay: -7s;
 }
 
-@keyframes meshDrift1 {
-  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
-  50%  { transform: rotate(5deg) translate(5%, 8%) scale(1.1); }
-  100% { transform: rotate(-5deg) translate(-5%, 5%) scale(0.95); }
-}
-
-@keyframes meshDrift2 {
-  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
-  50%  { transform: rotate(-5deg) translate(-8%, -5%) scale(1.1); }
-  100% { transform: rotate(5deg) translate(5%, -8%) scale(0.95); }
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -25px) scale(1.08); }
 }
 
 /* =========================================================
@@ -315,7 +309,7 @@ body.theme-liquid-glass::after {
 }
 
 /* Flat glass items (Tasks, Stats, etc) */
-.glass-item-flat, .task, .stat-card {
+.glass-item-flat, .stat-card {
   border-radius: var(--radius-sm) !important;
   background: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -323,9 +317,69 @@ body.theme-liquid-glass::after {
   position: relative;
   overflow: hidden;
 }
-.glass-item-flat:hover, .task:hover, .stat-card:hover {
+.glass-item-flat:hover, .stat-card:hover {
   background: rgba(255, 255, 255, 0.12) !important;
 }
-.glass-item-flat:active, .task:active, .stat-card:active {
+.glass-item-flat:active, .stat-card:active {
   transform: scale(0.98) !important;
+}
+
+/* =========================================================
+   Exact Demo UI Components (Tasks, Chips, Checkboxes)
+   ========================================================= */
+
+/* Tasks (Rows) */
+.task, .d-task {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13px !important;
+  color: #fff !important;
+  padding: 10px 4px !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+.task:not(:first-child), .d-task:not(:first-child) {
+  border-top: 1px solid rgba(255,255,255,0.14) !important;
+}
+.task.done .task-text, .d-task.done .d-text {
+  text-decoration: line-through !important;
+  opacity: 0.55 !important;
+  color: #fff !important;
+}
+
+/* Checkboxes */
+.cb, .d-cb {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 5px !important;
+  border: 1.5px solid rgba(255,255,255,0.7) !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+}
+.cb.on, .d-cb.on {
+  background: #21c48f !important;
+  border-color: #21c48f !important;
+}
+.cb.on svg, .d-cb.on svg {
+  display: none !important; /* Hide custom SVG checkmark to match demo style */
+}
+
+/* Chips */
+.chip, .month-nav .nav-btn, .week-stat-chip {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  padding: 5px 11px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  color: rgba(255,255,255,0.7) !important;
+  box-shadow: none !important;
+}
+.chip.active, .month-nav .nav-btn:hover {
+  background: rgba(60,111,240,0.55) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  color: #fff !important;
 }
