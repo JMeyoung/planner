@@ -1,0 +1,12 @@
+
+┌─────────────────────────────────────────┐
+│  스터디 플래너 로컬 서버                 │
+│  월별: http://localhost:3001            │
+│  일별: http://localhost:3001/daily      │
+└─────────────────────────────────────────┘
+
+  월별: /Users/jaeyoung/Library/CloudStorage/GoogleDrive-jeminai951@gmail.com/내 드라이브/planner/monthly.html
+  일별: /Users/jaeyoung/Library/CloudStorage/GoogleDrive-jeminai951@gmail.com/내 드라이브/planner/daily.html
+  종료: Ctrl+C
+
+  127.0.0.1 ["GET /api/fetch?id=37716b05-a4f9-81b5-8554-e89acef1739e HTTP/1.1" 500 -]
