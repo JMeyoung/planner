@@ -583,22 +583,22 @@ body::before, body::after {
 .timeline-card {
   animation: fadeSlideUp .5s ease .25s both;
 }
-.tl-container { position: relative; padding-left: 24px; }
+.tl-container { position: relative; padding-left: 20px; }
 .tl-line {
-  position: absolute; left: 7px; top: 8px; bottom: 8px;
+  position: absolute; left: 5px; top: 6px; bottom: 6px;
   width: 2px; background: var(--tl-line);
   border-radius: 1px;
 }
 .tl-row {
-  display: flex; gap: 12px; margin-bottom: 14px;
+  display: flex; gap: 10px; margin-bottom: 10px;
   align-items: flex-start; position: relative;
 }
 .tl-row:last-child { margin-bottom: 0; }
 .tl-dot {
-  position: absolute; left: -20px; top: 6px;
-  width: 10px; height: 10px; border-radius: 50%;
+  position: absolute; left: -18px; top: 6px;
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--tl-dot);
-  border: 2px solid var(--bg-primary);
+  border: 1.5px solid var(--bg-primary);
   transition: background .3s;
   z-index: 1;
 }
@@ -608,12 +608,12 @@ body::before, body::after {
 .tl-row.active .tl-dot {
   background: var(--tl-dot-active);
   animation: dotPulse 2s ease-in-out infinite;
-  box-shadow: 0 0 0 3px hsla(220,70%,55%,0.2);
+  box-shadow: 0 0 0 2px hsla(220,70%,55%,0.2);
 }
 .tl-month-badge {
-  font-size: 0.7rem; font-weight: 700; color: #fff;
-  border-radius: 8px; padding: 3px 10px;
-  flex-shrink: 0; min-width: 50px;
+  font-size: 0.65rem; font-weight: 700; color: #fff;
+  border-radius: 6px; padding: 2px 7px;
+  flex-shrink: 0; min-width: 44px;
   text-align: center; margin-top: 1px;
   background: var(--tl-dot);
   transition: background .3s;
@@ -622,17 +622,17 @@ body::before, body::after {
 .tl-row.active .tl-month-badge { background: var(--tl-dot-active); color: #35235d; }
 .tl-content { flex: 1; }
 .tl-math {
-  font-size: 0.8rem; color: var(--accent-math);
-  font-weight: 600; margin-bottom: 3px;
+  font-size: 0.76rem; color: var(--accent-math);
+  font-weight: 600; margin-bottom: 2px;
 }
 .tl-eng {
-  font-size: 0.8rem; color: var(--accent-eng);
-  font-weight: 600; margin-bottom: 3px;
+  font-size: 0.76rem; color: var(--accent-eng);
+  font-weight: 600; margin-bottom: 2px;
 }
-.tl-extra { font-size: 0.72rem; color: var(--text-muted); }
+.tl-extra { font-size: 0.68rem; color: var(--text-muted); }
 .tl-row.past .tl-content { opacity: 0.7; }
 .tl-checkmark {
-  font-size: 0.65rem; margin-left: 4px;
+  font-size: 0.6rem; margin-left: 3px;
   vertical-align: middle; opacity: 0.8;
 }
 
