@@ -47,10 +47,10 @@
 }
 
 /* =========================================================
-   Base Background (Animated Reference Mesh for Glass Refraction)
+   Base Background (Vibrant Mesh for Glass Refraction)
    ========================================================= */
 body.theme-liquid-glass, body {
-  background-color: #10131f !important; /* bg-app background */
+  background-color: #0b0b14 !important; /* bg-mesh dark background */
   color: var(--text-glass-primary) !important;
   position: relative;
   z-index: 0;
@@ -58,40 +58,46 @@ body.theme-liquid-glass, body {
 }
 
 /* 
-  Reference Demo "bg-app" implementation
+  사용자가 원하신 "생동감 있는 컬러 메시 (가운데 패널)" 느낌을 구현합니다.
+  4가지 색상(오렌지, 블루, 그린, 퍼플)을 강하게 섞어 화려한 굴절을 만듭니다.
 */
 body.theme-liquid-glass::before, 
 body.theme-liquid-glass::after {
   content: '';
   position: fixed;
-  border-radius: 50%;
-  filter: blur(80px); /* Scaled up from 60px for full viewport */
-  opacity: 0.55;
+  inset: -20%;
   z-index: -1;
   pointer-events: none;
-  animation: drift 20s ease-in-out infinite alternate;
+  filter: blur(80px); /* 강한 블러로 색상을 섞음 */
+  opacity: 0.9;
 }
 
 body.theme-liquid-glass::before {
-  /* bg-app b1: Blue */
-  width: 45vw; height: 45vw; 
-  max-width: 600px; max-height: 600px;
-  background: #3c6ff0; 
-  top: -10%; right: -10%; 
+  /* Orange (#ff6b4a) & Purple (#a259ff) */
+  background-image: 
+    radial-gradient(circle at 20% 20%, #ff6b4a 0%, transparent 40%),
+    radial-gradient(circle at 80% 15%, #a259ff 0%, transparent 40%);
+  animation: meshDrift1 18s ease-in-out infinite alternate;
 }
 
 body.theme-liquid-glass::after {
-  /* bg-app b2: Green */
-  width: 40vw; height: 40vw; 
-  max-width: 500px; max-height: 500px;
-  background: #21c48f; 
-  bottom: -10%; left: -10%; 
-  animation-delay: -7s;
+  /* Blue (#3c6ff0) & Green (#21c48f) */
+  background-image: 
+    radial-gradient(circle at 80% 85%, #3c6ff0 0%, transparent 45%),
+    radial-gradient(circle at 30% 90%, #21c48f 0%, transparent 40%);
+  animation: meshDrift2 22s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes drift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -25px) scale(1.08); }
+@keyframes meshDrift1 {
+  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
+  50%  { transform: rotate(5deg) translate(5%, 8%) scale(1.1); }
+  100% { transform: rotate(-5deg) translate(-5%, 5%) scale(0.95); }
+}
+
+@keyframes meshDrift2 {
+  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
+  50%  { transform: rotate(-5deg) translate(-8%, -5%) scale(1.1); }
+  100% { transform: rotate(5deg) translate(5%, -8%) scale(0.95); }
 }
 
 /* =========================================================
