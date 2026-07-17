@@ -218,8 +218,8 @@ body.theme-liquid-glass::after {
 .glass-sheet, #drawer {
   border-radius: 32px 32px 0 0 !important;
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(40px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
   border-top: var(--glass-border) !important;
   border-left: var(--glass-border) !important;
   border-right: var(--glass-border) !important;
@@ -284,29 +284,35 @@ body.theme-liquid-glass::after {
 
 /* 6. Calendar & List Item Glass Overrides */
 .day-cell {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(8px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 0.6);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
+  backdrop-filter: blur(calc(var(--user-glass-blur) * 0.33)) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 0.33)) saturate(120%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 .day-cell.future, .day-cell.no-data {
-  background: rgba(255, 255, 255, 0.02) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 0.25);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
   border-color: transparent !important;
 }
 .day-cell.rest {
-  background: rgba(255, 255, 255, 0.06) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 0.75);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
 .day-cell.partial {
-  background: rgba(255, 255, 255, 0.12) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 1.5);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
 .day-cell.done {
-  background: rgba(255, 255, 255, 0.18) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 2.25);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
 }
 .day-cell.full {
-  background: rgba(255, 255, 255, 0.25) !important;
+  --day-opacity: calc(var(--user-glass-opacity) * 3.1);
+  background: rgba(255, 255, 255, var(--day-opacity)) !important;
   border-color: rgba(255, 255, 255, 0.45) !important;
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1) !important;
 }
@@ -314,14 +320,18 @@ body.theme-liquid-glass::after {
 /* Flat glass items (Tasks, Stats, etc) */
 .glass-item-flat, .stat-card {
   border-radius: var(--radius-sm) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  --item-opacity: calc(var(--user-glass-opacity) * 1.0);
+  background: rgba(255, 255, 255, var(--item-opacity)) !important;
+  backdrop-filter: blur(calc(var(--user-glass-blur) * 0.5)) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 0.5)) saturate(140%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   transition: background 0.2s ease, transform 0.15s ease !important;
   position: relative;
   overflow: hidden;
 }
 .glass-item-flat:hover, .stat-card:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
+  --item-hover-opacity: calc(var(--user-glass-opacity) * 1.5 + 0.04);
+  background: rgba(255, 255, 255, var(--item-hover-opacity)) !important;
 }
 .glass-item-flat:active, .stat-card:active {
   transform: scale(0.98) !important;

@@ -2256,12 +2256,13 @@ body.theme-liquid-glass {
 /* 4-Layer 구조 직접 적용 */
 body.theme-liquid-glass .card,
 body.theme-liquid-glass .planner-layout {
-  background-color: rgba(255,255,255,0.04) !important; /* Layer 1 */
+  --layer2-opacity: calc(var(--user-glass-opacity) * 1.0);
+  background-color: var(--glass-bg) !important; /* Layer 1 */
   background-image: 
     radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 50%), /* Layer 4 */
-    linear-gradient(to bottom, rgba(255,255,255,0.08), transparent) !important; /* Layer 2 */
-  backdrop-filter: blur(24px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+    linear-gradient(to bottom, rgba(255,255,255,var(--layer2-opacity)), transparent) !important; /* Layer 2 */
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
   border: 1px solid rgba(255,255,255,0.10) !important; /* Layer 3 */
   box-shadow: 
     inset 0 1px 1px rgba(255,255,255,0.10), 
@@ -2309,7 +2310,7 @@ body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius:
 body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15) !important; border-radius: 99px; }
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25) !important; }
 </style>
-<link rel="stylesheet" href="liquid-glass.css?v=5">
+<link rel="stylesheet" href="liquid-glass.css?v=6">
 </head>
 <body class="theme-liquid-glass">
 
