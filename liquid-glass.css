@@ -8,7 +8,7 @@
   /* ── 1. Glass Tokens (Reference Demo Implementation) ── */
   --user-glass-blur: 15px; /* default */
   --user-glass-opacity: 0.06; /* default opacity for light bg */
-  --glass-blur: blur(var(--user-glass-blur)) saturate(200%) brightness(1.1);
+  --glass-blur: blur(var(--user-glass-blur)) saturate(200%) brightness(1.12);
   --glass-bg: rgba(255, 255, 255, var(--user-glass-opacity));
   --glass-border: 1px solid rgba(255, 255, 255, 0.28);
   
@@ -70,11 +70,30 @@ body.theme-liquid-glass * {
   --border: var(--glass-border);
 }
 
-/* Blobs removed — clean mint gradient background only */
+/* Ambient blobs — injected as real .lg-blob elements by liquid-glass-settings.js
+   (kept off the ::before/::after pseudo-elements so component layers stay free) */
 body.theme-liquid-glass::before,
 body.theme-liquid-glass::after {
   display: none !important;
   content: none !important;
+}
+
+.lg-blob {
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: lg-blob-float ease-in-out infinite;
+}
+.lg-blob-1 { top: 8%;  left: 6%;  width: 340px; height: 340px; background: #eaf8f8; opacity: .7;  animation-duration: 22s; }
+.lg-blob-2 { top: 55%; left: 68%; width: 400px; height: 400px; background: #7fb2b4; opacity: .6;  animation-duration: 27s; animation-delay: -6s; }
+.lg-blob-3 { top: 70%; left: 12%; width: 260px; height: 260px; background: #d9eeef; opacity: .55; animation-duration: 19s; animation-delay: -3s; }
+.lg-blob-4 { top: 14%; left: 62%; width: 300px; height: 300px; background: #568789; opacity: .45; animation-duration: 24s; animation-delay: -9s; }
+
+@keyframes lg-blob-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -24px, 0); }
 }
 
 /* =========================================================
@@ -315,6 +334,43 @@ body.theme-liquid-glass::after {
 }
 
 /* =========================================================
+   4. Dynamic Light — 4th glass layer, shared by every card/button.
+   200%-sized radial highlight that rotates with interaction state.
+   White-only, no color casts.
+   ========================================================= */
+.glass-circle::after,
+.glass-circle-sm::after,
+.glass-pill::after,
+.glass-panel::after,
+.glass-card::after,
+.heatmap-card::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28) 0%, transparent 45%);
+  transform: rotate(-15deg);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+.glass-circle:hover::after,
+.glass-circle-sm:hover::after,
+.glass-pill:hover::after,
+.glass-panel:hover::after,
+.glass-card:hover::after,
+.heatmap-card:hover::after {
+  transform: rotate(15deg);
+}
+.glass-circle:active::after,
+.glass-circle-sm:active::after,
+.glass-pill:active::after,
+.glass-panel:active::after,
+.glass-card:active::after,
+.heatmap-card:active::after {
+  transform: rotate(35deg);
+}
+
+/* =========================================================
    Exact Demo UI Components (Tasks, Chips, Checkboxes)
    ========================================================= */
 
@@ -376,4 +432,82 @@ body.theme-liquid-glass::after {
 /* Ensure fixed position buttons retain their layout when using glass-circle */
 .theme-toggle, .open-window-btn, .knowledge-btn, .timer-btn {
   position: fixed !important;
+}
+
+/* =========================================================
+   7. Draggable Glass Pill — Style Lab toggle switches.
+   Track stays a static glass layer; the knob (.lg-knob, injected
+   by liquid-glass-settings.js) is its own z-10 layer so backdrop-blur
+   on the track never has to recompute against a moving element.
+   ========================================================= */
+body.theme-liquid-glass .switch {
+  width: 44px !important;
+  height: 24px !important;
+}
+body.theme-liquid-glass .switch .slider {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  transition: background 0.3s ease !important;
+}
+body.theme-liquid-glass .switch .slider::before {
+  content: none !important; /* superseded by .lg-knob */
+}
+body.theme-liquid-glass .switch input:checked + .slider {
+  background: rgba(101, 151, 153, 0.4) !important;
+}
+
+/* moving pill — idle: solid white gradient */
+body.theme-liquid-glass .lg-knob {
+  position: absolute;
+  z-index: 10;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #fff, #eef1f6);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.55),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.16),
+    0 6px 14px rgba(0, 0, 0, 0.22);
+  transform: translateX(0) scale(1);
+}
+/* moving pill — dragging: translucent, blurred, no color cast */
+body.theme-liquid-glass .switch.dragging .lg-knob {
+  background: rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(10px) saturate(2) brightness(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(2) brightness(1.15);
+}
+/* caustics — white only, visible while dragging */
+body.theme-liquid-glass .lg-knob-caustics {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.75) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 255, 255, 0.55) 0%, transparent 45%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+body.theme-liquid-glass .switch.dragging .lg-knob-caustics {
+  opacity: 1;
+}
+/* specular top sheet */
+body.theme-liquid-glass .lg-knob-specular {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), transparent);
+  opacity: 0.9;
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+body.theme-liquid-glass .switch.dragging .lg-knob-specular {
+  opacity: 0.5;
 }
