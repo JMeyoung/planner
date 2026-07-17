@@ -7,8 +7,9 @@
 :root {
   /* ── 1. Glass Tokens (Reference Demo Implementation) ── */
   --user-glass-blur: 24px; /* default */
+  --user-glass-opacity: 0.08; /* default opacity, lowered from 0.14 to make it more transparent */
   --glass-blur: blur(var(--user-glass-blur)) saturate(180%);
-  --glass-bg: rgba(255, 255, 255, 0.14);
+  --glass-bg: rgba(255, 255, 255, var(--user-glass-opacity));
   --glass-border: 1px solid rgba(255, 255, 255, 0.32);
   
   /* 프레넬 반사(상단 하이라이트)용 그라디언트 오버레이 */
@@ -36,7 +37,7 @@
 
 [data-theme="dark"] {
   /* Dark Mode Adjustments - Force match demo for exact visual */
-  --glass-bg: rgba(255, 255, 255, 0.14); 
+  --glass-bg: rgba(255, 255, 255, var(--user-glass-opacity)); 
   --glass-border: 1px solid rgba(255, 255, 255, 0.32);
   --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 45%);
   --glass-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
