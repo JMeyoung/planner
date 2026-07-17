@@ -370,6 +370,25 @@ class Handler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 self._json(500, {'error': str(e)})
 
+        elif path.endswith('.css') or path.endswith('.js') or path.endswith('.json'):
+            # 정적 파일 서빙 (CSS, JS, JSON)
+            filename = os.path.basename(path)
+            filepath = os.path.join(BASE_DIR, filename)
+            if os.path.exists(filepath):
+                with open(filepath, 'rb') as f:
+                    body = f.read()
+                ext = path.rsplit('.', 1)[-1]
+                content_types = {'css': 'text/css', 'js': 'application/javascript', 'json': 'application/json'}
+                self.send_response(200)
+                self.send_header('Content-Type', content_types.get(ext, 'application/octet-stream') + '; charset=utf-8')
+                self.send_header('Content-Length', str(len(body)))
+                self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+                self.send_cors()
+                self.end_headers()
+                self.wfile.write(body)
+            else:
+                self._json(404, {'error': f'{filename} not found'})
+
         else:
             self._json(404, {'error': 'not found'})
 
