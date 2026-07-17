@@ -49,8 +49,12 @@
 /* =========================================================
    Base Background (Vibrant Mesh for Glass Refraction)
    ========================================================= */
+html.theme-liquid-glass, html {
+  background-color: #0b0b14 !important; /* Move solid background to html */
+}
+
 body.theme-liquid-glass, body {
-  background-color: #0b0b14 !important; /* bg-mesh dark background */
+  background-color: transparent !important; /* Make body transparent to show pseudo-elements */
   color: var(--text-glass-primary) !important;
   position: relative;
   z-index: 0;
