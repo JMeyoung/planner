@@ -122,5 +122,150 @@
       document.documentElement.style.setProperty('--user-glass-opacity', opacityDecimal);
       localStorage.setItem('liquidGlassOpacity', opacityDecimal);
     });
+
+    injectLiquidGlassBlobs();
+    initLiquidGlassPills();
   });
+
+  // ── Ambient background blobs ──
+  function injectLiquidGlassBlobs() {
+    if (document.querySelector('.lg-blob')) return;
+    for (let i = 1; i <= 4; i++) {
+      const blob = document.createElement('div');
+      blob.className = 'lg-blob lg-blob-' + i;
+      document.body.appendChild(blob);
+    }
+  }
+
+  // ── Draggable glass pills (Style Lab toggle switches) ──
+  // Spring-driven, click-vs-drag aware, elastic-boundary pill knob.
+  function initLiquidGlassPills() {
+    const SPRING_EASING = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+    const DRAG_THRESHOLD = 5; // px before a press counts as a drag
+    const ELASTIC_OVERFLOW = 8; // px the knob may travel past the track edges
+    const KNOB_SIZE = 18;
+    const KNOB_INSET = 3;
+
+    document.querySelectorAll('.switch').forEach((label) => {
+      if (label.dataset.lgPillInit) return;
+      label.dataset.lgPillInit = '1';
+
+      const input = label.querySelector('input[type="checkbox"]');
+      const slider = label.querySelector('.slider');
+      if (!input || !slider) return;
+
+      const knob = document.createElement('span');
+      knob.className = 'lg-knob';
+      knob.innerHTML =
+        '<span class="lg-knob-caustics"></span><span class="lg-knob-specular"></span>';
+      slider.appendChild(knob);
+
+      let isDragging = false;
+      let hasDragged = false;
+      let dragX = 0;
+      const startXRef = { current: 0 };
+      const startPillXRef = { current: 0 };
+
+      const travel = () => slider.clientWidth - KNOB_SIZE - KNOB_INSET * 2;
+      const restX = () => (input.checked ? travel() : 0);
+      const clampX = (x) => Math.max(-ELASTIC_OVERFLOW, Math.min(travel() + ELASTIC_OVERFLOW, x));
+
+      const setKnobX = (x, durationMs) => {
+        knob.style.transition = 'transform ' + durationMs + 'ms ' + SPRING_EASING;
+        knob.style.transform = 'translateX(' + x + 'px) scale(' + (isDragging ? 1.08 : 1) + ')';
+      };
+
+      const setDragging = (dragging) => {
+        isDragging = dragging;
+        label.classList.toggle('dragging', dragging);
+        knob.style.willChange = dragging ? 'transform' : 'auto';
+      };
+
+      const commit = (x) => {
+        const next = x > travel() / 2;
+        if (input.checked !== next) {
+          input.checked = next;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        setKnobX(restX(), 500);
+      };
+
+      const onMove = (clientX) => {
+        const delta = clientX - startXRef.current;
+        if (!hasDragged && Math.abs(delta) >= DRAG_THRESHOLD) hasDragged = true;
+        dragX = clampX(startPillXRef.current + delta);
+        setKnobX(dragX, 150);
+      };
+
+      function onMouseMove(e) {
+        onMove(e.clientX);
+      }
+      function onTouchMove(e) {
+        if (e.touches[0]) {
+          e.preventDefault();
+          onMove(e.touches[0].clientX);
+        }
+      }
+      function onMouseUp() {
+        onUp();
+      }
+      function onTouchEnd() {
+        onUp();
+      }
+
+      function onUp() {
+        setDragging(false);
+        if (hasDragged) {
+          commit(dragX);
+        } else {
+          commit(restX() > 0 ? 0 : travel());
+        }
+        hasDragged = false;
+        // registered on drag start, torn down here — mirrors a useEffect cleanup
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        window.removeEventListener('touchmove', onTouchMove);
+        window.removeEventListener('touchend', onTouchEnd);
+      }
+
+      function startDrag(clientX) {
+        startXRef.current = clientX;
+        startPillXRef.current = restX();
+        dragX = startPillXRef.current;
+        hasDragged = false;
+        setDragging(true);
+        setKnobX(dragX, 0);
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
+        window.addEventListener('touchend', onTouchEnd);
+      }
+
+      slider.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        startDrag(e.clientX);
+      });
+      slider.addEventListener(
+        'touchstart',
+        (e) => {
+          e.preventDefault();
+          startDrag(e.touches[0].clientX);
+        },
+        { passive: false }
+      );
+
+      // We own toggling entirely through the mousedown/up state machine above;
+      // suppress the browser's native label->input click forwarding so it
+      // doesn't also flip `checked` and cancel out our own commit().
+      label.addEventListener('click', (e) => e.preventDefault());
+
+      // keep the knob synced if `checked` changes programmatically elsewhere
+      input.addEventListener('change', () => {
+        if (!isDragging) setKnobX(restX(), 500);
+      });
+
+      setKnobX(restX(), 0); // initial position, no transition
+    });
+  }
 })();
