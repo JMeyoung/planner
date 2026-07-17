@@ -1,7 +1,7 @@
 (function() {
   // Load saved values from localStorage
   const savedBlur = localStorage.getItem('liquidGlassBlur') || '24';
-  const savedOpacity = localStorage.getItem('liquidGlassOpacity') || '0.08';
+  const savedOpacity = localStorage.getItem('liquidGlassOpacity') || '0.04';
   
   document.documentElement.style.setProperty('--user-glass-blur', savedBlur + 'px');
   document.documentElement.style.setProperty('--user-glass-opacity', savedOpacity);

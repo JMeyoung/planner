@@ -7,7 +7,7 @@
 :root {
   /* ── 1. Glass Tokens (Reference Demo Implementation) ── */
   --user-glass-blur: 24px; /* default */
-  --user-glass-opacity: 0.08; /* default opacity, lowered from 0.14 to make it more transparent */
+  --user-glass-opacity: 0.04; /* default opacity, lowered further */
   --glass-blur: blur(var(--user-glass-blur)) saturate(180%);
   --glass-bg: rgba(255, 255, 255, var(--user-glass-opacity));
   --glass-border: 1px solid rgba(255, 255, 255, 0.32);
