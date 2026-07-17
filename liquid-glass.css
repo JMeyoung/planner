@@ -6,7 +6,8 @@
 
 :root {
   /* ── 1. Glass Tokens (Reference Demo Implementation) ── */
-  --glass-blur: blur(24px) saturate(180%);
+  --user-glass-blur: 24px; /* default */
+  --glass-blur: blur(var(--user-glass-blur)) saturate(180%);
   --glass-bg: rgba(255, 255, 255, 0.14);
   --glass-border: 1px solid rgba(255, 255, 255, 0.32);
   

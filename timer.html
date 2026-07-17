@@ -461,13 +461,14 @@ select option {
   .btn { padding: 10px 20px; font-size: 0.88rem; }
 }
 </style>
+  <link rel="stylesheet" href="liquid-glass.css">
 </head>
-<body>
+<body class="theme-liquid-glass">
 
 <header>
   <a href="/" class="back-btn">← 월별 플래너</a>
   <div class="header-right">
-    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="테마 전환">🌙</button>
+    <button class="theme-toggle glass-circle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
   </div>
 </header>
 
@@ -871,5 +872,6 @@ document.addEventListener('click', () => {
 updateTimeDisplay();
 loadTheme();
 </script>
+  <script src="liquid-glass-settings.js"></script>
 </body>
 </html>

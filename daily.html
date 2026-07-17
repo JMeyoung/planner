@@ -2346,7 +2346,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,2
       <div id="streakBadge"></div>
     </div>
     <div class="hero-center" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; margin: 0 12px;">
-      <button class="theme-toggle glass-circle-sm" id="themeToggle" aria-label="테마 변경" style="position:static; font-size:0.8rem;">🌙</button>
+      <button class="theme-toggle glass-circle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
       <a href="/" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">← 월별 플래너</a>
       <a href="/knowledge.html" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">💡 오늘의 전공 지식</a>
       <a href="/timer.html" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">⏱️ 타임어택 타이머</a>
@@ -4739,6 +4739,7 @@ function renderArchiveList() {
 }
 
 </script>
+  <script src="liquid-glass-settings.js"></script>
 </body>
 </html>
 
