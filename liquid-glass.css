@@ -214,7 +214,6 @@ body.theme-liquid-glass::after {
   border-radius: inherit;
 }
 
-/* 4. Modals / Bottom Sheets */
 .glass-sheet, #drawer {
   border-radius: 32px 32px 0 0 !important;
   background: var(--glass-bg) !important;
@@ -225,8 +224,10 @@ body.theme-liquid-glass::after {
   border-right: var(--glass-border) !important;
   box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.3) !important;
   
-  position: relative;
   overflow: hidden;
+}
+.glass-sheet {
+  position: relative;
 }
 .glass-sheet::before, #drawer::before {
   content: '';
