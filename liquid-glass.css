@@ -324,19 +324,19 @@ body.theme-liquid-glass::after {
   align-items: center !important;
   gap: 10px !important;
   font-size: 13px !important;
-  color: #fff !important;
+  color: #1e293b !important;
   padding: 10px 4px !important;
   background: transparent !important;
   border-radius: 0 !important;
   border: none !important;
 }
 .task:not(:first-child), .d-task:not(:first-child) {
-  border-top: 1px solid rgba(255,255,255,0.14) !important;
+  border-top: 1px solid rgba(30,41,59,0.1) !important;
 }
 .task.done .task-text, .d-task.done .d-text {
   text-decoration: line-through !important;
-  opacity: 0.55 !important;
-  color: #fff !important;
+  opacity: 0.45 !important;
+  color: #1e293b !important;
 }
 
 /* Checkboxes */
@@ -344,34 +344,33 @@ body.theme-liquid-glass::after {
   width: 16px !important;
   height: 16px !important;
   border-radius: 5px !important;
-  border: 1.5px solid rgba(255,255,255,0.7) !important;
+  border: 1.5px solid rgba(30,41,59,0.4) !important;
   flex-shrink: 0 !important;
   background: transparent !important;
 }
 .cb.on, .d-cb.on {
-  background: #21c48f !important;
-  border-color: #21c48f !important;
+  background: #659799 !important;
+  border-color: #659799 !important;
 }
 .cb.on svg, .d-cb.on svg {
-  display: none !important; /* Hide custom SVG checkmark to match demo style */
+  display: none !important;
 }
 
 /* Chips */
 .chip, .month-nav .nav-btn, .week-stat-chip {
   font-size: 11px !important;
   font-weight: 700 !important;
-  color: #fff !important;
   padding: 5px 11px !important;
   border-radius: 999px !important;
-  background: rgba(255,255,255,0.10) !important;
-  border: 1px solid rgba(255,255,255,0.2) !important;
-  color: rgba(255,255,255,0.7) !important;
+  background: rgba(255,255,255,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.45) !important;
+  color: rgba(30,41,59,0.8) !important;
   box-shadow: none !important;
 }
 .chip.active, .month-nav .nav-btn:hover {
-  background: rgba(60,111,240,0.55) !important;
-  border: 1px solid rgba(255,255,255,0.4) !important;
-  color: #fff !important;
+  background: rgba(101,151,153,0.35) !important;
+  border: 1px solid rgba(101,151,153,0.5) !important;
+  color: #1e293b !important;
 }
 
 /* Ensure fixed position buttons retain their layout when using glass-circle */
