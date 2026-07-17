@@ -1,0 +1,295 @@
+/* 
+   Apple iOS 27 Liquid Glass Design System
+   =======================================
+   투명도, 블러, 입체적인 엣지 하이라이트를 결합한 차세대 유리 질감.
+*/
+
+:root {
+  /* ── 1. Glass Tokens (Light Mode Base) ── */
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* 프레넬 반사(상단 하이라이트)용 그라디언트 오버레이 */
+  --glass-highlight: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 30%,
+    transparent 100%
+  );
+  
+  --glass-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  /* ── 2. Radii Tokens ── */
+  --radius-pill: 999px; /* 캡슐형 */
+  --radius-circle: 50%; /* 완전한 원형 */
+  --radius-card: 24px;  /* 카드형 (충분히 둥근) */
+  --radius-sm: 12px;
+
+  /* ── 3. Active Tint Colors (Grayscale for Colorless Glass) ── */
+  --tint-active-math: rgba(255, 255, 255, 0.15);
+  --tint-active-eng: rgba(255, 255, 255, 0.15);
+  --tint-active-routine: rgba(255, 255, 255, 0.15);
+  --tint-active-done: rgba(255, 255, 255, 0.2);
+
+  /* ── 4. Typography ── */
+  --text-glass-primary: #ffffff;
+  --text-glass-secondary: rgba(255, 255, 255, 0.6);
+  --text-glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Adjustments */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.10);
+  --glass-highlight: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.01) 30%,
+    transparent 100%
+  );
+  --glass-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 12px 32px rgba(0, 0, 0, 0.6);
+  
+  --tint-active-math: rgba(255, 255, 255, 0.1);
+  --tint-active-eng: rgba(255, 255, 255, 0.1);
+  --tint-active-routine: rgba(255, 255, 255, 0.1);
+  --tint-active-done: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================
+   Base Background (Colorless Grayscale)
+   ========================================================= */
+body.theme-liquid-glass, body {
+  background-color: #0A0A0C !important; 
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02), transparent 50%) !important;
+  background-attachment: fixed !important;
+  color: var(--text-glass-primary) !important;
+}
+
+/* =========================================================
+   Core Component Classes
+   ========================================================= */
+
+/* 1. Circle Icon Buttons (FABs) */
+.glass-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-circle) !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  
+  position: relative;
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  color: var(--text-glass-primary) !important;
+  text-shadow: var(--text-glass-shadow) !important;
+  
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background 0.2s ease, 
+              box-shadow 0.2s ease !important;
+}
+.glass-circle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-highlight) !important;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-circle:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.05) !important;
+}
+.glass-circle:active {
+  transform: scale(0.96) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 2. Capsule Toggles / Chips */
+.glass-pill, .dday-chip, #streakBadge {
+  border-radius: var(--radius-pill) !important;
+  padding: 8px 20px !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  
+  position: relative;
+  overflow: hidden;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  
+  color: var(--text-glass-primary) !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  text-shadow: var(--text-glass-shadow) !important;
+  
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background 0.2s ease !important;
+  cursor: pointer;
+}
+.glass-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-highlight) !important;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-pill.active {
+  background: var(--tint-active-math) !important;
+}
+.glass-pill:active {
+  transform: scale(0.96) !important;
+}
+
+/* 3. Cards / General Containers */
+.glass-panel, .glass-card, .heatmap-card {
+  border-radius: var(--radius-card) !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  
+  color: var(--text-glass-primary) !important;
+  
+  transition: transform 0.25s ease, background 0.2s ease !important;
+}
+.glass-panel::before, .glass-card::before, .heatmap-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-highlight) !important;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* 4. Modals / Bottom Sheets */
+.glass-sheet, #drawer {
+  border-radius: 32px 32px 0 0 !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border-top: var(--glass-border) !important;
+  border-left: var(--glass-border) !important;
+  border-right: var(--glass-border) !important;
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.3) !important;
+  
+  position: relative;
+  overflow: hidden;
+}
+.glass-sheet::before, #drawer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-highlight) !important;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* 5. Small Circle Icon Buttons (Header/Sidebar) */
+.glass-circle-sm, .nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-circle) !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  
+  position: relative;
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  color: var(--text-glass-primary) !important;
+  text-shadow: var(--text-glass-shadow) !important;
+  
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background 0.2s ease, 
+              box-shadow 0.2s ease !important;
+}
+.glass-circle-sm::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glass-highlight) !important;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-circle-sm:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.05) !important;
+}
+.glass-circle-sm:active {
+  transform: scale(0.96) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 6. Calendar & List Item Glass Overrides */
+.day-cell {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(8px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.day-cell.future, .day-cell.no-data {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: transparent !important;
+}
+.day-cell.rest {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+.day-cell.partial {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+.day-cell.done {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+.day-cell.full {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Flat glass items (Tasks, Stats, etc) */
+.glass-item-flat, .task, .stat-card {
+  border-radius: var(--radius-sm) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: background 0.2s ease, transform 0.15s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+.glass-item-flat:hover, .task:hover, .stat-card:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+.glass-item-flat:active, .task:active, .stat-card:active {
+  transform: scale(0.98) !important;
+}
