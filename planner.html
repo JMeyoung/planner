@@ -6299,7 +6299,7 @@ initTheme();
 initStyleLab();
 // Restore theme preset
 (function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'liquid';
   window.applyTheme(savedTheme, false);
 })();
 
@@ -7615,7 +7615,7 @@ window.applyTheme = function(themeName, showToastNotify = true) {
 
 // Restore theme preset
 (function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'liquid';
   window.applyTheme(savedTheme, false);
 })();
 

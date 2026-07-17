@@ -2332,7 +2332,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5) !important; }
 </style>
 </head>
-<body class="theme-minimal-paper">
+<body class="theme-liquid-glass">
 
 <!-- Notion 토큰 설정 모달 -->
 <div id="tokenSetup" style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
@@ -4678,7 +4678,7 @@ initTheme();
 initStyleLab();
 // Restore theme preset
 (function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  const savedTheme = localStorage.getItem('style-lab-theme') || 'liquid';
   window.applyTheme(savedTheme, false);
 })();
 
