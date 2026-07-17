@@ -57,17 +57,56 @@
 }
 
 /* =========================================================
-   Base Background (Colorless Grayscale with High Contrast for Glass)
+   Base Background (Animated Premium Mesh for Glass Refraction)
    ========================================================= */
 body.theme-liquid-glass, body {
-  background-color: #0A0A0C !important; 
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.12), transparent 50%),
-    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.08), transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(255, 255, 255, 0.15), transparent 60%),
-    radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.05), transparent 40%) !important;
-  background-attachment: fixed !important;
+  background-color: #050508 !important; /* Very deep dark tint */
   color: var(--text-glass-primary) !important;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* 
+  아름다운 유리 굴절(Refraction)을 만들어내기 위해, 
+  배경에서 아주 천천히 떠다니는 거대한 빛무리(Orbs)를 생성합니다.
+*/
+body.theme-liquid-glass::before, 
+body.theme-liquid-glass::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+  background-size: 100% 100%;
+}
+
+body.theme-liquid-glass::before {
+  /* Subtle Silver & Indigo Ambient */
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(100, 120, 150, 0.15), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(180, 180, 200, 0.12), transparent 55%);
+  animation: orbDrift1 25s ease-in-out infinite alternate;
+}
+
+body.theme-liquid-glass::after {
+  /* Deep Purple & Dark Slate Ambient */
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(80, 60, 120, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(140, 160, 180, 0.10), transparent 50%);
+  animation: orbDrift2 30s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbDrift1 {
+  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
+  50%  { transform: rotate(5deg) translate(3%, 4%) scale(1.05); }
+  100% { transform: rotate(-3deg) translate(-2%, 5%) scale(0.95); }
+}
+
+@keyframes orbDrift2 {
+  0%   { transform: rotate(0deg) translate(0, 0) scale(1); }
+  50%  { transform: rotate(-5deg) translate(-4%, -3%) scale(1.05); }
+  100% { transform: rotate(2deg) translate(3%, -5%) scale(0.95); }
 }
 
 /* =========================================================
