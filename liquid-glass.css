@@ -62,6 +62,11 @@ body.theme-liquid-glass, body {
   z-index: 0;
   overflow-x: hidden;
 }
+body.theme-liquid-glass,
+body.theme-liquid-glass * {
+  --bg-card: var(--glass-bg);
+  --border: var(--glass-border);
+}
 
 /* 
   bg-app 2-color blob background
