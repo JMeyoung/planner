@@ -818,7 +818,7 @@
       
       <!-- Welcome & Stats -->
       <div class="card welcome-card">
-        <h2>안녕하세요, 재영님!</h2>
+        <h2 id="welcome-user-title">안녕하세요, 재영님!</h2>
         <p>인스타/유튜브 대신 5초 타임어택 영단어를 외워보세요. 뇌 활성화에 아주 좋습니다!</p>
         <div class="stats-summary">
           <div class="stat-box">
@@ -1201,6 +1201,8 @@
     // Load configurations
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("profile-icon").innerText = currentUser === 'haeryung' ? '👩🏻' : '🧑🏻';
+      const userName = currentUser === 'haeryung' ? '혜령' : '재영';
+      document.getElementById("welcome-user-title").innerText = `안녕하세요, ${userName}님!`;
 
       // Restore settings
       const savedKey = getLocalItem("vocab_gemini_api_key");
