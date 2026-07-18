@@ -976,7 +976,7 @@
         <!-- JS-generated choice buttons -->
       </div>
 
-      <button class="action-btn" id="quiz-next-wrong-btn" style="margin-top: 10px; display: none;" onclick="goToNextWord()">
+      <button class="action-btn" id="quiz-next-wrong-btn" style="margin-top: 20px; width: 100%; min-height: 52px; font-size: 1.1rem; display: none;" onclick="goToNextWord()">
         다음 단어 ➔
       </button>
 
@@ -1106,8 +1106,6 @@
   <div class="settings-modal" id="settings-modal">
     <div class="modal-content">
       <div class="modal-title">⚙️ API 환경 설정</div>
-      
-      <div class="input-group">
         <label for="settings-api-key">Gemini API Key</label>
         <input type="password" id="settings-api-key" placeholder="AI 예문 생성을 위한 AI Studio API Key 입력">
         <p style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.4;">
@@ -1668,7 +1666,8 @@
         saveIncorrectWord(wordObj);
         
         // Show Next button instead of auto transition
-        document.getElementById("quiz-next-wrong-btn").style.display = "block";
+        const nextBtn = document.getElementById("quiz-next-wrong-btn");
+        nextBtn.style.display = "flex";
       }
     }
 
@@ -1688,7 +1687,8 @@
       saveIncorrectWord(wordObj);
       
       // Show Next button
-      document.getElementById("quiz-next-wrong-btn").style.display = "block";
+      const nextBtn = document.getElementById("quiz-next-wrong-btn");
+      nextBtn.style.display = "flex";
     }
 
     // Toggle Hint block
@@ -1847,13 +1847,15 @@
         const card = document.createElement("div");
         card.className = "card";
         card.style.padding = "16px";
+        card.style.cursor = "pointer";
+        card.setAttribute("onclick", `openModeSelectModal(${i})`);
         card.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; pointer-events: none;">
             <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
             <div style="font-size: 0.9rem; color: var(--accent-color);">${wordObj.pron || ''}</div>
           </div>
-          <div style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px;">${wordObj.meaning}</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">💡 ${wordObj.tip || ''}</div>
+          <div style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px; pointer-events: none;">${wordObj.meaning}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; pointer-events: none;">💡 ${wordObj.tip || ''}</div>
         `;
         container.appendChild(card);
       }
@@ -1873,6 +1875,77 @@
     function nextListPage() {
       listPage++;
       renderListView();
+    }
+
+    // Modal select launch
+    let selectedWordIndex = 0;
+
+    function openModeSelectModal(index) {
+      selectedWordIndex = index;
+      const wordObj = quizWords[index];
+      document.getElementById("modal-word-title").innerText = `${wordObj.word} [${wordObj.meaning}]`;
+      
+      // Bind actions
+      document.getElementById("modal-btn-memorize").onclick = () => {
+        closeModeSelectModal();
+        startMemorizeFromIndex(selectedWordIndex);
+      };
+      document.getElementById("modal-btn-quiz").onclick = () => {
+        closeModeSelectModal();
+        startQuizFromIndex(selectedWordIndex);
+      };
+      
+      document.getElementById("mode-select-modal").classList.add("active");
+    }
+
+    function closeModeSelectModal() {
+      document.getElementById("mode-select-modal").classList.remove("active");
+    }
+
+    async function startMemorizeFromIndex(index) {
+      try {
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
+        const data = await res.json();
+        if (!data || data.length === 0) return;
+        
+        quizWords = data; 
+        currentQuizIndex = index;
+        isMemorizeActive = true;
+        isQuizActive = false;
+        
+        saveResumeState('memorize');
+        switchView('memorize-view');
+        loadMemorizeWord();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function startQuizFromIndex(index) {
+      try {
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
+        const data = await res.json();
+        if (!data || data.length === 0) return;
+        
+        // 리스트 뷰에서 선택 시 셔플하지 않고 순서대로 진행하여 직관적인 퀴즈 학습 보장
+        quizWords = data;
+        currentQuizIndex = index;
+        
+        totalCorrectInSession = 0;
+        totalIncorrectInSession = 0;
+        sessionWrongWords = [];
+        isQuizActive = true;
+        isMemorizeActive = false;
+        isIncorrectMode = false;
+        
+        saveQuizResumeState();
+        switchView('quiz-view');
+        loadQuestion();
+      } catch (err) {
+        alert(err.message);
+      }
     }
 
     // DASHBOARD LOGIC
