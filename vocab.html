@@ -575,6 +575,59 @@
       font-weight: 600;
     }
 
+    /* Dashboard Elements */
+    .dash-book-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      width: 100%;
+    }
+    .dash-book-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .dash-day-row {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+    }
+    .dash-day-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .dash-badge {
+      background: var(--primary-color);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    .dash-btn {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--primary-light);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dash-btn:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
     /* Review View Elements */
     .review-card {
       display: flex;
@@ -751,7 +804,7 @@
             <span class="val" id="stats-correct-cnt">0</span>
             <span class="lbl">완료 단어</span>
           </div>
-          <div class="stat-box" onclick="startIncorrectMode()" style="cursor: pointer;">
+          <div class="stat-box" onclick="openReviewDashboard()" style="cursor: pointer;">
             <span class="val" id="stats-incorrect-cnt" style="color: var(--error-color);">0</span>
             <span class="lbl">오답 단어 ➔</span>
           </div>
@@ -885,6 +938,27 @@
         </button>
       </div>
 
+    </div>
+
+    <!-- [5] REVIEW DASHBOARD VIEW -->
+    <div id="review-dashboard-view" class="view">
+      <div class="header" style="justify-content: space-between; margin-bottom: 24px;">
+        <button class="icon-btn" onclick="goToHome()">🏠</button>
+        <div class="title" style="flex:1; text-align:center;">오답 복습 보드</div>
+        <div style="width:40px;"></div>
+      </div>
+      
+      <div class="card" style="margin-top: 16px;">
+        <div style="text-align:center; margin-bottom: 16px;">
+          <h3 style="margin:0; font-size: 1.2rem; color: var(--text-main);">무작위 전체 복습</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">저장된 모든 오답 단어를 섞어서 복습합니다.</p>
+        </div>
+        <button class="btn" style="width:100%;" onclick="startIncorrectMode(null, null)">전체 복습 시작 ➔</button>
+      </div>
+
+      <div id="dashboard-list-container" style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px; width: 100%;">
+        <!-- JS로 동적 생성됨 -->
+      </div>
     </div>
 
     <!-- [4] INCORRECT REVIEWS VIEW -->
@@ -1438,14 +1512,62 @@
       loadQuestion();
     }
 
+    // DASHBOARD LOGIC
+    function openReviewDashboard() {
+      const list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      if (list.length === 0) {
+        alert("저장된 오답 단어가 없습니다! 퀴즈를 풀면서 오답을 채워보세요.");
+        return;
+      }
+      
+      const counts = {};
+      list.forEach(w => {
+        if (!counts[w.book]) counts[w.book] = { total: 0, days: {} };
+        counts[w.book].total++;
+        if (!counts[w.book].days[w.day]) counts[w.book].days[w.day] = 0;
+        counts[w.book].days[w.day]++;
+      });
+      
+      let html = "";
+      // Sort books (e.g., V101, V201, V301)
+      Object.keys(counts).sort().forEach(book => {
+        const bookData = counts[book];
+        html += `<div class="dash-book-card">`;
+        html += `  <div class="dash-book-header">
+                     <div>📚 ${book} <span class="dash-badge">${bookData.total}</span></div>
+                     <button class="dash-btn" onclick="startIncorrectMode('${book}', null)">전체 복습</button>
+                   </div>`;
+                   
+        // Sort days
+        const days = Object.keys(bookData.days).sort((a, b) => parseInt(a) - parseInt(b));
+        days.forEach(day => {
+          html += `<div class="dash-day-row">
+                     <div>Day ${day} <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: 4px;">(${bookData.days[day]}개)</span></div>
+                     <button class="dash-btn" style="background: transparent;" onclick="startIncorrectMode('${book}', ${day})">복습</button>
+                   </div>`;
+        });
+        html += `</div>`;
+      });
+      
+      document.getElementById("dashboard-list-container").innerHTML = html;
+      switchView('review-dashboard-view');
+    }
+
     // INCORRECT REVIEWS SCREEN
     let incorrectIndex = 0;
     let reviewFlipped = false;
 
-    function startIncorrectMode() {
-      const list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+    function startIncorrectMode(filterBook, filterDay) {
+      let list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      
+      if (filterBook && filterDay) {
+        list = list.filter(w => w.book === filterBook && w.day == filterDay);
+      } else if (filterBook) {
+        list = list.filter(w => w.book === filterBook);
+      }
+
       if (list.length === 0) {
-        alert("저장된 오답 단어가 없습니다! 퀴즈를 풀면서 오답을 채워보세요.");
+        alert("해당 조건의 오답 단어가 없습니다!");
         return;
       }
       
