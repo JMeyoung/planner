@@ -863,15 +863,37 @@
       </div>
 
       <!-- Action Button -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <button class="action-btn" style="background: var(--secondary-color); font-size: 1.1rem; padding: 14px;" onclick="startMemorizeMode()">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
+        <button class="action-btn" style="background: var(--success-color); font-size: 1.1rem; padding: 14px; grid-column: span 2; display: none;" id="resume-btn" onclick="resumeLearning()">
+          🔄 이어서 학습하기
+        </button>
+        <button class="action-btn" style="background: var(--warning-color); font-size: 1.1rem; padding: 14px;" onclick="startMemorizeMode()">
           🧠 암기 학습 (10초)
         </button>
         <button class="action-btn" style="font-size: 1.1rem; padding: 14px;" onclick="startQuiz()">
           🎯 사지선다 퀴즈
         </button>
+        <button class="action-btn secondary" style="grid-column: span 2; font-size: 1.1rem; padding: 14px;" onclick="startListView()">
+          📋 25개씩 리스트 보기
+        </button>
       </div>
 
+    </div>
+
+    <!-- [1-2] LIST VIEW -->
+    <div id="list-view" class="view">
+      <div class="quiz-header" style="margin-bottom: 8px;">
+        <span class="quiz-progress-text" id="list-progress-lbl">V101 · DAY 1 (1 - 25)</span>
+        <button class="icon-btn" onclick="goToHome()">✕</button>
+      </div>
+      
+      <div id="list-container" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+        <!-- Generated List Items -->
+      </div>
+      
+      <button class="action-btn" id="list-next-btn" onclick="nextListPage()" style="width: 100%;">
+        Next 25 ➔
+      </button>
     </div>
 
     <!-- [2-1] MEMORIZE VIEW -->
@@ -903,7 +925,7 @@
 
         <!-- Hidden Meaning Area (Revealed after 10s or tap) -->
         <div id="memorize-hidden-area" style="opacity: 0; transform: translateY(10px); transition: all 0.4s ease; width: 100%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: auto;">
-          <div style="font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 16px;" id="memorize-meaning">변덕스러운</div>
+          <div style="font-size: 1.6rem; font-weight: 800; color: #ccff00; text-shadow: 0 0 12px rgba(204, 255, 0, 0.4); margin-bottom: 16px;" id="memorize-meaning">변덕스러운</div>
           
           <div style="text-align: left; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
             <div style="font-size: 0.85rem; color: #e5e7eb; font-style: italic; line-height: 1.4; margin-bottom: 6px;" id="memorize-sentence-eng">Loading example sentence...</div>
@@ -953,6 +975,10 @@
       <div class="choices-container" id="choices-box">
         <!-- JS-generated choice buttons -->
       </div>
+
+      <button class="action-btn" id="quiz-next-wrong-btn" style="margin-top: 10px; display: none;" onclick="goToNextWord()">
+        다음 단어 ➔
+      </button>
 
       <!-- Sentence & Translation Card -->
       <div class="card sentence-card" id="sentence-box">
@@ -1105,6 +1131,9 @@
     let currentQuizIndex = 0;
     let incorrectWordsList = [];
     
+    // Resume State
+    let resumeState = null;
+    
     // Performance stats
     let totalCorrectInSession = 0;
     let totalIncorrectInSession = 0;
@@ -1132,7 +1161,71 @@
       
       // Init Book V101
       selectBook('V101');
+      
+      // Check Resume
+      checkResumeState();
     });
+
+    function checkResumeState() {
+      const stateStr = localStorage.getItem("vocab_resume_state");
+      if (stateStr) {
+        try {
+          resumeState = JSON.parse(stateStr);
+          const resumeBtn = document.getElementById("resume-btn");
+          if (resumeState && resumeState.book && resumeState.day && resumeState.mode) {
+            resumeBtn.style.display = "flex";
+            resumeBtn.innerText = `🔄 이어서 학습하기 (${resumeState.book} Day ${resumeState.day})`;
+          }
+        } catch (e) {
+          localStorage.removeItem("vocab_resume_state");
+        }
+      } else {
+        document.getElementById("resume-btn").style.display = "none";
+      }
+    }
+
+    function saveResumeState(mode) {
+      const state = {
+        book: currentBook,
+        day: currentDay,
+        index: currentQuizIndex,
+        mode: mode
+      };
+      localStorage.setItem("vocab_resume_state", JSON.stringify(state));
+      checkResumeState();
+    }
+    
+    function saveQuizResumeState() {
+      const state = {
+        book: currentBook,
+        day: currentDay,
+        index: currentQuizIndex,
+        mode: 'quiz',
+        quizWords: quizWords
+      };
+      localStorage.setItem("vocab_resume_state", JSON.stringify(state));
+      checkResumeState();
+    }
+    
+    function clearResumeState() {
+      localStorage.removeItem("vocab_resume_state");
+      resumeState = null;
+      checkResumeState();
+    }
+
+    async function resumeLearning() {
+      if (!resumeState) return;
+      currentBook = resumeState.book;
+      currentDay = resumeState.day;
+      selectBook(currentBook);
+      selectDay(currentDay);
+      
+      if (resumeState.mode === 'quiz') {
+        await startQuiz(true);
+      } else if (resumeState.mode === 'memorize') {
+        await startMemorizeMode(true);
+      }
+    }
 
     function updateGlobalStats() {
       const correctCount = parseInt(localStorage.getItem("vocab_total_correct_count") || "0");
@@ -1245,7 +1338,7 @@
     let isMemorizeActive = false;
     let memorizeTimerId = null;
 
-    async function startMemorizeMode() {
+    async function startMemorizeMode(isResume = false) {
       try {
         const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
@@ -1255,11 +1348,16 @@
           return;
         }
         
-        // 암기 모드는 순서대로 진행합니다.
         quizWords = data; 
-        currentQuizIndex = 0;
+        if (isResume && resumeState && resumeState.mode === 'memorize') {
+          currentQuizIndex = resumeState.index || 0;
+        } else {
+          currentQuizIndex = 0;
+        }
         isMemorizeActive = true;
         isQuizActive = false;
+        
+        saveResumeState('memorize');
         
         switchView('memorize-view');
         loadMemorizeWord();
@@ -1271,6 +1369,7 @@
     function loadMemorizeWord() {
       if (currentQuizIndex >= quizWords.length) {
         alert("암기 학습을 모두 마쳤습니다! 메인 홈으로 돌아갑니다.");
+        clearResumeState();
         goToHome();
         return;
       }
@@ -1361,11 +1460,12 @@
 
     function nextMemorizeWord() {
       currentQuizIndex++;
+      saveResumeState('memorize');
       loadMemorizeWord();
     }
 
     // Load Quiz Data from Server
-    async function startQuiz() {
+    async function startQuiz(isResume = false) {
       try {
         const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
@@ -1375,16 +1475,21 @@
           return;
         }
         
-        // Shuffle words
-        quizWords = shuffleArray([...data]);
+        if (isResume && resumeState && resumeState.mode === 'quiz' && resumeState.quizWords) {
+          quizWords = resumeState.quizWords;
+          currentQuizIndex = resumeState.index || 0;
+        } else {
+          quizWords = shuffleArray([...data]);
+          currentQuizIndex = 0;
+        }
         
-        // Init Session Stats
-        currentQuizIndex = 0;
         totalCorrectInSession = 0;
         totalIncorrectInSession = 0;
         sessionWrongWords = [];
         isQuizActive = true;
         isIncorrectMode = false;
+        
+        saveQuizResumeState();
         
         switchView('quiz-view');
         loadQuestion();
@@ -1470,6 +1575,7 @@
       
       // Reset sentence detail container
       document.getElementById("sentence-box").classList.remove("active");
+      document.getElementById("quiz-next-wrong-btn").style.display = "none";
       
       // Generate multiple choice options (1 Correct + 3 Random incorrects)
       generateChoices(wordObj);
@@ -1541,8 +1647,11 @@
         let totalC = parseInt(localStorage.getItem("vocab_total_correct_count") || "0");
         localStorage.setItem("vocab_total_correct_count", totalC + 1);
         
-        // Load and Show sentence detail
+        // Load and Show sentence detail briefly, then auto advance
         loadSentence(wordObj);
+        setTimeout(() => {
+          goToNextWord();
+        }, 2000); // 2초 뒤 자동으로 넘어감
       } else {
         // Incorrect style
         clickedBtn.classList.add("incorrect");
@@ -1558,11 +1667,8 @@
         sessionWrongWords.push(wordObj);
         saveIncorrectWord(wordObj);
         
-        // Delay and auto transition
-        setTimeout(() => {
-          currentQuizIndex++;
-          loadQuestion();
-        }, 1500);
+        // Show Next button instead of auto transition
+        document.getElementById("quiz-next-wrong-btn").style.display = "block";
       }
     }
 
@@ -1581,11 +1687,8 @@
       sessionWrongWords.push(wordObj);
       saveIncorrectWord(wordObj);
       
-      // Delay and transition
-      setTimeout(() => {
-        currentQuizIndex++;
-        loadQuestion();
-      }, 1500);
+      // Show Next button
+      document.getElementById("quiz-next-wrong-btn").style.display = "block";
     }
 
     // Toggle Hint block
@@ -1663,11 +1766,13 @@
 
     function goToNextWord() {
       currentQuizIndex++;
+      if (isQuizActive && !isIncorrectMode) saveQuizResumeState();
       loadQuestion();
     }
 
     // Results Display
     function showResults() {
+      clearResumeState();
       switchView('result-view');
       
       const total = quizWords.length;
@@ -1700,6 +1805,74 @@
       
       switchView('quiz-view');
       loadQuestion();
+    }
+
+    // LIST VIEW LOGIC
+    let listPage = 0;
+    const LIST_PAGE_SIZE = 25;
+
+    async function startListView() {
+      try {
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
+        const data = await res.json();
+        if (!data || data.length === 0) {
+          alert("단어 데이터가 없습니다.");
+          return;
+        }
+        
+        quizWords = data;
+        listPage = 0;
+        isQuizActive = false;
+        isMemorizeActive = false;
+        
+        switchView('list-view');
+        renderListView();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+    
+    function renderListView() {
+      const startIdx = listPage * LIST_PAGE_SIZE;
+      const endIdx = Math.min(startIdx + LIST_PAGE_SIZE, quizWords.length);
+      
+      document.getElementById("list-progress-lbl").innerText = `${currentBook} · DAY ${currentDay} (${startIdx + 1} - ${endIdx})`;
+      
+      const container = document.getElementById("list-container");
+      container.innerHTML = "";
+      
+      for (let i = startIdx; i < endIdx; i++) {
+        const wordObj = quizWords[i];
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.padding = "16px";
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
+            <div style="font-size: 0.9rem; color: var(--accent-color);">${wordObj.pron || ''}</div>
+          </div>
+          <div style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px;">${wordObj.meaning}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">💡 ${wordObj.tip || ''}</div>
+        `;
+        container.appendChild(card);
+      }
+      
+      const nextBtn = document.getElementById("list-next-btn");
+      if (endIdx < quizWords.length) {
+        nextBtn.style.display = "block";
+      } else {
+        nextBtn.style.display = "none";
+      }
+      
+      // scroll to top
+      document.getElementById("list-view").scrollTop = 0;
+      window.scrollTo(0,0);
+    }
+    
+    function nextListPage() {
+      listPage++;
+      renderListView();
     }
 
     // DASHBOARD LOGIC

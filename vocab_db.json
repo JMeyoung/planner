@@ -23,7 +23,7 @@
     "day": 1,
     "word": "teem with",
     "pron": "[팀 위드]",
-    "tip": "Old English teman(낳다, 번식하다)에서 유래 → 생명이 번식하여 가득 차다",
+    "tip": "teman(낳다, 번식하다) → 생명이 번식하여 가득 차다",
     "meaning": "가득 차다"
   },
   {
@@ -167,7 +167,7 @@
     "day": 1,
     "word": "chastise",
     "pron": "[채스타이즈]",
-    "tip": "Latin castigare(순수하게 만들다, 벌하다)에서 유래 → 벌하여 꾸짖다, 심하게 비난하다",
+    "tip": "castigare(순수하게 만들다, 벌하다) → 벌하여 꾸짖다, 심하게 비난하다",
     "meaning": "비난하다"
   },
   {
@@ -194,7 +194,7 @@
     "day": 1,
     "word": "vie",
     "pron": "[바이]",
-    "tip": "Latin invitare(도전하다, 초대하다)에서 유래 → 승리를 위해 다투다, 경쟁하다",
+    "tip": "invitare(도전하다, 초대하다) → 승리를 위해 다투다, 경쟁하다",
     "meaning": "얻으려고 다투다"
   },
   {
@@ -284,7 +284,7 @@
     "day": 1,
     "word": "calumny",
     "pron": "[캘럼니]",
-    "tip": "Latin calumnia(거짓 고소, 속임수) → 남을 헐뜯는 거짓말, 비방",
+    "tip": "calumnia(거짓 고소, 속임수) → 남을 헐뜯는 거짓말, 비방",
     "meaning": "비방"
   },
   {
@@ -347,7 +347,7 @@
     "day": 1,
     "word": "brag",
     "pron": "[브래그]",
-    "tip": "14세기 프랑스어 braguer(자랑하다, 뽐내다)에서 유래 → 자랑하다",
+    "tip": "14세기 프랑스어 braguer(자랑하다, 뽐내다) → 자랑하다",
     "meaning": "자랑하다"
   },
   {
@@ -383,7 +383,7 @@
     "day": 1,
     "word": "wring",
     "pron": "[링]",
-    "tip": "Old English wringan(비틀다, 누르다) → (빨래 등을) 쥐어짜다, 착취하다",
+    "tip": "wringan(비틀다, 누르다) → (빨래 등을) 쥐어짜다, 착취하다",
     "meaning": "착취하다"
   },
   {
@@ -986,7 +986,7 @@
     "day": 2,
     "word": "wary",
     "pron": "[웨어리]",
-    "tip": "ware(조심하다)에서 유래 → 경계를 늦추지 않는, 경계하는",
+    "tip": "ware(조심하다) → 경계를 늦추지 않는, 경계하는",
     "meaning": "경계하는"
   },
   {
@@ -1454,7 +1454,7 @@
     "day": 2,
     "word": "morale",
     "pron": "[모랠]",
-    "tip": "moral에서 유래 → 집단의 사기/의욕",
+    "tip": "moral → 집단의 사기/의욕",
     "meaning": "사기, 의욕"
   },
   {
@@ -2012,7 +2012,7 @@
     "day": 3,
     "word": "venal",
     "pron": "[비널]",
-    "tip": "Latin venalis(판매용의) → 돈으로 살 수 있는, 매수되기 쉬운",
+    "tip": "venalis(판매용의) → 돈으로 살 수 있는, 매수되기 쉬운",
     "meaning": "돈에 매수되는"
   },
   {
@@ -2021,7 +2021,7 @@
     "day": 3,
     "word": "enigmatic",
     "pron": "[에니그매틱]",
-    "tip": "Greek ainigma(수수께끼) → 수수께끼 같은, 불가사의한",
+    "tip": "ainigma(수수께끼) → 수수께끼 같은, 불가사의한",
     "meaning": "수수께끼의"
   },
   {
@@ -2156,7 +2156,7 @@
     "day": 3,
     "word": "plague",
     "pron": "[플레이그]",
-    "tip": "Latin plaga(타격, 재앙) → 재앙처럼 번지는 역병",
+    "tip": "plaga(타격, 재앙) → 재앙처럼 번지는 역병",
     "meaning": "역병"
   },
   {
@@ -2192,7 +2192,7 @@
     "day": 3,
     "word": "reap",
     "pron": "[립]",
-    "tip": "Old English ripan(수확하다) → 거두어들이다, 획득하다",
+    "tip": "ripan(수확하다) → 거두어들이다, 획득하다",
     "meaning": "획득하다"
   },
   {
@@ -2246,7 +2246,7 @@
     "day": 3,
     "word": "deign",
     "pron": "[데인]",
-    "tip": "Latin dignare(가치있게 여기다) → 황송하게도 ~해주다, 자신을 낮추어 ~하다",
+    "tip": "dignare(가치있게 여기다) → 황송하게도 ~해주다, 자신을 낮추어 ~하다",
     "meaning": "황송하게도 –해주시다"
   },
   {
@@ -2291,7 +2291,7 @@
     "day": 3,
     "word": "red tape",
     "pron": "[레드 테이프]",
-    "tip": "붉은(red) 끈(tape)으로 서류를 묶던 관행에서 유래한 관료주의",
+    "tip": "붉은(red) 끈(tape)으로 서류를 묶던 관행 한 관료주의",
     "meaning": "관료주의"
   },
   {
@@ -2300,7 +2300,7 @@
     "day": 3,
     "word": "censure",
     "pron": "[센셔]",
-    "tip": "Latin censere(평가하다) → 엄격하게 평가하여 비난하다",
+    "tip": "censere(평가하다) → 엄격하게 평가하여 비난하다",
     "meaning": "비난하다"
   },
   {
@@ -2408,7 +2408,7 @@
     "day": 3,
     "word": "sprawl",
     "pron": "[스프롤]",
-    "tip": "Old English spreawlian(팔다리를 뻗다) → 무질서하게 뻗어나가다",
+    "tip": "spreawlian(팔다리를 뻗다) → 무질서하게 뻗어나가다",
     "meaning": "뻗어나가다"
   },
   {
@@ -2498,7 +2498,7 @@
     "day": 3,
     "word": "cardinal",
     "pron": "[카디널]",
-    "tip": "Latin cardo(경첩, 축) → 문을 지탱하는 축처럼 가장 근본적인, 주요한",
+    "tip": "cardo(경첩, 축) → 문을 지탱하는 축처럼 가장 근본적인, 주요한",
     "meaning": "주요한"
   },
   {
@@ -2525,7 +2525,7 @@
     "day": 3,
     "word": "shove",
     "pron": "[셔브]",
-    "tip": "Old English scufan(밀어내다) → 난폭하게 밀치다",
+    "tip": "scufan(밀어내다) → 난폭하게 밀치다",
     "meaning": "난폭하게 밀다"
   },
   {
@@ -2669,7 +2669,7 @@
     "day": 3,
     "word": "forfeit",
     "pron": "[포핏]",
-    "tip": "Latin foris(밖으로) + facere(만들다) → 권리나 재산을 밖으로 내놓다, 몰수당하다",
+    "tip": "foris(밖으로) + facere(만들다) → 권리나 재산을 밖으로 내놓다, 몰수당하다",
     "meaning": "몰수당하다"
   },
   {
@@ -2795,7 +2795,7 @@
     "day": 4,
     "word": "adamant",
     "pron": "[애더먼트]",
-    "tip": "Greek adamas(정복할 수 없는) → 다이아몬드처럼 매우 단단하고 요지부동인",
+    "tip": "adamas(정복할 수 없는) → 다이아몬드처럼 매우 단단하고 요지부동인",
     "meaning": "단호한"
   },
   {
@@ -2813,7 +2813,7 @@
     "day": 4,
     "word": "coddle",
     "pron": "[카들]",
-    "tip": "Middle English caudle(따뜻한 국물)에서 유래 → 따뜻하게 데우듯 애지중지하다",
+    "tip": "Middle English caudle(따뜻한 국물) → 따뜻하게 데우듯 애지중지하다",
     "meaning": "버릇없이 기르다"
   },
   {
@@ -2867,7 +2867,7 @@
     "day": 4,
     "word": "tumble",
     "pron": "[텀블]",
-    "tip": "Old English tumbian(춤추다, 뛰어오르다)에서 유래 → 굴러 떨어지며 폭락하다",
+    "tip": "tumbian(춤추다, 뛰어오르다) → 굴러 떨어지며 폭락하다",
     "meaning": "폭락하다"
   },
   {
@@ -2903,7 +2903,7 @@
     "day": 4,
     "word": "vilify",
     "pron": "[빌리파이]",
-    "tip": "Latin vilis(가치 없는, 싸구려의) + facere(만들다) → 상대를 가치 없게 깎아내려 비방하다",
+    "tip": "vilis(가치 없는, 싸구려의) + facere(만들다) → 상대를 가치 없게 깎아내려 비방하다",
     "meaning": "비방하다"
   },
   {
@@ -2921,7 +2921,7 @@
     "day": 4,
     "word": "though",
     "pron": "[도우]",
-    "tip": "Old English theah(그럼에도 불구하고) → 비록 ~일지라도",
+    "tip": "theah(그럼에도 불구하고) → 비록 ~일지라도",
     "meaning": "그러나"
   },
   {
@@ -2966,7 +2966,7 @@
     "day": 4,
     "word": "cantankerous",
     "pron": "[캔탱커러스]",
-    "tip": "Middle English contek(다툼)에서 유래 → 성미가 고약하고 불평을 달고 사는",
+    "tip": "Middle English contek(다툼) → 성미가 고약하고 불평을 달고 사는",
     "meaning": "심술궂은"
   },
   {
@@ -3065,7 +3065,7 @@
     "day": 4,
     "word": "tremor",
     "pron": "[트레머]",
-    "tip": "Latin tremere(떨다) + or → 떨림, 진동",
+    "tip": "tremere(떨다) + or → 떨림, 진동",
     "meaning": "진동"
   },
   {
@@ -3083,7 +3083,7 @@
     "day": 4,
     "word": "rigor",
     "pron": "[리거]",
-    "tip": "Latin rigere(뻣뻣하다, 굳다) → 뻣뻣하고 타협 없는 엄격함",
+    "tip": "rigere(뻣뻣하다, 굳다) → 뻣뻣하고 타협 없는 엄격함",
     "meaning": "엄격함"
   },
   {
@@ -3173,7 +3173,7 @@
     "day": 4,
     "word": "shrewd",
     "pron": "[슈루드]",
-    "tip": "Middle English shrewe(사악한 사람)에서 유래하여 교활할 정도로 영리한",
+    "tip": "Middle English shrewe(사악한 사람) 하여 교활할 정도로 영리한",
     "meaning": "영리한"
   },
   {
@@ -3209,7 +3209,7 @@
     "day": 4,
     "word": "temper",
     "pron": "[템퍼]",
-    "tip": "Latin temperare(적절히 섞다, 조절하다) → 기질, 성질을 조절하다/완화하다",
+    "tip": "temperare(적절히 섞다, 조절하다) → 기질, 성질을 조절하다/완화하다",
     "meaning": "완화하다"
   },
   {
@@ -3218,7 +3218,7 @@
     "day": 4,
     "word": "plethora",
     "pron": "[플레서라]",
-    "tip": "Greek plethein(가득 차다) → 가득 차 넘치는 과다, 과잉",
+    "tip": "plethein(가득 차다) → 가득 차 넘치는 과다, 과잉",
     "meaning": "과다, 과잉"
   },
   {
@@ -3236,7 +3236,7 @@
     "day": 4,
     "word": "stigma",
     "pron": "[스티그마]",
-    "tip": "Greek stigma(문신, 노예의 낙인) → 지워지지 않는 오명, 낙인",
+    "tip": "stigma(문신, 노예의 낙인) → 지워지지 않는 오명, 낙인",
     "meaning": "오점; 낙인"
   },
   {
@@ -3299,7 +3299,7 @@
     "day": 4,
     "word": "dent",
     "pron": "[덴트]",
-    "tip": "Middle English dint(타격)에서 유래 → 강한 타격으로 인해 움푹 들어간 자국",
+    "tip": "Middle English dint(타격) → 강한 타격으로 인해 움푹 들어간 자국",
     "meaning": "눌러 들어간 자국"
   },
   {
@@ -3335,7 +3335,7 @@
     "day": 4,
     "word": "sue",
     "pron": "[수]",
-    "tip": "Latin sequi(뒤쫓다) → 법적으로 끝까지 뒤쫓아 고소하다",
+    "tip": "sequi(뒤쫓다) → 법적으로 끝까지 뒤쫓아 고소하다",
     "meaning": "고소하다"
   },
   {
@@ -3362,7 +3362,7 @@
     "day": 4,
     "word": "squalid",
     "pron": "[스퀄리드]",
-    "tip": "Latin squalere(거칠고 더럽다) → 지저분하고 불결한",
+    "tip": "squalere(거칠고 더럽다) → 지저분하고 불결한",
     "meaning": "더러운"
   },
   {
@@ -3407,7 +3407,7 @@
     "day": 4,
     "word": "feat",
     "pron": "[피트]",
-    "tip": "Latin factum(행해진 일) → 훌륭하게 완수해 낸 위업, 업적",
+    "tip": "factum(행해진 일) → 훌륭하게 완수해 낸 위업, 업적",
     "meaning": "업적"
   },
   {
@@ -3425,7 +3425,7 @@
     "day": 4,
     "word": "soothe",
     "pron": "[수드]",
-    "tip": "Old English soth(진실)에서 유래하여 진실로 달래다 → 진정시키다",
+    "tip": "soth(진실) 하여 진실로 달래다 → 진정시키다",
     "meaning": "부드럽게 만들다; 달래다"
   },
   {
@@ -3452,7 +3452,7 @@
     "day": 4,
     "word": "glut",
     "pron": "[글럿]",
-    "tip": "Latin gluttire(삼키다) → 너무 많이 먹이거나 공급하여 생기는 과잉",
+    "tip": "gluttire(삼키다) → 너무 많이 먹이거나 공급하여 생기는 과잉",
     "meaning": "과잉(공급)"
   },
   {
@@ -3461,7 +3461,7 @@
     "day": 4,
     "word": "lesion",
     "pron": "[리전]",
-    "tip": "Latin laedere(다치게 하다) → 조직이 다쳐서 생긴 상처, 병변",
+    "tip": "laedere(다치게 하다) → 조직이 다쳐서 생긴 상처, 병변",
     "meaning": "상처, 찰과상"
   },
   {
@@ -3470,7 +3470,7 @@
     "day": 4,
     "word": "sophisticated",
     "pron": "[소피스티케이티드]",
-    "tip": "Greek sophistes(현자, 궤변가) → 지적으로 세련되고 복잡하게 얽힌, 정교한",
+    "tip": "sophistes(현자, 궤변가) → 지적으로 세련되고 복잡하게 얽힌, 정교한",
     "meaning": "정교한"
   },
   {
@@ -3479,7 +3479,7 @@
     "day": 4,
     "word": "teeming",
     "pron": "[티밍]",
-    "tip": "Old English teman(번식하다) → 생명체가 번식하여 붐비는",
+    "tip": "teman(번식하다) → 생명체가 번식하여 붐비는",
     "meaning": "북적대는"
   },
   {
@@ -3488,7 +3488,7 @@
     "day": 4,
     "word": "spurious",
     "pron": "[스퓨리어스]",
-    "tip": "Latin spurius(사생아의, 기원이 가짜인) → 겉만 그럴싸하고 속은 가짜인",
+    "tip": "spurius(사생아의, 기원이 가짜인) → 겉만 그럴싸하고 속은 가짜인",
     "meaning": "가짜의"
   },
   {
@@ -3533,7 +3533,7 @@
     "day": 4,
     "word": "tentative",
     "pron": "[텐터티브]",
-    "tip": "Latin tentare(시험하다, 시도하다) → 시험 삼아 시도해 보는, 임시적인",
+    "tip": "tentare(시험하다, 시도하다) → 시험 삼아 시도해 보는, 임시적인",
     "meaning": "임시적인"
   },
   {
@@ -3605,7 +3605,7 @@
     "day": 5,
     "word": "tenacious",
     "pron": "[터네이셔스]",
-    "tip": "Latin tenere(꽉 잡다) + cious → 한 번 잡으면 놓지 않는, 완고하고 집요한",
+    "tip": "tenere(꽉 잡다) + cious → 한 번 잡으면 놓지 않는, 완고하고 집요한",
     "meaning": "완고한"
   },
   {
@@ -3623,7 +3623,7 @@
     "day": 5,
     "word": "cram",
     "pron": "[크램]",
-    "tip": "Old English crammian(눌러 채우다) → 억지로 쑤셔 넣다, 벼락치기 하다",
+    "tip": "crammian(눌러 채우다) → 억지로 쑤셔 넣다, 벼락치기 하다",
     "meaning": "억지로 밀어 넣다; 벼락치기 공부하다"
   },
   {
@@ -3650,7 +3650,7 @@
     "day": 5,
     "word": "sullen",
     "pron": "[설런]",
-    "tip": "Latin solus(혼자의) → 혼자 고립되어 뚱한, 시무룩한",
+    "tip": "solus(혼자의) → 혼자 고립되어 뚱한, 시무룩한",
     "meaning": "토라진"
   },
   {
@@ -3695,7 +3695,7 @@
     "day": 5,
     "word": "furrow",
     "pron": "[퍼로우]",
-    "tip": "Old English furh(쟁기질한 자국) → 쟁기로 판 고랑, 이마의 깊은 주름",
+    "tip": "furh(쟁기질한 자국) → 쟁기로 판 고랑, 이마의 깊은 주름",
     "meaning": "고랑, 골"
   },
   {
@@ -3722,7 +3722,7 @@
     "day": 5,
     "word": "throb",
     "pron": "[스롭]",
-    "tip": "의성어에서 유래 → 심장이나 맥박이 규칙적으로 쿵쿵 뛰다",
+    "tip": "의성어 → 심장이나 맥박이 규칙적으로 쿵쿵 뛰다",
     "meaning": "가슴이 고동치다"
   },
   {
@@ -3812,7 +3812,7 @@
     "day": 5,
     "word": "hermit",
     "pron": "[허밋]",
-    "tip": "Greek eremites(사막에 사는 사람) → 황야에 은둔하는 사람",
+    "tip": "eremites(사막에 사는 사람) → 황야에 은둔하는 사람",
     "meaning": "은둔자"
   },
   {
@@ -3839,7 +3839,7 @@
     "day": 5,
     "word": "hypnotic",
     "pron": "[힙나틱]",
-    "tip": "Greek hypnos(수면) + tic → 잠이 오게 하는, 최면의",
+    "tip": "hypnos(수면) + tic → 잠이 오게 하는, 최면의",
     "meaning": "졸리는"
   },
   {
@@ -3848,7 +3848,7 @@
     "day": 5,
     "word": "turbulent",
     "pron": "[터뷸런트]",
-    "tip": "Latin turba(혼란, 군중) → 바람이나 물결이 사납게 요동치는, 혼란스러운",
+    "tip": "turba(혼란, 군중) → 바람이나 물결이 사납게 요동치는, 혼란스러운",
     "meaning": "떠들썩한"
   },
   {
@@ -3866,7 +3866,7 @@
     "day": 5,
     "word": "complimentary",
     "pron": "[캄플리멘터리]",
-    "tip": "Latin complementum(채우는 것)에서 파생된 칭찬, 무료 제공 → 칭찬하는, 무료의",
+    "tip": "complementum(채우는 것)에서 파생된 칭찬, 무료 제공 → 칭찬하는, 무료의",
     "meaning": "칭찬하는; 무료의"
   },
   {
@@ -3884,7 +3884,7 @@
     "day": 5,
     "word": "sanguine",
     "pron": "[생귄]",
-    "tip": "Latin sanguis(피) → 피가 돌아 혈색이 좋고 다혈질인, 낙관적인",
+    "tip": "sanguis(피) → 피가 돌아 혈색이 좋고 다혈질인, 낙관적인",
     "meaning": "낙관적인; 혈색이 좋은"
   },
   {
@@ -3929,7 +3929,7 @@
     "day": 5,
     "word": "macabre",
     "pron": "[머카브러]",
-    "tip": "French danse macabre(죽음의 무도)에서 유래 → 죽음과 관련된, 섬뜩한",
+    "tip": "French danse macabre(죽음의 무도) → 죽음과 관련된, 섬뜩한",
     "meaning": "죽음의, 병적인"
   },
   {
@@ -3974,7 +3974,7 @@
     "day": 5,
     "word": "morbid",
     "pron": "[모비드]",
-    "tip": "Latin morbus(질병) + id → 질병에 걸린, 병적으로 집착하는",
+    "tip": "morbus(질병) + id → 질병에 걸린, 병적으로 집착하는",
     "meaning": "병적인"
   },
   {
@@ -3992,7 +3992,7 @@
     "day": 5,
     "word": "sporadic",
     "pron": "[스포래딕]",
-    "tip": "Greek spora(씨앗) → 씨앗이 흩뿌려지듯 이따금씩 산발적으로 일어나는",
+    "tip": "spora(씨앗) → 씨앗이 흩뿌려지듯 이따금씩 산발적으로 일어나는",
     "meaning": "산발적인"
   },
   {
@@ -4001,7 +4001,7 @@
     "day": 5,
     "word": "morose",
     "pron": "[머로스]",
-    "tip": "Latin morosus(까다로운 기질의) → 성미가 까다롭고 시무룩한",
+    "tip": "morosus(까다로운 기질의) → 성미가 까다롭고 시무룩한",
     "meaning": "우울한"
   },
   {
@@ -4046,7 +4046,7 @@
     "day": 5,
     "word": "orator",
     "pron": "[오러터]",
-    "tip": "Latin orare(말하다, 기도하다) + tor(사람) → 대중 앞에서 말하는 연설가",
+    "tip": "orare(말하다, 기도하다) + tor(사람) → 대중 앞에서 말하는 연설가",
     "meaning": "명연설가"
   },
   {
@@ -4055,7 +4055,7 @@
     "day": 5,
     "word": "squander",
     "pron": "[스콴더]",
-    "tip": "방사형으로 흩뿌린다는 의미에서 유래 → 흩뿌리듯 낭비하다",
+    "tip": "방사형으로 흩뿌린다는 의미 → 흩뿌리듯 낭비하다",
     "meaning": "낭비하다"
   },
   {
@@ -4163,7 +4163,7 @@
     "day": 5,
     "word": "stark",
     "pron": "[스타크]",
-    "tip": "Old English stearc(뻣뻣한, 굳은) → 아무런 장식 없이 뻣뻣하고 적나라한",
+    "tip": "stearc(뻣뻣한, 굳은) → 아무런 장식 없이 뻣뻣하고 적나라한",
     "meaning": "엄연한"
   },
   {
@@ -4226,7 +4226,7 @@
     "day": 5,
     "word": "ferment",
     "pron": "[퍼멘트]",
-    "tip": "Latin fervere(끓다) → 부글부글 끓어오르는 발효, 정치적 소요",
+    "tip": "fervere(끓다) → 부글부글 끓어오르는 발효, 정치적 소요",
     "meaning": "발효하다"
   },
   {
@@ -4244,7 +4244,7 @@
     "day": 5,
     "word": "foment",
     "pron": "[포멘트]",
-    "tip": "Latin fovere(따뜻하게 하다) → 따뜻하게 데워 불씨를 살리듯 폭력을 조장하다",
+    "tip": "fovere(따뜻하게 하다) → 따뜻하게 데워 불씨를 살리듯 폭력을 조장하다",
     "meaning": "조장하다"
   },
   {
@@ -4334,7 +4334,7 @@
     "day": 5,
     "word": "writ",
     "pron": "[리트]",
-    "tip": "Old English gewrit(쓰인 것) → 법원이 서면으로 발부한 공식 영장이나 명령서",
+    "tip": "gewrit(쓰인 것) → 법원이 서면으로 발부한 공식 영장이나 명령서",
     "meaning": "공문서"
   },
   {
@@ -4352,7 +4352,7 @@
     "day": 5,
     "word": "tangible",
     "pron": "[탠저블]",
-    "tip": "Latin tangere(만지다) + ible → 손으로 만져서 느낄 수 있는, 실체가 있는",
+    "tip": "tangere(만지다) + ible → 손으로 만져서 느낄 수 있는, 실체가 있는",
     "meaning": "구체적인; 만져서 알 수 있는"
   },
   {
@@ -4388,7 +4388,7 @@
     "day": 5,
     "word": "court",
     "pron": "[코트]",
-    "tip": "Latin cohors(둘러싸인 뜰) → 왕의 궁정(court)에서 환심을 사기 위해 구애하다",
+    "tip": "cohors(둘러싸인 뜰) → 왕의 궁정(court)에서 환심을 사기 위해 구애하다",
     "meaning": "구애하다"
   },
   {
@@ -4505,7 +4505,7 @@
     "day": 6,
     "word": "callous",
     "pron": "[캘러스]",
-    "tip": "Latin callum(굳은살) + ous → 굳은살이 박여 감각이 없는, 냉담한",
+    "tip": "callum(굳은살) + ous → 굳은살이 박여 감각이 없는, 냉담한",
     "meaning": "냉담한"
   },
   {
@@ -4541,7 +4541,7 @@
     "day": 6,
     "word": "diatribe",
     "pron": "[다이어트라이브]",
-    "tip": "Greek diatribe(학술적 논의)에서 유래 → 신랄한 비판, 통렬한 비방",
+    "tip": "diatribe(학술적 논의) → 신랄한 비판, 통렬한 비방",
     "meaning": "비방"
   },
   {
@@ -4577,7 +4577,7 @@
     "day": 6,
     "word": "discreet",
     "pron": "[디스크리트]",
-    "tip": "Latin discretus(분리된, 구별하는) → 사리를 분별할 줄 아는, 신중한",
+    "tip": "discretus(분리된, 구별하는) → 사리를 분별할 줄 아는, 신중한",
     "meaning": "신중한"
   },
   {
@@ -4586,7 +4586,7 @@
     "day": 6,
     "word": "wrath",
     "pron": "[래스]",
-    "tip": "Old English wrath(분노, 잔인함) → 극도의 분노, 격노",
+    "tip": "wrath(분노, 잔인함) → 극도의 분노, 격노",
     "meaning": "격노"
   },
   {
@@ -4613,7 +4613,7 @@
     "day": 6,
     "word": "feasible",
     "pron": "[피저블]",
-    "tip": "Old French faisible(할 수 있는), Latin facere(만들다) → 실행 가능한",
+    "tip": "Old French faisible(할 수 있는), facere(만들다) → 실행 가능한",
     "meaning": "실행 가능한"
   },
   {
@@ -4649,7 +4649,7 @@
     "day": 6,
     "word": "fiscal policy",
     "pron": "[피스컬 팔러시]",
-    "tip": "Latin fiscus(국고, 바구니) + policy → 국가의 자금을 관리하는 재정 정책",
+    "tip": "fiscus(국고, 바구니) + policy → 국가의 자금을 관리하는 재정 정책",
     "meaning": "재정 정책"
   },
   {
@@ -4703,7 +4703,7 @@
     "day": 6,
     "word": "horticulture",
     "pron": "[호티컬처]",
-    "tip": "Latin hortus(정원) + culture(경작) → 정원을 가꾸는 원예학",
+    "tip": "hortus(정원) + culture(경작) → 정원을 가꾸는 원예학",
     "meaning": "원예학"
   },
   {
@@ -4712,7 +4712,7 @@
     "day": 6,
     "word": "crest",
     "pron": "[크레스트]",
-    "tip": "Latin crista(깃털, 볏) → 산이나 파도의 꼭대기, 새의 볏",
+    "tip": "crista(깃털, 볏) → 산이나 파도의 꼭대기, 새의 볏",
     "meaning": "정상; 닭 벼슬"
   },
   {
@@ -4883,7 +4883,7 @@
     "day": 6,
     "word": "menace",
     "pron": "[메너스]",
-    "tip": "Latin minari(위협하다) → 상대방에게 다가오는 위협이나 협박",
+    "tip": "minari(위협하다) → 상대방에게 다가오는 위협이나 협박",
     "meaning": "위협(하다)"
   },
   {
@@ -5135,7 +5135,7 @@
     "day": 6,
     "word": "orchid",
     "pron": "[오키드]",
-    "tip": "Greek orkhis(고환, 뿌리 모양에서 유래) → 난초",
+    "tip": "orkhis(고환, 뿌리 모양 ) → 난초",
     "meaning": "난초꽃"
   },
   {
@@ -5162,7 +5162,7 @@
     "day": 6,
     "word": "orthodox",
     "pron": "[오서독스]",
-    "tip": "Greek orthos(올바른) + doxa(의견) → 정통의, 전통적인",
+    "tip": "orthos(올바른) + doxa(의견) → 정통의, 전통적인",
     "meaning": "정교의; 정통의"
   },
   {
@@ -5180,7 +5180,7 @@
     "day": 6,
     "word": "palpable",
     "pron": "[팰퍼블]",
-    "tip": "Latin palpare(만지다) + able → 만질 수 있을 만큼 명백한, 구체적인",
+    "tip": "palpare(만지다) + able → 만질 수 있을 만큼 명백한, 구체적인",
     "meaning": "구체적인"
   },
   {
@@ -5198,7 +5198,7 @@
     "day": 6,
     "word": "plight",
     "pron": "[플라이트]",
-    "tip": "Old English pliht(위험, 서약) → 곤경, 궁지",
+    "tip": "pliht(위험, 서약) → 곤경, 궁지",
     "meaning": "고충"
   },
   {
@@ -5207,7 +5207,7 @@
     "day": 6,
     "word": "zeal",
     "pron": "[질]",
-    "tip": "Greek zelos(열정, 질투) → 엄청난 열의, 열성",
+    "tip": "zelos(열정, 질투) → 엄청난 열의, 열성",
     "meaning": "열의"
   },
   {
@@ -5225,7 +5225,7 @@
     "day": 6,
     "word": "corollary",
     "pron": "[코럴레리]",
-    "tip": "Latin corollarium(화환, 추가 보상) → 당연한 결과, 부수적인 필연",
+    "tip": "corollarium(화환, 추가 보상) → 당연한 결과, 부수적인 필연",
     "meaning": "결과"
   },
   {
@@ -5306,7 +5306,7 @@
     "day": 6,
     "word": "custody",
     "pron": "[커스터디]",
-    "tip": "Latin custos(경비병, 수호자) → 보호, 양육권, 구금",
+    "tip": "custos(경비병, 수호자) → 보호, 양육권, 구금",
     "meaning": "양육권; 구금"
   },
   {
@@ -5315,7 +5315,7 @@
     "day": 6,
     "word": "salutary",
     "pron": "[샐류테리]",
-    "tip": "Latin salus(건강, 안녕) + ary → 건강에 좋은, 유익한",
+    "tip": "salus(건강, 안녕) + ary → 건강에 좋은, 유익한",
     "meaning": "건강에 좋은"
   },
   {
@@ -5378,7 +5378,7 @@
     "day": 7,
     "word": "taxing",
     "pron": "[택싱]",
-    "tip": "Latin taxare(평가하다, 짐을 지우다) → 세금(tax)을 내는 것처럼 짐이 되고 가혹한",
+    "tip": "taxare(평가하다, 짐을 지우다) → 세금(tax)을 내는 것처럼 짐이 되고 가혹한",
     "meaning": "가혹한"
   },
   {
@@ -5405,7 +5405,7 @@
     "day": 7,
     "word": "agronomy",
     "pron": "[어그라너미]",
-    "tip": "Greek agros(밭, 농지) + nomos(법칙, 관리) → 농지와 작물 생산을 연구하는 농학",
+    "tip": "agros(밭, 농지) + nomos(법칙, 관리) → 농지와 작물 생산을 연구하는 농학",
     "meaning": "농업경제학"
   },
   {
@@ -5441,7 +5441,7 @@
     "day": 7,
     "word": "pecuniary",
     "pron": "[피큐니어리]",
-    "tip": "Latin pecunia(돈), pecu(가축=재산) → 금전적인, 돈의",
+    "tip": "pecunia(돈), pecu(가축=재산) → 금전적인, 돈의",
     "meaning": "돈의"
   },
   {
@@ -5477,7 +5477,7 @@
     "day": 7,
     "word": "smart",
     "pron": "[스마트]",
-    "tip": "Old English smeortan(고통을 주다) → 욱신거리며 아프다, 맵시 있는",
+    "tip": "smeortan(고통을 주다) → 욱신거리며 아프다, 맵시 있는",
     "meaning": "분개하다"
   },
   {
@@ -5486,7 +5486,7 @@
     "day": 7,
     "word": "drove",
     "pron": "[드로브]",
-    "tip": "drive(몰다)의 과거형에서 유래 → 한 방향으로 몰려가는 가축 떼나 사람 무리",
+    "tip": "drive(몰다)의 과거형 → 한 방향으로 몰려가는 가축 떼나 사람 무리",
     "meaning": "무리"
   },
   {
@@ -5549,7 +5549,7 @@
     "day": 7,
     "word": "covet",
     "pron": "[커빗]",
-    "tip": "Old French coveitier, Latin cupere(갈망하다) → 몹시 탐내다",
+    "tip": "Old French coveitier, cupere(갈망하다) → 몹시 탐내다",
     "meaning": "탐내다"
   },
   {
@@ -5639,7 +5639,7 @@
     "day": 7,
     "word": "eleemosynary",
     "pron": "[엘러마서네리]",
-    "tip": "Greek eleemosyne(동정, 자선) → 자선을 베푸는, 구호의",
+    "tip": "eleemosyne(동정, 자선) → 자선을 베푸는, 구호의",
     "meaning": "이타적인, 자선을 배푸는"
   },
   {
@@ -5702,7 +5702,7 @@
     "day": 7,
     "word": "hospitable",
     "pron": "[하시피터블]",
-    "tip": "Latin hospes(손님, 주인) → 손님을 환대하고 친절하게 대하는",
+    "tip": "hospes(손님, 주인) → 손님을 환대하고 친절하게 대하는",
     "meaning": "친절한"
   },
   {
@@ -5738,7 +5738,7 @@
     "day": 7,
     "word": "ethereal",
     "pron": "[이시리얼]",
-    "tip": "Greek aither(맑은 하늘, 공기) → 천상의, 가볍고 우아한",
+    "tip": "aither(맑은 하늘, 공기) → 천상의, 가볍고 우아한",
     "meaning": "천상의; 가뿐한"
   },
   {
@@ -5783,7 +5783,7 @@
     "day": 7,
     "word": "daunt",
     "pron": "[돈트]",
-    "tip": "Latin domare(길들이다, 정복하다) → 기세를 꺾어 위압하다",
+    "tip": "domare(길들이다, 정복하다) → 기세를 꺾어 위압하다",
     "meaning": "기세를 꺾다"
   },
   {
@@ -5810,7 +5810,7 @@
     "day": 7,
     "word": "hypnotize",
     "pron": "[힙너타이즈]",
-    "tip": "Greek hypnos(수면) + ize → 인위적으로 수면 상태에 빠지게 하여 최면을 걸다",
+    "tip": "hypnos(수면) + ize → 인위적으로 수면 상태에 빠지게 하여 최면을 걸다",
     "meaning": "최면 걸다"
   },
   {
@@ -5909,7 +5909,7 @@
     "day": 7,
     "word": "gynecology",
     "pron": "[가이너칼러지]",
-    "tip": "Greek gyne(여성) + logia(학문) → 여성의 생식기 질환을 다루는 부인과학",
+    "tip": "gyne(여성) + logia(학문) → 여성의 생식기 질환을 다루는 부인과학",
     "meaning": "부인의학과"
   },
   {
@@ -6044,7 +6044,7 @@
     "day": 7,
     "word": "dip",
     "pron": "[딥]",
-    "tip": "Old English dippan(담그다) → 액체에 살짝 담그다, 혹은 수치가 일시적으로 떨어지다",
+    "tip": "dippan(담그다) → 액체에 살짝 담그다, 혹은 수치가 일시적으로 떨어지다",
     "meaning": "담그다; 급락하다"
   },
   {
@@ -6125,7 +6125,7 @@
     "day": 7,
     "word": "plagiarize",
     "pron": "[플레이지어라이즈]",
-    "tip": "Latin plagiarius(유괴범) → 남의 아이(작품)를 훔치는 표절하다",
+    "tip": "plagiarius(유괴범) → 남의 아이(작품)를 훔치는 표절하다",
     "meaning": "표절하다"
   },
   {
@@ -6134,7 +6134,7 @@
     "day": 7,
     "word": "rustic",
     "pron": "[러스틱]",
-    "tip": "Latin rus(시골) + tic → 시골 특유의, 투박한",
+    "tip": "rus(시골) + tic → 시골 특유의, 투박한",
     "meaning": "시골의"
   },
   {
@@ -6143,7 +6143,7 @@
     "day": 7,
     "word": "dividend",
     "pron": "[디비덴드]",
-    "tip": "Latin dividendus(나뉘어야 할 것) → 기업의 이익 중 주주들에게 나뉘어 지급되는 배당금",
+    "tip": "dividendus(나뉘어야 할 것) → 기업의 이익 중 주주들에게 나뉘어 지급되는 배당금",
     "meaning": "배당금"
   },
   {
@@ -6152,7 +6152,7 @@
     "day": 7,
     "word": "shun",
     "pron": "[션]",
-    "tip": "Old English scunian(피하다) → 의도적으로 피하다, 멀리하다",
+    "tip": "scunian(피하다) → 의도적으로 피하다, 멀리하다",
     "meaning": "피하다"
   },
   {
@@ -6188,7 +6188,7 @@
     "day": 7,
     "word": "skeptical",
     "pron": "[스켑티컬]",
-    "tip": "Greek skeptikos(탐구하는, 의심하는) → 회의적인, 의심많은",
+    "tip": "skeptikos(탐구하는, 의심하는) → 회의적인, 의심많은",
     "meaning": "회의적인"
   },
   {
@@ -6206,7 +6206,7 @@
     "day": 7,
     "word": "moan",
     "pron": "[모운]",
-    "tip": "Old English manan(슬퍼하다) → 고통으로 신음하다",
+    "tip": "manan(슬퍼하다) → 고통으로 신음하다",
     "meaning": "고통으로 신음하다, 끙끙대다"
   },
   {
@@ -6215,7 +6215,7 @@
     "day": 7,
     "word": "mourn",
     "pron": "[모운]",
-    "tip": "Old English murnan(슬퍼하다) → 누군가의 죽음을 슬퍼하고 애도하다",
+    "tip": "murnan(슬퍼하다) → 누군가의 죽음을 슬퍼하고 애도하다",
     "meaning": "슬퍼하다; 흐느껴 울다; 추모하다"
   },
   {
@@ -6341,7 +6341,7 @@
     "day": 8,
     "word": "dire",
     "pron": "[다이어]",
-    "tip": "Latin dirus(무서운, 불길한) → 대단히 심각하고 끔찍한",
+    "tip": "dirus(무서운, 불길한) → 대단히 심각하고 끔찍한",
     "meaning": "비참한"
   },
   {
@@ -6404,7 +6404,7 @@
     "day": 8,
     "word": "precarious",
     "pron": "[프리케어리어스]",
-    "tip": "Latin precari(기도하다) → 신에게 기도해야 할 만큼 남의 뜻에 달려있어 매우 불안정한",
+    "tip": "precari(기도하다) → 신에게 기도해야 할 만큼 남의 뜻에 달려있어 매우 불안정한",
     "meaning": "불안정한"
   },
   {
@@ -6557,7 +6557,7 @@
     "day": 8,
     "word": "distraught",
     "pron": "[디스트로트]",
-    "tip": "Latin distractus(주의가 산만한)의 변형 → 마음이 심란하고 미칠 듯한",
+    "tip": "distractus(주의가 산만한)의 변형 → 마음이 심란하고 미칠 듯한",
     "meaning": "마음이 산란한"
   },
   {
@@ -6566,7 +6566,7 @@
     "day": 8,
     "word": "yearn",
     "pron": "[연]",
-    "tip": "Old English giernan(열망하다) → 간절히 바라다, 갈망하다",
+    "tip": "giernan(열망하다) → 간절히 바라다, 갈망하다",
     "meaning": "갈망하다"
   },
   {
@@ -6611,7 +6611,7 @@
     "day": 8,
     "word": "compliment",
     "pron": "[캄플리먼트]",
-    "tip": "Latin complere(채우다, 완성하다) → 예의를 다해 상대를 칭찬하다",
+    "tip": "complere(채우다, 완성하다) → 예의를 다해 상대를 칭찬하다",
     "meaning": "칭찬하다"
   },
   {
@@ -6620,7 +6620,7 @@
     "day": 8,
     "word": "domineering",
     "pron": "[다미니어링]",
-    "tip": "Latin dominus(주인) → 주인 행세를 하며 군림하려는, 거만한",
+    "tip": "dominus(주인) → 주인 행세를 하며 군림하려는, 거만한",
     "meaning": "오만한"
   },
   {
@@ -6629,7 +6629,7 @@
     "day": 8,
     "word": "pummel",
     "pron": "[퍼멀]",
-    "tip": "pommel(칼자루 끝부분)에서 유래 → 주먹으로 연달아 맹렬히 때리다",
+    "tip": "pommel(칼자루 끝부분) → 주먹으로 연달아 맹렬히 때리다",
     "meaning": "연달아 때리다"
   },
   {
@@ -6755,7 +6755,7 @@
     "day": 8,
     "word": "penitent",
     "pron": "[페니턴트]",
-    "tip": "Latin paenitere(후회하다) → 죄를 뉘우치고 회개하는",
+    "tip": "paenitere(후회하다) → 죄를 뉘우치고 회개하는",
     "meaning": "회개하는"
   },
   {
@@ -6845,7 +6845,7 @@
     "day": 8,
     "word": "pommel",
     "pron": "[퍼멀]",
-    "tip": "Latin pomum(사과) → 사과 모양의 칼자루 끝으로 연달아 때리다",
+    "tip": "pomum(사과) → 사과 모양의 칼자루 끝으로 연달아 때리다",
     "meaning": "연달아 때리다"
   },
   {
@@ -6854,7 +6854,7 @@
     "day": 8,
     "word": "dicker",
     "pron": "[디커]",
-    "tip": "Latin decuria(10개의 묶음, 모피 거래단위) → 소규모로 흥정하다",
+    "tip": "decuria(10개의 묶음, 모피 거래단위) → 소규모로 흥정하다",
     "meaning": "흥정하다"
   },
   {
@@ -6881,7 +6881,7 @@
     "day": 8,
     "word": "prose",
     "pron": "[프로즈]",
-    "tip": "Latin prorsa oratio(직선적인 언어) → 운율 없이 똑바로 쓰인 산문",
+    "tip": "prorsa oratio(직선적인 언어) → 운율 없이 똑바로 쓰인 산문",
     "meaning": "산문"
   },
   {
@@ -6899,7 +6899,7 @@
     "day": 8,
     "word": "legitimate",
     "pron": "[리지터밋]",
-    "tip": "Latin lex(법) + ate → 법에 맞는, 정당한, 합법적인",
+    "tip": "lex(법) + ate → 법에 맞는, 정당한, 합법적인",
     "meaning": "타당한; 합법적인"
   },
   {
@@ -6908,7 +6908,7 @@
     "day": 8,
     "word": "ransom",
     "pron": "[랜섬]",
-    "tip": "Latin redemptio(되사기) → 포로를 되찾기 위해 지불하는 몸값",
+    "tip": "redemptio(되사기) → 포로를 되찾기 위해 지불하는 몸값",
     "meaning": "(납치피해자의) 몸값"
   },
   {
@@ -6926,7 +6926,7 @@
     "day": 8,
     "word": "ratio",
     "pron": "[레이시오]",
-    "tip": "Latin reri(계산하다, 생각하다) → 계산된 관계, 비율",
+    "tip": "reri(계산하다, 생각하다) → 계산된 관계, 비율",
     "meaning": "비율"
   },
   {
@@ -6935,7 +6935,7 @@
     "day": 8,
     "word": "quixotic",
     "pron": "[퀵사틱]",
-    "tip": "소설 주인공 돈키호테(Don Quixote)에서 유래 → 현실을 모르는, 공상적인",
+    "tip": "소설 주인공 돈키호테(Don Quixote) → 현실을 모르는, 공상적인",
     "meaning": "돈키호테의; 비현실적인"
   },
   {
@@ -6953,7 +6953,7 @@
     "day": 8,
     "word": "salient",
     "pron": "[세일리언트]",
-    "tip": "Latin salire(뛰어오르다) → 눈앞에 확 뛰어오르듯 두드러진, 현저한",
+    "tip": "salire(뛰어오르다) → 눈앞에 확 뛰어오르듯 두드러진, 현저한",
     "meaning": "현저한"
   },
   {
@@ -6971,7 +6971,7 @@
     "day": 8,
     "word": "slick",
     "pron": "[슬릭]",
-    "tip": "Old English slician(매끄럽게 하다) → 겉핥기식으로 미끄럽고 교묘한",
+    "tip": "slician(매끄럽게 하다) → 겉핥기식으로 미끄럽고 교묘한",
     "meaning": "미끈한"
   },
   {
@@ -7007,7 +7007,7 @@
     "day": 8,
     "word": "parochial",
     "pron": "[퍼로키얼]",
-    "tip": "Latin parochia(교구) → 자기 교구에만 갇혀 있는 우물 안 개구리 같은, 편협한",
+    "tip": "parochia(교구) → 자기 교구에만 갇혀 있는 우물 안 개구리 같은, 편협한",
     "meaning": "편협한"
   },
   {
@@ -7025,7 +7025,7 @@
     "day": 8,
     "word": "deem",
     "pron": "[딤]",
-    "tip": "Old English deman(판단하다) → ~라고 판단을 내리다, 간주하다",
+    "tip": "deman(판단하다) → ~라고 판단을 내리다, 간주하다",
     "meaning": "간주하다"
   },
   {
@@ -7052,7 +7052,7 @@
     "day": 8,
     "word": "patsy",
     "pron": "[팻시]",
-    "tip": "이탈리아어 pazzo(바보)에서 유래한 속어 → 남의 죄를 뒤집어쓰는 희생양",
+    "tip": "이탈리아어 pazzo(바보) 한 속어 → 남의 죄를 뒤집어쓰는 희생양",
     "meaning": "잘 속는 사람"
   },
   {
@@ -7097,7 +7097,7 @@
     "day": 8,
     "word": "amiable",
     "pron": "[에이미어블]",
-    "tip": "Latin amicus(친구) → 친구처럼 다정하고 상냥한",
+    "tip": "amicus(친구) → 친구처럼 다정하고 상냥한",
     "meaning": "붙임성이 있는"
   },
   {
@@ -7115,7 +7115,7 @@
     "day": 8,
     "word": "vacillate",
     "pron": "[배실레이트]",
-    "tip": "Latin vacillare(비틀거리다) → 좌우로 흔들리며 주저하다",
+    "tip": "vacillare(비틀거리다) → 좌우로 흔들리며 주저하다",
     "meaning": "망설이다; 흔들리다"
   },
   {
@@ -7124,7 +7124,7 @@
     "day": 8,
     "word": "oscillate",
     "pron": "[아실레이트]",
-    "tip": "Latin oscillare(그네를 타다) → 그네처럼 일정한 주기로 왔다 갔다 진동하다",
+    "tip": "oscillare(그네를 타다) → 그네처럼 일정한 주기로 왔다 갔다 진동하다",
     "meaning": "진동하다; 흔들리다"
   },
   {
@@ -7178,7 +7178,7 @@
     "day": 9,
     "word": "stringent",
     "pron": "[스트린전트]",
-    "tip": "Latin stringere(단단히 묶다) → 규칙이 단단히 묶인 듯 엄격한",
+    "tip": "stringere(단단히 묶다) → 규칙이 단단히 묶인 듯 엄격한",
     "meaning": "엄격한"
   },
   {
@@ -7196,7 +7196,7 @@
     "day": 9,
     "word": "emulate",
     "pron": "[에뮬레이트]",
-    "tip": "Latin aemulari(경쟁하다) → 지지 않으려고 모방하며 필적하려 하다",
+    "tip": "aemulari(경쟁하다) → 지지 않으려고 모방하며 필적하려 하다",
     "meaning": "필적하다; 흉내 내다"
   },
   {
@@ -7286,7 +7286,7 @@
     "day": 9,
     "word": "filthy",
     "pron": "[필시]",
-    "tip": "Old English fylth(오물, 더러움) → 몹시 불결하고 추잡한",
+    "tip": "fylth(오물, 더러움) → 몹시 불결하고 추잡한",
     "meaning": "더러운"
   },
   {
@@ -7304,7 +7304,7 @@
     "day": 9,
     "word": "palliate",
     "pron": "[팰리에이트]",
-    "tip": "Latin pallium(외투) → 외투로 감추듯 증상만 임시방편으로 완화하다",
+    "tip": "pallium(외투) → 외투로 감추듯 증상만 임시방편으로 완화하다",
     "meaning": "완화시키다"
   },
   {
@@ -7376,7 +7376,7 @@
     "day": 9,
     "word": "libidinous",
     "pron": "[리비디너스]",
-    "tip": "Latin libido(욕망) + ous → 성적 욕망이 강한, 호색의",
+    "tip": "libido(욕망) + ous → 성적 욕망이 강한, 호색의",
     "meaning": "호색의; 육욕적인"
   },
   {
@@ -7484,7 +7484,7 @@
     "day": 9,
     "word": "philistine",
     "pron": "[필리스틴]",
-    "tip": "팔레스타인(Philistines) 사람에서 유래 → 예술과 문화를 모르는 교양 없는 사람",
+    "tip": "팔레스타인(Philistines) 사람 → 예술과 문화를 모르는 교양 없는 사람",
     "meaning": "교양 없는(사람); 속물(의)"
   },
   {
@@ -7511,7 +7511,7 @@
     "day": 9,
     "word": "enmity",
     "pron": "[엔머티]",
-    "tip": "Latin inimicus(적이 되는) → 적대감, 뿌리 깊은 원한",
+    "tip": "inimicus(적이 되는) → 적대감, 뿌리 깊은 원한",
     "meaning": "증오"
   },
   {
@@ -7529,7 +7529,7 @@
     "day": 9,
     "word": "gall",
     "pron": "[골]",
-    "tip": "Old English gealla(쓸개즙) → 쓴맛처럼 사람을 짜증나고 화나게 하다",
+    "tip": "gealla(쓸개즙) → 쓴맛처럼 사람을 짜증나고 화나게 하다",
     "meaning": "초조하게 하다"
   },
   {
@@ -7547,7 +7547,7 @@
     "day": 9,
     "word": "gluttonize",
     "pron": "[글러터나이즈]",
-    "tip": "Latin gluttire(삼키다) → 게걸스럽게 폭식하다",
+    "tip": "gluttire(삼키다) → 게걸스럽게 폭식하다",
     "meaning": "게걸스럽게 먹다"
   },
   {
@@ -7601,7 +7601,7 @@
     "day": 9,
     "word": "serene",
     "pron": "[서린]",
-    "tip": "Latin serenus(맑은, 고요한) → 폭풍이 지나간 후의 맑고 평온한",
+    "tip": "serenus(맑은, 고요한) → 폭풍이 지나간 후의 맑고 평온한",
     "meaning": "평온한"
   },
   {
@@ -7619,7 +7619,7 @@
     "day": 9,
     "word": "clerk",
     "pron": "[클러크]",
-    "tip": "Latin clericus(성직자) → 글을 읽고 쓰는 서기, 점원",
+    "tip": "clericus(성직자) → 글을 읽고 쓰는 서기, 점원",
     "meaning": "점원"
   },
   {
@@ -7700,7 +7700,7 @@
     "day": 9,
     "word": "torture",
     "pron": "[토처]",
-    "tip": "Latin torquere(비틀다) → 팔다리를 비틀어 고통을 주는 고문",
+    "tip": "torquere(비틀다) → 팔다리를 비틀어 고통을 주는 고문",
     "meaning": "고문(하다)"
   },
   {
@@ -7736,7 +7736,7 @@
     "day": 9,
     "word": "veto",
     "pron": "[비토]",
-    "tip": "Latin veto(나는 금지한다) → 일방적인 거부권, 기각하다",
+    "tip": "veto(나는 금지한다) → 일방적인 거부권, 기각하다",
     "meaning": "거부하다; 거부권"
   },
   {
@@ -7799,7 +7799,7 @@
     "day": 9,
     "word": "opaque",
     "pron": "[오페이크]",
-    "tip": "Latin opacus(그늘진) → 빛이 통과하지 못해 불투명하고 이해하기 힘든",
+    "tip": "opacus(그늘진) → 빛이 통과하지 못해 불투명하고 이해하기 힘든",
     "meaning": "불투명한"
   },
   {
@@ -7880,7 +7880,7 @@
     "day": 9,
     "word": "eke out",
     "pron": "[이크 아웃]",
-    "tip": "Old English eacan(증가하다) → 억지로 조금씩 늘려가며 버티다",
+    "tip": "eacan(증가하다) → 억지로 조금씩 늘려가며 버티다",
     "meaning": "부족분을 채우다"
   },
   {
@@ -7925,7 +7925,7 @@
     "day": 9,
     "word": "nettle",
     "pron": "[네틀]",
-    "tip": "Old English netele(쐐기풀) → 쐐기풀에 찔린 듯 짜증나게 하다",
+    "tip": "netele(쐐기풀) → 쐐기풀에 찔린 듯 짜증나게 하다",
     "meaning": "화나게 하는 것; 짜증나게 하다"
   },
   {
@@ -7961,7 +7961,7 @@
     "day": 9,
     "word": "oblique",
     "pron": "[어블리크]",
-    "tip": "Latin obliquus(기울어진) → 똑바르지 않고 비스듬한, 완곡한",
+    "tip": "obliquus(기울어진) → 똑바르지 않고 비스듬한, 완곡한",
     "meaning": "완곡한"
   },
   {
@@ -8069,7 +8069,7 @@
     "day": 9,
     "word": "severe",
     "pron": "[시비어]",
-    "tip": "Latin severus(엄격한) → 가차 없이 엄격하고 극심한",
+    "tip": "severus(엄격한) → 가차 없이 엄격하고 극심한",
     "meaning": "심한, 엄한"
   },
   {
@@ -8123,7 +8123,7 @@
     "day": 10,
     "word": "lumber",
     "pron": "[럼버]",
-    "tip": "어원 불명(무겁게 움직이다에서 유래) → 쿵쿵거리는 소리를 내는 무거운 목재",
+    "tip": "어원 불명(무겁게 움직이다 ) → 쿵쿵거리는 소리를 내는 무거운 목재",
     "meaning": "목재"
   },
   {
@@ -8141,7 +8141,7 @@
     "day": 10,
     "word": "frenzy",
     "pron": "[프렌지]",
-    "tip": "Greek phrenitis(뇌염) → 정신이 나갈 정도의 광란, 격분",
+    "tip": "phrenitis(뇌염) → 정신이 나갈 정도의 광란, 격분",
     "meaning": "격앙"
   },
   {
@@ -8294,7 +8294,7 @@
     "day": 10,
     "word": "peer",
     "pron": "[피어]",
-    "tip": "Latin par(동등한) → 지위나 나이가 동등한 동료",
+    "tip": "par(동등한) → 지위나 나이가 동등한 동료",
     "meaning": "동료"
   },
   {
@@ -8339,7 +8339,7 @@
     "day": 10,
     "word": "garrulous",
     "pron": "[개럴러스]",
-    "tip": "Latin garrire(수다 떨다) → 쉴 새 없이 지저귀듯 말이 많은",
+    "tip": "garrire(수다 떨다) → 쉴 새 없이 지저귀듯 말이 많은",
     "meaning": "수다스러운"
   },
   {
@@ -8483,7 +8483,7 @@
     "day": 10,
     "word": "quotient",
     "pron": "[쿼우션트]",
-    "tip": "Latin quotiens(얼마나 여러 번) → 나눗셈에서 몇 번 들어가는지를 나타내는 몫",
+    "tip": "quotiens(얼마나 여러 번) → 나눗셈에서 몇 번 들어가는지를 나타내는 몫",
     "meaning": "몫, 양"
   },
   {
@@ -8573,7 +8573,7 @@
     "day": 10,
     "word": "fume",
     "pron": "[퓸]",
-    "tip": "Latin fumus(연기) → 분노로 머리에서 연기를 뿜어내다, 매연",
+    "tip": "fumus(연기) → 분노로 머리에서 연기를 뿜어내다, 매연",
     "meaning": "분노(하다)"
   },
   {
@@ -8654,7 +8654,7 @@
     "day": 10,
     "word": "opulent",
     "pron": "[아퓰런트]",
-    "tip": "Latin ops(부, 힘) + ulent(가득한) → 재물이 가득하여 몹시 호화롭고 부유한",
+    "tip": "ops(부, 힘) + ulent(가득한) → 재물이 가득하여 몹시 호화롭고 부유한",
     "meaning": "부유한"
   },
   {
@@ -8708,7 +8708,7 @@
     "day": 10,
     "word": "futile",
     "pron": "[퓨틸]",
-    "tip": "Latin futilis(쉽게 새어나가는) → 물이 새는 그릇처럼 헛된, 소용없는",
+    "tip": "futilis(쉽게 새어나가는) → 물이 새는 그릇처럼 헛된, 소용없는",
     "meaning": "쓸데없는; 헛된"
   },
   {
@@ -8735,7 +8735,7 @@
     "day": 10,
     "word": "narcotic",
     "pron": "[나카틱]",
-    "tip": "Greek narkoun(마비시키다) → 감각을 마비시키는 마약, 수면제",
+    "tip": "narkoun(마비시키다) → 감각을 마비시키는 마약, 수면제",
     "meaning": "마약성의"
   },
   {
@@ -8987,7 +8987,7 @@
     "day": 11,
     "word": "loathe",
     "pron": "[로즈]",
-    "tip": "Old English lath(미운, 적대적인)에서 유래 → 몹시 혐오하다",
+    "tip": "lath(미운, 적대적인) → 몹시 혐오하다",
     "meaning": "혐오하다"
   },
   {
@@ -9050,7 +9050,7 @@
     "day": 11,
     "word": "flay",
     "pron": "[플레이]",
-    "tip": "Old English flean(껍질을 벗기다) → 가죽을 벗기다, 껍질을 벗기듯 혹평하다",
+    "tip": "flean(껍질을 벗기다) → 가죽을 벗기다, 껍질을 벗기듯 혹평하다",
     "meaning": "혹평하다"
   },
   {
@@ -9059,7 +9059,7 @@
     "day": 11,
     "word": "neuter",
     "pron": "[뉴터]",
-    "tip": "Latin ne(not)+uter(어느 쪽도) → 남성도 여성도 아닌 중성의, 거세하다",
+    "tip": "ne(not)+uter(어느 쪽도) → 남성도 여성도 아닌 중성의, 거세하다",
     "meaning": "거세하다; 무력화시키다"
   },
   {
@@ -9077,7 +9077,7 @@
     "day": 11,
     "word": "nix",
     "pron": "[닉스]",
-    "tip": "German nichts(아무것도 없음)에서 유래 → 무(\u0000)로 돌리다, 거절하다",
+    "tip": "German nichts(아무것도 없음) → 무(\u0000)로 돌리다, 거절하다",
     "meaning": "무; 금지하다; 취소하다"
   },
   {
@@ -9086,7 +9086,7 @@
     "day": 11,
     "word": "flog",
     "pron": "[플로그]",
-    "tip": "Latin flagrum(채찍)에서 유래 → 채찍으로 마구 때리다",
+    "tip": "flagrum(채찍) → 채찍으로 마구 때리다",
     "meaning": "채찍질하다"
   },
   {
@@ -9095,7 +9095,7 @@
     "day": 11,
     "word": "flourish",
     "pron": "[플러리시]",
-    "tip": "Latin florere(꽃피다) → 꽃이 만발하듯 번영하다, 과장된 동작",
+    "tip": "florere(꽃피다) → 꽃이 만발하듯 번영하다, 과장된 동작",
     "meaning": "번영하다"
   },
   {
@@ -9122,7 +9122,7 @@
     "day": 11,
     "word": "vapid",
     "pron": "[배피드]",
-    "tip": "Latin vapidus(김빠진) → 증기(vapor)처럼 실체가 없고 김빠진, 지루한",
+    "tip": "vapidus(김빠진) → 증기(vapor)처럼 실체가 없고 김빠진, 지루한",
     "meaning": "흥미롭지 못한"
   },
   {
@@ -9131,7 +9131,7 @@
     "day": 11,
     "word": "oligarchy",
     "pron": "[알러가키]",
-    "tip": "Greek oligos(소수)+archos(지배자) → 소수에 의한 과두정치",
+    "tip": "oligos(소수)+archos(지배자) → 소수에 의한 과두정치",
     "meaning": "과두정치"
   },
   {
@@ -9149,7 +9149,7 @@
     "day": 11,
     "word": "fable",
     "pron": "[페이블]",
-    "tip": "Latin fabula(이야기), fari(말하다)에서 파생 → 동물들이 교훈을 주는 우화",
+    "tip": "fabula(이야기), fari(말하다)에서 파생 → 동물들이 교훈을 주는 우화",
     "meaning": "우화"
   },
   {
@@ -9158,7 +9158,7 @@
     "day": 11,
     "word": "gambit",
     "pron": "[갬빗]",
-    "tip": "Italian gamba(다리)에서 유래(다리를 걸어 넘어뜨림) → 초반에 우위를 점하려는 수, 책략",
+    "tip": "Italian gamba(다리) (다리를 걸어 넘어뜨림) → 초반에 우위를 점하려는 수, 책략",
     "meaning": "책략"
   },
   {
@@ -9167,7 +9167,7 @@
     "day": 11,
     "word": "obedient",
     "pron": "[어비디언트]",
-    "tip": "Latin ob(향하여)+audire(듣다) → 귀 기울여 듣고 순종하는",
+    "tip": "ob(향하여)+audire(듣다) → 귀 기울여 듣고 순종하는",
     "meaning": "복종하는"
   },
   {
@@ -9176,7 +9176,7 @@
     "day": 11,
     "word": "phony",
     "pron": "[포니]",
-    "tip": "fawney(금동 반지 사기)에서 유래한 속어 → 가짜의, 사기꾼",
+    "tip": "fawney(금동 반지 사기) 한 속어 → 가짜의, 사기꾼",
     "meaning": "가짜"
   },
   {
@@ -9185,7 +9185,7 @@
     "day": 11,
     "word": "benign",
     "pron": "[비나인]",
-    "tip": "Latin bene(좋은)+genus(태생) → 태생적으로 선하고 온화한, (종양이) 양성인",
+    "tip": "bene(좋은)+genus(태생) → 태생적으로 선하고 온화한, (종양이) 양성인",
     "meaning": "양성의"
   },
   {
@@ -9221,7 +9221,7 @@
     "day": 11,
     "word": "fabricate",
     "pron": "[패브리케이트]",
-    "tip": "Latin fabrica(작업장, 직물) → 정교하게 조립하여 만들다, 거짓말을 꾸며내다",
+    "tip": "fabrica(작업장, 직물) → 정교하게 조립하여 만들다, 거짓말을 꾸며내다",
     "meaning": "꾸며내다"
   },
   {
@@ -9266,7 +9266,7 @@
     "day": 11,
     "word": "vein",
     "pron": "[베인]",
-    "tip": "Latin vena(혈관) → 정맥, 잎맥, 광맥",
+    "tip": "vena(혈관) → 정맥, 잎맥, 광맥",
     "meaning": "정맥"
   },
   {
@@ -9338,7 +9338,7 @@
     "day": 11,
     "word": "fallow",
     "pron": "[팰로우]",
-    "tip": "Old English fealh(쟁기질한 땅) → 쟁기질만 하고 파종하지 않아 휴경 중인",
+    "tip": "fealh(쟁기질한 땅) → 쟁기질만 하고 파종하지 않아 휴경 중인",
     "meaning": "경작하지 않은"
   },
   {
@@ -9356,7 +9356,7 @@
     "day": 11,
     "word": "funnel",
     "pron": "[퍼널]",
-    "tip": "Latin infundibulum(깔때기) → 깔때기, (정보/자금 등을) 집중하다",
+    "tip": "infundibulum(깔때기) → 깔때기, (정보/자금 등을) 집중하다",
     "meaning": "집중투여하다"
   },
   {
@@ -9401,7 +9401,7 @@
     "day": 11,
     "word": "fit",
     "pron": "[핏]",
-    "tip": "Old English fitt(갈등, 투쟁)에서 발작이라는 의미 파생 / 맞다, 적합하다",
+    "tip": "fitt(갈등, 투쟁)에서 발작이라는 의미 파생 / 맞다, 적합하다",
     "meaning": "건강한; 발작"
   },
   {
@@ -9428,7 +9428,7 @@
     "day": 11,
     "word": "say",
     "pron": "[세이]",
-    "tip": "Old English secgan(말하다) → 말하자면, 이를테면",
+    "tip": "secgan(말하다) → 말하자면, 이를테면",
     "meaning": "예를 들어"
   },
   {
@@ -9464,7 +9464,7 @@
     "day": 11,
     "word": "osmotic",
     "pron": "[아즈마틱]",
-    "tip": "Greek osmos(밀다) → 액체가 밀고 들어오는 삼투압의",
+    "tip": "osmos(밀다) → 액체가 밀고 들어오는 삼투압의",
     "meaning": "삼투압의"
   },
   {
@@ -9482,7 +9482,7 @@
     "day": 11,
     "word": "hierarchy",
     "pron": "[하이어라키]",
-    "tip": "Greek hieros(신성한)+archos(지배자) → 신성한 권력의 서열, 계급제도",
+    "tip": "hieros(신성한)+archos(지배자) → 신성한 권력의 서열, 계급제도",
     "meaning": "계급"
   },
   {
@@ -9527,7 +9527,7 @@
     "day": 11,
     "word": "onerous",
     "pron": "[아너러스]",
-    "tip": "Latin onus(짐, 부담)+ous → 무거운 짐이 되는, 번거로운",
+    "tip": "onus(짐, 부담)+ous → 무거운 짐이 되는, 번거로운",
     "meaning": "번거로운"
   },
   {
@@ -9545,7 +9545,7 @@
     "day": 11,
     "word": "vigil",
     "pron": "[비질]",
-    "tip": "Latin vigilare(깨어 있다) → 밤을 새며 지키는 철야 불침번",
+    "tip": "vigilare(깨어 있다) → 밤을 새며 지키는 철야 불침번",
     "meaning": "철야(기도), 불침번"
   },
   {
@@ -9581,7 +9581,7 @@
     "day": 11,
     "word": "federal",
     "pron": "[페더럴]",
-    "tip": "Latin foedus(조약, 동맹) → 조약으로 맺어진 연방의",
+    "tip": "foedus(조약, 동맹) → 조약으로 맺어진 연방의",
     "meaning": "연방의"
   },
   {
@@ -9608,7 +9608,7 @@
     "day": 11,
     "word": "feeble",
     "pron": "[피블]",
-    "tip": "Latin flebilis(눈물겨운) → 눈물이 날 정도로 연약하고 허약한",
+    "tip": "flebilis(눈물겨운) → 눈물이 날 정도로 연약하고 허약한",
     "meaning": "연약한"
   },
   {
@@ -9626,7 +9626,7 @@
     "day": 11,
     "word": "feign",
     "pron": "[페인]",
-    "tip": "Latin fingere(만들다, 모양을 빚다) → 속이려고 거짓으로 꾸며내다, 가장하다",
+    "tip": "fingere(만들다, 모양을 빚다) → 속이려고 거짓으로 꾸며내다, 가장하다",
     "meaning": "가장하다"
   },
   {
@@ -9635,7 +9635,7 @@
     "day": 11,
     "word": "lateral",
     "pron": "[래터럴]",
-    "tip": "Latin latus(옆면, 측면) → 옆면의, 측면의",
+    "tip": "latus(옆면, 측면) → 옆면의, 측면의",
     "meaning": "측면의"
   },
   {
@@ -9689,7 +9689,7 @@
     "day": 11,
     "word": "ornament",
     "pron": "[오너먼트]",
-    "tip": "Latin ornare(장식하다) → 아름답게 꾸미는 장식, 장신구",
+    "tip": "ornare(장식하다) → 아름답게 꾸미는 장식, 장신구",
     "meaning": "장식; 장식품; 장식하다"
   },
   {
@@ -9698,7 +9698,7 @@
     "day": 11,
     "word": "fervent",
     "pron": "[퍼번트]",
-    "tip": "Latin fervere(끓다) → 부글부글 끓어오르는 열렬한",
+    "tip": "fervere(끓다) → 부글부글 끓어오르는 열렬한",
     "meaning": "열렬한"
   },
   {
@@ -9725,7 +9725,7 @@
     "day": 11,
     "word": "fierce",
     "pron": "[피어스]",
-    "tip": "Latin ferus(야생의, 길들여지지 않은) → 야생동물처럼 사나운, 맹렬한",
+    "tip": "ferus(야생의, 길들여지지 않은) → 야생동물처럼 사나운, 맹렬한",
     "meaning": "사나운"
   },
   {
@@ -9761,7 +9761,7 @@
     "day": 11,
     "word": "officious",
     "pron": "[어피셔스]",
-    "tip": "Latin officium(임무, 참견) → 자신의 직분을 넘어서서 쓸데없이 참견하는",
+    "tip": "officium(임무, 참견) → 자신의 직분을 넘어서서 쓸데없이 참견하는",
     "meaning": "간섭하는"
   },
   {
@@ -9770,7 +9770,7 @@
     "day": 11,
     "word": "libido",
     "pron": "[리비도]",
-    "tip": "Latin libido(욕망, 갈망) → (심리학) 인간의 본능적인 성적 욕망",
+    "tip": "libido(욕망, 갈망) → (심리학) 인간의 본능적인 성적 욕망",
     "meaning": "애욕, 성적 충동"
   },
   {
@@ -9788,7 +9788,7 @@
     "day": 11,
     "word": "limpid",
     "pron": "[림피드]",
-    "tip": "Latin limpidus(맑은, 투명한) → 물이나 눈동자가 투명하고 맑은",
+    "tip": "limpidus(맑은, 투명한) → 물이나 눈동자가 투명하고 맑은",
     "meaning": "맑은"
   },
   {
@@ -9797,7 +9797,7 @@
     "day": 11,
     "word": "flagrant",
     "pron": "[플레이그런트]",
-    "tip": "Latin flagrare(불타오르다) → 불꽃처럼 눈에 띄게 악명 높은, 극악한",
+    "tip": "flagrare(불타오르다) → 불꽃처럼 눈에 띄게 악명 높은, 극악한",
     "meaning": "극악무도한"
   },
   {
@@ -9806,7 +9806,7 @@
     "day": 11,
     "word": "cryptic",
     "pron": "[크립틱]",
-    "tip": "Greek kryptos(숨겨진) → 의미가 숨겨져 있어 해독하기 힘든, 비밀의",
+    "tip": "kryptos(숨겨진) → 의미가 숨겨져 있어 해독하기 힘든, 비밀의",
     "meaning": "비밀의, 암호의"
   },
   {
@@ -9815,7 +9815,7 @@
     "day": 11,
     "word": "lingo",
     "pron": "[링고]",
-    "tip": "Latin lingua(혀, 언어)에서 유래 → 특정 집단이 쓰는 전문 용어나 은어",
+    "tip": "lingua(혀, 언어) → 특정 집단이 쓰는 전문 용어나 은어",
     "meaning": "전문적인 용어"
   },
   {
@@ -9833,7 +9833,7 @@
     "day": 11,
     "word": "sumptuous",
     "pron": "[섬추어스]",
-    "tip": "Latin sumere(비용을 들이다) → 엄청난 비용을 들여 화려하고 사치스러운",
+    "tip": "sumere(비용을 들이다) → 엄청난 비용을 들여 화려하고 사치스러운",
     "meaning": "사치스러운"
   },
   {
@@ -10094,7 +10094,7 @@
     "day": 12,
     "word": "fester",
     "pron": "[페스터]",
-    "tip": "Latin fistula(궤양, 곪은 상처) → 상처가 곪다, 감정이 곪아 터지다",
+    "tip": "fistula(궤양, 곪은 상처) → 상처가 곪다, 감정이 곪아 터지다",
     "meaning": "곪다"
   },
   {
@@ -10157,7 +10157,7 @@
     "day": 12,
     "word": "gird",
     "pron": "[거드]",
-    "tip": "Old English gyrdan(띠를 두르다) → 허리띠를 단단히 졸라매고 대비하다",
+    "tip": "gyrdan(띠를 두르다) → 허리띠를 단단히 졸라매고 대비하다",
     "meaning": "대비하다"
   },
   {
@@ -10796,7 +10796,7 @@
     "day": 13,
     "word": "cure",
     "pron": "[큐어]",
-    "tip": "Latin cura(돌봄, 주의) → 주의 깊게 돌보아 병을 치유하다",
+    "tip": "cura(돌봄, 주의) → 주의 깊게 돌보아 병을 치유하다",
     "meaning": "완치(제)"
   },
   {
@@ -10832,7 +10832,7 @@
     "day": 13,
     "word": "empiricism",
     "pron": "[임피리시즘]",
-    "tip": "Greek empeiria(경험) → 이론보다 관찰과 경험을 중시하는 경험주의",
+    "tip": "empeiria(경험) → 이론보다 관찰과 경험을 중시하는 경험주의",
     "meaning": "경험주의"
   },
   {
@@ -11057,7 +11057,7 @@
     "day": 13,
     "word": "afford",
     "pron": "[어포드]",
-    "tip": "Old English geforthian(나아가다, 돕다) → 재정적으로 나아갈 여유가 되다",
+    "tip": "geforthian(나아가다, 돕다) → 재정적으로 나아갈 여유가 되다",
     "meaning": "형편이 되다, 여유가 되다"
   },
   {
@@ -11084,7 +11084,7 @@
     "day": 13,
     "word": "mesmerize",
     "pron": "[메즈머라이즈]",
-    "tip": "메스머(Mesmer, 최면술 창시자 이름)에서 유래 → 최면을 걸어 넋을 빼놓다",
+    "tip": "메스머(Mesmer, 최면술 창시자 이름) → 최면을 걸어 넋을 빼놓다",
     "meaning": "최면 걸다"
   },
   {
@@ -11174,7 +11174,7 @@
     "day": 13,
     "word": "giddy",
     "pron": "[기디]",
-    "tip": "Old English gydig(신에게 사로잡힌, 미친) → 붕 뜬 기분으로 어지럽고 들뜬",
+    "tip": "gydig(신에게 사로잡힌, 미친) → 붕 뜬 기분으로 어지럽고 들뜬",
     "meaning": "현기증 나는"
   },
   {
@@ -11228,7 +11228,7 @@
     "day": 13,
     "word": "brittle",
     "pron": "[브리틀]",
-    "tip": "Old English brytan(부수다) → 단단하지만 충격에 약해 쉽게 부서지는",
+    "tip": "brytan(부수다) → 단단하지만 충격에 약해 쉽게 부서지는",
     "meaning": "부서지기 쉬운"
   },
   {
@@ -11408,7 +11408,7 @@
     "day": 13,
     "word": "palliative",
     "pron": "[팰리어티브]",
-    "tip": "Latin pallium(외투, 덮개) → 외투로 상처를 덮어주듯 증상만 완화하는",
+    "tip": "pallium(외투, 덮개) → 외투로 상처를 덮어주듯 증상만 완화하는",
     "meaning": "완화하는"
   },
   {
@@ -11417,7 +11417,7 @@
     "day": 13,
     "word": "mince",
     "pron": "[민스]",
-    "tip": "Latin minutia(작은 것) → 고기를 잘게 다지다, (말을) 완곡하게 조심해서 하다",
+    "tip": "minutia(작은 것) → 고기를 잘게 다지다, (말을) 완곡하게 조심해서 하다",
     "meaning": "얇게 자르다"
   },
   {
@@ -11462,7 +11462,7 @@
     "day": 13,
     "word": "protein",
     "pron": "[프로틴]",
-    "tip": "Greek protos(첫째의, 가장 중요한) → 생명 유지에 가장 중요한 단백질",
+    "tip": "protos(첫째의, 가장 중요한) → 생명 유지에 가장 중요한 단백질",
     "meaning": "단백질"
   },
   {
@@ -11516,7 +11516,7 @@
     "day": 13,
     "word": "restive",
     "pron": "[레스티브]",
-    "tip": "Latin restare(뒤에 남다, 저항하다) → 통제를 벗어나 저항하며 안절부절못하는",
+    "tip": "restare(뒤에 남다, 저항하다) → 통제를 벗어나 저항하며 안절부절못하는",
     "meaning": "불안정한"
   },
   {
@@ -11840,7 +11840,7 @@
     "day": 14,
     "word": "hail",
     "pron": "[헤일]",
-    "tip": "Old English waes hael(건강하기를) → 우박처럼 쏟아지는 환호, 환영하다",
+    "tip": "waes hael(건강하기를) → 우박처럼 쏟아지는 환호, 환영하다",
     "meaning": "환영하다; (from) 출신이다"
   },
   {
@@ -13424,7 +13424,7 @@
     "day": 16,
     "word": "leukemia",
     "pron": "[루키미아]",
-    "tip": "Greek leukos(흰색)+haima(피) → 혈액 속에 백혈구가 비정상적으로 많은 백혈병",
+    "tip": "leukos(흰색)+haima(피) → 혈액 속에 백혈구가 비정상적으로 많은 백혈병",
     "meaning": "백혈병"
   },
   {
@@ -13496,7 +13496,7 @@
     "day": 16,
     "word": "hiatus",
     "pron": "[하이에이터스]",
-    "tip": "Latin hiare(입을 벌리다) → 틈이 벌어져 생긴 중단기, 휴서기",
+    "tip": "hiare(입을 벌리다) → 틈이 벌어져 생긴 중단기, 휴서기",
     "meaning": "중단, (단절된) 틈"
   },
   {
@@ -13505,7 +13505,7 @@
     "day": 16,
     "word": "mandatory",
     "pron": "[맨더토리]",
-    "tip": "Latin mandare(명령하다) → 상부의 명령으로 지정된 의무적인",
+    "tip": "mandare(명령하다) → 상부의 명령으로 지정된 의무적인",
     "meaning": "의무의"
   },
   {
@@ -13514,7 +13514,7 @@
     "day": 16,
     "word": "languid",
     "pron": "[랭귀드]",
-    "tip": "Latin languere(약해지다) → 기운이 빠져 나른하고 무기력한",
+    "tip": "languere(약해지다) → 기운이 빠져 나른하고 무기력한",
     "meaning": "나태한"
   },
   {
@@ -13523,7 +13523,7 @@
     "day": 16,
     "word": "integrity",
     "pron": "[인테그리티]",
-    "tip": "Latin integer(완전한, 손상되지 않은) → 도덕적으로 흠결이 없는 성실함, 온전함",
+    "tip": "integer(완전한, 손상되지 않은) → 도덕적으로 흠결이 없는 성실함, 온전함",
     "meaning": "성실; 충실(도)"
   },
   {
@@ -13577,7 +13577,7 @@
     "day": 16,
     "word": "lackadaisical",
     "pron": "[래커데이지컬]",
-    "tip": "Alack the day(아, 슬프도다)라는 감탄사에서 유래 → 의욕 없이 무기력한",
+    "tip": "Alack the day(아, 슬프도다)라는 감탄사 → 의욕 없이 무기력한",
     "meaning": "열의 없는"
   },
   {
@@ -13667,7 +13667,7 @@
     "day": 16,
     "word": "hooligan",
     "pron": "[훌리건]",
-    "tip": "19세기 런던 폭력배 Hooligan 가족의 이름에서 유래 → 축구장 등에서 난동을 부리는 무리",
+    "tip": "19세기 런던 폭력배 Hooligan 가족의 이름 → 축구장 등에서 난동을 부리는 무리",
     "meaning": "무뢰한"
   },
   {
@@ -13802,7 +13802,7 @@
     "day": 16,
     "word": "unctuous",
     "pron": "[엉크추어스]",
-    "tip": "Latin ungere(기름을 바르다) → 기름을 바른 듯 지나치게 번지르르하고 상냥한 척하는",
+    "tip": "ungere(기름을 바르다) → 기름을 바른 듯 지나치게 번지르르하고 상냥한 척하는",
     "meaning": "매끄러운; 상냥한"
   },
   {
@@ -13901,7 +13901,7 @@
     "day": 16,
     "word": "iota",
     "pron": "[아이오타]",
-    "tip": "그리스어의 가장 작은 알파벳에서 유래한 극소량",
+    "tip": "의 가장 작은 알파벳 한 극소량",
     "meaning": "극소량"
   },
   {
@@ -13910,7 +13910,7 @@
     "day": 16,
     "word": "hubris",
     "pron": "[휴브리스]",
-    "tip": "Greek hybris(신에 대한 오만) → 자신감이 지나쳐 파멸을 부르는 오만, 자만심",
+    "tip": "hybris(신에 대한 오만) → 자신감이 지나쳐 파멸을 부르는 오만, 자만심",
     "meaning": "오만"
   },
   {
@@ -13919,7 +13919,7 @@
     "day": 16,
     "word": "meager",
     "pron": "[미거]",
-    "tip": "Latin macrus(마른, 얇은) → 살이 없고 불충분한, 빈약한",
+    "tip": "macrus(마른, 얇은) → 살이 없고 불충분한, 빈약한",
     "meaning": "빈약한"
   },
   {
@@ -13937,7 +13937,7 @@
     "day": 16,
     "word": "soak",
     "pron": "[소크]",
-    "tip": "Old English socian(스며들다) → 액체 속에 오래 담가 흠뻑 젖게 하다",
+    "tip": "socian(스며들다) → 액체 속에 오래 담가 흠뻑 젖게 하다",
     "meaning": "젖게 만들다"
   },
   {
@@ -14072,7 +14072,7 @@
     "day": 16,
     "word": "legion",
     "pron": "[리전]",
-    "tip": "로마 시대의 대규모 군단, 연대에서 유래한 무수한 사람",
+    "tip": "로마 시대의 대규모 군단, 연대 한 무수한 사람",
     "meaning": "무수한; 연대(\u0000)"
   },
   {
@@ -14117,7 +14117,7 @@
     "day": 16,
     "word": "lethargy",
     "pron": "[레서지]",
-    "tip": "Greek lethe(망각)+ergon(일) → 일을 잊어버리고 아무것도 하지 않는 무기력 상태",
+    "tip": "lethe(망각)+ergon(일) → 일을 잊어버리고 아무것도 하지 않는 무기력 상태",
     "meaning": "무기력증"
   },
   {
@@ -14135,7 +14135,7 @@
     "day": 16,
     "word": "lay",
     "pron": "[레이]",
-    "tip": "Greek laikos(일반 백성의) → 전문직(성직자)이 아닌 평범한, 문외한의",
+    "tip": "laikos(일반 백성의) → 전문직(성직자)이 아닌 평범한, 문외한의",
     "meaning": "평이한; 평범한"
   },
   {
@@ -14486,7 +14486,7 @@
     "day": 17,
     "word": "peel",
     "pron": "[필]",
-    "tip": "라틴어 pilare(털을 뽑다, 껍질을 벗기다)에서 유래 → 과일이나 물체의 겉 껍질이 벗겨지다",
+    "tip": "pilare(털을 뽑다, 껍질을 벗기다) → 과일이나 물체의 겉 껍질이 벗겨지다",
     "meaning": "껍질이 벗겨지다"
   },
   {
@@ -14558,7 +14558,7 @@
     "day": 17,
     "word": "kudos",
     "pron": "[쿠도스]",
-    "tip": "그리스어 kydos(영광, 명성)에서 유래 → 뛰어난 업적이나 성취에 대해 보내는 찬사와 명성",
+    "tip": "kydos(영광, 명성) → 뛰어난 업적이나 성취에 대해 보내는 찬사와 명성",
     "meaning": "명성"
   },
   {
@@ -14657,7 +14657,7 @@
     "day": 17,
     "word": "ire",
     "pron": "[아이어]",
-    "tip": "라틴어 ira(분노)에서 유래 → 통제할 수 없을 정도로 강렬하게 치밀어 오르는 화",
+    "tip": "ira(분노) → 통제할 수 없을 정도로 강렬하게 치밀어 오르는 화",
     "meaning": "화, 분노"
   },
   {
@@ -14837,7 +14837,7 @@
     "day": 17,
     "word": "be on the lam",
     "pron": "[비 온 더 램]",
-    "tip": "lam(도망치다, 구타하다)에서 유래 → 경찰이나 추적자를 피해 황급히 도망치고 있는 상태",
+    "tip": "lam(도망치다, 구타하다) → 경찰이나 추적자를 피해 황급히 도망치고 있는 상태",
     "meaning": "도주 중인"
   },
   {
@@ -14855,7 +14855,7 @@
     "day": 17,
     "word": "mirth",
     "pron": "[머스]",
-    "tip": "고대 영어 myrgth(즐거움)에서 유래 → 사람들의 웃음을 동반하는 유쾌하고 밝은 환희",
+    "tip": "myrgth(즐거움) → 사람들의 웃음을 동반하는 유쾌하고 밝은 환희",
     "meaning": "환희"
   },
   {
@@ -15215,7 +15215,7 @@
     "day": 18,
     "word": "bulge",
     "pron": "[벌지]",
-    "tip": "라틴어 bulga(가죽 가방)에서 유래 → 가방처럼 불룩하게 부풀어 오르다",
+    "tip": "bulga(가죽 가방) → 가방처럼 불룩하게 부풀어 오르다",
     "meaning": "부풀다"
   },
   {
@@ -15314,7 +15314,7 @@
     "day": 18,
     "word": "betray",
     "pron": "[비트레이]",
-    "tip": "be(강조) + tray(넘겨주다, 라틴어 tradere) → 적에게 비밀이나 사람을 통째로 넘겨주다",
+    "tip": "be(강조) + tray(넘겨주다, tradere) → 적에게 비밀이나 사람을 통째로 넘겨주다",
     "meaning": "폭로하다; 배신하다"
   },
   {
@@ -15350,7 +15350,7 @@
     "day": 18,
     "word": "bogus",
     "pron": "[보거스]",
-    "tip": "19세기 위조지폐 제조기의 이름(bogus)에서 유래 → 진짜가 아닌 가짜의",
+    "tip": "19세기 위조지폐 제조기의 이름(bogus) → 진짜가 아닌 가짜의",
     "meaning": "가짜의"
   },
   {
@@ -15413,7 +15413,7 @@
     "day": 18,
     "word": "whittle",
     "pron": "[위틀]",
-    "tip": "고대 영어 hwitel(칼)에서 유래 → 칼로 나무를 깎아내듯 조금씩 줄이다",
+    "tip": "hwitel(칼) → 칼로 나무를 깎아내듯 조금씩 줄이다",
     "meaning": "삭감하다"
   },
   {
@@ -15422,7 +15422,7 @@
     "day": 18,
     "word": "astute",
     "pron": "[어스튜트]",
-    "tip": "라틴어 astus(교활함, 약삭빠름)에서 유래 → 상황을 꿰뚫어 보는 안목이 날카로운",
+    "tip": "astus(교활함, 약삭빠름) → 상황을 꿰뚫어 보는 안목이 날카로운",
     "meaning": "빈틈없는"
   },
   {
@@ -15521,7 +15521,7 @@
     "day": 18,
     "word": "sequester",
     "pron": "[시퀘스터]",
-    "tip": "라틴어 sequestrare(안전하게 보관하다, 떼어놓다)에서 유래 → 분리하여 따로 두다",
+    "tip": "sequestrare(안전하게 보관하다, 떼어놓다) → 분리하여 따로 두다",
     "meaning": "격리시키다; 압수하다"
   },
   {
@@ -15557,7 +15557,7 @@
     "day": 18,
     "word": "weary",
     "pron": "[위어리]",
-    "tip": "고대 영어 werig(피곤한)에서 유래 → 오래 지속되어 지치고 싫증이 난",
+    "tip": "werig(피곤한) → 오래 지속되어 지치고 싫증이 난",
     "meaning": "싫증난"
   },
   {
@@ -15575,7 +15575,7 @@
     "day": 18,
     "word": "crony",
     "pron": "[크로니]",
-    "tip": "라틴어 chronos(시간)에서 유래한 대학 속어 → 오랜 시간을 함께 보낸 친한 친구",
+    "tip": "chronos(시간) 한 대학 속어 → 오랜 시간을 함께 보낸 친한 친구",
     "meaning": "동료"
   },
   {
@@ -15620,7 +15620,7 @@
     "day": 18,
     "word": "scam",
     "pron": "[스캠]",
-    "tip": "19세기 미국 속어(속임수)에서 유래 → 돈을 빼앗기 위한 속임수",
+    "tip": "19세기 미국 속어(속임수) → 돈을 빼앗기 위한 속임수",
     "meaning": "사기"
   },
   {
@@ -15638,7 +15638,7 @@
     "day": 18,
     "word": "drowsy",
     "pron": "[드라우지]",
-    "tip": "고대 영어 drusian(가라앉다)에서 유래 → 정신이 아래로 가라앉아 졸린",
+    "tip": "drusian(가라앉다) → 정신이 아래로 가라앉아 졸린",
     "meaning": "졸리는"
   },
   {
@@ -15710,7 +15710,7 @@
     "day": 18,
     "word": "skimp",
     "pron": "[스킴프]",
-    "tip": "스칸디나비아어 skempa(아끼다) 또는 scrimp에서 유래 → 돈이나 재료를 인색하게 아끼다",
+    "tip": "스칸디나비아어 skempa(아끼다) 또는 scrimp → 돈이나 재료를 인색하게 아끼다",
     "meaning": "지나치게 검소하다"
   },
   {
@@ -15746,7 +15746,7 @@
     "day": 18,
     "word": "tariff",
     "pron": "[태리프]",
-    "tip": "아랍어 ta'rif(알리다, 공표하다)에서 유래 → 항구에 공표된 물품의 세금표",
+    "tip": "아랍어 ta'rif(알리다, 공표하다) → 항구에 공표된 물품의 세금표",
     "meaning": "관세"
   },
   {
@@ -15863,7 +15863,7 @@
     "day": 18,
     "word": "lax",
     "pron": "[랙스]",
-    "tip": "라틴어 laxus(헐거운, 느슨한)에서 유래 → 근육이나 규칙이 조여지지 않고 헐거운",
+    "tip": "laxus(헐거운, 느슨한) → 근육이나 규칙이 조여지지 않고 헐거운",
     "meaning": "느슨한"
   },
   {
@@ -15890,7 +15890,7 @@
     "day": 18,
     "word": "curtail",
     "pron": "[커테일]",
-    "tip": "cur(짧은) + tail(자르다, 라틴어 taliare) → 꼬리나 끝부분을 짧게 잘라내어 줄이다",
+    "tip": "cur(짧은) + tail(자르다, taliare) → 꼬리나 끝부분을 짧게 잘라내어 줄이다",
     "meaning": "축소하다"
   },
   {
@@ -15926,7 +15926,7 @@
     "day": 18,
     "word": "feast",
     "pron": "[피스트]",
-    "tip": "라틴어 festus(축제)에서 유래 → 축제 때처럼 크고 훌륭한 음식을 마음껏 먹다",
+    "tip": "festus(축제) → 축제 때처럼 크고 훌륭한 음식을 마음껏 먹다",
     "meaning": "배불리 먹다"
   },
   {
@@ -16007,7 +16007,7 @@
     "day": 18,
     "word": "proviso",
     "pron": "[프로바이조]",
-    "tip": "라틴어 provisus(미리 준비된)에서 유래 → 문서에서 미리 조건을 달아둔 조항",
+    "tip": "provisus(미리 준비된) → 문서에서 미리 조건을 달아둔 조항",
     "meaning": "단서"
   },
   {
@@ -16169,7 +16169,7 @@
     "day": 19,
     "word": "greedy",
     "pron": "[그리디]",
-    "tip": "greed(탐욕) + y(형용사) → 더 많은 것을 원하는 탐욕스러운. (어원은 고대 영어 graedig).",
+    "tip": "greed(탐욕) + y(형용사) → 더 많은 것을 원하는 탐욕스러운. (어원은 graedig).",
     "meaning": "탐욕의"
   },
   {
@@ -16214,7 +16214,7 @@
     "day": 19,
     "word": "pine",
     "pron": "[파인]",
-    "tip": "라틴어 poena(고통, 벌)에서 유래 → 너무 원해서 고통스러울 정도로 갈망하다.",
+    "tip": "poena(고통, 벌) → 너무 원해서 고통스러울 정도로 갈망하다.",
     "meaning": "갈망하다"
   },
   {
@@ -16331,7 +16331,7 @@
     "day": 19,
     "word": "grill",
     "pron": "[그릴]",
-    "tip": "grid(격자)에서 유래 → 석쇠 위에서 굽듯 혹독하게 심문하거나 혹평하다.",
+    "tip": "grid(격자) → 석쇠 위에서 굽듯 혹독하게 심문하거나 혹평하다.",
     "meaning": "석쇠에 굽다; 혹평하다"
   },
   {
@@ -16376,7 +16376,7 @@
     "day": 19,
     "word": "vanquish",
     "pron": "[뱅퀴시]",
-    "tip": "vanq(이기다, 라틴어 vincere) + ish(동사) → 전투에서 적을 완전히 이기고 정복하다.",
+    "tip": "vanq(이기다, vincere) + ish(동사) → 전투에서 적을 완전히 이기고 정복하다.",
     "meaning": "정복하다"
   },
   {
@@ -16403,7 +16403,7 @@
     "day": 19,
     "word": "salubrious",
     "pron": "[설루브리어스]",
-    "tip": "salu(건강, 라틴어 salus) + brious(형용사) → 건강에 이롭고 몸에 좋은.",
+    "tip": "salu(건강, salus) + brious(형용사) → 건강에 이롭고 몸에 좋은.",
     "meaning": "몸에 좋은; 건전한"
   },
   {
@@ -16556,7 +16556,7 @@
     "day": 19,
     "word": "salvo",
     "pron": "[샐보]",
-    "tip": "라틴어 salve(건강하라, 인사) → 상대에게 인사 대신 쏘아붙이는 포탄 일제사격.",
+    "tip": "salve(건강하라, 인사) → 상대에게 인사 대신 쏘아붙이는 포탄 일제사격.",
     "meaning": "일제사격; 맹공"
   },
   {
@@ -16592,7 +16592,7 @@
     "day": 19,
     "word": "pith",
     "pron": "[피스]",
-    "tip": "고대 영어 pitha(식물의 속심) → 식물의 중심부처럼 가장 중요한 핵심.",
+    "tip": "pitha(식물의 속심) → 식물의 중심부처럼 가장 중요한 핵심.",
     "meaning": "핵심"
   },
   {
@@ -16610,7 +16610,7 @@
     "day": 19,
     "word": "deter",
     "pron": "[디터]",
-    "tip": "de(멀리) + ter(놀라게 하다, 라틴어 terrere) → 겁을 주어 멀리 떨어지게 하여 단념시키다.",
+    "tip": "de(멀리) + ter(놀라게 하다, terrere) → 겁을 주어 멀리 떨어지게 하여 단념시키다.",
     "meaning": "단념시키다"
   },
   {
@@ -16619,7 +16619,7 @@
     "day": 19,
     "word": "smother",
     "pron": "[스머더]",
-    "tip": "고대 영어 smorian(질식하다) → 짙은 연기나 덮개로 숨을 막아 질식시키다.",
+    "tip": "smorian(질식하다) → 짙은 연기나 덮개로 숨을 막아 질식시키다.",
     "meaning": "질식시키다"
   },
   {
@@ -16628,7 +16628,7 @@
     "day": 19,
     "word": "wield",
     "pron": "[윌드]",
-    "tip": "고대 영어 wealdan(통제하다, 다스리다) → 권력이나 무기를 통제하고 휘두르다.",
+    "tip": "wealdan(통제하다, 다스리다) → 권력이나 무기를 통제하고 휘두르다.",
     "meaning": "휘두르다"
   },
   {
@@ -16655,7 +16655,7 @@
     "day": 19,
     "word": "quarantine",
     "pron": "[쿼런틴]",
-    "tip": "quarant(40, 라틴어 quadraginta) + ine(명사) → 전염병을 막기 위해 40일간 격리하다.",
+    "tip": "quarant(40, quadraginta) + ine(명사) → 전염병을 막기 위해 40일간 격리하다.",
     "meaning": "격리하다"
   },
   {
@@ -16763,7 +16763,7 @@
     "day": 19,
     "word": "quash",
     "pron": "[쿼시]",
-    "tip": "quass(부수다, 라틴어 quatere) → 폭동이나 소문을 강하게 내리쳐 진압하다.",
+    "tip": "quass(부수다, quatere) → 폭동이나 소문을 강하게 내리쳐 진압하다.",
     "meaning": "진압하다"
   },
   {
@@ -16772,7 +16772,7 @@
     "day": 19,
     "word": "somatic",
     "pron": "[소매틱]",
-    "tip": "somat(몸, 그리스어 soma) + ic(형용사) → 육체와 관련된 몸의.",
+    "tip": "somat(몸, soma) + ic(형용사) → 육체와 관련된 몸의.",
     "meaning": "몸의"
   },
   {
@@ -16961,7 +16961,7 @@
     "day": 20,
     "word": "arcane",
     "pron": "[아케인]",
-    "tip": "arcanus(숨겨진, 비밀의)에서 유래 → 일반인은 알 수 없는 숨겨진 비밀스러운 지식",
+    "tip": "arcanus(숨겨진, 비밀의) → 일반인은 알 수 없는 숨겨진 비밀스러운 지식",
     "meaning": "신비로운"
   },
   {
@@ -16988,7 +16988,7 @@
     "day": 20,
     "word": "par",
     "pron": "[파]",
-    "tip": "par(동등한)에서 유래 → 기준이 되는 동등한 수준이나 평균",
+    "tip": "par(동등한) → 기준이 되는 동등한 수준이나 평균",
     "meaning": "평균"
   },
   {
@@ -17132,7 +17132,7 @@
     "day": 20,
     "word": "scant",
     "pron": "[스캔트]",
-    "tip": "고대 노르스어 skamt(짧은)에서 유래 → 양이나 길이가 부족하거나 모자라서 아끼는",
+    "tip": "고대 노르스어 skamt(짧은) → 양이나 길이가 부족하거나 모자라서 아끼는",
     "meaning": "아끼다; 부족한"
   },
   {
@@ -17150,7 +17150,7 @@
     "day": 20,
     "word": "slack",
     "pron": "[슬랙]",
-    "tip": "slæc(게으른, 느린)에서 유래 → 팽팽하지 않고 기강이나 긴장감이 느슨해진 상태",
+    "tip": "slæc(게으른, 느린) → 팽팽하지 않고 기강이나 긴장감이 느슨해진 상태",
     "meaning": "느슨한"
   },
   {
@@ -17204,7 +17204,7 @@
     "day": 20,
     "word": "stern",
     "pron": "[스턴]",
-    "tip": "고대 영어 styrne(엄격한, 가혹한)에서 유래 → 태도나 규칙이 타협 없이 가혹하고 엄격한",
+    "tip": "styrne(엄격한, 가혹한) → 태도나 규칙이 타협 없이 가혹하고 엄격한",
     "meaning": "엄격한"
   },
   {
@@ -17834,7 +17834,7 @@
     "day": 20,
     "word": "accomplice",
     "pron": "[어컴플리스]",
-    "tip": "ad(~에게) + complex(함께 엮인)에서 유래 → 한 사람의 범죄에 함께 얽혀서 돕는 사람",
+    "tip": "ad(~에게) + complex(함께 엮인) → 한 사람의 범죄에 함께 얽혀서 돕는 사람",
     "meaning": "공범"
   },
   {
@@ -17879,7 +17879,7 @@
     "day": 1,
     "word": "slovenly",
     "pron": "[슬러븐리]",
-    "tip": "고대 영어 sloven(단정치 못한 사람)에서 유래 -> 옷차림이나 태도가 지저분한",
+    "tip": "sloven(단정치 못한 사람) -> 옷차림이나 태도가 지저분한",
     "meaning": "지저분한"
   },
   {
@@ -17933,7 +17933,7 @@
     "day": 1,
     "word": "tardy",
     "pron": "[타디]",
-    "tip": "라틴어 tardus(느린)에서 유래 -> 느릿느릿하여 지체된",
+    "tip": "tardus(느린) -> 느릿느릿하여 지체된",
     "meaning": "지체된"
   },
   {
@@ -17969,7 +17969,7 @@
     "day": 1,
     "word": "serene",
     "pron": "[서린]",
-    "tip": "라틴어 serenus(맑은, 고요한)에서 유래 -> 날씨나 마음이 맑고 침착한",
+    "tip": "serenus(맑은, 고요한) -> 날씨나 마음이 맑고 침착한",
     "meaning": "침착한"
   },
   {
@@ -17978,7 +17978,7 @@
     "day": 1,
     "word": "futile",
     "pron": "[퓨타일]",
-    "tip": "라틴어 futilis(쉽게 새는)에서 유래 -> 노력이 줄줄 새어나가 헛된",
+    "tip": "futilis(쉽게 새는) -> 노력이 줄줄 새어나가 헛된",
     "meaning": "헛된"
   },
   {
@@ -18005,7 +18005,7 @@
     "day": 1,
     "word": "champion",
     "pron": "[챔피언]",
-    "tip": "라틴어 campus(전장)에서 유래 -> 전장에서 대신 싸워주는 사람처럼 적극 지지하다",
+    "tip": "campus(전장) -> 전장에서 대신 싸워주는 사람처럼 적극 지지하다",
     "meaning": "지지하다"
   },
   {
@@ -18158,7 +18158,7 @@
     "day": 1,
     "word": "barren",
     "pron": "[배런]",
-    "tip": "고대 프랑스어 barhaine(불모의)에서 유래 -> 생명이 자랄 수 없는 척박한",
+    "tip": "고대 프랑스어 barhaine(불모의) -> 생명이 자랄 수 없는 척박한",
     "meaning": "척박한"
   },
   {
@@ -18230,7 +18230,7 @@
     "day": 1,
     "word": "imbue A with B",
     "pron": "[임뷰]",
-    "tip": "라틴어 imbuere(적시다)에서 유래 -> A를 B로 흠뻑 적시듯 주입하다",
+    "tip": "imbuere(적시다) -> A를 B로 흠뻑 적시듯 주입하다",
     "meaning": "A에게 B를 주입하다"
   },
   {
@@ -18257,7 +18257,7 @@
     "day": 1,
     "word": "banal",
     "pron": "[버날]",
-    "tip": "프랑스어 ban(공동의, 평범한)에서 유래 -> 누구나 다 써서 평범하고 진부해진",
+    "tip": "프랑스어 ban(공동의, 평범한) -> 누구나 다 써서 평범하고 진부해진",
     "meaning": "진부한"
   },
   {
@@ -18284,7 +18284,7 @@
     "day": 1,
     "word": "enigmatic",
     "pron": "[에니그매틱]",
-    "tip": "그리스어 ainos(수수께끼)에서 유래 -> 수수께끼 같아서 이해하기 힘든, 난해한",
+    "tip": "ainos(수수께끼) -> 수수께끼 같아서 이해하기 힘든, 난해한",
     "meaning": "난해한"
   },
   {
@@ -18302,7 +18302,7 @@
     "day": 1,
     "word": "fortuitous",
     "pron": "[포튜이터스]",
-    "tip": "라틴어 fors(운)에서 유래 -> 뜻밖의 운에 의해 발생하는, 우연한",
+    "tip": "fors(운) -> 뜻밖의 운에 의해 발생하는, 우연한",
     "meaning": "우연한"
   },
   {
@@ -18356,7 +18356,7 @@
     "day": 1,
     "word": "pristine",
     "pron": "[프리스틴]",
-    "tip": "라틴어 pristinus(초기의)에서 파생 -> 초기 상태 그대로 오염되지 않은, 순수한",
+    "tip": "pristinus(초기의)에서 파생 -> 초기 상태 그대로 오염되지 않은, 순수한",
     "meaning": "순수한"
   },
   {
@@ -18410,7 +18410,7 @@
     "day": 1,
     "word": "stifle",
     "pron": "[스타이플]",
-    "tip": "고대 프랑스어 estouffer(질식시키다)에서 유래 -> 숨통을 조여 숨 막히게 하다",
+    "tip": "고대 프랑스어 estouffer(질식시키다) -> 숨통을 조여 숨 막히게 하다",
     "meaning": "숨 막히게 하다"
   },
   {
@@ -18446,7 +18446,7 @@
     "day": 1,
     "word": "meager",
     "pron": "[미거]",
-    "tip": "라틴어 macer(마른)에서 유래 -> 살이 없고 여위어 몹시 빈약한, 미약한",
+    "tip": "macer(마른) -> 살이 없고 여위어 몹시 빈약한, 미약한",
     "meaning": "미약한"
   },
   {
@@ -18455,7 +18455,7 @@
     "day": 1,
     "word": "sage",
     "pron": "[세이지]",
-    "tip": "라틴어 sapere(지혜롭다)에서 유래 -> 현명하고 슬기로운 사람, 현자",
+    "tip": "sapere(지혜롭다) -> 현명하고 슬기로운 사람, 현자",
     "meaning": "현인, 현자; 슬기로운"
   },
   {
@@ -18509,7 +18509,7 @@
     "day": 1,
     "word": "feasible",
     "pron": "[피저블]",
-    "tip": "라틴어 facere(만들다, 하다)에서 유래 -> 실제로 행하거나 만들 수 있는, 실현 가능한",
+    "tip": "facere(만들다, 하다) -> 실제로 행하거나 만들 수 있는, 실현 가능한",
     "meaning": "실현가능한"
   },
   {
@@ -18554,7 +18554,7 @@
     "day": 1,
     "word": "strata",
     "pron": "[스트라타]",
-    "tip": "라틴어 sternere(퍼뜨리다, 깔다)에서 유래 -> 넓게 깔려 형성된 층이나 계급 (단수: strat…",
+    "tip": "sternere(퍼뜨리다, 깔다) -> 넓게 깔려 형성된 층이나 계급 (단수: strat…",
     "meaning": "겹, 층"
   },
   {
@@ -18635,7 +18635,7 @@
     "day": 1,
     "word": "estimate",
     "pron": "[에스터밋]",
-    "tip": "라틴어 aestimare(가치를 매기다)에서 파생 -> 가격이나 수량을 대략적으로 가늠해 추산…",
+    "tip": "aestimare(가치를 매기다)에서 파생 -> 가격이나 수량을 대략적으로 가늠해 추산…",
     "meaning": "추산하다"
   },
   {
@@ -18644,7 +18644,7 @@
     "day": 1,
     "word": "furbish",
     "pron": "[퍼비시]",
-    "tip": "고대 프랑스어 forbir(광내다)에서 유래 -> 낡은 것을 다시 닦고 광내어 수리하다",
+    "tip": "고대 프랑스어 forbir(광내다) -> 낡은 것을 다시 닦고 광내어 수리하다",
     "meaning": "수리하다"
   },
   {
@@ -18824,7 +18824,7 @@
     "day": 2,
     "word": "chide",
     "pron": "[차이드]",
-    "tip": "고대 영어 c\u0000dan(잔소리하다)에서 유래 -> 잘못을 가볍게 꾸짖고 비난하다",
+    "tip": "c\u0000dan(잔소리하다) -> 잘못을 가볍게 꾸짖고 비난하다",
     "meaning": "비난하다"
   },
   {
@@ -18860,7 +18860,7 @@
     "day": 2,
     "word": "boiler plate",
     "pron": "[보일러 플레이트]",
-    "tip": "신문사 광고 납판(boiler plate)에서 유래 -> 판에 박힌 진부한 표현",
+    "tip": "신문사 광고 납판(boiler plate) -> 판에 박힌 진부한 표현",
     "meaning": "진부한 표현"
   },
   {
@@ -18932,7 +18932,7 @@
     "day": 2,
     "word": "rile",
     "pron": "[라일]",
-    "tip": "roil(물 등을 휘젓다)에서 유래 -> 남의 마음을 휘저어 화나게 만들다",
+    "tip": "roil(물 등을 휘젓다) -> 남의 마음을 휘저어 화나게 만들다",
     "meaning": "화나게 만들다"
   },
   {
@@ -18941,7 +18941,7 @@
     "day": 2,
     "word": "scold",
     "pron": "[스콜드]",
-    "tip": "고대 스칸디나비아어 skald(조롱하는 시인)에서 유래 -> 잔소리하며 비난하다",
+    "tip": "고대 스칸디나비아어 skald(조롱하는 시인) -> 잔소리하며 비난하다",
     "meaning": "비난하다"
   },
   {
@@ -18977,7 +18977,7 @@
     "day": 2,
     "word": "soothe",
     "pron": "[수스]",
-    "tip": "고대 영어 s\u0000th(진실된)에서 유래 -> 진심을 다해 달래고 완화하다",
+    "tip": "s\u0000th(진실된) -> 진심을 다해 달래고 완화하다",
     "meaning": "완화하다"
   },
   {
@@ -19022,7 +19022,7 @@
     "day": 2,
     "word": "limpid",
     "pron": "[림피드]",
-    "tip": "라틴어 limpidus(투명한)에서 유래 -> 맑고 투명하여 분명한",
+    "tip": "limpidus(투명한) -> 맑고 투명하여 분명한",
     "meaning": "분명한; 맑은"
   },
   {
@@ -19067,7 +19067,7 @@
     "day": 2,
     "word": "bizarre",
     "pron": "[비자]",
-    "tip": "프랑스어 bizarre(이상한)에서 유래 -> 상식을 벗어나 매우 기괴한",
+    "tip": "프랑스어 bizarre(이상한) -> 상식을 벗어나 매우 기괴한",
     "meaning": "기괴한"
   },
   {
@@ -19202,7 +19202,7 @@
     "day": 2,
     "word": "garner",
     "pron": "[가너]",
-    "tip": "라틴어 granarium(곡물창고)에서 유래 -> 곡물이나 정보를 모아서 수확하다",
+    "tip": "granarium(곡물창고) -> 곡물이나 정보를 모아서 수확하다",
     "meaning": "수확하다"
   },
   {
@@ -19211,7 +19211,7 @@
     "day": 2,
     "word": "glean",
     "pron": "[글린]",
-    "tip": "켈트어 glan(깨끗이 하다)에서 유래 -> 남은 이삭을 깨끗이 줍다, 정보를 모으다",
+    "tip": "켈트어 glan(깨끗이 하다) -> 남은 이삭을 깨끗이 줍다, 정보를 모으다",
     "meaning": "이삭을 줍다, 수확하다"
   },
   {
@@ -19256,7 +19256,7 @@
     "day": 2,
     "word": "charge",
     "pron": "[차지]",
-    "tip": "라틴어 carricare(짐을 싣다)에서 파생 -> 책임이나 혐의라는 짐을 지워 기소하다",
+    "tip": "carricare(짐을 싣다)에서 파생 -> 책임이나 혐의라는 짐을 지워 기소하다",
     "meaning": "주장하다; 돌진하다; 기소하다"
   },
   {
@@ -19283,7 +19283,7 @@
     "day": 2,
     "word": "vow",
     "pron": "[바우]",
-    "tip": "라틴어 votum(신에 대한 약속)에서 유래 -> 굳게 맹세하고 서약하다",
+    "tip": "votum(신에 대한 약속) -> 굳게 맹세하고 서약하다",
     "meaning": "서약하다"
   },
   {
@@ -19436,7 +19436,7 @@
     "day": 2,
     "word": "spew",
     "pron": "[스퓨]",
-    "tip": "의성어에서 유래 -> 입 밖으로 토해내거나 액체를 세차게 분출하다",
+    "tip": "의성어 -> 입 밖으로 토해내거나 액체를 세차게 분출하다",
     "meaning": "분출하다; 토하다"
   },
   {
@@ -19499,7 +19499,7 @@
     "day": 2,
     "word": "prop",
     "pron": "[프랍]",
-    "tip": "네덜란드어 proppe(지주)에서 유래 -> 받침대로 쓰러지지 않게 지지하다",
+    "tip": "네덜란드어 proppe(지주) -> 받침대로 쓰러지지 않게 지지하다",
     "meaning": "지지하다"
   },
   {
@@ -19517,7 +19517,7 @@
     "day": 2,
     "word": "bolster",
     "pron": "[볼스터]",
-    "tip": "침대나 소파의 둥근 베개에서 유래 -> 베개로 받쳐주듯 지지하다",
+    "tip": "침대나 소파의 둥근 베개 -> 베개로 받쳐주듯 지지하다",
     "meaning": "지지하다"
   },
   {
@@ -19544,7 +19544,7 @@
     "day": 2,
     "word": "sterile",
     "pron": "[스테릴]",
-    "tip": "라틴어 sterilis(열매를 맺지 못하는)에서 유래 -> 세균이 없는(멸균의); 불임의",
+    "tip": "sterilis(열매를 맺지 못하는) -> 세균이 없는(멸균의); 불임의",
     "meaning": "멸균의; 척박한; 불임의"
   },
   {
@@ -19571,7 +19571,7 @@
     "day": 2,
     "word": "encomium",
     "pron": "[엔코미엄]",
-    "tip": "en(안에) + comi(잔치) + um -> 연회에서 부르는 찬가에서 유래, 공식적인 칭찬",
+    "tip": "en(안에) + comi(잔치) + um -> 연회에서 부르는 찬가 , 공식적인 칭찬",
     "meaning": "칭찬"
   },
   {
@@ -19589,7 +19589,7 @@
     "day": 2,
     "word": "penury",
     "pron": "[페뉴리]",
-    "tip": "라틴어 penuria(부족, 결핍)에서 유래 -> 돈이 턱없이 부족하여 극심한 가난, 극빈",
+    "tip": "penuria(부족, 결핍) -> 돈이 턱없이 부족하여 극심한 가난, 극빈",
     "meaning": "극빈"
   },
   {
@@ -19643,7 +19643,7 @@
     "day": 3,
     "word": "baffle",
     "pron": "[배플]",
-    "tip": "고대 프랑스어 bafouer(조롱하다)에서 유래 -> 조롱당한 것처럼 정신없게 만들다, 좌절…",
+    "tip": "고대 프랑스어 bafouer(조롱하다) -> 조롱당한 것처럼 정신없게 만들다, 좌절…",
     "meaning": "좌절시키다"
   },
   {
@@ -19769,7 +19769,7 @@
     "day": 3,
     "word": "nuptial",
     "pron": "[넙셜]",
-    "tip": "라틴어 nubere(베일로 가리다, 결혼하다)에서 유래 -> 결혼의",
+    "tip": "nubere(베일로 가리다, 결혼하다) -> 결혼의",
     "meaning": "결혼의"
   },
   {
@@ -19814,7 +19814,7 @@
     "day": 3,
     "word": "pious",
     "pron": "[파이어스]",
-    "tip": "라틴어 pius(경건한)에서 유래 -> 신앙심이 깊은",
+    "tip": "pius(경건한) -> 신앙심이 깊은",
     "meaning": "신앙심이 깊은; 신성한"
   },
   {
@@ -19832,7 +19832,7 @@
     "day": 3,
     "word": "shabby",
     "pron": "[섀비]",
-    "tip": "고대 영어 sceacga(거친 털)에서 유래 -> 거칠고 낡은",
+    "tip": "sceacga(거친 털) -> 거칠고 낡은",
     "meaning": "낡은"
   },
   {
@@ -19868,7 +19868,7 @@
     "day": 3,
     "word": "woo",
     "pron": "[우]",
-    "tip": "고대 영어 w\u0000gian(구애하다)에서 유래 -> 상대의 환심을 사려 구애하다",
+    "tip": "w\u0000gian(구애하다) -> 상대의 환심을 사려 구애하다",
     "meaning": "구애하다"
   },
   {
@@ -19877,7 +19877,7 @@
     "day": 3,
     "word": "rue",
     "pron": "[루]",
-    "tip": "고대 영어 hr\u0000ow(슬픔)에서 유래 -> 후회하다, 슬퍼하다",
+    "tip": "hr\u0000ow(슬픔) -> 후회하다, 슬퍼하다",
     "meaning": "후회하다; 슬퍼하다"
   },
   {
@@ -19886,7 +19886,7 @@
     "day": 3,
     "word": "quarry",
     "pron": "[쿼리]",
-    "tip": "라틴어 cor(심장, 중심)에서 유래 -> 돌을 캐내는 채석장",
+    "tip": "cor(심장, 중심) -> 돌을 캐내는 채석장",
     "meaning": "채석장; 발굴하다"
   },
   {
@@ -19958,7 +19958,7 @@
     "day": 3,
     "word": "court",
     "pron": "[코트]",
-    "tip": "궁정(court)에서 귀부인에게 환심을 사던 행동에서 유래 -> 구애하다",
+    "tip": "궁정(court)에서 귀부인에게 환심을 사던 행동 -> 구애하다",
     "meaning": "구애하다"
   },
   {
@@ -19985,7 +19985,7 @@
     "day": 3,
     "word": "soar",
     "pron": "[소어]",
-    "tip": "라틴어 ex + aura(공기, 바람) -> 바람을 타고 높이 치솟아 폭등하다",
+    "tip": "ex + aura(공기, 바람) -> 바람을 타고 높이 치솟아 폭등하다",
     "meaning": "폭등하다"
   },
   {
@@ -20129,7 +20129,7 @@
     "day": 3,
     "word": "loose",
     "pron": "[루스]",
-    "tip": "고대 노르드어 lauss(풀려난)에서 유래 -> 묶이지 않고 느슨한",
+    "tip": "고대 노르드어 lauss(풀려난) -> 묶이지 않고 느슨한",
     "meaning": "느슨한"
   },
   {
@@ -20183,7 +20183,7 @@
     "day": 3,
     "word": "viscous",
     "pron": "[비스커스]",
-    "tip": "라틴어 viscum(겨우살이 열매의 끈적한 즙)에서 유래 -> 점액성의, 끈끈한",
+    "tip": "viscum(겨우살이 열매의 끈적한 즙) -> 점액성의, 끈끈한",
     "meaning": "점액성의, 끈끈한"
   },
   {
@@ -20255,7 +20255,7 @@
     "day": 3,
     "word": "medium",
     "pron": "[미디엄]",
-    "tip": "라틴어 medius(중간)에서 유래 -> 정보나 생각을 전달하는 매체",
+    "tip": "medius(중간) -> 정보나 생각을 전달하는 매체",
     "meaning": "매체"
   },
   {
@@ -20282,7 +20282,7 @@
     "day": 3,
     "word": "opaque",
     "pron": "[오페이크]",
-    "tip": "라틴어 opacus(그늘진)에서 유래 -> 빛이 통과하지 않아 불투명한",
+    "tip": "opacus(그늘진) -> 빛이 통과하지 않아 불투명한",
     "meaning": "불투명한; 이해하기 힘든"
   },
   {
@@ -20291,7 +20291,7 @@
     "day": 3,
     "word": "drab",
     "pron": "[드랩]",
-    "tip": "원래 염색하지 않은 모직물 색에서 유래 -> 단조롭고 칙칙한",
+    "tip": "원래 염색하지 않은 모직물 색 -> 단조롭고 칙칙한",
     "meaning": "단조로운"
   },
   {
@@ -20426,7 +20426,7 @@
     "day": 3,
     "word": "idle",
     "pron": "[아이들]",
-    "tip": "고대 영어 \u0000del(쓸모없는)에서 유래 -> 가치 있는 일을 하지 않고 노는, 나태한",
+    "tip": "\u0000del(쓸모없는) -> 가치 있는 일을 하지 않고 노는, 나태한",
     "meaning": "나태한"
   },
   {
@@ -20453,7 +20453,7 @@
     "day": 3,
     "word": "lament",
     "pron": "[러멘트]",
-    "tip": "라틴어 lamentari(슬피 울다)에서 유래 -> 후회하고 슬퍼하다",
+    "tip": "lamentari(슬피 울다) -> 후회하고 슬퍼하다",
     "meaning": "슬퍼하다; 후회하다"
   },
   {
@@ -20462,7 +20462,7 @@
     "day": 3,
     "word": "gloat",
     "pron": "[글로트]",
-    "tip": "고대 노르드어 glotta(비웃다)에서 유래 -> 남의 불행을 고소해하며 흡족해하다",
+    "tip": "고대 노르드어 glotta(비웃다) -> 남의 불행을 고소해하며 흡족해하다",
     "meaning": "흡족해 하다"
   },
   {
@@ -20552,7 +20552,7 @@
     "day": 4,
     "word": "elastic",
     "pron": "[일래스틱]",
-    "tip": "그리스어 elaunein(끌어당기다)에서 유래 -> 늘렸다가 놓으면 돌아오는, 탄력적인",
+    "tip": "elaunein(끌어당기다) -> 늘렸다가 놓으면 돌아오는, 탄력적인",
     "meaning": "탄력적인"
   },
   {
@@ -20597,7 +20597,7 @@
     "day": 4,
     "word": "mercurial",
     "pron": "[머큐리얼]",
-    "tip": "Mercury(수은, 변덕스러운 신)에서 유래 -> 수은처럼 흐름이 쉽게 바뀌는, 변덕스러운",
+    "tip": "Mercury(수은, 변덕스러운 신) -> 수은처럼 흐름이 쉽게 바뀌는, 변덕스러운",
     "meaning": "변덕스러운; 수은의"
   },
   {
@@ -20606,7 +20606,7 @@
     "day": 4,
     "word": "wreck",
     "pron": "[렉]",
-    "tip": "고대 노르드어 wrekan(몰아가다, 파괴하다)에서 유래 -> 부수다, 파괴하다",
+    "tip": "고대 노르드어 wrekan(몰아가다, 파괴하다) -> 부수다, 파괴하다",
     "meaning": "파괴하다"
   },
   {
@@ -20696,7 +20696,7 @@
     "day": 4,
     "word": "laconic",
     "pron": "[러코닉]",
-    "tip": "Laconia(스파르타 지역)에서 유래 -> 스파르타인들처럼 말수가 적고 간명한",
+    "tip": "Laconia(스파르타 지역) -> 스파르타인들처럼 말수가 적고 간명한",
     "meaning": "할 말만 하는; 간명한"
   },
   {
@@ -20705,7 +20705,7 @@
     "day": 4,
     "word": "latent",
     "pron": "[레이턴트]",
-    "tip": "라틴어 latere(숨다)에서 유래 -> 겉으로 드러나지 않고 잠재된",
+    "tip": "latere(숨다) -> 겉으로 드러나지 않고 잠재된",
     "meaning": "잠재된"
   },
   {
@@ -20795,7 +20795,7 @@
     "day": 4,
     "word": "radius",
     "pron": "[레이디어스]",
-    "tip": "라틴어 radius(바퀴 살)에서 유래 -> 원의 중심에서 뻗어나간 바퀴 살, 반지름",
+    "tip": "radius(바퀴 살) -> 원의 중심에서 뻗어나간 바퀴 살, 반지름",
     "meaning": "반지름"
   },
   {
@@ -20822,7 +20822,7 @@
     "day": 4,
     "word": "numb",
     "pron": "[넘]",
-    "tip": "고대 영어 niman(빼앗기다)에서 유래 -> 감각을 빼앗겨 무감각하게 만들다",
+    "tip": "niman(빼앗기다) -> 감각을 빼앗겨 무감각하게 만들다",
     "meaning": "무감각하게 만들다; 감각이 없는"
   },
   {
@@ -20876,7 +20876,7 @@
     "day": 4,
     "word": "harangue",
     "pron": "[하랭]",
-    "tip": "중세 이탈리아어 aringo(광장의 연설)에서 유래 -> 대중 앞에서 늘어놓는 장광설",
+    "tip": "중세 이탈리아어 aringo(광장의 연설) -> 대중 앞에서 늘어놓는 장광설",
     "meaning": "장광설을 늘어놓다"
   },
   {
@@ -20993,7 +20993,7 @@
     "day": 4,
     "word": "overt",
     "pron": "[오버트]",
-    "tip": "라틴어 operire(덮다)의 반대 어원 -> 덮개를 벗겨서 다 드러낸, 노골적인",
+    "tip": "operire(덮다)의 반대 어원 -> 덮개를 벗겨서 다 드러낸, 노골적인",
     "meaning": "노골적인"
   },
   {
@@ -21038,7 +21038,7 @@
     "day": 4,
     "word": "thwart",
     "pron": "[쓰워트]",
-    "tip": "고대 노르드어 thvert(가로지르는)에서 유래 -> 계획을 가로막아 좌절시키다",
+    "tip": "고대 노르드어 thvert(가로지르는) -> 계획을 가로막아 좌절시키다",
     "meaning": "좌절시키다"
   },
   {
@@ -21083,7 +21083,7 @@
     "day": 4,
     "word": "rather",
     "pron": "[래더]",
-    "tip": "고대 영어 raðor(더 일찍, 더 선호하는) -> 한쪽보다는 오히려",
+    "tip": "raðor(더 일찍, 더 선호하는) -> 한쪽보다는 오히려",
     "meaning": "오히려"
   },
   {
@@ -21092,7 +21092,7 @@
     "day": 4,
     "word": "bold",
     "pron": "[볼드]",
-    "tip": "고대 영어 bald(용감한)에서 유래 -> 두려움 없이 과감한",
+    "tip": "bald(용감한) -> 두려움 없이 과감한",
     "meaning": "과감한"
   },
   {
@@ -21182,7 +21182,7 @@
     "day": 4,
     "word": "stoic",
     "pron": "[스토익]",
-    "tip": "아테네의 스토아(Stoa, 화랑) 학파에서 유래 -> 감정에 휘둘리지 않는 금욕의",
+    "tip": "아테네의 스토아(Stoa, 화랑) 학파 -> 감정에 휘둘리지 않는 금욕의",
     "meaning": "금욕주의자; 금욕의"
   },
   {
@@ -21308,7 +21308,7 @@
     "day": 4,
     "word": "marital",
     "pron": "[매러틀]",
-    "tip": "라틴어 maritus(남편)에서 유래 -> 부부 관계나 결혼의",
+    "tip": "maritus(남편) -> 부부 관계나 결혼의",
     "meaning": "결혼의"
   },
   {
@@ -21326,7 +21326,7 @@
     "day": 4,
     "word": "jejune",
     "pron": "[지준]",
-    "tip": "라틴어 iejunus(굶주린, 메마른)에서 유래 -> 내용이 메마르고 미숙하여 재미없는",
+    "tip": "iejunus(굶주린, 메마른) -> 내용이 메마르고 미숙하여 재미없는",
     "meaning": "재미없는; 미숙한"
   },
   {
@@ -21623,7 +21623,7 @@
     "day": 5,
     "word": "aplomb",
     "pron": "[어플럼]",
-    "tip": "프랑스어 plomb(추)에서 유래 -> 수직 추처럼 흔들림 없이 수평을 유지하여 침착함",
+    "tip": "프랑스어 plomb(추) -> 수직 추처럼 흔들림 없이 수평을 유지하여 침착함",
     "meaning": "침착함"
   },
   {
@@ -21677,7 +21677,7 @@
     "day": 5,
     "word": "bias",
     "pron": "[바이아스]",
-    "tip": "원래 사선 방향으로 깎은 옷감에서 유래 -> 한쪽으로 기울어짐, 편견",
+    "tip": "원래 사선 방향으로 깎은 옷감 -> 한쪽으로 기울어짐, 편견",
     "meaning": "편견"
   },
   {
@@ -21704,7 +21704,7 @@
     "day": 5,
     "word": "spurn",
     "pron": "[스펀]",
-    "tip": "고대 영어 spornan(발로 차다)에서 유래 -> 들어오는 제안을 발로 차서 거절하다",
+    "tip": "spornan(발로 차다) -> 들어오는 제안을 발로 차서 거절하다",
     "meaning": "조절하다, 퇴짜 놓다"
   },
   {
@@ -21803,7 +21803,7 @@
     "day": 5,
     "word": "sporadic",
     "pron": "[스포래딕]",
-    "tip": "그리스어 spora(씨앗 뿌리기)에서 유래 -> 씨앗이 군데군데 떨어지듯 발생하는, 산발적인",
+    "tip": "spora(씨앗 뿌리기) -> 씨앗이 군데군데 떨어지듯 발생하는, 산발적인",
     "meaning": "산발적인"
   },
   {
@@ -21830,7 +21830,7 @@
     "day": 5,
     "word": "feline",
     "pron": "[필라인]",
-    "tip": "라틴어 feles(고양이) + ine -> 고양이과 동물의 특성을 가진",
+    "tip": "feles(고양이) + ine -> 고양이과 동물의 특성을 가진",
     "meaning": "고양이 과의"
   },
   {
@@ -21866,7 +21866,7 @@
     "day": 5,
     "word": "prey",
     "pron": "[프레이]",
-    "tip": "라틴어 praeda(포획물)에서 유래 -> 사냥꾼에게 붙잡히는 피식자, 먹잇감",
+    "tip": "praeda(포획물) -> 사냥꾼에게 붙잡히는 피식자, 먹잇감",
     "meaning": "피식자, 먹이감"
   },
   {
@@ -21875,7 +21875,7 @@
     "day": 5,
     "word": "feral",
     "pron": "[페럴]",
-    "tip": "라틴어 fera(야생 동물) + al -> 통제를 벗어나 야생의 상태가 된",
+    "tip": "fera(야생 동물) + al -> 통제를 벗어나 야생의 상태가 된",
     "meaning": "야생의"
   },
   {
@@ -21938,7 +21938,7 @@
     "day": 5,
     "word": "paltry",
     "pron": "[폴트리]",
-    "tip": "독일어 palte(넝마, 누더기)에서 유래 -> 누더기처럼 하찮고 보잘것없는, 초라한",
+    "tip": "독일어 palte(넝마, 누더기) -> 누더기처럼 하찮고 보잘것없는, 초라한",
     "meaning": "초라한"
   },
   {
@@ -22055,7 +22055,7 @@
     "day": 5,
     "word": "enigma",
     "pron": "[이니그마]",
-    "tip": "그리스어 ainigma(수수께끼)에서 유래 -> 알쏭달쏭한 수수께끼",
+    "tip": "ainigma(수수께끼) -> 알쏭달쏭한 수수께끼",
     "meaning": "수수께끼"
   },
   {
@@ -22100,7 +22100,7 @@
     "day": 5,
     "word": "shun",
     "pron": "[션]",
-    "tip": "고대 영어 scunian(무서워하여 도망치다) -> 꺼려하며 멀리 피하다",
+    "tip": "scunian(무서워하여 도망치다) -> 꺼려하며 멀리 피하다",
     "meaning": "피하다"
   },
   {
@@ -22127,7 +22127,7 @@
     "day": 5,
     "word": "shackle",
     "pron": "[샤클]",
-    "tip": "고대 영어 sceacul(구속 장치) -> 움직이지 못하도록 발목에 족쇄를 채우다",
+    "tip": "sceacul(구속 장치) -> 움직이지 못하도록 발목에 족쇄를 채우다",
     "meaning": "족쇄; 족쇄를 채우다"
   },
   {
@@ -22199,7 +22199,7 @@
     "day": 5,
     "word": "tussle",
     "pron": "[터슬]",
-    "tip": "고대 영어 touse(당기다, 괴롭히다) -> 옷자락을 붙잡고 격렬하게 싸우는 몸싸움",
+    "tip": "touse(당기다, 괴롭히다) -> 옷자락을 붙잡고 격렬하게 싸우는 몸싸움",
     "meaning": "몸싸움"
   },
   {
@@ -22217,7 +22217,7 @@
     "day": 5,
     "word": "dingy",
     "pron": "[딘지]",
-    "tip": "고대 영어 dung(거름, 오물) + y -> 때가 묻어 칙칙하고 낡은",
+    "tip": "dung(거름, 오물) + y -> 때가 묻어 칙칙하고 낡은",
     "meaning": "낡은"
   },
   {
@@ -22307,7 +22307,7 @@
     "day": 5,
     "word": "mesmerizing",
     "pron": "[메즈머라이징]",
-    "tip": "18세기 의사 Mesmer(동물 자기 치료사)에서 유래 -> 마법에 빠진 듯 최면에 걸린",
+    "tip": "18세기 의사 Mesmer(동물 자기 치료사) -> 마법에 빠진 듯 최면에 걸린",
     "meaning": "최면술에 걸린; 매혹적인"
   },
   {
@@ -22316,7 +22316,7 @@
     "day": 5,
     "word": "hypnotic",
     "pron": "[힙나틱]",
-    "tip": "그리스어 hypnos(잠의 신) + ic -> 잠에 빠져드는 것처럼 최면에 걸린",
+    "tip": "hypnos(잠의 신) + ic -> 잠에 빠져드는 것처럼 최면에 걸린",
     "meaning": "최면에 걸린, 졸리는"
   },
   {
@@ -22388,7 +22388,7 @@
     "day": 6,
     "word": "daunt",
     "pron": "[돈트]",
-    "tip": "라틴어 domitare(길들이다)에서 유래 -> 기를 눌러 겁먹게 하다",
+    "tip": "domitare(길들이다) -> 기를 눌러 겁먹게 하다",
     "meaning": "겁먹게 하다"
   },
   {
@@ -22406,7 +22406,7 @@
     "day": 6,
     "word": "chaste",
     "pron": "[체이스트]",
-    "tip": "라틴어 castus(깨끗한) -> 도덕적으로 오점 없이 순수한",
+    "tip": "castus(깨끗한) -> 도덕적으로 오점 없이 순수한",
     "meaning": "순수한; 순결한"
   },
   {
@@ -22496,7 +22496,7 @@
     "day": 6,
     "word": "steer",
     "pron": "[스티어]",
-    "tip": "고대 영어 steoran(방향을 잡다) -> 키를 잡아 한 방향으로 조정하다",
+    "tip": "steoran(방향을 잡다) -> 키를 잡아 한 방향으로 조정하다",
     "meaning": "조정하다; (한 방향으로) 이끌다"
   },
   {
@@ -22541,7 +22541,7 @@
     "day": 6,
     "word": "gambit",
     "pron": "[갬빗]",
-    "tip": "이탈리아어 gambetto(발을 걸다)에서 유래 -> 유리한 위치를 위해 희생하는 책략",
+    "tip": "이탈리아어 gambetto(발을 걸다) -> 유리한 위치를 위해 희생하는 책략",
     "meaning": "책략"
   },
   {
@@ -22550,7 +22550,7 @@
     "day": 6,
     "word": "boon",
     "pron": "[분]",
-    "tip": "라틴어 bonus(좋은)에서 유래 -> 바라던 것을 얻는 혜택",
+    "tip": "bonus(좋은) -> 바라던 것을 얻는 혜택",
     "meaning": "혜택"
   },
   {
@@ -22568,7 +22568,7 @@
     "day": 6,
     "word": "sycophancy",
     "pron": "[시커펀시]",
-    "tip": "syco(무화과) + phanc(보여주다) -> 고대에 무화과를 밀고하던 자에서 유래, 비굴한 아첨",
+    "tip": "syco(무화과) + phanc(보여주다) -> 고대에 무화과를 밀고하던 자 , 비굴한 아첨",
     "meaning": "아첨"
   },
   {
@@ -22595,7 +22595,7 @@
     "day": 6,
     "word": "wield",
     "pron": "[윌드]",
-    "tip": "고대 영어 wieldan(통제하다, 사용하다) -> 권력이나 무기를 마음껏 휘두르다",
+    "tip": "wieldan(통제하다, 사용하다) -> 권력이나 무기를 마음껏 휘두르다",
     "meaning": "휘두르다"
   },
   {
@@ -22694,7 +22694,7 @@
     "day": 6,
     "word": "rival A",
     "pron": "[라이벌 에이]",
-    "tip": "라틴어 rivalis(같은 강을 쓰는 자) -> 같은 강을 나눠 쓰는 경쟁자처럼 필적하다",
+    "tip": "rivalis(같은 강을 쓰는 자) -> 같은 강을 나눠 쓰는 경쟁자처럼 필적하다",
     "meaning": "A에 필적하다"
   },
   {
@@ -22802,7 +22802,7 @@
     "day": 6,
     "word": "harry",
     "pron": "[해리]",
-    "tip": "고대 영어 hergian(약탈하다) -> 군대가 약탈하듯 끊임없이 괴롭히다",
+    "tip": "hergian(약탈하다) -> 군대가 약탈하듯 끊임없이 괴롭히다",
     "meaning": "괴롭히다"
   },
   {
@@ -22811,7 +22811,7 @@
     "day": 6,
     "word": "flail",
     "pron": "[플레일]",
-    "tip": "라틴어 flagellum(채찍)에서 유래 -> 도리깨로 내리치듯 맹렬히 혹평하다",
+    "tip": "flagellum(채찍) -> 도리깨로 내리치듯 맹렬히 혹평하다",
     "meaning": "도리깨질하다; 혹평하다"
   },
   {
@@ -22946,7 +22946,7 @@
     "day": 6,
     "word": "swift",
     "pron": "[스위프트]",
-    "tip": "고대 영어 swift(빠른) -> 머뭇거림 없이 신속한",
+    "tip": "swift(빠른) -> 머뭇거림 없이 신속한",
     "meaning": "신속한"
   },
   {
@@ -23081,7 +23081,7 @@
     "day": 6,
     "word": "alter",
     "pron": "[올터]",
-    "tip": "라틴어 alter(다른) -> 원래와 다르게 바꾸다, 변형하다",
+    "tip": "alter(다른) -> 원래와 다르게 바꾸다, 변형하다",
     "meaning": "변형하다"
   },
   {
@@ -23126,7 +23126,7 @@
     "day": 6,
     "word": "dine",
     "pron": "[다인]",
-    "tip": "라틴어 disjejunare(단식을 깨다) -> 금식을 깨고 식사를 하다",
+    "tip": "disjejunare(단식을 깨다) -> 금식을 깨고 식사를 하다",
     "meaning": "식사를 하다"
   },
   {
@@ -23324,7 +23324,7 @@
     "day": 7,
     "word": "bounty",
     "pron": "[바운티]",
-    "tip": "라틴어 bonitas(좋음) -> 좋은 마음으로 주는 현상금, 사례금",
+    "tip": "bonitas(좋음) -> 좋은 마음으로 주는 현상금, 사례금",
     "meaning": "현상금, 사례금"
   },
   {
@@ -23342,7 +23342,7 @@
     "day": 7,
     "word": "deft",
     "pron": "[데프트]",
-    "tip": "고대 영어 gedæfte(능숙한) -> 능숙하고 솜씨 있는",
+    "tip": "gedæfte(능숙한) -> 능숙하고 솜씨 있는",
     "meaning": "능숙한"
   },
   {
@@ -23459,7 +23459,7 @@
     "day": 7,
     "word": "nimble",
     "pron": "[님블]",
-    "tip": "고대 영어 næmel(잘 잡는) -> 빠르게 잘 잡는 민첩한",
+    "tip": "næmel(잘 잡는) -> 빠르게 잘 잡는 민첩한",
     "meaning": "민첩한"
   },
   {
@@ -23504,7 +23504,7 @@
     "day": 7,
     "word": "swerve",
     "pron": "[스워브]",
-    "tip": "고대 영어 sweorfan(쓸다) -> 갑자기 옆으로 쓸려 진로를 벗어나다",
+    "tip": "sweorfan(쓸다) -> 갑자기 옆으로 쓸려 진로를 벗어나다",
     "meaning": "진로를 벗어나다"
   },
   {
@@ -23549,7 +23549,7 @@
     "day": 7,
     "word": "render",
     "pron": "[렌더]",
-    "tip": "라틴어 reddere(돌려주다) -> 형태로 돌려주어 묘사하다; 만들다",
+    "tip": "reddere(돌려주다) -> 형태로 돌려주어 묘사하다; 만들다",
     "meaning": "묘사하다; (-상태로) 만들다"
   },
   {
@@ -23747,7 +23747,7 @@
     "day": 7,
     "word": "savor",
     "pron": "[세이버]",
-    "tip": "라틴어 sapor(맛) -> 맛을 천천히 즐기며 음미하다",
+    "tip": "sapor(맛) -> 맛을 천천히 즐기며 음미하다",
     "meaning": "음미하다"
   },
   {
@@ -23765,7 +23765,7 @@
     "day": 7,
     "word": "mellowing",
     "pron": "[멜로잉]",
-    "tip": "라틴어 maturus(익은) -> 익어가며 부드러운",
+    "tip": "maturus(익은) -> 익어가며 부드러운",
     "meaning": "부드러운"
   },
   {
@@ -23819,7 +23819,7 @@
     "day": 7,
     "word": "falter",
     "pron": "[폴터]",
-    "tip": "고대 영어 fealtan(접히다) -> 걷다가 접히듯 주춤하다",
+    "tip": "fealtan(접히다) -> 걷다가 접히듯 주춤하다",
     "meaning": "주춤하다"
   },
   {
@@ -23828,7 +23828,7 @@
     "day": 7,
     "word": "dwindle",
     "pron": "[드윈들]",
-    "tip": "고대 영어 dwinan(사라지다) -> 서서히 사라지며 줄어들다",
+    "tip": "dwinan(사라지다) -> 서서히 사라지며 줄어들다",
     "meaning": "하락하다"
   },
   {
@@ -23855,7 +23855,7 @@
     "day": 7,
     "word": "jury",
     "pron": "[쥬리]",
-    "tip": "라틴어 jurare(선서하다) -> 선서한 배심원단",
+    "tip": "jurare(선서하다) -> 선서한 배심원단",
     "meaning": "배심원단"
   },
   {
@@ -23963,7 +23963,7 @@
     "day": 7,
     "word": "vain",
     "pron": "[베인]",
-    "tip": "라틴어 vanus(공허한) -> 공허하고 헛된",
+    "tip": "vanus(공허한) -> 공허하고 헛된",
     "meaning": "헛된"
   },
   {
@@ -24071,7 +24071,7 @@
     "day": 7,
     "word": "strike",
     "pron": "[스트라이크]",
-    "tip": "고대 영어 str\u0000can(세게 치다) -> 세게 쳐서 파업하다",
+    "tip": "str\u0000can(세게 치다) -> 세게 쳐서 파업하다",
     "meaning": "파업"
   },
   {
@@ -24422,7 +24422,7 @@
     "day": 8,
     "word": "rife",
     "pron": "[라이프]",
-    "tip": "고대 영어 ryfe(흔한) -> 흔하게 퍼져 만연한",
+    "tip": "ryfe(흔한) -> 흔하게 퍼져 만연한",
     "meaning": "만연한"
   },
   {
@@ -24449,7 +24449,7 @@
     "day": 8,
     "word": "frugal",
     "pron": "[프루걸]",
-    "tip": "라틴어 frugalis(절약하는) -> 낭비 없이 검소한",
+    "tip": "frugalis(절약하는) -> 낭비 없이 검소한",
     "meaning": "검소한"
   },
   {
@@ -24485,7 +24485,7 @@
     "day": 8,
     "word": "sundry",
     "pron": "[선드리]",
-    "tip": "고대 영어 syndrig(별개의) -> 별개로 있는 잡다한",
+    "tip": "syndrig(별개의) -> 별개로 있는 잡다한",
     "meaning": "잡다한"
   },
   {
@@ -24656,7 +24656,7 @@
     "day": 8,
     "word": "fallow",
     "pron": "[팰로]",
-    "tip": "고대 영어 fealu(황갈색) -> 경작하지 않아 황갈색인 묵혀둔",
+    "tip": "fealu(황갈색) -> 경작하지 않아 황갈색인 묵혀둔",
     "meaning": "무관심하게 묵혀둔; 경작하지 않은"
   },
   {
@@ -24710,7 +24710,7 @@
     "day": 8,
     "word": "hector",
     "pron": "[헥터]",
-    "tip": "트로이 전쟁 영웅 Hector에서 유래 -> 위협하다",
+    "tip": "트로이 전쟁 영웅 Hector -> 위협하다",
     "meaning": "위협하다"
   },
   {
@@ -24719,7 +24719,7 @@
     "day": 8,
     "word": "sheer",
     "pron": "[시어]",
-    "tip": "고대 영어 sc\u0000r(맑은, 순수한) -> 불순물이 전혀 없이 순전한",
+    "tip": "sc\u0000r(맑은, 순수한) -> 불순물이 전혀 없이 순전한",
     "meaning": "순전한"
   },
   {
@@ -24728,7 +24728,7 @@
     "day": 8,
     "word": "mere",
     "pron": "[미어]",
-    "tip": "라틴어 merus(순수한) -> 그것뿐인, 고작",
+    "tip": "merus(순수한) -> 그것뿐인, 고작",
     "meaning": "고작"
   },
   {
@@ -24791,7 +24791,7 @@
     "day": 8,
     "word": "sift",
     "pron": "[시프트]",
-    "tip": "고대 영어 siftan(체로 치다) -> 체로 쳐서 걸러내어 샅샅이 살피다",
+    "tip": "siftan(체로 치다) -> 체로 쳐서 걸러내어 샅샅이 살피다",
     "meaning": "체로 거르다; 샅샅이 살피다"
   },
   {
@@ -25097,7 +25097,7 @@
     "day": 9,
     "word": "alias",
     "pron": "[에일리어스]",
-    "tip": "라틴어 alias(다른 이름으로) -> 다른 이름, 필명",
+    "tip": "alias(다른 이름으로) -> 다른 이름, 필명",
     "meaning": "필명"
   },
   {
@@ -25241,7 +25241,7 @@
     "day": 9,
     "word": "elysium",
     "pron": "[일리지엄]",
-    "tip": "그리스 신화 낙원 Elysion에서 유래 -> 극락, 최상의 행복",
+    "tip": "그리스 신화 낙원 Elysion -> 극락, 최상의 행복",
     "meaning": "극락; 최상의 행복"
   },
   {
@@ -25286,7 +25286,7 @@
     "day": 9,
     "word": "hoax",
     "pron": "[혹스]",
-    "tip": "고대 프랑스어 hocus(속임)에서 유래 -> 사람을 놀리는 사기",
+    "tip": "고대 프랑스어 hocus(속임) -> 사람을 놀리는 사기",
     "meaning": "사기; 속임수"
   },
   {
@@ -25340,7 +25340,7 @@
     "day": 9,
     "word": "boisterous",
     "pron": "[보이스터러스]",
-    "tip": "고대 영어 b\u0000istous(거친) -> 거칠고 소란스러운",
+    "tip": "b\u0000istous(거친) -> 거칠고 소란스러운",
     "meaning": "사나운; 시끌벅적한"
   },
   {
@@ -25385,7 +25385,7 @@
     "day": 9,
     "word": "donor",
     "pron": "[도너]",
-    "tip": "라틴어 donare(주다) -> 아낌없이 주는 기증자",
+    "tip": "donare(주다) -> 아낌없이 주는 기증자",
     "meaning": "기증자"
   },
   {
@@ -25439,7 +25439,7 @@
     "day": 9,
     "word": "hinder",
     "pron": "[힌더]",
-    "tip": "고대 영어 hindrian(뒤에서 방해하다) -> 뒤에서 잡아당겨 방해하다",
+    "tip": "hindrian(뒤에서 방해하다) -> 뒤에서 잡아당겨 방해하다",
     "meaning": "방해하다"
   },
   {
@@ -25502,7 +25502,7 @@
     "day": 9,
     "word": "sibling",
     "pron": "[시블링]",
-    "tip": "고대 영어 sibb(혈연)+ling -> 같은 혈연의 동기",
+    "tip": "sibb(혈연)+ling -> 같은 혈연의 동기",
     "meaning": "동기"
   },
   {
@@ -25547,7 +25547,7 @@
     "day": 9,
     "word": "slumber",
     "pron": "[슬럼버]",
-    "tip": "고대 영어 sluma(졸음) -> 가볍게 잠을 자다",
+    "tip": "sluma(졸음) -> 가볍게 잠을 자다",
     "meaning": "잠; 잠을 자다"
   },
   {
@@ -25637,7 +25637,7 @@
     "day": 9,
     "word": "solace",
     "pron": "[살러스]",
-    "tip": "라틴어 solari(위로하다) -> 슬픔을 위로하다",
+    "tip": "solari(위로하다) -> 슬픔을 위로하다",
     "meaning": "위로"
   },
   {
@@ -25673,7 +25673,7 @@
     "day": 9,
     "word": "to boot",
     "pron": "[투 붓]",
-    "tip": "boot(이익)에서 유래 -> 이익으로 게다가",
+    "tip": "boot(이익) -> 이익으로 게다가",
     "meaning": "게다가"
   },
   {
@@ -25988,7 +25988,7 @@
     "day": 10,
     "word": "menial",
     "pron": "[미니얼]",
-    "tip": "라틴어 mansio(집)+ial -> 집안을 돌보는 비천한 일의",
+    "tip": "mansio(집)+ial -> 집안을 돌보는 비천한 일의",
     "meaning": "비천한"
   },
   {
@@ -26060,7 +26060,7 @@
     "day": 10,
     "word": "trim",
     "pron": "[트림]",
-    "tip": "고대 영어 trymman(단단히 하다) -> 단정하게 자르다",
+    "tip": "trymman(단단히 하다) -> 단정하게 자르다",
     "meaning": "자르다"
   },
   {
@@ -26087,7 +26087,7 @@
     "day": 10,
     "word": "brat",
     "pron": "[브랫]",
-    "tip": "고대 영어 bratt(거친 옷) -> 거친 버릇없는 선머슴",
+    "tip": "bratt(거친 옷) -> 거친 버릇없는 선머슴",
     "meaning": "선머슴, 개구쟁이"
   },
   {
@@ -26105,7 +26105,7 @@
     "day": 10,
     "word": "base",
     "pron": "[베이스]",
-    "tip": "라틴어 bassus(낮은) -> 낮고 비굴한",
+    "tip": "bassus(낮은) -> 낮고 비굴한",
     "meaning": "비굴한"
   },
   {
@@ -26150,7 +26150,7 @@
     "day": 10,
     "word": "vile",
     "pron": "[바일]",
-    "tip": "라틴어 vilis(싼, 천한) -> 값어치 없이 비열한",
+    "tip": "vilis(싼, 천한) -> 값어치 없이 비열한",
     "meaning": "비열한"
   },
   {
@@ -26276,7 +26276,7 @@
     "day": 10,
     "word": "hoard",
     "pron": "[호드]",
-    "tip": "고대 영어 hord(보물창고) -> 보물처럼 비밀히 모으다",
+    "tip": "hord(보물창고) -> 보물처럼 비밀히 모으다",
     "meaning": "무리; 모으다"
   },
   {
@@ -26375,7 +26375,7 @@
     "day": 10,
     "word": "travail",
     "pron": "[트래베일]",
-    "tip": "라틴어 tripalium(고문 도구) -> 고통스러운 고생",
+    "tip": "tripalium(고문 도구) -> 고통스러운 고생",
     "meaning": "고생"
   },
   {
@@ -26645,7 +26645,7 @@
     "day": 10,
     "word": "grumble",
     "pron": "[그럼블]",
-    "tip": "의성어에서 유래 -> 낮게 으르렁거리며 불평하다",
+    "tip": "의성어 -> 낮게 으르렁거리며 불평하다",
     "meaning": "불평하다"
   },
   {
@@ -26663,7 +26663,7 @@
     "day": 10,
     "word": "maze",
     "pron": "[메이즈]",
-    "tip": "고대 영어 m\u0000se(혼란) -> 헤매게 만드는 미로",
+    "tip": "m\u0000se(혼란) -> 헤매게 만드는 미로",
     "meaning": "미로"
   },
   {
@@ -26672,7 +26672,7 @@
     "day": 10,
     "word": "mumble",
     "pron": "[멈블]",
-    "tip": "의성어에서 유래 -> 입 안에서 우물우물 중얼거리다",
+    "tip": "의성어 -> 입 안에서 우물우물 중얼거리다",
     "meaning": "중얼거리다; 우물우물 씹다"
   },
   {
@@ -26681,7 +26681,7 @@
     "day": 10,
     "word": "hubris",
     "pron": "[휴브리스]",
-    "tip": "그리스어 hybris(폭력, 교만) -> 신에 대한 불경스러운 자만심",
+    "tip": "hybris(폭력, 교만) -> 신에 대한 불경스러운 자만심",
     "meaning": "자만심"
   },
   {
@@ -26834,7 +26834,7 @@
     "day": 10,
     "word": "forlorn",
     "pron": "[폴론]",
-    "tip": "고대 영어 forl\u0000osan(완전히 잃다) -> 희망을 완전히 잃은 고독한",
+    "tip": "forl\u0000osan(완전히 잃다) -> 희망을 완전히 잃은 고독한",
     "meaning": "고독한, 쓸쓸한"
   },
   {
@@ -26888,7 +26888,7 @@
     "day": 11,
     "word": "terse",
     "pron": "[터스]",
-    "tip": "라틴어 tergere(닦다) -> 깔끔하게 닦아낸 간결한",
+    "tip": "tergere(닦다) -> 깔끔하게 닦아낸 간결한",
     "meaning": "간결한"
   },
   {
@@ -26915,7 +26915,7 @@
     "day": 11,
     "word": "gloomy",
     "pron": "[글루미]",
-    "tip": "고대 영어 glom(어두움) -> 어두워 우울한",
+    "tip": "glom(어두움) -> 어두워 우울한",
     "meaning": "우울한"
   },
   {
@@ -26942,7 +26942,7 @@
     "day": 11,
     "word": "dire",
     "pron": "[다이어]",
-    "tip": "라틴어 dirus(무서운) -> 무서울 정도로 심각하게 슬픈",
+    "tip": "dirus(무서운) -> 무서울 정도로 심각하게 슬픈",
     "meaning": "슬픈"
   },
   {
@@ -26969,7 +26969,7 @@
     "day": 11,
     "word": "bleak",
     "pron": "[블리크]",
-    "tip": "고대 영어 bl\u0000c(밝은, 창백한) -> 창백하게 희망 없이 암울한",
+    "tip": "bl\u0000c(밝은, 창백한) -> 창백하게 희망 없이 암울한",
     "meaning": "암울한"
   },
   {
@@ -26996,7 +26996,7 @@
     "day": 11,
     "word": "purge",
     "pron": "[퍼지]",
-    "tip": "라틴어 purgare(깨끗이하다) -> 깨끗이 씻어내어 숙청하다",
+    "tip": "purgare(깨끗이하다) -> 깨끗이 씻어내어 숙청하다",
     "meaning": "숙청하다"
   },
   {
@@ -27050,7 +27050,7 @@
     "day": 11,
     "word": "frail",
     "pron": "[프레일]",
-    "tip": "라틴어 fragilis(깨지기 쉬운) -> 쉽게 깨지는 허약한",
+    "tip": "fragilis(깨지기 쉬운) -> 쉽게 깨지는 허약한",
     "meaning": "노쇠한; 허약한"
   },
   {
@@ -27185,7 +27185,7 @@
     "day": 11,
     "word": "chapel",
     "pron": "[채플]",
-    "tip": "라틴어 cappa(망토) -> 성인의 망토를 모신 곳에서 교회",
+    "tip": "cappa(망토) -> 성인의 망토를 모신 곳에서 교회",
     "meaning": "교회"
   },
   {
@@ -27329,7 +27329,7 @@
     "day": 11,
     "word": "grasp",
     "pron": "[그래스프]",
-    "tip": "고대 영어 gr\u0000pian(더듬다) -> 꽉 잡아 이해하다",
+    "tip": "gr\u0000pian(더듬다) -> 꽉 잡아 이해하다",
     "meaning": "꽉 잡다; 이해하다, 파악하다"
   },
   {
@@ -27428,7 +27428,7 @@
     "day": 11,
     "word": "temper",
     "pron": "[템퍼]",
-    "tip": "라틴어 temperare(조절하다) -> 성질; 조절하여 완화하다",
+    "tip": "temperare(조절하다) -> 성질; 조절하여 완화하다",
     "meaning": "성질; 완화하다"
   },
   {
@@ -27437,7 +27437,7 @@
     "day": 11,
     "word": "tamper",
     "pron": "[탬퍼]",
-    "tip": "tampon(마개)에서 유래 -> 마개를 건드리듯 함부로 변경하다",
+    "tip": "tampon(마개) -> 마개를 건드리듯 함부로 변경하다",
     "meaning": "함부로 변경하다; 간섭하다; 매수하다"
   },
   {
@@ -27473,7 +27473,7 @@
     "day": 11,
     "word": "stymie",
     "pron": "[스타이미]",
-    "tip": "골프 용어에서 유래 -> 앞을 막아 방해하다",
+    "tip": "골프 용어 -> 앞을 막아 방해하다",
     "meaning": "어려운 상황; 방해하다"
   },
   {
@@ -27545,7 +27545,7 @@
     "day": 11,
     "word": "breach",
     "pron": "[브리치]",
-    "tip": "고대 영어 brece(부러진 것) -> 부러져 생긴 분열",
+    "tip": "brece(부러진 것) -> 부러져 생긴 분열",
     "meaning": "분열"
   },
   {
@@ -27572,7 +27572,7 @@
     "day": 11,
     "word": "rupture",
     "pron": "[럽처]",
-    "tip": "라틴어 ruptus(깨진) -> 깨진 분열",
+    "tip": "ruptus(깨진) -> 깨진 분열",
     "meaning": "분열"
   },
   {
@@ -27581,7 +27581,7 @@
     "day": 11,
     "word": "rapture",
     "pron": "[랩처]",
-    "tip": "라틴어 rapere(잡아채다) -> 잡아채어 황홀하게 만드는 환희",
+    "tip": "rapere(잡아채다) -> 잡아채어 황홀하게 만드는 환희",
     "meaning": "환희; 황홀하게 만들다"
   },
   {
@@ -27644,7 +27644,7 @@
     "day": 11,
     "word": "plight",
     "pron": "[플라이트]",
-    "tip": "고대 영어 pliht(위험) -> 위험한 궁지",
+    "tip": "pliht(위험) -> 위험한 궁지",
     "meaning": "궁지"
   },
   {
@@ -27734,7 +27734,7 @@
     "day": 11,
     "word": "crucible",
     "pron": "[크루서블]",
-    "tip": "라틴어 crucibulum(도가니) -> 쇳물 녹이는 도가니; 호된 시련",
+    "tip": "crucibulum(도가니) -> 쇳물 녹이는 도가니; 호된 시련",
     "meaning": "(쇳물을 녹이거나 하는) 도가니; 호된 시련"
   },
   {
@@ -27752,7 +27752,7 @@
     "day": 12,
     "word": "drudge",
     "pron": "[드러지]",
-    "tip": "고대 영어 dreogan(고생하다) -> 힘들고 단조로운 일을 꾸준히 하다",
+    "tip": "dreogan(고생하다) -> 힘들고 단조로운 일을 꾸준히 하다",
     "meaning": "힘들고 단조로운 일 하는 사람; 꾸준히 하다"
   },
   {
@@ -27761,7 +27761,7 @@
     "day": 12,
     "word": "odium",
     "pron": "[오디엄]",
-    "tip": "라틴어 odium(증오) -> 강한 혐오",
+    "tip": "odium(증오) -> 강한 혐오",
     "meaning": "혐오"
   },
   {
@@ -27851,7 +27851,7 @@
     "day": 12,
     "word": "trait",
     "pron": "[트레이트]",
-    "tip": "라틴어 tractus(끌다) -> 끌리는 특징",
+    "tip": "tractus(끌다) -> 끌리는 특징",
     "meaning": "특징"
   },
   {
@@ -27869,7 +27869,7 @@
     "day": 12,
     "word": "throes",
     "pron": "[쓰로즈]",
-    "tip": "고대 영어 thr\u0000wan(비틀다) -> 비트는 산통 통증",
+    "tip": "thr\u0000wan(비틀다) -> 비트는 산통 통증",
     "meaning": "산통, 통증"
   },
   {
@@ -27887,7 +27887,7 @@
     "day": 12,
     "word": "kudos",
     "pron": "[큐도스]",
-    "tip": "그리스어 kydos(영광) -> 영광스러운 찬사",
+    "tip": "kydos(영광) -> 영광스러운 찬사",
     "meaning": "찬사"
   },
   {
@@ -28220,7 +28220,7 @@
     "day": 12,
     "word": "fray",
     "pron": "[프레이]",
-    "tip": "고대 영어 fregan(문지르다) -> 문질러 닳게 하다; 싸움",
+    "tip": "fregan(문지르다) -> 문질러 닳게 하다; 싸움",
     "meaning": "싸움; 닳게 하다; 긴장시키다"
   },
   {
@@ -28265,7 +28265,7 @@
     "day": 12,
     "word": "fracture",
     "pron": "[프랙처]",
-    "tip": "라틴어 fractura(부서짐) -> 부서진 분열",
+    "tip": "fractura(부서짐) -> 부서진 분열",
     "meaning": "분열"
   },
   {
@@ -28301,7 +28301,7 @@
     "day": 12,
     "word": "linger",
     "pron": "[링거]",
-    "tip": "고대 영어 lengan(오래 끌다) -> 오래 끌며 머무르다",
+    "tip": "lengan(오래 끌다) -> 오래 끌며 머무르다",
     "meaning": "오래 머무르다"
   },
   {
@@ -28319,7 +28319,7 @@
     "day": 12,
     "word": "flag",
     "pron": "[플래그]",
-    "tip": "의성어에서 유래 -> 힘이 빠져 축 처지다",
+    "tip": "의성어 -> 힘이 빠져 축 처지다",
     "meaning": "축 처지다"
   },
   {
@@ -28328,7 +28328,7 @@
     "day": 12,
     "word": "gall",
     "pron": "[골]",
-    "tip": "고대 영어 gealla(담즙) -> 담즙처럼 쓴맛이 나게 분하게 만들다",
+    "tip": "gealla(담즙) -> 담즙처럼 쓴맛이 나게 분하게 만들다",
     "meaning": "초조하게 만들다; 분하게 만들다"
   },
   {
@@ -28355,7 +28355,7 @@
     "day": 12,
     "word": "supple",
     "pron": "[서플]",
-    "tip": "라틴어 supplex(굽어 간청하는) -> 굽힐 수 있는 유연한",
+    "tip": "supplex(굽어 간청하는) -> 굽힐 수 있는 유연한",
     "meaning": "온순한; 유연한"
   },
   {
@@ -28427,7 +28427,7 @@
     "day": 12,
     "word": "brook",
     "pron": "[브룩]",
-    "tip": "고대 영어 br\u0000can(이용하다) -> 이용하여 허용하다; 시냇물",
+    "tip": "br\u0000can(이용하다) -> 이용하여 허용하다; 시냇물",
     "meaning": "허용하다; 시냇물"
   },
   {
@@ -28463,7 +28463,7 @@
     "day": 12,
     "word": "fathom",
     "pron": "[패덤]",
-    "tip": "고대 영어 fæthm(두 팔을 벌린 길이) -> 깊이를 재어 파악하다",
+    "tip": "fæthm(두 팔을 벌린 길이) -> 깊이를 재어 파악하다",
     "meaning": "깊이를 파악하다"
   },
   {
@@ -28787,7 +28787,7 @@
     "day": 13,
     "word": "trite",
     "pron": "[트라이트]",
-    "tip": "라틴어 tritus(닳은) -> 닳고 닳아 진부한",
+    "tip": "tritus(닳은) -> 닳고 닳아 진부한",
     "meaning": "진부한"
   },
   {
@@ -28814,7 +28814,7 @@
     "day": 13,
     "word": "wilt",
     "pron": "[윌트]",
-    "tip": "고대 영어 wieltan(뒤집히다) -> 열에 뒤집혀 시들다",
+    "tip": "wieltan(뒤집히다) -> 열에 뒤집혀 시들다",
     "meaning": "시들다"
   },
   {
@@ -28823,7 +28823,7 @@
     "day": 13,
     "word": "wither",
     "pron": "[위더]",
-    "tip": "고대 영어 withrian(막다) -> 막혀서 시들다",
+    "tip": "withrian(막다) -> 막혀서 시들다",
     "meaning": "시들다"
   },
   {
@@ -29048,7 +29048,7 @@
     "day": 13,
     "word": "cleave",
     "pron": "[클리브]",
-    "tip": "고대 영어 cleofan(쪼개다) -> 도끼로 쪼개다",
+    "tip": "cleofan(쪼개다) -> 도끼로 쪼개다",
     "meaning": "쪼개다"
   },
   {
@@ -29075,7 +29075,7 @@
     "day": 13,
     "word": "lay",
     "pron": "[레이]",
-    "tip": "고대 영어 lecgan(두다) -> 알을 두어 낳다",
+    "tip": "lecgan(두다) -> 알을 두어 낳다",
     "meaning": "(알을) 낳다"
   },
   {
@@ -29309,7 +29309,7 @@
     "day": 13,
     "word": "treason",
     "pron": "[트리즌]",
-    "tip": "라틴어 traditio(인도하다) -> 적에게 인도하는 반역",
+    "tip": "traditio(인도하다) -> 적에게 인도하는 반역",
     "meaning": "반역"
   },
   {
@@ -29381,7 +29381,7 @@
     "day": 13,
     "word": "vague",
     "pron": "[베이그]",
-    "tip": "라틴어 vagus(헤매는) -> 헤매듯 모호한",
+    "tip": "vagus(헤매는) -> 헤매듯 모호한",
     "meaning": "모호한"
   },
   {
@@ -29444,7 +29444,7 @@
     "day": 13,
     "word": "ebb",
     "pron": "[엡]",
-    "tip": "고대 영어 ebba(썰물) -> 썰물처럼 물이 빠지다; 약화되다",
+    "tip": "ebba(썰물) -> 썰물처럼 물이 빠지다; 약화되다",
     "meaning": "물이 빠지다; 썰물; 약화되다"
   },
   {
@@ -29453,7 +29453,7 @@
     "day": 13,
     "word": "flow",
     "pron": "[플로]",
-    "tip": "고대 영어 flowan(흐르다) -> 물이 흘러 차다; 밀물",
+    "tip": "flowan(흐르다) -> 물이 흘러 차다; 밀물",
     "meaning": "물이 차다; 밀물; 강화되다"
   },
   {
@@ -29462,7 +29462,7 @@
     "day": 13,
     "word": "wane",
     "pron": "[웨인]",
-    "tip": "고대 영어 wanian(줄다) -> 달이 기울듯 약화되다",
+    "tip": "wanian(줄다) -> 달이 기울듯 약화되다",
     "meaning": "달이 기울다; 약화되다"
   },
   {
@@ -29471,7 +29471,7 @@
     "day": 13,
     "word": "wax",
     "pron": "[왁스]",
-    "tip": "고대 영어 weaxan(자라다) -> 달이 차듯 강화되다",
+    "tip": "weaxan(자라다) -> 달이 차듯 강화되다",
     "meaning": "달이 차다; 강화되다"
   },
   {
@@ -29588,7 +29588,7 @@
     "day": 14,
     "word": "mar",
     "pron": "[마]",
-    "tip": "고대 영어 merran(방해하다) -> 완전함을 방해하여 손상시키다",
+    "tip": "merran(방해하다) -> 완전함을 방해하여 손상시키다",
     "meaning": "손상을 주다"
   },
   {
@@ -29651,7 +29651,7 @@
     "day": 14,
     "word": "chauvinism",
     "pron": "[쇼비니즘]",
-    "tip": "Nicolas Chauvin(맹목적 애국자)에서 유래 -> 맹목적 배타주의",
+    "tip": "Nicolas Chauvin(맹목적 애국자) -> 맹목적 배타주의",
     "meaning": "국수주의; 남성우월주의"
   },
   {
@@ -29885,7 +29885,7 @@
     "day": 14,
     "word": "i.e.",
     "pron": "[아이 이]",
-    "tip": "라틴어 id est(즉) -> 즉",
+    "tip": "id est(즉) -> 즉",
     "meaning": "즉"
   },
   {
@@ -30047,7 +30047,7 @@
     "day": 14,
     "word": "cause",
     "pron": "[코즈]",
-    "tip": "라틴어 causa(이유, 목적) -> 이유가 되는 대의명분",
+    "tip": "causa(이유, 목적) -> 이유가 되는 대의명분",
     "meaning": "대의명분"
   },
   {
@@ -30155,7 +30155,7 @@
     "day": 14,
     "word": "drought",
     "pron": "[드라우트]",
-    "tip": "고대 영어 drugath(건조함) -> 비가 없어 건조한 가뭄",
+    "tip": "drugath(건조함) -> 비가 없어 건조한 가뭄",
     "meaning": "가뭄"
   },
   {
@@ -30389,7 +30389,7 @@
     "day": 14,
     "word": "jingoism",
     "pron": "[징고이즘]",
-    "tip": "jingo(전쟁 선동 구호)에서 유래 -> 호전적 애국주의",
+    "tip": "jingo(전쟁 선동 구호) -> 호전적 애국주의",
     "meaning": "국수주의"
   },
   {
@@ -30506,7 +30506,7 @@
     "day": 15,
     "word": "fetid",
     "pron": "[페티드]",
-    "tip": "라틴어 fetere(악취나다) -> 악취가 진동하는",
+    "tip": "fetere(악취나다) -> 악취가 진동하는",
     "meaning": "악취가 진동하는"
   },
   {
@@ -30632,7 +30632,7 @@
     "day": 15,
     "word": "sinister",
     "pron": "[시니스터]",
-    "tip": "라틴어 sinister(왼쪽) -> 불길하다고 여긴 왼쪽",
+    "tip": "sinister(왼쪽) -> 불길하다고 여긴 왼쪽",
     "meaning": "불길한; 사악한; 왼쪽의"
   },
   {
@@ -30722,7 +30722,7 @@
     "day": 15,
     "word": "suture",
     "pron": "[수처]",
-    "tip": "라틴어 sutura(꿰맨 것) -> 실로 꿰매어 봉합하다",
+    "tip": "sutura(꿰맨 것) -> 실로 꿰매어 봉합하다",
     "meaning": "봉합하다"
   },
   {
@@ -30821,7 +30821,7 @@
     "day": 15,
     "word": "brittle",
     "pron": "[브리틀]",
-    "tip": "고대 영어 breotan(깨다) -> 쉽게 깨지는 부서지기 쉬운",
+    "tip": "breotan(깨다) -> 쉽게 깨지는 부서지기 쉬운",
     "meaning": "부서지기 쉬운"
   },
   {
@@ -30830,7 +30830,7 @@
     "day": 15,
     "word": "frond",
     "pron": "[프란드]",
-    "tip": "라틴어 frons(잎) -> 잎",
+    "tip": "frons(잎) -> 잎",
     "meaning": "잎"
   },
   {
@@ -30893,7 +30893,7 @@
     "day": 15,
     "word": "run",
     "pron": "[런]",
-    "tip": "고대 영어 rinnan(달리다) -> 달려 나와 출마하다",
+    "tip": "rinnan(달리다) -> 달려 나와 출마하다",
     "meaning": "출마하다"
   },
   {
@@ -30902,7 +30902,7 @@
     "day": 15,
     "word": "laud",
     "pron": "[로드]",
-    "tip": "라틴어 laudare(칭찬하다) -> 높이 평가하며 칭찬하다",
+    "tip": "laudare(칭찬하다) -> 높이 평가하며 칭찬하다",
     "meaning": "칭송하다"
   },
   {
@@ -30929,7 +30929,7 @@
     "day": 15,
     "word": "fern",
     "pron": "[펀]",
-    "tip": "고대 영어 fearn(양치류) -> 양치류",
+    "tip": "fearn(양치류) -> 양치류",
     "meaning": "양치류"
   },
   {
@@ -31001,7 +31001,7 @@
     "day": 15,
     "word": "curse",
     "pron": "[커스]",
-    "tip": "고대 영어 cursian(저주하다) -> 저주하는 재앙",
+    "tip": "cursian(저주하다) -> 저주하는 재앙",
     "meaning": "재앙"
   },
   {
@@ -31127,7 +31127,7 @@
     "day": 15,
     "word": "truce",
     "pron": "[트루스]",
-    "tip": "고대 영어 treow(믿음) -> 믿음으로 맺은 휴전",
+    "tip": "treow(믿음) -> 믿음으로 맺은 휴전",
     "meaning": "휴전"
   },
   {
@@ -31163,7 +31163,7 @@
     "day": 15,
     "word": "supine",
     "pron": "[수파인]",
-    "tip": "라틴어 supinus(등을 대고 누운) -> 반듯이 누운; 게으른",
+    "tip": "supinus(등을 대고 누운) -> 반듯이 누운; 게으른",
     "meaning": "반듯이 누운; 게으른"
   },
   {
@@ -31208,7 +31208,7 @@
     "day": 15,
     "word": "grim",
     "pron": "[그림]",
-    "tip": "고대 영어 grimm(험악한) -> 희망 없이 험악하게 암울한",
+    "tip": "grimm(험악한) -> 희망 없이 험악하게 암울한",
     "meaning": "암울한"
   },
   {
@@ -31253,7 +31253,7 @@
     "day": 15,
     "word": "dwarf",
     "pron": "[드워프]",
-    "tip": "고대 영어 dweorg(난쟁이) -> 난쟁이로 만들어 왜소하게 만들다",
+    "tip": "dweorg(난쟁이) -> 난쟁이로 만들어 왜소하게 만들다",
     "meaning": "(상대를) 왜소하게 만들다; 압도하다"
   },
   {
@@ -31334,7 +31334,7 @@
     "day": 15,
     "word": "hectic",
     "pron": "[헥틱]",
-    "tip": "그리스어 hektikos(습관적인) -> 발열처럼 정신없이 바쁜",
+    "tip": "hektikos(습관적인) -> 발열처럼 정신없이 바쁜",
     "meaning": "바쁜"
   },
   {
@@ -31361,7 +31361,7 @@
     "day": 16,
     "word": "fetter",
     "pron": "[페터]",
-    "tip": "고대 영어 fetor(발목 족쇄) -> 발목에 족쇄를 채워 구속하다",
+    "tip": "fetor(발목 족쇄) -> 발목에 족쇄를 채워 구속하다",
     "meaning": "구속하다; 족쇄를 채우다"
   },
   {
@@ -31388,7 +31388,7 @@
     "day": 16,
     "word": "pander to",
     "pron": "[팬더 투]",
-    "tip": "Pandaro(트로이 전쟁의 뚜쟁이)에서 유래 -> 비위를 맞추어 영합하다",
+    "tip": "Pandaro(트로이 전쟁의 뚜쟁이) -> 비위를 맞추어 영합하다",
     "meaning": "영합하다"
   },
   {
@@ -31559,7 +31559,7 @@
     "day": 16,
     "word": "sober",
     "pron": "[소버]",
-    "tip": "라틴어 sobrius(술 취하지 않은) -> 술 취하지 않고 냉철한",
+    "tip": "sobrius(술 취하지 않은) -> 술 취하지 않고 냉철한",
     "meaning": "술 취하지 않은; 냉철한"
   },
   {
@@ -31568,7 +31568,7 @@
     "day": 16,
     "word": "fit",
     "pron": "[핏]",
-    "tip": "고대 영어 fit(대결) -> 싸울 수 있는 건강한",
+    "tip": "fit(대결) -> 싸울 수 있는 건강한",
     "meaning": "건강한"
   },
   {
@@ -31595,7 +31595,7 @@
     "day": 16,
     "word": "fickle",
     "pron": "[피클]",
-    "tip": "고대 영어 ficol(교활한) -> 마음이 자주 변하는 변덕스러운",
+    "tip": "ficol(교활한) -> 마음이 자주 변하는 변덕스러운",
     "meaning": "변화가 심한"
   },
   {
@@ -31712,7 +31712,7 @@
     "day": 16,
     "word": "innuendo",
     "pron": "[이뉴엔도]",
-    "tip": "라틴어 innuere(끄덕이다) -> 끄덕이며 암시하는 비꼼",
+    "tip": "innuere(끄덕이다) -> 끄덕이며 암시하는 비꼼",
     "meaning": "비꼼"
   },
   {
@@ -31829,7 +31829,7 @@
     "day": 16,
     "word": "veil",
     "pron": "[베일]",
-    "tip": "라틴어 velum(천) -> 천으로 가리다",
+    "tip": "velum(천) -> 천으로 가리다",
     "meaning": "가리다"
   },
   {
@@ -32018,7 +32018,7 @@
     "day": 16,
     "word": "chary",
     "pron": "[체리]",
-    "tip": "고대 영어 cearig(걱정하는) -> 걱정하여 조심하는",
+    "tip": "cearig(걱정하는) -> 걱정하여 조심하는",
     "meaning": "조심하는; (-을) 꺼리는"
   },
   {
@@ -32027,7 +32027,7 @@
     "day": 16,
     "word": "chasm",
     "pron": "[캐즘]",
-    "tip": "그리스어 khasma(벌어진 것) -> 크게 벌어진 아주 깊은 틈",
+    "tip": "khasma(벌어진 것) -> 크게 벌어진 아주 깊은 틈",
     "meaning": "아주 깊은 틈"
   },
   {
@@ -32207,7 +32207,7 @@
     "day": 16,
     "word": "lax",
     "pron": "[랙스]",
-    "tip": "라틴어 laxus(느슨한) -> 팽팽함이 없는 느슨한",
+    "tip": "laxus(느슨한) -> 팽팽함이 없는 느슨한",
     "meaning": "느슨한"
   },
   {
@@ -32234,7 +32234,7 @@
     "day": 16,
     "word": "alien",
     "pron": "[에일리언]",
-    "tip": "라틴어 alienus(다른) -> 다른 곳에서 온 이질적인",
+    "tip": "alienus(다른) -> 다른 곳에서 온 이질적인",
     "meaning": "이질적인"
   },
   {
@@ -32288,7 +32288,7 @@
     "day": 17,
     "word": "tumult",
     "pron": "[튜멀트]",
-    "tip": "라틴어 tumultus(소동) -> 크게 들끓는 소동",
+    "tip": "tumultus(소동) -> 크게 들끓는 소동",
     "meaning": "소동, 요동"
   },
   {
@@ -32324,7 +32324,7 @@
     "day": 17,
     "word": "fluke",
     "pron": "[플루크]",
-    "tip": "고대 영어 floc(기회) -> 우연히 찾아온 요행",
+    "tip": "floc(기회) -> 우연히 찾아온 요행",
     "meaning": "요행(수); (낚시 등의) 미늘"
   },
   {
@@ -32423,7 +32423,7 @@
     "day": 17,
     "word": "stale",
     "pron": "[스테일]",
-    "tip": "고대 영어 stæl(오래된) -> 오래되어 신선하지 않은",
+    "tip": "stæl(오래된) -> 오래되어 신선하지 않은",
     "meaning": "신선하지 않은, 오래된"
   },
   {
@@ -32432,7 +32432,7 @@
     "day": 17,
     "word": "raucous",
     "pron": "[로커스]",
-    "tip": "라틴어 raucus(쉰) -> 쉰 목소리처럼 소란한",
+    "tip": "raucus(쉰) -> 쉰 목소리처럼 소란한",
     "meaning": "소란한"
   },
   {
@@ -32441,7 +32441,7 @@
     "day": 17,
     "word": "balk",
     "pron": "[볼크]",
-    "tip": "고대 영어 balca(들보, 장애물) -> 장애물처럼 가로막아 방해하다",
+    "tip": "balca(들보, 장애물) -> 장애물처럼 가로막아 방해하다",
     "meaning": "멈칫하다; 방해하다"
   },
   {
@@ -32531,7 +32531,7 @@
     "day": 17,
     "word": "dearth",
     "pron": "[더쓰]",
-    "tip": "고대 영어 d\u0000arth(귀한) -> 귀하여 부족한 기근",
+    "tip": "d\u0000arth(귀한) -> 귀하여 부족한 기근",
     "meaning": "부족; 기근"
   },
   {
@@ -32567,7 +32567,7 @@
     "day": 17,
     "word": "pasteurization",
     "pron": "[패스처라이제이션]",
-    "tip": "Louis Pasteur(세균학자)에서 유래 -> 저온 살균",
+    "tip": "Louis Pasteur(세균학자) -> 저온 살균",
     "meaning": "발효"
   },
   {
@@ -32612,7 +32612,7 @@
     "day": 17,
     "word": "mute",
     "pron": "[뮤트]",
-    "tip": "라틴어 mutus(말 없는) -> 소리를 줄이다",
+    "tip": "mutus(말 없는) -> 소리를 줄이다",
     "meaning": "소리를 줄이다"
   },
   {
@@ -32657,7 +32657,7 @@
     "day": 17,
     "word": "austere",
     "pron": "[어스티어]",
-    "tip": "그리스어 austeros(쓴) -> 쓴맛처럼 엄격하고 검소한",
+    "tip": "austeros(쓴) -> 쓴맛처럼 엄격하고 검소한",
     "meaning": "검소한; 금욕적; 긴축의"
   },
   {
@@ -33035,7 +33035,7 @@
     "day": 17,
     "word": "harbinger",
     "pron": "[하빈저]",
-    "tip": "고대 영어 herebeorg(군대 숙소) -> 군대보다 먼저 오는 선구자",
+    "tip": "herebeorg(군대 숙소) -> 군대보다 먼저 오는 선구자",
     "meaning": "선구자; 전조"
   },
   {
@@ -33098,7 +33098,7 @@
     "day": 17,
     "word": "splash",
     "pron": "[스플래시]",
-    "tip": "의성어에서 유래 -> 물이 튀기는 소리처럼 물을 튀기다",
+    "tip": "의성어 -> 물이 튀기는 소리처럼 물을 튀기다",
     "meaning": "물을 튀기다"
   },
   {
@@ -33179,7 +33179,7 @@
     "day": 18,
     "word": "fecund",
     "pron": "[피컨드]",
-    "tip": "라틴어 fecundus(풍부한) -> 열매를 많이 맺는 다산의",
+    "tip": "fecundus(풍부한) -> 열매를 많이 맺는 다산의",
     "meaning": "비옥한; 다산의"
   },
   {
@@ -33197,7 +33197,7 @@
     "day": 18,
     "word": "deign",
     "pron": "[데인]",
-    "tip": "라틴어 dignare(적합하다고 여기다) -> 적합하다고 여겨 친히 해주다",
+    "tip": "dignare(적합하다고 여기다) -> 적합하다고 여겨 친히 해주다",
     "meaning": "친히 –해주다"
   },
   {
@@ -33332,7 +33332,7 @@
     "day": 18,
     "word": "sordid",
     "pron": "[소디드]",
-    "tip": "라틴어 sordidus(더러운) -> 더럽고 비도덕적인",
+    "tip": "sordidus(더러운) -> 더럽고 비도덕적인",
     "meaning": "비도덕적인; 몹시 지저분한"
   },
   {
@@ -33350,7 +33350,7 @@
     "day": 18,
     "word": "maverick",
     "pron": "[매버릭]",
-    "tip": "Samuel Maverick(소에 낙인을 안 찍은 목장주)에서 유래 -> 독불장군",
+    "tip": "Samuel Maverick(소에 낙인을 안 찍은 목장주) -> 독불장군",
     "meaning": "독불장군(식의)"
   },
   {
@@ -33377,7 +33377,7 @@
     "day": 18,
     "word": "lampoon",
     "pron": "[램푼]",
-    "tip": "프랑스어 lampons(마시자)에서 유래 -> 풍자적인 글로 공격하다",
+    "tip": "프랑스어 lampons(마시자) -> 풍자적인 글로 공격하다",
     "meaning": "풍자하다; 풍자"
   },
   {
@@ -33395,7 +33395,7 @@
     "day": 18,
     "word": "mercy",
     "pron": "[머시]",
-    "tip": "라틴어 merces(대가, 은총) -> 은총으로 주는 자비",
+    "tip": "merces(대가, 은총) -> 은총으로 주는 자비",
     "meaning": "자비"
   },
   {
@@ -33431,7 +33431,7 @@
     "day": 18,
     "word": "tout",
     "pron": "[타우트]",
-    "tip": "고대 영어 tutian(내다보다) -> 내다보며 강권하다",
+    "tip": "tutian(내다보다) -> 내다보며 강권하다",
     "meaning": "강권하다; 격찬하다"
   },
   {
@@ -33746,7 +33746,7 @@
     "day": 18,
     "word": "foreign",
     "pron": "[포린]",
-    "tip": "라틴어 foras(문 밖에) -> 문 밖에서 온 이질적인",
+    "tip": "foras(문 밖에) -> 문 밖에서 온 이질적인",
     "meaning": "이질적인"
   },
   {
@@ -33791,7 +33791,7 @@
     "day": 18,
     "word": "irony",
     "pron": "[아이러니]",
-    "tip": "그리스어 eir\u0000neia(위장된 무지) -> 말과 의미가 반대인 반어",
+    "tip": "eir\u0000neia(위장된 무지) -> 말과 의미가 반대인 반어",
     "meaning": "반어, 역설"
   },
   {
@@ -33800,7 +33800,7 @@
     "day": 18,
     "word": "halcyon",
     "pron": "[핼시언]",
-    "tip": "그리스 신화 새 Halcyon에서 유래 -> 평온하고 번영하는",
+    "tip": "그리스 신화 새 Halcyon -> 평온하고 번영하는",
     "meaning": "평온한; 번영하는"
   },
   {
@@ -33827,7 +33827,7 @@
     "day": 18,
     "word": "acme",
     "pron": "[액미]",
-    "tip": "그리스어 akm\u0000(최고점) -> 가장 높은 전성기, 정상",
+    "tip": "akm\u0000(최고점) -> 가장 높은 전성기, 정상",
     "meaning": "전성기; 정상"
   },
   {
@@ -33836,7 +33836,7 @@
     "day": 18,
     "word": "apex",
     "pron": "[에이펙스]",
-    "tip": "라틴어 apex(꼭대기) -> 가장 높은 극치, 절정",
+    "tip": "apex(꼭대기) -> 가장 높은 극치, 절정",
     "meaning": "극치; 절정, 정상"
   },
   {
@@ -33863,7 +33863,7 @@
     "day": 18,
     "word": "crest",
     "pron": "[크레스트]",
-    "tip": "라틴어 crista(볏, 꼭대기) -> 물결의 꼭대기; 정상",
+    "tip": "crista(볏, 꼭대기) -> 물결의 꼭대기; 정상",
     "meaning": "(닭의) 볏; 정상"
   },
   {
@@ -33881,7 +33881,7 @@
     "day": 18,
     "word": "pinnacle",
     "pron": "[피너클]",
-    "tip": "라틴어 pinna(뾰족함)+cle -> 뾰족하게 솟은 산봉우리; 정상",
+    "tip": "pinna(뾰족함)+cle -> 뾰족하게 솟은 산봉우리; 정상",
     "meaning": "뾰쪽한 산봉우리; 정상"
   },
   {
@@ -33899,7 +33899,7 @@
     "day": 18,
     "word": "zenith",
     "pron": "[제니쓰]",
-    "tip": "아랍어 samt(방향)에서 유래 -> 하늘 가장 높은 점; 정상",
+    "tip": "아랍어 samt(방향) -> 하늘 가장 높은 점; 정상",
     "meaning": "천정; 정상"
   },
   {
@@ -34016,7 +34016,7 @@
     "day": 18,
     "word": "fan",
     "pron": "[팬]",
-    "tip": "고대 영어 fann(바람 일으키다) -> 부채질하듯 가속화하다",
+    "tip": "fann(바람 일으키다) -> 부채질하듯 가속화하다",
     "meaning": "부채질하다; 가속화하다"
   },
   {
@@ -34052,7 +34052,7 @@
     "day": 19,
     "word": "mutual",
     "pron": "[뮤추얼]",
-    "tip": "라틴어 mutuus(서로 주고받는) -> 서로 주고받는 상호의",
+    "tip": "mutuus(서로 주고받는) -> 서로 주고받는 상호의",
     "meaning": "상호의"
   },
   {
@@ -34070,7 +34070,7 @@
     "day": 19,
     "word": "stoke",
     "pron": "[스토크]",
-    "tip": "고대 영어 stocian(쑤시다) -> 불을 쑤셔 넣어 가속화하다",
+    "tip": "stocian(쑤시다) -> 불을 쑤셔 넣어 가속화하다",
     "meaning": "화로에 석탄을 집어넣다; 가속화하다"
   },
   {
@@ -34106,7 +34106,7 @@
     "day": 19,
     "word": "fuel",
     "pron": "[퓨얼]",
-    "tip": "라틴어 focus(불) -> 불에 연료를 넣듯 가속화하다",
+    "tip": "focus(불) -> 불에 연료를 넣듯 가속화하다",
     "meaning": "연료를 주입하다; 가속화하다"
   },
   {
@@ -34178,7 +34178,7 @@
     "day": 19,
     "word": "facile",
     "pron": "[패실]",
-    "tip": "라틴어 facilis(하기 쉬운) -> 손쉬운",
+    "tip": "facilis(하기 쉬운) -> 손쉬운",
     "meaning": "손쉬운"
   },
   {
@@ -34232,7 +34232,7 @@
     "day": 19,
     "word": "furrow",
     "pron": "[퍼로]",
-    "tip": "고대 영어 furh(밭고랑) -> 밭의 고랑; 깊은 주름",
+    "tip": "furh(밭고랑) -> 밭의 고랑; 깊은 주름",
     "meaning": "고랑, 골; 저점"
   },
   {
@@ -34241,7 +34241,7 @@
     "day": 19,
     "word": "ethos",
     "pron": "[이쏘스]",
-    "tip": "그리스어 ethos(관습, 성격) -> 집단의 풍조, 기풍",
+    "tip": "ethos(관습, 성격) -> 집단의 풍조, 기풍",
     "meaning": "풍조, 기풍"
   },
   {
@@ -34268,7 +34268,7 @@
     "day": 19,
     "word": "virtual",
     "pron": "[버추얼]",
-    "tip": "라틴어 virtualis(가능한) -> 사실과 같지만 실제는 아닌 가상의",
+    "tip": "virtualis(가능한) -> 사실과 같지만 실제는 아닌 가상의",
     "meaning": "가상의; 사실 같은"
   },
   {
@@ -34376,7 +34376,7 @@
     "day": 19,
     "word": "fustian",
     "pron": "[퍼스천]",
-    "tip": "라틴어 fustis(나무 몽둥이) -> 거칠고 과장된 표현",
+    "tip": "fustis(나무 몽둥이) -> 거칠고 과장된 표현",
     "meaning": "과장된 표현; 과장된"
   },
   {
@@ -34466,7 +34466,7 @@
     "day": 19,
     "word": "famine",
     "pron": "[패민]",
-    "tip": "라틴어 fames(배고픔) -> 극심한 배고픔, 기근",
+    "tip": "fames(배고픔) -> 극심한 배고픔, 기근",
     "meaning": "기근"
   },
   {
@@ -34529,7 +34529,7 @@
     "day": 19,
     "word": "guile",
     "pron": "[가일]",
-    "tip": "고대 영어 w\u0000l(계략) -> 꾀로 속이는 교활함",
+    "tip": "w\u0000l(계략) -> 꾀로 속이는 교활함",
     "meaning": "간교한 속임수"
   },
   {
@@ -34538,7 +34538,7 @@
     "day": 19,
     "word": "lithe",
     "pron": "[라이드]",
-    "tip": "고대 영어 lithe(부드러운) -> 부드럽고 나긋나긋한",
+    "tip": "lithe(부드러운) -> 부드럽고 나긋나긋한",
     "meaning": "나긋나긋한"
   },
   {
@@ -34610,7 +34610,7 @@
     "day": 19,
     "word": "meander",
     "pron": "[미앤더]",
-    "tip": "그리스 강 Maiandros에서 유래 -> 강처럼 구불구불하다",
+    "tip": "그리스 강 Maiandros -> 강처럼 구불구불하다",
     "meaning": "구불구불하다; 두서없이 말하다"
   },
   {
@@ -34628,7 +34628,7 @@
     "day": 19,
     "word": "tedium",
     "pron": "[티디엄]",
-    "tip": "라틴어 taedium(권태) -> 지루하고 지겨움",
+    "tip": "taedium(권태) -> 지루하고 지겨움",
     "meaning": "지겨움"
   },
   {
@@ -34673,7 +34673,7 @@
     "day": 19,
     "word": "trance",
     "pron": "[트랜스]",
-    "tip": "라틴어 transire(건너가다) -> 의식이 건너가 버린 무아지경",
+    "tip": "transire(건너가다) -> 의식이 건너가 버린 무아지경",
     "meaning": "무아지경"
   },
   {
@@ -34718,7 +34718,7 @@
     "day": 19,
     "word": "fret",
     "pron": "[프렛]",
-    "tip": "고대 영어 fretan(속을 썩다) -> 속을 태우며 초조하게 하다",
+    "tip": "fretan(속을 썩다) -> 속을 태우며 초조하게 하다",
     "meaning": "초조하게 하다"
   },
   {
@@ -34736,7 +34736,7 @@
     "day": 19,
     "word": "callow",
     "pron": "[캘로]",
-    "tip": "고대 영어 calu(민머리) -> 아직 깃털도 없는 풋내기인",
+    "tip": "calu(민머리) -> 아직 깃털도 없는 풋내기인",
     "meaning": "풋내기인"
   },
   {
@@ -34781,7 +34781,7 @@
     "day": 19,
     "word": "lewd",
     "pron": "[루드]",
-    "tip": "고대 영어 l\u0000wed(세속적인) -> 음탕하고 외설적인",
+    "tip": "l\u0000wed(세속적인) -> 음탕하고 외설적인",
     "meaning": "외설적인"
   },
   {
@@ -34862,7 +34862,7 @@
     "day": 19,
     "word": "glut",
     "pron": "[글럿]",
-    "tip": "라틴어 gluttire(삼키다) -> 지나치게 삼켜 과잉",
+    "tip": "gluttire(삼키다) -> 지나치게 삼켜 과잉",
     "meaning": "과잉; 과잉 공급하다"
   },
   {
@@ -34871,7 +34871,7 @@
     "day": 19,
     "word": "goldbrick",
     "pron": "[골드브릭]",
-    "tip": "금도금 벽돌 사기에서 유래 -> 게으름을 피우다",
+    "tip": "금도금 벽돌 사기 -> 게으름을 피우다",
     "meaning": "게으름을 피우다; 피하다"
   },
   {
@@ -34880,7 +34880,7 @@
     "day": 19,
     "word": "argute",
     "pron": "[아규트]",
-    "tip": "라틴어 argutus(날카로운) -> 빈틈없고 날카로운",
+    "tip": "argutus(날카로운) -> 빈틈없고 날카로운",
     "meaning": "빈틈없는; 날카로운"
   },
   {
@@ -34970,7 +34970,7 @@
     "day": 20,
     "word": "morose",
     "pron": "[머로스]",
-    "tip": "라틴어 morosus(고집스러운) -> 불만에 차서 시무룩한",
+    "tip": "morosus(고집스러운) -> 불만에 차서 시무룩한",
     "meaning": "시무룩한"
   },
   {
@@ -34979,7 +34979,7 @@
     "day": 20,
     "word": "sequester",
     "pron": "[시퀘스터]",
-    "tip": "라틴어 sequestrare(가두다) -> 격리시키다; 압수하다",
+    "tip": "sequestrare(가두다) -> 격리시키다; 압수하다",
     "meaning": "격리시키다; 압수하다"
   },
   {
@@ -34988,7 +34988,7 @@
     "day": 20,
     "word": "squabble",
     "pron": "[스쿼블]",
-    "tip": "의성어에서 유래 -> 시끄럽게 말다툼하다",
+    "tip": "의성어 -> 시끄럽게 말다툼하다",
     "meaning": "말다툼하다"
   },
   {
@@ -35006,7 +35006,7 @@
     "day": 20,
     "word": "genuine",
     "pron": "[제뉴인]",
-    "tip": "라틴어 genuinus(무릎에서 태어난) -> 진짜 아버지가 인정한 진품의",
+    "tip": "genuinus(무릎에서 태어난) -> 진짜 아버지가 인정한 진품의",
     "meaning": "진품의"
   },
   {
@@ -35078,7 +35078,7 @@
     "day": 20,
     "word": "harrow",
     "pron": "[해로]",
-    "tip": "고대 영어 hergian(약탈하다) -> 끊임없이 못살게 굴다",
+    "tip": "hergian(약탈하다) -> 끊임없이 못살게 굴다",
     "meaning": "못살게 굴다"
   },
   {
@@ -35087,7 +35087,7 @@
     "day": 20,
     "word": "warp",
     "pron": "[워프]",
-    "tip": "고대 영어 weorpan(던지다) -> 원래 형태를 비틀어 왜곡하다",
+    "tip": "weorpan(던지다) -> 원래 형태를 비틀어 왜곡하다",
     "meaning": "왜곡하다"
   },
   {
@@ -35114,7 +35114,7 @@
     "day": 20,
     "word": "myth",
     "pron": "[미쓰]",
-    "tip": "그리스어 mythos(이야기) -> 사실처럼 믿어지는 오해",
+    "tip": "mythos(이야기) -> 사실처럼 믿어지는 오해",
     "meaning": "오해"
   },
   {
@@ -35141,7 +35141,7 @@
     "day": 20,
     "word": "secular",
     "pron": "[세큘러]",
-    "tip": "라틴어 saeculum(세대) -> 세대를 거치는 세속적인; 영속적인",
+    "tip": "saeculum(세대) -> 세대를 거치는 세속적인; 영속적인",
     "meaning": "영속적인; 세속적인"
   },
   {
@@ -35195,7 +35195,7 @@
     "day": 20,
     "word": "dense",
     "pron": "[덴스]",
-    "tip": "라틴어 densus(빽빽한) -> 빽빽하게 밀집한",
+    "tip": "densus(빽빽한) -> 빽빽하게 밀집한",
     "meaning": "밀집한"
   },
   {
@@ -35204,7 +35204,7 @@
     "day": 20,
     "word": "sparse",
     "pron": "[스파스]",
-    "tip": "라틴어 sparsus(흩뿌린) -> 흩어져 드문드문한",
+    "tip": "sparsus(흩뿌린) -> 흩어져 드문드문한",
     "meaning": "드문드문한"
   },
   {
@@ -35438,7 +35438,7 @@
     "day": 20,
     "word": "loom",
     "pron": "[룸]",
-    "tip": "고대 영어 gel\u0000ma(도구) -> 도구처럼 서서히 모습을 드러내다",
+    "tip": "gel\u0000ma(도구) -> 도구처럼 서서히 모습을 드러내다",
     "meaning": "서서히 모습을 드러내다; 방적기"
   },
   {
@@ -35483,7 +35483,7 @@
     "day": 20,
     "word": "stoop",
     "pron": "[스툽]",
-    "tip": "고대 영어 st\u0000pian(구부리다) -> 몸을 구부려 낮춰주다",
+    "tip": "st\u0000pian(구부리다) -> 몸을 구부려 낮춰주다",
     "meaning": "친히 –해주다; 몸을 구부리다"
   },
   {
@@ -35636,7 +35636,7 @@
     "day": 20,
     "word": "fraud",
     "pron": "[프로드]",
-    "tip": "라틴어 fraus(속임) -> 이익을 위해 속이는 사기",
+    "tip": "fraus(속임) -> 이익을 위해 속이는 사기",
     "meaning": "사기"
   },
   {
