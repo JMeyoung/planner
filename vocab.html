@@ -1867,6 +1867,7 @@
         const card = document.createElement("div");
         card.className = "card";
         card.style.padding = "16px";
+        card.style.cursor = "pointer";
         card.onclick = () => openModeSelectModal(i);
         card.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: baseline; pointer-events: none;">
