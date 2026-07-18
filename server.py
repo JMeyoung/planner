@@ -18,7 +18,7 @@ import urllib.request
 import urllib.parse
 from urllib.error import HTTPError
 
-PORT = int(os.environ.get('PORT', 3000))  # Railway는 PORT 환경변수 사용
+PORT = int(os.environ.get('PORT', 3005))  # Railway는 PORT 환경변수 사용
 HOST = '0.0.0.0'  # 클라우드에서는 모든 인터페이스에서 수신
 NOTION_API = 'https://api.notion.com/v1'
 NOTION_VERSION = '2022-06-28'
@@ -296,6 +296,45 @@ def apply_content_update(page_id, old_str, new_str, token):
                 insert_todo_after_block(page_id, anchor_id, new_text, token)
 
 
+def generate_sentence_with_gemini(word, meaning, api_key=None):
+    if not api_key:
+        api_key = os.environ.get('GEMINI_API_KEY', '').strip()
+        
+    if not api_key:
+        return f"[No API Key] '{word}' means '{meaning}'. Please configure GEMINI_API_KEY.", f"예문 생성을 위해 환경 설정에서 API Key를 입력해주시거나 서버 환경변수를 설정해주세요."
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+    
+    prompt = (
+        f"Create a simple, clear, and practical English example sentence using the vocabulary word '{word}' "
+        f"(meaning: {meaning}) for an English study app. Also provide a natural Korean translation. "
+        f"Format the output strictly as a JSON object: {{\"sentence\": \"English sentence here\", \"translation\": \"Korean translation here\"}}."
+    )
+    
+    req_body = {
+        "contents": [{
+            "parts": [{
+                "text": prompt
+            }]
+        }],
+        "generationConfig": {
+            "responseMimeType": "application/json"
+        }
+    }
+    
+    headers = {'Content-Type': 'application/json'}
+    req = urllib.request.Request(url, data=json.dumps(req_body).encode('utf-8'), headers=headers, method='POST')
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            res_data = json.loads(resp.read().decode('utf-8'))
+            text_out = res_data['candidates'][0]['content']['parts'][0]['text']
+            parsed = json.loads(text_out)
+            return parsed.get('sentence', '').strip(), parsed.get('translation', '').strip()
+    except Exception as e:
+        print("Gemini API Error:", e)
+        return f"Failed to generate example for '{word}' due to API error.", f"API 오류로 예문을 생성하지 못했습니다: {str(e)}"
+
+
 # ───────────────────────────────────────────────
 # HTTP Server
 # ───────────────────────────────────────────────
@@ -344,6 +383,49 @@ class Handler(http.server.BaseHTTPRequestHandler):
         elif path in ('/timer', '/timer/', '/timer.html'):
             # 문법 타임어택 타이머 페이지
             self._serve_html(TIMER_HTML, 'timer.html')
+
+        elif path in ('/vocab', '/vocab/', '/vocab.html'):
+            # 영단어 학습 웹앱 페이지
+            self._serve_html(os.path.join(BASE_DIR, 'vocab.html'), 'vocab.html')
+
+        elif path == '/api/vocab':
+            # 영단어 목록 반환 API (파라미터: book, day)
+            book = qs.get('book', [None])[0]
+            day_str = qs.get('day', [None])[0]
+            if not book or not day_str:
+                return self._json(400, {'error': 'book과 day 파라미터가 필요합니다'})
+            try:
+                day = int(day_str)
+                db_path = os.path.join(BASE_DIR, 'vocab_db.json')
+                if not os.path.exists(db_path):
+                    return self._json(404, {'error': 'vocab_db.json 파일이 존재하지 않습니다. 전처리를 수행하세요.'})
+                with open(db_path, 'r', encoding='utf-8') as f:
+                    all_words = json.load(f)
+                
+                filtered = [w for w in all_words if w.get('book') == book and w.get('day') == day]
+                
+                sentences_path = os.path.join(BASE_DIR, 'vocab_sentences.json')
+                sentences_cache = {}
+                if os.path.exists(sentences_path):
+                    try:
+                        with open(sentences_path, 'r', encoding='utf-8') as sf:
+                            sentences_cache = json.load(sf)
+                    except Exception:
+                        pass
+                
+                for w in filtered:
+                    word_key = w.get('word', '').lower().strip()
+                    cache_item = sentences_cache.get(word_key)
+                    if cache_item:
+                        w['sentence'] = cache_item.get('sentence', '')
+                        w['translation'] = cache_item.get('translation', '')
+                    else:
+                        w['sentence'] = ''
+                        w['translation'] = ''
+                        
+                self._json(200, filtered)
+            except Exception as e:
+                self._json(500, {'error': str(e)})
 
         elif path == '/api/knowledge':
             # 오늘의 지식 데이터 반환 API
@@ -446,6 +528,44 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 self._json(200, {'ok': True})
             except Exception as e:
                 self._json(500, {'error': str(e)})
+
+        elif path == '/api/vocab/sentence':
+            word = body.get('word', '').strip()
+            meaning = body.get('meaning', '').strip()
+            api_key = body.get('apiKey', '').strip()
+            
+            if not word:
+                return self._json(400, {'error': 'word가 누락되었습니다'})
+                
+            word_key = word.lower().strip()
+            sentences_path = os.path.join(BASE_DIR, 'vocab_sentences.json')
+            
+            sentences_cache = {}
+            if os.path.exists(sentences_path):
+                try:
+                    with open(sentences_path, 'r', encoding='utf-8') as sf:
+                        sentences_cache = json.load(sf)
+                except Exception:
+                    pass
+            
+            if word_key in sentences_cache:
+                return self._json(200, sentences_cache[word_key])
+                
+            try:
+                sentence, translation = generate_sentence_with_gemini(word, meaning, api_key)
+                result_data = {
+                    "sentence": sentence,
+                    "translation": translation
+                }
+                
+                if not sentence.startswith("[No API Key]") and not sentence.startswith("Failed to generate"):
+                    sentences_cache[word_key] = result_data
+                    with open(sentences_path, 'w', encoding='utf-8') as sf:
+                        json.dump(sentences_cache, sf, ensure_ascii=False, indent=2)
+                
+                self._json(200, result_data)
+            except Exception as e:
+                self._json(500, {'error': f'서버 예문 생성 중 예외 발생: {str(e)}'})
 
         else:
             self._json(404, {'error': 'not found'})
