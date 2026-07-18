@@ -1121,6 +1121,25 @@
     </div>
   </div>
 
+  <!-- Mode Select Modal -->
+  <div class="settings-modal" id="mode-select-modal">
+    <div class="modal-content" style="text-align: center; gap: 20px;">
+      <h3 class="modal-title">학습 모드 선택</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); word-break: keep-all;">선택한 단어부터 시작할 학습 방식을 골라주세요.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <button class="action-btn" id="modal-btn-memorize" style="background: var(--warning-color); justify-content: center;">
+          💡 암기 모드로 이어서 하기
+        </button>
+        <button class="action-btn" id="modal-btn-quiz" style="justify-content: center;">
+          🎯 퀴즈 모드로 이어서 하기
+        </button>
+      </div>
+
+      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="margin-top: 10px; justify-content: center;">취소</button>
+    </div>
+  </div>
+
   <!-- Javascript -->
   <script>
     // App State
