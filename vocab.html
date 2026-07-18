@@ -777,6 +777,23 @@
       20% { opacity: 1; }
       100% { opacity: .2; }
     }
+
+    /* Mobile CSS Optimization */
+    @media screen and (max-width: 600px) {
+      .q-word, #memorize-word {
+        font-size: 1.8rem !important;
+      }
+      .card, .welcome-card, .question-card, .result-card, .flip-face {
+        padding: 16px !important;
+      }
+    }
+
+    /* Force line break for Korean text containers */
+    .hint-content, .sentence-kor, #memorize-meaning, #memorize-tip, #memorize-sentence-kor, #review-meaning, #review-tip, #review-sentence-kor, .choice-btn, .flip-back {
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+      line-height: 1.5 !important;
+    }
   </style>
 </head>
 <body>
@@ -1849,6 +1866,66 @@
       }
       
       loadIncorrectWordCard();
+    }
+
+    // Touch Swipe Logic
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let isSwiping = false; // Debounce lock
+
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, {passive: true});
+
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      if (isSwiping) return; // Prevent multiple triggers
+
+      const threshold = 50;
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY - touchEndY;
+
+      // Ensure horizontal swipe is intentional (X movement is greater than Y movement)
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > threshold) {
+          // Left Swipe -> Next
+          if (isMemorizeActive) {
+            triggerSwipeDebounce();
+            clearTimeout(memorizeTimerId);
+            nextMemorizeWord();
+          } else if (isIncorrectMode) {
+            triggerSwipeDebounce();
+            nextIncorrectWord();
+          }
+        } else if (diffX < -threshold) {
+          // Right Swipe -> Previous
+          if (isMemorizeActive && currentQuizIndex > 0) {
+            triggerSwipeDebounce();
+            clearTimeout(memorizeTimerId);
+            currentQuizIndex--;
+            loadMemorizeWord();
+          } else if (isIncorrectMode && incorrectIndex > 0) {
+            triggerSwipeDebounce();
+            incorrectIndex--;
+            loadIncorrectWordCard();
+          }
+        }
+      }
+    }
+
+    function triggerSwipeDebounce() {
+      isSwiping = true;
+      setTimeout(() => {
+        isSwiping = false;
+      }, 400); // 400ms lock
     }
   </script>
 </body>
