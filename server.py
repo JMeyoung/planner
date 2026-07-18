@@ -32,22 +32,24 @@ KNOWLEDGE_JSON = os.path.join(BASE_DIR, 'knowledge_db.json')
 TOKEN_FILE   = os.path.join(BASE_DIR, '.notion_token')
 
 
-def load_saved_token():
+def load_saved_token(user='jaeyoung'):
     """환경변수 우선, 없으면 파일에서 토큰 읽기"""
     env_token = os.environ.get('NOTION_TOKEN', '').strip()
-    if env_token:
+    if env_token and user != 'haeryung':
         return env_token
+    token_file = os.path.join(BASE_DIR, '.notion_token_haeryung') if user == 'haeryung' else TOKEN_FILE
     try:
-        with open(TOKEN_FILE, 'r') as f:
+        with open(token_file, 'r') as f:
             return f.read().strip()
     except FileNotFoundError:
         return ''
 
 
-def save_token(token):
+def save_token(token, user='jaeyoung'):
     """토큰을 파일에 저장"""
+    token_file = os.path.join(BASE_DIR, '.notion_token_haeryung') if user == 'haeryung' else TOKEN_FILE
     try:
-        with open(TOKEN_FILE, 'w') as f:
+        with open(token_file, 'w') as f:
             f.write(token)
     except Exception:
         pass  # 클라우드 읽기전용 환경에서는 무시
@@ -363,6 +365,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             # 월별 플래너 (메인)
             self._serve_html(MONTHLY_HTML, 'planner_standalone.html')
 
+        elif path in ('/monthly_haeryung', '/monthly_haeryung.html'):
+            self._serve_html(MONTHLY_HTML, 'monthly.html')
+
         elif path in ('/planner.html',):
             # 통합 플래너
             self._serve_html(PLANNER_HTML, 'planner.html')
@@ -386,6 +391,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         elif path in ('/vocab', '/vocab/', '/vocab.html'):
             # 영단어 학습 웹앱 페이지
+            self._serve_html(os.path.join(BASE_DIR, 'vocab.html'), 'vocab.html')
+
+        elif path in ('/vocab_haeryung', '/vocab_haeryung.html'):
             self._serve_html(os.path.join(BASE_DIR, 'vocab.html'), 'vocab.html')
 
         elif path == '/api/vocab':
@@ -438,7 +446,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         elif path == '/api/token':
             # 저장된 토큰 반환 (페이지 로드 시 자동 적용용)
-            saved = load_saved_token()
+            user = qs.get('user', ['jaeyoung'])[0]
+            saved = load_saved_token(user)
             self._json(200, {'token': saved})
 
         elif path == '/api/fetch':
@@ -452,15 +461,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 self._json(500, {'error': str(e)})
 
-        elif path.endswith('.css') or path.endswith('.js') or path.endswith('.json'):
-            # 정적 파일 서빙 (CSS, JS, JSON)
+        elif path.endswith('.css') or path.endswith('.js') or path.endswith('.json') or path.endswith('.png'):
+            # 정적 파일 서빙 (CSS, JS, JSON, PNG)
             filename = os.path.basename(path)
             filepath = os.path.join(BASE_DIR, filename)
             if os.path.exists(filepath):
                 with open(filepath, 'rb') as f:
                     body = f.read()
                 ext = path.rsplit('.', 1)[-1]
-                content_types = {'css': 'text/css', 'js': 'application/javascript', 'json': 'application/json'}
+                content_types = {'css': 'text/css', 'js': 'application/javascript', 'json': 'application/json', 'png': 'image/png'}
                 self.send_response(200)
                 self.send_header('Content-Type', content_types.get(ext, 'application/octet-stream') + '; charset=utf-8')
                 self.send_header('Content-Length', str(len(body)))
@@ -511,9 +520,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
         elif path == '/api/token':
             # 토큰 저장 (POST body: {"token": "secret_xxx"})
             new_token = body.get('token', '').strip()
+            user = body.get('user', 'jaeyoung')
             if not new_token:
                 return self._json(400, {'error': '토큰이 비어있습니다'})
-            save_token(new_token)
+            save_token(new_token, user)
             self._json(200, {'ok': True})
 
         elif path == '/api/update':

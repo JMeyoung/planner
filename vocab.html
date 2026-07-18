@@ -805,6 +805,9 @@
     <header>
       <div class="app-title">📅 VOCAB QUIZ</div>
       <div style="display: flex; gap: 8px;">
+        <button class="icon-btn" onclick="toggleUser()" title="프로필 전환">
+          <text id="profile-icon"></text>
+        </button>
         <button class="icon-btn" id="home-nav-btn" onclick="goToHome()" title="메인 홈"><text>🏠</text></button>
         <button class="icon-btn" onclick="openSettings()" title="설정"><text>⚙️</text></button>
       </div>
@@ -1142,6 +1145,35 @@
 
   <!-- Javascript -->
   <script>
+
+    // User detection
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentUser = urlParams.get('user') === 'haeryung' ? 'haeryung' : 'jaeyoung';
+
+    function toggleUser() {
+      const newUser = currentUser === 'haeryung' ? 'jaeyoung' : 'haeryung';
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('user', newUser);
+      window.location.href = newUrl.toString();
+    }
+
+
+    function getLocalItem(key) {
+      const nsKey = key + '_' + currentUser;
+      let val = localStorage.getItem(nsKey);
+      if (val === null && currentUser === 'jaeyoung') {
+        val = localStorage.getItem(key);
+        if (val !== null) {
+          localStorage.setItem(nsKey, val); // migrate
+        }
+      }
+      return val;
+    }
+
+    function getKey(baseKey) {
+      return baseKey + '_' + currentUser;
+    }
+
     // App State
     let currentBook = 'V101';
     let currentDay = 1;
@@ -1168,8 +1200,10 @@
 
     // Load configurations
     document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("profile-icon").innerText = currentUser === 'haeryung' ? '👩🏻' : '🧑🏻';
+
       // Restore settings
-      const savedKey = localStorage.getItem("vocab_gemini_api_key");
+      const savedKey = getLocalItem("vocab_gemini_api_key");
       if (savedKey) {
         document.getElementById("settings-api-key").value = savedKey;
       }
@@ -1185,7 +1219,7 @@
     });
 
     function checkResumeState() {
-      const stateStr = localStorage.getItem("vocab_resume_state");
+      const stateStr = getLocalItem("vocab_resume_state");
       if (stateStr) {
         try {
           resumeState = JSON.parse(stateStr);
@@ -1195,7 +1229,7 @@
             resumeBtn.innerText = `🔄 이어서 학습하기 (${resumeState.book} Day ${resumeState.day})`;
           }
         } catch (e) {
-          localStorage.removeItem("vocab_resume_state");
+          localStorage.removeItem(getKey("vocab_resume_state"));
         }
       } else {
         document.getElementById("resume-btn").style.display = "none";
@@ -1209,7 +1243,7 @@
         index: currentQuizIndex,
         mode: mode
       };
-      localStorage.setItem("vocab_resume_state", JSON.stringify(state));
+      localStorage.setItem(getKey("vocab_resume_state"), JSON.stringify(state));
       checkResumeState();
     }
     
@@ -1221,12 +1255,12 @@
         mode: 'quiz',
         quizWords: quizWords
       };
-      localStorage.setItem("vocab_resume_state", JSON.stringify(state));
+      localStorage.setItem(getKey("vocab_resume_state"), JSON.stringify(state));
       checkResumeState();
     }
     
     function clearResumeState() {
-      localStorage.removeItem("vocab_resume_state");
+      localStorage.removeItem(getKey("vocab_resume_state"));
       resumeState = null;
       checkResumeState();
     }
@@ -1246,8 +1280,8 @@
     }
 
     function updateGlobalStats() {
-      const correctCount = parseInt(localStorage.getItem("vocab_total_correct_count") || "0");
-      const incorrects = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      const correctCount = parseInt(getLocalItem("vocab_total_correct_count") || "0");
+      const incorrects = JSON.parse(getLocalItem("vocab_incorrect") || "[]");
       
       document.getElementById("stats-correct-cnt").innerText = correctCount;
       document.getElementById("stats-incorrect-cnt").innerText = incorrects.length;
@@ -1265,9 +1299,9 @@
     function saveSettings() {
       const keyVal = document.getElementById("settings-api-key").value.trim();
       if (keyVal) {
-        localStorage.setItem("vocab_gemini_api_key", keyVal);
+        localStorage.setItem(getKey("vocab_gemini_api_key"), keyVal);
       } else {
-        localStorage.removeItem("vocab_gemini_api_key");
+        localStorage.removeItem(getKey("vocab_gemini_api_key"));
       }
       closeSettings();
     }
@@ -1358,7 +1392,7 @@
 
     async function startMemorizeMode(isResume = false) {
       try {
-        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}&user=${currentUser}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
         const data = await res.json();
         if (!data || data.length === 0) {
@@ -1435,7 +1469,7 @@
 
     async function loadSentenceForMemorize(wordObj) {
       try {
-        const customApiKey = localStorage.getItem("vocab_gemini_api_key") || "";
+        const customApiKey = getLocalItem("vocab_gemini_api_key") || "";
         const res = await fetch("/api/vocab/sentence", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -1485,7 +1519,7 @@
     // Load Quiz Data from Server
     async function startQuiz(isResume = false) {
       try {
-        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}&user=${currentUser}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
         const data = await res.json();
         if (!data || data.length === 0) {
@@ -1662,8 +1696,8 @@
         totalCorrectInSession++;
         
         // Increase global complete stats
-        let totalC = parseInt(localStorage.getItem("vocab_total_correct_count") || "0");
-        localStorage.setItem("vocab_total_correct_count", totalC + 1);
+        let totalC = parseInt(getLocalItem("vocab_total_correct_count") || "0");
+        localStorage.setItem(getKey("vocab_total_correct_count"), totalC + 1);
         
         // Load and Show sentence detail briefly, then auto advance
         loadSentence(wordObj);
@@ -1727,7 +1761,7 @@
 
     // Save incorrect word to LocalStorage
     function saveIncorrectWord(wordObj) {
-      let incorrects = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      let incorrects = JSON.parse(getLocalItem("vocab_incorrect") || "[]");
       // Check duplicate
       const exists = incorrects.some(w => w.word === wordObj.word && w.book === wordObj.book);
       if (!exists) {
@@ -1740,7 +1774,7 @@
           tip: wordObj.tip,
           meaning: wordObj.meaning
         });
-        localStorage.setItem("vocab_incorrect", JSON.stringify(incorrects));
+        localStorage.setItem(getKey("vocab_incorrect"), JSON.stringify(incorrects));
       }
     }
 
@@ -1760,7 +1794,7 @@
       }, 100);
       
       try {
-        const customApiKey = localStorage.getItem("vocab_gemini_api_key") || "";
+        const customApiKey = getLocalItem("vocab_gemini_api_key") || "";
         const res = await fetch("/api/vocab/sentence", {
           method: "POST",
           headers: {
@@ -1833,7 +1867,7 @@
 
     async function startListView() {
       try {
-        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}&user=${currentUser}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
         const data = await res.json();
         if (!data || data.length === 0) {
@@ -1924,7 +1958,7 @@
 
     async function startMemorizeFromIndex(index) {
       try {
-        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}&user=${currentUser}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
         const data = await res.json();
         if (!data || data.length === 0) return;
@@ -1944,7 +1978,7 @@
 
     async function startQuizFromIndex(index) {
       try {
-        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}`);
+        const res = await fetch(`/api/vocab?book=${currentBook}&day=${currentDay}&user=${currentUser}`);
         if (!res.ok) throw new Error("서버에서 단어를 불러오는 데 실패했습니다");
         const data = await res.json();
         if (!data || data.length === 0) return;
@@ -1970,7 +2004,7 @@
 
     // DASHBOARD LOGIC
     function openReviewDashboard() {
-      const list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      const list = JSON.parse(getLocalItem("vocab_incorrect") || "[]");
       if (list.length === 0) {
         alert("저장된 오답 단어가 없습니다! 퀴즈를 풀면서 오답을 채워보세요.");
         return;
@@ -2014,7 +2048,7 @@
     let reviewFlipped = false;
 
     function startIncorrectMode(filterBook, filterDay) {
-      let list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      let list = JSON.parse(getLocalItem("vocab_incorrect") || "[]");
       
       if (filterBook && filterDay) {
         list = list.filter(w => w.book === filterBook && w.day == filterDay);
@@ -2071,7 +2105,7 @@
       korBox.innerText = '';
       
       try {
-        const customApiKey = localStorage.getItem("vocab_gemini_api_key") || "";
+        const customApiKey = getLocalItem("vocab_gemini_api_key") || "";
         const res = await fetch("/api/vocab/sentence", {
           method: "POST",
           headers: {
@@ -2114,11 +2148,11 @@
       if (event) event.stopPropagation(); // Prevent flip trigger
       
       const wordObj = incorrectWordsList[incorrectIndex];
-      let list = JSON.parse(localStorage.getItem("vocab_incorrect") || "[]");
+      let list = JSON.parse(getLocalItem("vocab_incorrect") || "[]");
       
       // Remove word
       list = list.filter(w => !(w.word === wordObj.word && w.book === wordObj.book));
-      localStorage.setItem("vocab_incorrect", JSON.stringify(list));
+      localStorage.setItem(getKey("vocab_incorrect"), JSON.stringify(list));
       
       // Refresh local list
       incorrectWordsList = list;

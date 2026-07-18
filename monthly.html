@@ -1691,6 +1691,21 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,1
 </svg>
 
 <script>
+// ── User detection ──
+const urlParams = new URLSearchParams(window.location.search);
+let currentUser = urlParams.get('user') === 'haeryung' ? 'haeryung' : 'jaeyoung';
+
+function toggleUser() {
+  const newUser = currentUser === 'haeryung' ? 'jaeyoung' : 'haeryung';
+  const newUrl = new URL(window.location.href);
+  newUrl.searchParams.set('user', newUser);
+  window.location.href = newUrl.toString();
+}
+
+function getKey(baseKey) {
+  return baseKey + '_' + currentUser;
+}
+
 /* ═══════════════════════════════════════
    Constants & MCP
    ═══════════════════════════════════════ */
@@ -1785,8 +1800,8 @@ function estimateYear(month) {
    ═══════════════════════════════════════ */
 var LOCAL_API = window.location.origin;
 
-function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
-function setNotionToken(t) { localStorage.setItem('notion_token', t); }
+function getNotionToken() { return localStorage.getItem(getKey('notion_token')) || ''; }
+function setNotionToken(t) { localStorage.setItem(getKey('notion_token'), t); }
 
 function showTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'flex'); }
 function closeTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'none'); }
@@ -1798,7 +1813,7 @@ function saveNotionToken() {
   }
   setNotionToken(v);
   // 서버 파일에도 저장 (URL이 바뀌어도 유지)
-  fetch(`${LOCAL_API}/api/token`, {
+  fetch(`${LOCAL_API}/api/token?user=${currentUser}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({token: v})
@@ -1814,14 +1829,14 @@ function saveNotionToken() {
 // 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
 async function restoreTokenFromServer() {
   try {
-    const r = await fetch(`${LOCAL_API}/api/token`);
+    const r = await fetch(`${LOCAL_API}/api/token?user=${currentUser}`);
     const d = await r.json();
     if (d.token) {
       // 서버에 토큰 있음 → localStorage에 저장
       setNotionToken(d.token);
     } else if (getNotionToken()) {
       // localStorage에만 있음 → 서버에도 저장 (동기화)
-      await fetch(`${LOCAL_API}/api/token`, {
+      await fetch(`${LOCAL_API}/api/token?user=${currentUser}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({token: getNotionToken()})
@@ -1839,12 +1854,12 @@ async function safeApiCall(toolName, params, retries = 2) {
       let data;
       if (toolName.includes('notion-fetch')) {
         const id = params.id || params.pageId || params.page_id;
-        const r = await fetch(`${LOCAL_API}/api/fetch?id=${id}`, { headers: hdrs });
+        const r = await fetch(`${LOCAL_API}/api/fetch?id=${id}&user=${currentUser}`, { headers: hdrs });
         if (!r.ok) throw new Error(`서버오류 ${r.status}: ${await r.text()}`);
         data = await r.json();
         if (data.error) throw new Error(data.error);
       } else if (toolName.includes('notion-search')) {
-        const r = await fetch(`${LOCAL_API}/api/search`, {
+        const r = await fetch(`${LOCAL_API}/api/search?user=${currentUser}`, {
           method: 'POST', headers: hdrs,
           body: JSON.stringify({ query: params.query, page_size: params.page_size || 5 })
         });
@@ -1881,7 +1896,7 @@ function showToast(msg) {
    Theme
    ═══════════════════════════════════════ */
 function loadTheme() {
-  const saved = localStorage.getItem('planner-theme') || 'light';
+  const saved = localStorage.getItem(getKey('planner-theme')) || 'light';
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 }
@@ -1889,7 +1904,7 @@ function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('planner-theme', next);
+  localStorage.setItem(getKey('planner-theme'), next);
   updateThemeIcon(next);
 }
 function updateThemeIcon(theme) {
@@ -1953,11 +1968,11 @@ function calcStreak() {
     }
   }
   studyStreak = streak;
-  try { localStorage.setItem('planner-streak', String(streak)); } catch {}
+  try { localStorage.setItem(getKey('planner-streak'), String(streak)); } catch {}
 }
 function loadStreakCache() {
   try {
-    const v = localStorage.getItem('planner-streak');
+    const v = localStorage.getItem(getKey('planner-streak'));
     if (v) studyStreak = parseInt(v) || 0;
   } catch {}
 }
@@ -2270,7 +2285,7 @@ window.toggleTask = async function(el, dateKey, text, isCurrentlyChecked) {
   el.setAttribute('onclick', `toggleTask(this, '${dateKey}', '${text.replace(/'/g, "\\'")}', ${isNowChecked})`);
 
   try {
-    const res = await fetch(`${LOCAL_API}/api/update`, {
+    const res = await fetch(`${LOCAL_API}/api/update?user=${currentUser}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Notion-Token': token },
       body: JSON.stringify({
@@ -2476,11 +2491,11 @@ window.toggleTimeline = function() {
   if (isCollapsed) {
     container.style.display = 'block';
     icon.textContent = '▲';
-    localStorage.setItem('timeline-collapsed', 'false');
+    localStorage.setItem(getKey('timeline-collapsed'), 'false');
   } else {
     container.style.display = 'none';
     icon.textContent = '▼';
-    localStorage.setItem('timeline-collapsed', 'true');
+    localStorage.setItem(getKey('timeline-collapsed'), 'true');
   }
 };
 
@@ -2613,7 +2628,7 @@ function timelineHTML() {
     </div>`;
   }).join('');
 
-  const isCollapsed = localStorage.getItem('timeline-collapsed') === 'true';
+  const isCollapsed = localStorage.getItem(getKey('timeline-collapsed')) === 'true';
 
   return `<div class="glass-card timeline-card">
     <div class="card-title" onclick="toggleTimeline()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
@@ -2725,6 +2740,9 @@ function fullRender() {
   document.getElementById('root').innerHTML = `
     <div class="header">
       <div class="header-left">
+    <button class="nav-btn profile-btn" onclick="toggleUser()" title="프로필 전환">
+      <text id="profile-icon">${currentUser === 'haeryung' ? '👩🏻' : '🧑🏻'}</text>
+    </button>
         <div class="month-nav">
           <button class="nav-btn" onclick="navigate(-1)">‹</button>
           <div class="month-title">${dispYear}년 ${MNAMES[dispMonth]}</div>
@@ -2815,7 +2833,7 @@ var styleLabSettings = {
 };
 
 function initStyleLab() {
-  const saved = localStorage.getItem('style-lab-settings');
+  const saved = localStorage.getItem(getKey('style-lab-settings'));
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
@@ -2846,7 +2864,7 @@ window.toggleStyleLab = function() {
 
 window.applyStyleSetting = function(key, val) {
   styleLabSettings[key] = val;
-  localStorage.setItem('style-lab-settings', JSON.stringify(styleLabSettings));
+  localStorage.setItem(getKey('style-lab-settings'), JSON.stringify(styleLabSettings));
   
   const bodyClass = `use-${key === 'shadows' ? 'beautiful-shadows' : key === 'gradient' ? 'border-gradient' : key === 'blur' ? 'progressive-blur' : key === 'gooey' ? 'gooey-blob' : 'split-layout'}`;
   if (val) {
@@ -2919,7 +2937,7 @@ window.applyTheme = function(themeName, showToastNotify = true) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
     document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
   }
-  localStorage.setItem('style-lab-theme', themeName);
+  localStorage.setItem(getKey('style-lab-theme'), themeName);
   ['default','terminal','paper','aurora'].forEach(t => {
     const btn = document.getElementById(`theme-btn-${t}`);
     if (btn) btn.classList.toggle('active', t === themeName);
@@ -2931,7 +2949,7 @@ window.applyTheme = function(themeName, showToastNotify = true) {
 
 // Restore theme preset
 (function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'default';
+  const savedTheme = localStorage.getItem(getKey('style-lab-theme')) || 'default';
   window.applyTheme(savedTheme, false);
 })();
 
