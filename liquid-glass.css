@@ -70,31 +70,7 @@ body.theme-liquid-glass * {
   --border: var(--glass-border);
 }
 
-/* Ambient blobs — injected as real .lg-blob elements by liquid-glass-settings.js
-   (kept off the ::before/::after pseudo-elements so component layers stay free) */
-body.theme-liquid-glass::before,
-body.theme-liquid-glass::after {
-  display: none !important;
-  content: none !important;
-}
-
-.lg-blob {
-  position: fixed;
-  z-index: -1;
-  border-radius: 50%;
-  filter: blur(48px);
-  pointer-events: none;
-  animation: lg-blob-float ease-in-out infinite;
-}
-.lg-blob-1 { top: -10%;   left: -8%;  width: 460px; height: 460px; background: #eaf8f8; opacity: .85; animation-duration: 22s; }
-.lg-blob-2 { bottom: -12%; right: -8%; width: 560px; height: 560px; background: #7fb2b4; opacity: .8;  animation-duration: 27s; animation-delay: -6s; }
-.lg-blob-3 { bottom: 8%;   left: -10%; width: 380px; height: 380px; background: #d9eeef; opacity: .75; animation-duration: 19s; animation-delay: -3s; }
-.lg-blob-4 { top: -8%;    right: 6%;  width: 420px; height: 420px; background: #568789; opacity: .65; animation-duration: 24s; animation-delay: -9s; }
-
-@keyframes lg-blob-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50%      { transform: translate3d(0, -24px, 0); }
-}
+/* .lg-blob styles removed — blobs disabled, clean mint gradient background only */
 
 /* =========================================================
    Core Component Classes

@@ -123,18 +123,14 @@
       localStorage.setItem('liquidGlassOpacity', opacityDecimal);
     });
 
-    injectLiquidGlassBlobs();
+    // injectLiquidGlassBlobs(); // Disabled: clean mint gradient background only
     initLiquidGlassPills();
   });
 
-  // ── Ambient background blobs ──
+  // ── Ambient background blobs (DISABLED — clean mint gradient only) ──
   function injectLiquidGlassBlobs() {
-    if (document.querySelector('.lg-blob')) return;
-    for (let i = 1; i <= 4; i++) {
-      const blob = document.createElement('div');
-      blob.className = 'lg-blob lg-blob-' + i;
-      document.body.appendChild(blob);
-    }
+    // Blobs removed. Clean mint gradient background via CSS.
+    return;
   }
 
   // ── Draggable glass pills (Style Lab toggle switches) ──
