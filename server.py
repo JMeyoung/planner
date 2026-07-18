@@ -356,6 +356,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.send_cors()
         self.end_headers()
 
+    def do_HEAD(self):
+        self.do_GET()
+
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
@@ -471,12 +474,16 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 ext = path.rsplit('.', 1)[-1]
                 content_types = {'css': 'text/css', 'js': 'application/javascript', 'json': 'application/json', 'png': 'image/png'}
                 self.send_response(200)
-                self.send_header('Content-Type', content_types.get(ext, 'application/octet-stream') + '; charset=utf-8')
+                content_type = content_types.get(ext, 'application/octet-stream')
+                if ext in ('css', 'js', 'json'):
+                    content_type += '; charset=utf-8'
+                self.send_header('Content-Type', content_type)
                 self.send_header('Content-Length', str(len(body)))
                 self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
                 self.send_cors()
                 self.end_headers()
-                self.wfile.write(body)
+                if self.command != 'HEAD':
+                    self.wfile.write(body)
             else:
                 self._json(404, {'error': f'{filename} not found'})
 
@@ -591,7 +598,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_header('Pragma', 'no-cache')
             self.send_cors()
             self.end_headers()
-            self.wfile.write(body)
+            if self.command != 'HEAD':
+                self.wfile.write(body)
         except FileNotFoundError:
             self._json(404, {'error': f'{filename} 파일을 찾을 수 없습니다. server.py와 같은 폴더에 있어야 합니다.'})
 
@@ -612,7 +620,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.send_header('Pragma', 'no-cache')
         self.send_cors()
         self.end_headers()
-        self.wfile.write(body)
+        if self.command != 'HEAD':
+            self.wfile.write(body)
 
 
 if __name__ == '__main__':
