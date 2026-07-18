@@ -213,18 +213,31 @@ body.theme-liquid-glass::after {
 
 .glass-sheet, #drawer {
   border-radius: 32px 32px 0 0 !important;
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
   border-top: var(--glass-border) !important;
   border-left: var(--glass-border) !important;
   border-right: var(--glass-border) !important;
   box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.3) !important;
-  
+
   overflow: hidden;
 }
 .glass-sheet {
   position: relative;
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) !important;
+}
+/* #drawer carries real body text (tasks, dates), unlike .glass-sheet's other
+   uses — the shared 6% --glass-bg reads as illegible here, so it gets its
+   own much higher-opacity panel plus the text-shadow every other glass
+   component already applies. */
+#drawer {
+  background: rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) brightness(1.08) !important;
+  -webkit-backdrop-filter: blur(calc(var(--user-glass-blur) * 1.67)) saturate(200%) brightness(1.08) !important;
+  color: var(--text-glass-primary) !important;
+}
+#drawer, #drawer * {
+  text-shadow: var(--text-glass-shadow) !important;
 }
 .glass-sheet::before, #drawer::before {
   content: '';
