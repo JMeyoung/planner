@@ -872,7 +872,7 @@
           🔄 이어서 학습하기
         </button>
         <button class="action-btn" style="background: var(--warning-color); font-size: 1.1rem; padding: 14px;" onclick="startMemorizeMode()">
-          🧠 암기 학습 (10초)
+          📖 암기 학습
         </button>
         <button class="action-btn" style="font-size: 1.1rem; padding: 14px;" onclick="startQuiz()">
           🎯 사지선다 퀴즈
@@ -938,7 +938,7 @@
         </div>
       </div>
 
-      <button class="btn" style="width: 100%; margin-top: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s;" id="memorize-next-btn" onclick="nextMemorizeWord()">
+      <button class="action-btn" style="width: 100%; margin-top: 12px; opacity: 0; pointer-events: none; transition: opacity 0.3s;" id="memorize-next-btn" onclick="nextMemorizeWord()">
         다음 단어 ➔
       </button>
     </div>
@@ -1048,7 +1048,7 @@
           <h3 style="margin:0; font-size: 1.2rem; color: var(--text-main);">무작위 전체 복습</h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">저장된 모든 오답 단어를 섞어서 복습합니다.</p>
         </div>
-        <button class="btn" style="width:100%;" onclick="startIncorrectMode(null, null)">전체 복습 시작 ➔</button>
+        <button class="action-btn" style="width:100%;" onclick="startIncorrectMode(null, null)">전체 복습 시작 ➔</button>
       </div>
 
       <div id="dashboard-list-container" style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px; width: 100%;">
