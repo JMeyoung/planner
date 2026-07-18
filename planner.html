@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="theme-minimal-paper">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -3881,9 +3881,9 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5) !important; }
 
 </style>
-  <link rel="stylesheet" href="liquid-glass.css?v=9">
+  <link rel="stylesheet" href="liquid-glass.css?v=11">
 </head>
-<body class="theme-liquid-glass theme-minimal-paper">
+<body class="theme-liquid-glass">
 
 <!-- Global UI Elements -->
 <button class="theme-toggle glass-circle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환" style="position: fixed !important; top: 16px !important; left: 16px !important;">🌙</button>
@@ -6251,44 +6251,13 @@ window.toggleGooeyActive = function() {
   }
 }
 
-var THEME_CLASS_MAP = {
-  terminal: 'theme-liquid-glass',
-  paper:    'theme-liquid-glass',
-  aurora:   'theme-liquid-glass',
-  liquid:   'theme-liquid-glass',
-};
-
-window.applyTheme = function(themeName, showToastNotify = true) {
-  // Remove all theme classes
-  Object.values(THEME_CLASS_MAP).forEach(cls => {
-    document.body.classList.remove(cls);
-    document.documentElement.classList.remove(cls);
-  });
-  // Apply selected
-  if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
-    document.body.classList.add(THEME_CLASS_MAP[themeName]);
-    document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
-  }
-  // Save
-  localStorage.setItem('style-lab-theme', themeName);
-  // Update button states
-  ['default','terminal','paper','aurora','liquid'].forEach(t => {
-    const btn = document.getElementById(`theme-btn-${t}`);
-    if (btn) btn.classList.toggle('active', t === themeName);
-  });
-  if (showToastNotify) {
-    toast(`테마 변경: ${themeName === 'default' ? 'Sunset 노을' : themeName === 'terminal' ? '💻 Dark Terminal' : themeName === 'paper' ? '📄 Minimal Paper' : themeName === 'aurora' ? '🌌 Aurora Deep' : '🫧 Liquid Glass'}`);
-  }
-};
-
 // Initialize theme first, then app
+// (THEME_CLASS_MAP / window.applyTheme / the style-lab preset restore live
+// further down in this script — see the canonical block near loadTheme().
+// This used to be a full duplicate of that block; consolidated to avoid the
+// two copies drifting out of sync.)
 initTheme();
 initStyleLab();
-// Restore theme preset
-(function() {
-  const savedTheme = localStorage.getItem('style-lab-theme') || 'liquid';
-  window.applyTheme(savedTheme, false);
-})();
 
 // 날짜 모드 (월별에서 넘어온 경우) → 뒤로 버튼 표시
 if (IS_DATE_MODE) {
@@ -7582,10 +7551,18 @@ var THEME_CLASS_MAP = {
 };
 
 window.applyTheme = function(themeName, showToastNotify = true) {
+  // Remove all theme classes (including theme-minimal-paper, which isn't in
+  // THEME_CLASS_MAP's values but is a real CSS-scoped class applied below)
   Object.values(THEME_CLASS_MAP).forEach(cls => {
     document.body.classList.remove(cls);
     document.documentElement.classList.remove(cls);
   });
+  document.body.classList.remove('theme-minimal-paper');
+  document.documentElement.classList.remove('theme-minimal-paper');
+  if (themeName === 'paper') {
+    document.body.classList.add('theme-minimal-paper');
+    document.documentElement.classList.add('theme-minimal-paper');
+  }
   if (themeName !== 'default' && THEME_CLASS_MAP[themeName]) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
     document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
@@ -7650,6 +7627,6 @@ document.addEventListener('click', function(e) {
 });
 
 </script>
-  <script src="liquid-glass-settings.js?v=7"></script>
+  <script src="liquid-glass-settings.js?v=8"></script>
 </body>
 </html>

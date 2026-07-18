@@ -1517,7 +1517,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(101,151,153
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,151,153,0.55) !important; }
 </style>
 
-<link rel="stylesheet" href="liquid-glass.css?v=9">
+<link rel="stylesheet" href="liquid-glass.css?v=11">
 </head>
 <body class="theme-liquid-glass">
 
@@ -2901,10 +2901,18 @@ var THEME_CLASS_MAP = {
 };
 
 window.applyTheme = function(themeName, showToastNotify = true) {
+  // Remove all theme classes (including theme-minimal-paper, which isn't in
+  // THEME_CLASS_MAP's values but is a real CSS-scoped class applied below)
   Object.values(THEME_CLASS_MAP).forEach(cls => {
     document.body.classList.remove(cls);
     document.documentElement.classList.remove(cls);
   });
+  document.body.classList.remove('theme-minimal-paper');
+  document.documentElement.classList.remove('theme-minimal-paper');
+  if (themeName === 'paper') {
+    document.body.classList.add('theme-minimal-paper');
+    document.documentElement.classList.add('theme-minimal-paper');
+  }
   if (THEME_CLASS_MAP[themeName]) {
     document.body.classList.add(THEME_CLASS_MAP[themeName]);
     document.documentElement.classList.add(THEME_CLASS_MAP[themeName]);
@@ -2936,6 +2944,6 @@ if (typeof initDaily !== 'function') {
   });
 }
 </script>
-  <script src="liquid-glass-settings.js?v=7"></script>
+  <script src="liquid-glass-settings.js?v=8"></script>
 </body>
 </html>
