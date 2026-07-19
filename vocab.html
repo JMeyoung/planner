@@ -62,7 +62,7 @@
       max-width: 440px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
       margin-top: 10px;
     }
 
@@ -71,11 +71,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 4px;
+      padding: 6px 4px;
     }
 
     .app-title {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
@@ -129,7 +129,7 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 24px;
+      padding: 16px;
       backdrop-filter: blur(16px);
       box-shadow: var(--shadow-lg);
       transition: all 0.3s ease;
@@ -138,7 +138,7 @@
     /* Home View Elements */
     .welcome-card {
       text-align: center;
-      padding: 30px 24px;
+      padding: 12px 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -151,9 +151,7 @@
     }
 
     .welcome-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
+      display: none;
     }
 
     .stats-summary {
@@ -166,11 +164,11 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 16px;
-      padding: 14px;
+      padding: 8px 10px;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
     }
 
     .stat-box .val {
@@ -205,13 +203,13 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 16px 8px;
+      padding: 10px 6px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .selector-btn:hover {
@@ -237,7 +235,7 @@
 
     /* Day Picker */
     .day-picker-container {
-      max-height: 220px;
+      max-height: 115px;
       overflow-y: auto;
       padding-right: 4px;
     }
@@ -264,8 +262,8 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 12px 4px;
-      font-size: 0.85rem;
+      padding: 8px 4px;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -288,8 +286,8 @@
       color: #fff;
       border: none;
       border-radius: 16px;
-      padding: 16px;
-      font-size: 1rem;
+      padding: 12px;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -868,16 +866,16 @@
 
       <!-- Action Button -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
-        <button class="action-btn" style="background: var(--success-color); font-size: 1.1rem; padding: 14px; grid-column: span 2; display: none;" id="resume-btn" onclick="resumeLearning()">
+        <button class="action-btn" style="background: var(--success-color); grid-column: span 2; display: none;" id="resume-btn" onclick="resumeLearning()">
           🔄 이어서 학습하기
         </button>
-        <button class="action-btn" style="background: var(--warning-color); font-size: 1.1rem; padding: 14px;" onclick="startMemorizeMode()">
+        <button class="action-btn" style="background: var(--warning-color);" onclick="startMemorizeMode()">
           📖 암기 학습
         </button>
-        <button class="action-btn" style="font-size: 1.1rem; padding: 14px;" onclick="startQuiz()">
+        <button class="action-btn" onclick="startQuiz()">
           🎯 사지선다 퀴즈
         </button>
-        <button class="action-btn secondary" style="grid-column: span 2; font-size: 1.1rem; padding: 14px;" onclick="startListView()">
+        <button class="action-btn secondary" style="grid-column: span 2;" onclick="startListView()">
           📋 25개씩 리스트 보기
         </button>
       </div>
@@ -895,9 +893,9 @@
         <!-- Generated List Items -->
       </div>
       
-      <button class="action-btn" id="list-next-btn" onclick="nextListPage()" style="width: 100%;">
-        Next 25 ➔
-      </button>
+      <div id="list-nav-container" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+        <!-- Nav buttons injected by JS -->
+      </div>
     </div>
 
     <!-- [2-1] MEMORIZE VIEW -->
@@ -1336,12 +1334,17 @@
         dayGrid.appendChild(btn);
       }
       
-      // Select Day 1 default
-      selectDay(1);
+      // Select Day from localStorage or 1
+      const savedDayKey = `vocabSavedDay_${book}_${currentUser}`;
+      const savedDay = parseInt(localStorage.getItem(savedDayKey)) || 1;
+      const validDay = savedDay > maxDays ? maxDays : savedDay;
+      selectDay(validDay);
     }
 
     function selectDay(day) {
       currentDay = day;
+      const savedDayKey = `vocabSavedDay_${currentBook}_${currentUser}`;
+      localStorage.setItem(savedDayKey, day);
       document.querySelectorAll(".day-btn").forEach(btn => {
         btn.classList.remove("active");
       });
@@ -1916,11 +1919,32 @@
         container.appendChild(card);
       }
       
-      const nextBtn = document.getElementById("list-next-btn");
+      const navContainer = document.getElementById("list-nav-container");
+      navContainer.innerHTML = "";
+      
+      if (listPage > 0) {
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "action-btn";
+        prevBtn.style.background = "rgba(255, 255, 255, 0.1)";
+        prevBtn.style.color = "#fff";
+        prevBtn.innerText = "⬅ 이전 25개 보기";
+        prevBtn.onclick = () => prevListPage();
+        navContainer.appendChild(prevBtn);
+      }
+      
       if (endIdx < quizWords.length) {
-        nextBtn.style.display = "block";
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "action-btn";
+        nextBtn.innerText = "다음 25개 ➔";
+        nextBtn.onclick = () => nextListPage();
+        navContainer.appendChild(nextBtn);
       } else {
-        nextBtn.style.display = "none";
+        const restartBtn = document.createElement("button");
+        restartBtn.className = "action-btn";
+        restartBtn.style.background = "rgba(99, 102, 241, 0.3)";
+        restartBtn.innerText = "🔄 처음부터 보기";
+        restartBtn.onclick = () => { listPage = 0; renderListView(); };
+        navContainer.appendChild(restartBtn);
       }
       
       // scroll to top
@@ -1931,6 +1955,13 @@
     function nextListPage() {
       listPage++;
       renderListView();
+    }
+
+    function prevListPage() {
+      if (listPage > 0) {
+        listPage--;
+        renderListView();
+      }
     }
 
     // Modal select launch
