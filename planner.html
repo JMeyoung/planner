@@ -66,6 +66,31 @@
   --gradient-hero-overlay: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
 }
 
+/* Smart Review Button */
+.smart-review-btn {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.25) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.smart-review-btn:hover {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(220, 38, 38, 0.35) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
 /* ══════════════════════════════════════════
    RESET & BASE
    ══════════════════════════════════════════ */
@@ -5430,6 +5455,22 @@ function renderApp(d) {
 
   leftCol += blockCards;
 
+  // Smart Review Logic
+  let reviewHtml = '';
+  const mathLast = localStorage.getItem('subject_progress_math');
+  const engLast = localStorage.getItem('subject_progress_eng');
+  const now = Date.now();
+  const dayMs = 24 * 60 * 60 * 1000;
+  
+  if (mathLast && (now - parseInt(mathLast)) >= 3 * dayMs) {
+    const days = Math.floor((now - parseInt(mathLast)) / dayMs);
+    reviewHtml += `<button class="smart-review-btn" onclick="toast('망각 곡선에 따라 수학 과목 복습을 강력히 추천합니다!')">🔥 추천 복습: 수학 (${days}일 전 학습)</button>`;
+  }
+  if (engLast && (now - parseInt(engLast)) >= 3 * dayMs) {
+    const days = Math.floor((now - parseInt(engLast)) / dayMs);
+    reviewHtml += `<button class="smart-review-btn" onclick="toast('망각 곡선에 따라 영어 과목 복습을 강력히 추천합니다!')">🔥 추천 복습: 영어 (${days}일 전 학습)</button>`;
+  }
+
   // Progress section
   rightCol += `
     <div class="progress-section" style="margin-bottom: 16px;">
@@ -5440,6 +5481,7 @@ function renderApp(d) {
       <div class="bar-track">
         <div class="bar-fill ${pct === 100 ? 'complete' : ''}" id="prog-fill" style="width:${pct}%"></div>
       </div>
+      ${reviewHtml ? `<div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">${reviewHtml}</div>` : ''}
     </div>`;
 
   // University + Memo + Pomo
@@ -5507,6 +5549,15 @@ window.handleToggle = async function(groupId, idx) {
     taskEl.classList.remove('saving');
     taskEl.classList.toggle('done', item.checked);
     if (item.checked) archiveTask(item.text, true);
+    if (item.checked) {
+      const text = item.text || '';
+      if (/수학|미적분|다변수|선형대수|공학수학/.test(text)) {
+        localStorage.setItem('subject_progress_math', Date.now());
+      }
+      if (/영어|논리|단문|장문|독해|어휘/.test(text)) {
+        localStorage.setItem('subject_progress_eng', Date.now());
+      }
+    }
     if (cbEl) {
       cbEl.classList.remove('saving');
       cbEl.classList.toggle('on', item.checked);
