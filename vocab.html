@@ -804,10 +804,10 @@
       <div class="app-title">VOCAB QUIZ</div>
       <div style="display: flex; gap: 8px;">
         <button class="icon-btn" onclick="toggleUser()" title="프로필 전환">
-          <text id="profile-icon"></text>
+          <span id="profile-icon"></span>
         </button>
-        <button class="icon-btn" id="home-nav-btn" onclick="goToHome()" title="메인 홈"><text>🏠</text></button>
-        <button class="icon-btn" onclick="openSettings()" title="설정"><text>⚙️</text></button>
+        <button class="icon-btn" id="home-nav-btn" onclick="goToHome()" title="메인 홈"><text>🏠</span></button>
+        <button class="icon-btn" onclick="openSettings()" title="설정"><text>⚙️</span></button>
       </div>
     </header>
 
@@ -1025,7 +1025,7 @@
             <span style="color: var(--success-color);">정답</span>
             <span id="result-correct-cnt" style="font-weight: 700;">50</span>
           </div>
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem; padding: 4px 8px; border-top: 1px solid rgba(255,255,255,0.05); pt: 8px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem; padding: 4px 8px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px;">
             <span style="color: var(--error-color);">오답</span>
             <span id="result-incorrect-cnt" style="font-weight: 700;">0</span>
           </div>
@@ -1251,7 +1251,8 @@
         book: currentBook,
         day: currentDay,
         index: currentQuizIndex,
-        mode: mode
+        mode: mode,
+        quizWords: quizWords
       };
       localStorage.setItem(getKey("vocab_resume_state"), JSON.stringify(state));
       checkResumeState();
@@ -1415,10 +1416,11 @@
           return;
         }
         
-        quizWords = isShuffleEnabled ? shuffleArray([...data]) : data; 
         if (isResume && resumeState && resumeState.mode === 'memorize') {
+          quizWords = resumeState.quizWords || (isShuffleEnabled ? shuffleArray([...data]) : data);
           currentQuizIndex = resumeState.index || 0;
         } else {
+          quizWords = isShuffleEnabled ? shuffleArray([...data]) : data;
           currentQuizIndex = 0;
         }
         isMemorizeActive = true;
@@ -1554,7 +1556,7 @@
           quizWords = resumeState.quizWords;
           currentQuizIndex = resumeState.index || 0;
         } else {
-          quizWords = shuffleArray([...data]);
+          quizWords = isShuffleEnabled ? shuffleArray([...data]) : data;
           currentQuizIndex = 0;
         }
         
@@ -1731,7 +1733,7 @@
         
         // Load and Show sentence detail briefly, then auto advance
         loadSentence(wordObj);
-        setTimeout(() => {
+        quizAutoAdvanceTimer = setTimeout(() => {
           goToNextWord();
         }, 2000); // 2초 뒤 자동으로 넘어감
       } else {
@@ -1849,6 +1851,9 @@
     }
 
     function goToNextWord() {
+      if (typeof quizAutoAdvanceTimer !== 'undefined' && quizAutoAdvanceTimer) {
+        clearTimeout(quizAutoAdvanceTimer);
+      }
       currentQuizIndex++;
       if (isQuizActive && !isIncorrectMode) saveQuizResumeState();
       loadQuestion();
