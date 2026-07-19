@@ -853,7 +853,10 @@
       <div class="input-group">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span class="section-title" id="day-section-title">DAY 선택 (V101)</span>
-          <span class="badge" id="selected-day-badge">DAY 1</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button id="shuffle-toggle-btn" class="badge" style="cursor:pointer; border-color:var(--card-border); background:rgba(255,255,255,0.05); color:var(--text-muted);" onclick="toggleShuffle()">🔀 순서 섞기: OFF</button>
+            <span class="badge" id="selected-day-badge">DAY 1</span>
+          </div>
         </div>
         <div class="card" style="padding: 16px;">
           <div class="day-picker-container">
@@ -877,6 +880,9 @@
         </button>
         <button class="action-btn secondary" style="grid-column: span 2;" onclick="startListView()">
           📋 25개씩 리스트 보기
+        </button>
+        <button class="action-btn secondary" style="grid-column: span 2; color: var(--warning-color); border-color: var(--warning-color);" onclick="startFavoriteView()">
+          ★ 별표 단어만 보기
         </button>
       </div>
 
@@ -916,7 +922,10 @@
         <span class="badge" style="position: absolute; top: 16px; left: 16px;" id="memorize-book-badge">V101</span>
         
         <div style="margin-top: 40px; text-align: center; width: 100%;">
-          <div class="q-word" id="memorize-word" style="font-size: 2.2rem; margin-bottom: 8px;">capricious</div>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 8px;">
+            <div class="q-word" id="memorize-word" style="font-size: 2.2rem;">capricious</div>
+            <button id="memorize-fav-btn" onclick="toggleFavorite(event, document.getElementById('memorize-word').innerText)" style="background:none; border:none; font-size:1.8rem; cursor:pointer; pointer-events:auto; padding:0;">☆</button>
+          </div>
           <div class="q-pron" id="memorize-pron" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">[커프리셔스]</div>
           
           <div style="background: rgba(255, 255, 255, 0.05); padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.1);">
@@ -957,6 +966,7 @@
 
       <!-- Question Card -->
       <div class="card question-card">
+        <button id="quiz-fav-btn" onclick="toggleFavorite(event, document.getElementById('quiz-word').innerText)" style="position: absolute; top: 16px; right: 16px; background:none; border:none; font-size:1.8rem; cursor:pointer; padding:0;">☆</button>
         <div class="q-word" id="quiz-word">capricious</div>
         <div class="q-pron" id="quiz-pron">[커프리셔스]</div>
         
@@ -1405,7 +1415,7 @@
           return;
         }
         
-        quizWords = data; 
+        quizWords = isShuffleEnabled ? shuffleArray([...data]) : data; 
         if (isResume && resumeState && resumeState.mode === 'memorize') {
           currentQuizIndex = resumeState.index || 0;
         } else {
@@ -1437,6 +1447,14 @@
       document.getElementById("memorize-progress-lbl").innerText = `${currentBook} · DAY ${currentDay} (${currentQuizIndex + 1} / ${quizWords.length})`;
       document.getElementById("memorize-book-badge").innerText = wordObj.book;
       document.getElementById("memorize-word").innerText = wordObj.word;
+      
+      const isFavMem = getFavorites().includes(wordObj.word);
+      const memFavBtn = document.getElementById("memorize-fav-btn");
+      if (memFavBtn) {
+        memFavBtn.innerText = isFavMem ? "★" : "☆";
+        memFavBtn.style.color = isFavMem ? "var(--warning-color)" : "var(--text-muted)";
+      }
+
       document.getElementById("memorize-pron").innerText = wordObj.pron || "[발음 정보 없음]";
       document.getElementById("memorize-tip").innerText = wordObj.tip || "암기 팁이 없습니다.";
       document.getElementById("memorize-meaning").innerText = wordObj.meaning;
@@ -1613,6 +1631,13 @@
       
       // Update Question Card
       document.getElementById("quiz-word").innerText = wordObj.word;
+      
+      const isFavQuiz = getFavorites().includes(wordObj.word);
+      const quizFavBtn = document.getElementById("quiz-fav-btn");
+      if (quizFavBtn) {
+        quizFavBtn.innerText = isFavQuiz ? "★" : "☆";
+        quizFavBtn.style.color = isFavQuiz ? "var(--warning-color)" : "var(--text-muted)";
+      }
       
       const pronBox = document.getElementById("quiz-pron");
       if (wordObj.pron) {
@@ -1880,7 +1905,7 @@
           return;
         }
         
-        quizWords = data;
+        quizWords = isShuffleEnabled ? shuffleArray([...data]) : data;
         listPage = 0;
         isQuizActive = false;
         isMemorizeActive = false;
@@ -1910,7 +1935,10 @@
         card.onclick = () => openModeSelectModal(i);
         card.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: baseline; pointer-events: none;">
-            <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
+              <button onclick="toggleFavorite(event, '${wordObj.word.replace(/'/g, "\\'")}')" style="background:none; border:none; color:${getFavorites().includes(wordObj.word) ? 'var(--warning-color)' : 'var(--text-muted)'}; font-size:1.5rem; pointer-events:auto; cursor:pointer; padding:0; line-height:1;">${getFavorites().includes(wordObj.word) ? '★' : '☆'}</button>
+            </div>
             <div style="font-size: 0.9rem; color: var(--accent-color);">${wordObj.pron || ''}</div>
           </div>
           <div style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px; pointer-events: none;">${wordObj.meaning}</div>
@@ -2260,6 +2288,143 @@
         isSwiping = false;
       }, 400); // 400ms lock
     }
+  
+    // ==========================================
+    // SHUFFLE LOGIC
+    // ==========================================
+    let isShuffleEnabled = false;
+    function toggleShuffle() {
+      isShuffleEnabled = !isShuffleEnabled;
+      const btn = document.getElementById("shuffle-toggle-btn");
+      if (isShuffleEnabled) {
+        btn.innerText = "🔀 순서 섞기: ON";
+        btn.style.background = "rgba(99, 102, 241, 0.2)";
+        btn.style.borderColor = "var(--accent-color)";
+        btn.style.color = "white";
+      } else {
+        btn.innerText = "🔀 순서 섞기: OFF";
+        btn.style.background = "rgba(255, 255, 255, 0.05)";
+        btn.style.borderColor = "var(--card-border)";
+        btn.style.color = "var(--text-muted)";
+      }
+    }
+
+    // ==========================================
+    // FAVORITES LOGIC
+    // ==========================================
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem(`favorites_${currentBook}_${currentUser}`) || "[]");
+    }
+
+    function toggleFavorite(event, word) {
+      if (event) event.stopPropagation();
+      const favs = getFavorites();
+      const idx = favs.indexOf(word);
+      const isNowFav = idx === -1;
+      
+      if (!isNowFav) {
+        favs.splice(idx, 1);
+      } else {
+        favs.push(word);
+      }
+      localStorage.setItem(`favorites_${currentBook}_${currentUser}`, JSON.stringify(favs));
+      
+      if (event && event.currentTarget) {
+        event.currentTarget.innerText = isNowFav ? "★" : "☆";
+        event.currentTarget.style.color = isNowFav ? "var(--warning-color)" : "var(--text-muted)";
+      }
+    }
+
+    async function startFavoriteView() {
+      if (!currentBook) {
+        alert("단어장을 먼저 선택해주세요.");
+        return;
+      }
+      const favs = getFavorites();
+      if (favs.length === 0) {
+        alert("즐겨찾기한 단어가 없습니다.");
+        return;
+      }
+      
+      try {
+        const response = await fetch(`/api/vocab/data?book=${currentBook}`);
+        if (!response.ok) throw new Error("단어 데이터를 불러오는데 실패했습니다.");
+        const data = await response.json();
+        
+        quizWords = data.filter(w => favs.includes(w.word));
+        
+        if (quizWords.length === 0) {
+          alert("현재 선택된 단어장에 즐겨찾기된 단어가 없습니다.");
+          return;
+        }
+        
+        listPage = 0;
+        isQuizActive = false;
+        isMemorizeActive = false;
+        
+        switchView('list-view');
+        renderListView();
+        // Overwrite the label to indicate we are in Favorite view
+        document.getElementById("list-progress-lbl").innerText = `${currentBook} · 별표 단어 (${quizWords.length}개)`;
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    // ==========================================
+    // KEYBOARD SHORTCUTS LOGIC
+    // ==========================================
+    document.addEventListener('keydown', (e) => {
+      // Prevent triggering shortcuts when typing in an input field
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowLeft') {
+        if (isMemorizeActive && currentQuizIndex > 0) {
+          clearTimeout(memorizeTimerId);
+          currentQuizIndex--;
+          loadMemorizeWord();
+        } else if (isQuizActive && currentQuizIndex > 0) {
+          stopTimer();
+          currentQuizIndex--;
+          loadQuestion();
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (isMemorizeActive) {
+          clearTimeout(memorizeTimerId);
+          nextMemorizeWord();
+        } else if (isQuizActive) {
+          stopTimer();
+          goToNextWord();
+        }
+      } else if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault(); // Prevent default page scroll
+        if (isMemorizeActive) {
+          const hiddenArea = document.getElementById("memorize-hidden-area");
+          if (hiddenArea.style.opacity === "1") {
+            // Already flipped -> Go to next
+            clearTimeout(memorizeTimerId);
+            nextMemorizeWord();
+          } else {
+            // Not flipped -> Show meaning
+            revealMeaning(true);
+          }
+        } else if (isQuizActive) {
+          const nextBtn = document.getElementById("quiz-next-wrong-btn");
+          if (nextBtn.style.display === "flex" || nextBtn.style.display === "block") {
+            // Already flipped (incorrect or timed out) -> Go to next
+            goToNextWord();
+          } else {
+            // Check if user has already selected a correct answer (choices disabled but waiting for auto-advance)
+            const isAnswered = Array.from(document.querySelectorAll("#choices-box .choice-btn")).some(btn => btn.disabled);
+            if (!isAnswered) {
+              // Not flipped yet -> Show meaning (force timeout logic to reveal answer)
+              handleTimeout();
+            }
+          }
+        }
+      }
+    });
+
   </script>
 </body>
 </html>
