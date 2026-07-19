@@ -419,7 +419,8 @@ body.theme-liquid-glass * {
 }
 
 /* Ensure fixed position buttons retain their layout when using glass-circle */
-.theme-toggle, .open-window-btn, .knowledge-btn, .timer-btn {
+.theme-toggle, .open-window-btn, .knowledge-btn, .timer-btn, .vocab-btn {
+  z-index: 9999 !important;
   position: fixed !important;
 }
 
