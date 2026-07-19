@@ -52,7 +52,7 @@
    Base Background (Vibrant Mesh for Glass Refraction)
    ========================================================= */
 html.theme-liquid-glass, html {
-  background: linear-gradient(160deg, #d2ebec 0%, #9fccce 45%, #659799 100%) fixed !important;
+  background: linear-gradient(160deg, #cdd7e6 0%, #9fb1c7 45%, #6b7d95 100%) fixed !important;
   background-attachment: fixed !important;
   min-height: 100vh;
 }
@@ -394,8 +394,8 @@ body.theme-liquid-glass * {
   background: transparent !important;
 }
 .cb.on, .d-cb.on {
-  background: #659799 !important;
-  border-color: #659799 !important;
+  background: #6b7d95 !important;
+  border-color: #6b7d95 !important;
 }
 .cb.on svg, .d-cb.on svg {
   display: none !important;
