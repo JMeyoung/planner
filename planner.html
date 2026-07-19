@@ -3882,7 +3882,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5) !important; }
 
 </style>
-  <link rel="stylesheet" href="liquid-glass.css?v=12">
+  <link rel="stylesheet" href="liquid-glass.css?v=7">
 </head>
 <body class="theme-liquid-glass">
 
@@ -4698,7 +4698,7 @@ async function notionToggle(item) {
   }
 }
 
-/* ════════════/* ══════════════════════════════════════════
+/* ══════════════════════════════════════════
    UNIVERSITY MOTIVATION CARD
    ══════════════════════════════════════════ */
 const UNIVERSITIES = [
@@ -5091,7 +5091,7 @@ function quickAddHTML(blockId) {
       <input type="text" class="qa-input" id="qa-input-${blockId}" placeholder="할 일 입력..."
         maxlength="200" onkeydown="handleQaKey(event,'${blockId}')">
       <div class="qa-actions">
-        <button class="qa-submit" onclick="submitQuickAdd('${blockId}')"　>추가</button>
+        <button class="qa-submit" onclick="submitQuickAdd('${blockId}')" >추가</button>
         <button class="qa-cancel" onclick="closeQuickAdd('${blockId}')"　>취소</button>
       </div>
     </div>
@@ -5123,7 +5123,7 @@ function calcWeeklyAvg() {
     const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
     try {
       const cached = localStorage.getItem('planner-daily-cache');
-      if (cached) { const c = JSON.parse(cached); if (c.checklistPageId) { total += 0; } }
+      if (cached) { const c = JSON.parse(cached); if (c.checklistPageId && typeof c.percentage === "number") { total += c.percentage; } else if (c.checklistPageId) { total += 0; /* Fallback if no percentage */ } }
     } catch {}
     const streak = localStorage.getItem('planner-streak-data');
     if (streak) count++;
@@ -6391,125 +6391,6 @@ function esc(s) {
 }
 
 
-function cleanMd(s) {
-  return String(s || '')
-    .replace(/\*\*\*(.*?)\*\*\*/g, '$1')   // bold italic
-    .replace(/\*\*(.*?)\*\*/g, '$1')        // bold
-    .replace(/\*(.*?)\*/g, '$1')            // italic
-    .replace(/__(.*?)__/g, '$1')            // underline bold
-    .replace(/_(.*?)_/g, '$1')              // underline italic
-    .replace(/~~(.*?)~~/g, '$1')            // strikethrough
-    .replace(/`(.*?)`/g, '$1')             // inline code
-    .replace(/^#+\s*/gm, '')                // headings
-    .replace(/^✦\s*/gm, '')                // star prefix
-    .replace(/\\\~/g, '~')                 // escaped tilde
-    .replace(/\\~/g, '~')                  // escaped tilde
-    .replace(/\\\*/g, '*')                 // escaped asterisk
-    .replace(/\\\[/g, '[')                 // escaped bracket
-    .replace(/\\\]/g, ']')                 // escaped bracket
-    .replace(/\\`/g, '`')                  // escaped backtick
-    .replace(/\\\\/g, '\\')               // escaped backslash
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // markdown links → text only
-    .trim();
-}
-
-function checkSVG() {
-  return `<svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.2 5.8L8 1" stroke="#35235d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-}
-function extractContent(text) {
-  const m = text.match(/<content>([\s\S]*?)<\/content>/);
-  return m ? m[1] : text;
-}
-
-
-function estimateYear(month) {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1;
-  if (month >= 6) return currentMonth >= 6 ? currentYear : currentYear - 1;
-  return currentMonth >= 6 ? currentYear + 1 : currentYear;
-}
-
-/* ═══════════════════════════════════════
-   STANDALONE MODE — LOCAL SERVER API
-   ═══════════════════════════════════════ */
-var LOCAL_API = window.location.origin;
-
-function getNotionToken() { return localStorage.getItem('notion_token') || ''; }
-function setNotionToken(t) { localStorage.setItem('notion_token', t); }
-
-function showTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'flex'); }
-function closeTokenSetup() { document.querySelectorAll('#tokenSetup').forEach(el => el.style.display = 'none'); }
-function saveNotionToken() {
-  const v = document.getElementById('tokenInput').value.trim();
-  if (!v.startsWith('secret_') && !v.startsWith('ntn_')) {
-    alert('Notion 토큰은 secret_ 또는 ntn_ 으로 시작해야 합니다.');
-    return;
-  }
-  setNotionToken(v);
-  // 서버 파일에도 저장 (URL이 바뀌어도 유지)
-  fetch(`${LOCAL_API}/api/token`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({token: v})
-  }).catch(() => {});
-  closeTokenSetup();
-  fetchedPageIds.clear();
-  dayStatus = {};
-  
-  if (typeof initDaily === 'function') initDaily();
-  if (typeof initMonthly === 'function') initMonthly();
-}
-
-// 페이지 로드 시 서버에서 토큰 자동 복원 (또는 localStorage → 서버 동기화)
-async function restoreTokenFromServer() {
-  try {
-    const r = await fetch(`${LOCAL_API}/api/token`);
-    const d = await r.json();
-    if (d.token) {
-      // 서버에 토큰 있음 → localStorage에 저장
-      setNotionToken(d.token);
-    } else if (getNotionToken()) {
-      // localStorage에만 있음 → 서버에도 저장 (동기화)
-      await fetch(`${LOCAL_API}/api/token`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({token: getNotionToken()})
-      });
-    }
-  } catch {}
-}
-
-async function safeApiCall(toolName, params, retries = 2) {
-  const token = getNotionToken();
-  if (!token) { showTokenSetup(); throw new Error('Notion 토큰을 먼저 설정해주세요'); }
-  const hdrs = { 'Content-Type': 'application/json', 'X-Notion-Token': token };
-  for (let i = 0; i <= retries; i++) {
-    try {
-      let data;
-      if (toolName.includes('notion-fetch')) {
-        const id = params.id || params.pageId || params.page_id;
-        const r = await fetch(`${LOCAL_API}/api/fetch?id=${id}`, { headers: hdrs });
-        if (!r.ok) throw new Error(`서버오류 ${r.status}: ${await r.text()}`);
-        data = await r.json();
-        if (data.error) throw new Error(data.error);
-      } else if (toolName.includes('notion-search')) {
-        const r = await fetch(`${LOCAL_API}/api/search`, {
-          method: 'POST', headers: hdrs,
-          body: JSON.stringify({ query: params.query, page_size: params.page_size || 5 })
-        });
-        if (!r.ok) throw new Error(`서버오류 ${r.status}`);
-        data = await r.json();
-        if (data.error) throw new Error(data.error);
-      }
-      return data;
-    } catch (e) {
-      if (i === retries) throw e;
-      await new Promise(r => setTimeout(r, 800 * (i + 1)));
-    }
-  }
-}
-
 /* ═══════════════════════════════════════
    Toast
    ═══════════════════════════════════════ */
@@ -7628,6 +7509,6 @@ document.addEventListener('click', function(e) {
 });
 
 </script>
-  <script src="liquid-glass-settings.js?v=9"></script>
+  <script src="liquid-glass-settings.js?v=7"></script>
 </body>
 </html>
