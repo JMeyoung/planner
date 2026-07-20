@@ -501,3 +501,127 @@ body.theme-liquid-glass .lg-knob-specular {
 body.theme-liquid-glass .switch.dragging .lg-knob-specular {
   opacity: 0.5;
 }
+
+
+/* =========================================================
+   iOS 16 Style Glass Control Buttons (Focus, Lock, Bell)
+   ========================================================= */
+.ios-control-center {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  z-index: 9999;
+  /* Add entry animation */
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translate(-50%, 40px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.glass-ios-icon {
+  width: 104px;
+  height: 104px;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.6), inset 0 -2px 2px rgba(0, 0, 0, 0.18), 0 20px 40px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-ios-icon:hover, .glass-ios-focus:hover {
+  transform: scale(1.02);
+}
+.glass-ios-icon:active, .glass-ios-focus:active {
+  transform: scale(0.96);
+}
+.glass-ios-icon::before { /* Fresnel */
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.03) 45%, rgba(255, 255, 255, 0.1));
+  pointer-events: none;
+}
+.glass-ios-icon svg {
+  stroke: #ffffff;
+  stroke-width: 2.4;
+  width: 44px;
+  height: 44px;
+  z-index: 1;
+}
+
+.glass-ios-focus {
+  width: 340px;
+  height: 104px;
+  border-radius: 52px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.6), inset 0 -2px 2px rgba(0, 0, 0, 0.18), 0 20px 40px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 0 16px;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-ios-focus::before { /* Fresnel */
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.03) 45%, rgba(255, 255, 255, 0.1));
+  pointer-events: none;
+}
+.glass-ios-focus .focus-badge {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.18) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.glass-ios-focus .focus-badge svg {
+  fill: #ffffff;
+  width: 32px;
+  height: 32px;
+}
+.glass-ios-focus .focus-text {
+  font-size: 30px;
+  font-weight: 700;
+  z-index: 1;
+  flex: 1;
+  text-align: left;
+  margin-left: 20px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.glass-ios-focus .focus-chevron {
+  z-index: 1;
+}
+.glass-ios-focus .focus-chevron svg {
+  stroke: #ffffff;
+  stroke-width: 2.6;
+  width: 28px;
+  height: 28px;
+}
