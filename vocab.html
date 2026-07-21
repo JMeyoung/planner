@@ -793,6 +793,49 @@
       overflow-wrap: break-word !important;
       line-height: 1.5 !important;
     }
+
+    /* ── Wide Mode for List View ── */
+    .app-container.wide-mode {
+      max-width: 1000px !important;
+      transition: max-width 0.3s ease-in-out;
+    }
+
+    .app-container.wide-mode #list-container {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+      gap: 8px !important;
+      margin-bottom: 16px !important;
+    }
+
+    /* Compact layout for list cards in wide mode */
+    .app-container.wide-mode #list-container .card {
+      padding: 10px 14px !important;
+    }
+
+    .app-container.wide-mode #list-container .card .list-word {
+      font-size: 1.15rem !important; /* Smaller word size */
+    }
+
+    .app-container.wide-mode #list-container .card .list-meaning {
+      font-size: 0.95rem !important; /* Smaller meaning size */
+      margin-top: 4px !important;
+    }
+
+    .app-container.wide-mode #list-container .card .list-tip {
+      font-size: 0.75rem !important; /* Smaller tip size */
+      margin-top: 3px !important;
+    }
+
+    .app-container.wide-mode #list-nav-container {
+      flex-direction: row !important;
+      justify-content: center !important;
+      gap: 16px !important;
+      margin-top: 10px !important;
+    }
+
+    .app-container.wide-mode #list-nav-container .action-btn {
+      max-width: 300px !important;
+    }
   </style>
 </head>
 <body>
@@ -1394,6 +1437,14 @@
       });
       document.getElementById(viewId).classList.add("active");
       
+      // Toggle wide mode for list view to avoid scrolling 25 items
+      const appContainer = document.querySelector(".app-container");
+      if (viewId === 'list-view') {
+        appContainer.classList.add("wide-mode");
+      } else {
+        appContainer.classList.remove("wide-mode");
+      }
+      
       // Stop timers when exiting Quiz View
       if (viewId !== 'quiz-view') {
         stopTimer();
@@ -1970,13 +2021,13 @@
         card.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: baseline; pointer-events: none;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
+              <div class="list-word" style="font-size: 1.4rem; font-weight: 800; color: #fff;">${wordObj.word}</div>
               <button onclick="toggleFavorite(event, '${wordObj.word.replace(/'/g, "\\'")}')" style="background:none; border:none; color:${getFavorites().includes(wordObj.word) ? 'var(--warning-color)' : 'var(--text-muted)'}; font-size:1.5rem; pointer-events:auto; cursor:pointer; padding:0; line-height:1;">${getFavorites().includes(wordObj.word) ? '★' : '☆'}</button>
             </div>
             <div style="font-size: 0.9rem; color: var(--accent-color);">${wordObj.pron || ''}</div>
           </div>
-          <div style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px; pointer-events: none;">${wordObj.meaning}</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; pointer-events: none;">💡 ${wordObj.tip || ''}</div>
+          <div class="list-meaning" style="font-size: 1.1rem; color: #ccff00; font-weight: 700; margin-top: 8px; pointer-events: none;">${wordObj.meaning}</div>
+          <div class="list-tip" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; pointer-events: none;">💡 ${wordObj.tip || ''}</div>
         `;
         container.appendChild(card);
       }
