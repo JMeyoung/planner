@@ -24,10 +24,10 @@
   --radius-sm: 12px;
 
   /* ── 3. Active Tint Colors ── */
-  --tint-active-math: rgba(60, 111, 240, 0.55);
-  --tint-active-eng: rgba(33, 196, 143, 0.55);
-  --tint-active-routine: rgba(255, 107, 74, 0.55);
-  --tint-active-done: rgba(33, 196, 143, 0.55);
+--tint-active-math: rgba(255, 255, 255, 0.42);
+--tint-active-eng: rgba(255, 255, 255, 0.42);
+--tint-active-routine: rgba(255, 255, 255, 0.42);
+--tint-active-done: rgba(107, 125, 149, 0.4);
 
   /* ── 4. Typography ── */
   --text-glass-primary: #1e293b;
@@ -42,10 +42,10 @@
   --glass-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 45%);
   --glass-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
   
-  --tint-active-math: rgba(60, 111, 240, 0.55);
-  --tint-active-eng: rgba(33, 196, 143, 0.55);
-  --tint-active-routine: rgba(255, 107, 74, 0.55);
-  --tint-active-done: rgba(33, 196, 143, 0.55);
+--tint-active-math: rgba(255, 255, 255, 0.42);
+--tint-active-eng: rgba(255, 255, 255, 0.42);
+--tint-active-routine: rgba(255, 255, 255, 0.42);
+--tint-active-done: rgba(107, 125, 149, 0.4);
 }
 
 /* =========================================================
