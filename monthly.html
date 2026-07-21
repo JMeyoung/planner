@@ -15,6 +15,16 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
+.daily-preview-btn, .save-token-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: #fff !important;
+  transition: all 0.2s ease;
+}
+.daily-preview-btn:hover, .save-token-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
 /* ═══════════════════════════════════════
    CSS Variables & Theme
    ═══════════════════════════════════════ */
@@ -1443,14 +1453,14 @@ body.theme-liquid-glass {
   --accent-math: rgba(30,41,59,0.9);
   --accent-eng: rgba(30,41,59,0.9);
   --accent-routine: rgba(30,41,59,0.9);
-  --gradient-progress: linear-gradient(90deg, rgba(101,151,153,0.7), rgba(101,151,153,1.0));
+  --gradient-progress: linear-gradient(90deg, rgba(107,125,149,0.7), rgba(107,125,149,1.0));
   --toast-bg: rgba(255,255,255,0.9);
   --toast-color: #1e293b;
   --cal-full: rgba(255,255,255,0.9);
   --cal-done: rgba(255,255,255,0.4);
   --cal-partial: rgba(255,255,255,0.2);
   --cal-rest: rgba(255,255,255,0.1);
-  --cal-today-glow: rgba(101,151,153,0.4);
+  --cal-today-glow: rgba(107,125,149,0.4);
   --cal-full-text-num: #1e293b;
   --cal-full-text-pct: rgba(30,41,59,0.8);
   --cal-full-text-loops: rgba(30,41,59,0.6);
@@ -1487,19 +1497,19 @@ body.theme-liquid-glass .hero { background: transparent !important; border: none
 body.theme-liquid-glass .hero-day, body.theme-liquid-glass .hero-date, body.theme-liquid-glass .loop-info { color: #1e293b !important; }
 body.theme-liquid-glass .dday-num { color: #1e293b !important; text-shadow: none; }
 body.theme-liquid-glass .dday-label, body.theme-liquid-glass .dday-sub { color: rgba(30,41,59,0.6) !important; }
-body.theme-liquid-glass #ddayRingFill { stroke: #659799 !important; filter: none; }
+body.theme-liquid-glass #ddayRingFill { stroke: #6b7d95 !important; filter: none; }
 body.theme-liquid-glass .bar-fill {
-  background: linear-gradient(90deg, #659799, #9fccce) !important;
-  box-shadow: 0 0 12px rgba(101,151,153,0.3);
+  background: linear-gradient(90deg, #6b7d95, #9fb1c7) !important;
+  box-shadow: 0 0 12px rgba(107,125,149,0.3);
 }
 body.theme-liquid-glass .cb.on {
-  background: linear-gradient(135deg, #659799, #9fccce) !important;
-  border-color: #9fccce !important;
-  box-shadow: 0 0 10px rgba(101,151,153,0.4) !important;
+  background: linear-gradient(135deg, #6b7d95, #9fb1c7) !important;
+  border-color: #9fb1c7 !important;
+  box-shadow: 0 0 10px rgba(107,125,149,0.4) !important;
 }
 body.theme-liquid-glass .stage-badge {
-  background: rgba(101,151,153,0.15) !important;
-  border: 1px solid rgba(101,151,153,0.3) !important;
+  background: rgba(107,125,149,0.15) !important;
+  border: 1px solid rgba(107,125,149,0.3) !important;
   color: #1e293b !important;
   border-radius: 999px !important;
 }
@@ -1511,11 +1521,11 @@ body.theme-liquid-glass .time-chip {
 }
 body.theme-liquid-glass .active-block {
   border-color: rgba(255,255,255,0.45) !important;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 0 28px rgba(101,151,153,0.12) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 0 28px rgba(107,125,149,0.12) !important;
 }
 body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius: 999px !important; color: #1e293b !important; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(101,151,153,0.35) !important; border-radius: 99px; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,151,153,0.55) !important; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(107,125,149,0.35) !important; border-radius: 99px; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(107,125,149,0.55) !important; }
 </style>
 
 <link rel="stylesheet" href="liquid-glass.css?v=7">
@@ -1542,7 +1552,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,1
              font-size:0.84rem;font-family:monospace;outline:none;margin-bottom:14px;box-sizing:border-box">
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button onclick="closeTokenSetup()" style="padding:9px 18px;border:1.5px solid var(--border,#ddd);border-radius:10px;background:none;color:var(--text-secondary,#555);font-family:inherit;cursor:pointer;font-size:0.84rem">취소</button>
-      <button onclick="saveNotionToken()" style="padding:9px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-family:inherit;cursor:pointer;font-size:0.84rem;font-weight:700">저장 후 로드</button>
+      <button onclick="saveNotionToken()" class="save-token-btn" style="padding:9px 18px;border:none;border-radius:10px;color:#fff;font-family:inherit;cursor:pointer;font-size:0.84rem;font-weight:700">저장 후 로드</button>
     </div>
   </div>
 </div>
@@ -2209,7 +2219,7 @@ window.openDay = function(y, m, d) {
   document.getElementById('drawer-date').textContent = `${m}월 ${d}일 ${dow}요일`;
 
   const dateStr = `${y}-${padZ(m)}-${padZ(d)}`;
-  const dailyLink = `<a href="/daily?date=${dateStr}" style="display:block;margin-top:16px;padding:11px 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:0.88rem;text-decoration:none;">📋 일별 플래너 보기 →</a>`;
+  const dailyLink = `<a href="/daily?date=${dateStr}" class="daily-preview-btn" style="display:block;margin-top:16px;padding:11px 0;color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:0.88rem;text-decoration:none;">📋 일별 플래너 보기 →</a>`;
 
   if (!s || !s.sectionLines) {
     document.getElementById('drawer-meta').textContent = '기록 없음';

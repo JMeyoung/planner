@@ -7,6 +7,16 @@
 <link rel="icon" href="/app-icon.png"><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
 <link rel="apple-touch-icon" href="/app-icon.png"><defs><linearGradient id=%22g%22 x1=%220%%22 y1=%220%%22 x2=%22100%%22 y2=%22100%%22><stop offset=%220%%22 stop-color=%22%2335235d%22/><stop offset=%2250%%22 stop-color=%22%238c4272%22/><stop offset=%22100%%22 stop-color=%22%23d87056%22/></linearGradient></defs><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22url(%23g)%22/><rect x=%222%22 y=%222%22 width=%2296%22 height=%2296%22 rx=%2220%22 fill=%22none%22 stroke=%22rgba(255,255,255,0.15)%22 stroke-width=%221.5%22/><text x=%2250%22 y=%2266%22 font-family=%22system-ui, -apple-system%22 font-size=%2252%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22>📅</text></svg>">
 <style>
+.daily-preview-btn, .save-token-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: #fff !important;
+  transition: all 0.2s ease;
+}
+.daily-preview-btn:hover, .save-token-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
 
 /* ══════════════════════════════════════════
    CSS VARIABLES & THEMES
@@ -2244,6 +2254,16 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 <style id="liquid-glass-theme">
 /* ── 🫧 Liquid Glass (Apple-inspired) ── */
 
+body.theme-liquid-glass .daily-preview-btn,
+body.theme-liquid-glass .save-token-btn {
+  background: linear-gradient(135deg, #6b7d95, #9fb1c7) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.58), inset 0 -2px 2px rgba(0,0,0,0.17), 0 8px 24px rgba(107, 125, 149, 0.25) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+}
+
+
 body.theme-liquid-glass {
   --bg-primary: transparent;
   --bg-secondary: rgba(255,255,255,0.08);
@@ -2264,13 +2284,13 @@ body.theme-liquid-glass {
   --accent-math: #1e293b;
   --accent-eng: #1e293b;
   --accent-routine: #1e293b;
-  --gradient-progress: linear-gradient(90deg, #659799, #9fccce);
+  --gradient-progress: linear-gradient(90deg, #6b7d95, #9fb1c7);
   --toast-bg: rgba(255,255,255,0.9);
-  --cal-full: #659799;
-  --cal-done: rgba(101,151,153,0.45);
-  --cal-partial: rgba(101,151,153,0.2);
-  --cal-rest: rgba(101,151,153,0.1);
-  --cal-today-glow: rgba(101,151,153,0.5);
+  --cal-full: #6b7d95;
+  --cal-done: rgba(107,125,149,0.45);
+  --cal-partial: rgba(107,125,149,0.2);
+  --cal-rest: rgba(107,125,149,0.1);
+  --cal-today-glow: rgba(107,125,149,0.5);
   --cal-full-text-num: #ffffff;
   --cal-full-text-pct: rgba(255,255,255,0.85);
   --cal-full-text-loops: rgba(255,255,255,0.65);
@@ -2310,19 +2330,19 @@ body.theme-liquid-glass .planner-layout {
 }
 body.theme-liquid-glass .hero { background: transparent !important; }
 body.theme-liquid-glass .dday-num { color: #1e293b !important; }
-body.theme-liquid-glass #ddayRingFill { stroke: #659799 !important; filter: none; }
+body.theme-liquid-glass #ddayRingFill { stroke: #6b7d95 !important; filter: none; }
 body.theme-liquid-glass .bar-fill {
-  background: linear-gradient(90deg, #659799, #9fccce) !important;
-  box-shadow: 0 0 12px rgba(101,151,153,0.3);
+  background: linear-gradient(90deg, #6b7d95, #9fb1c7) !important;
+  box-shadow: 0 0 12px rgba(107,125,149,0.3);
 }
 body.theme-liquid-glass .cb.on {
-  background: linear-gradient(135deg, #659799, #9fccce) !important;
-  border-color: #9fccce !important;
-  box-shadow: 0 0 10px rgba(101,151,153,0.4) !important;
+  background: linear-gradient(135deg, #6b7d95, #9fb1c7) !important;
+  border-color: #9fb1c7 !important;
+  box-shadow: 0 0 10px rgba(107,125,149,0.4) !important;
 }
 body.theme-liquid-glass .stage-badge {
-  background: rgba(101,151,153,0.15) !important;
-  border: 1px solid rgba(101,151,153,0.3) !important;
+  background: rgba(107,125,149,0.15) !important;
+  border: 1px solid rgba(107,125,149,0.3) !important;
   color: #1e293b !important;
   border-radius: 999px !important;
 }
@@ -2334,11 +2354,11 @@ body.theme-liquid-glass .time-chip {
 }
 body.theme-liquid-glass .active-block {
   border-color: rgba(255,255,255,0.45) !important;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 0 28px rgba(101,151,153,0.12) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 0 28px rgba(107,125,149,0.12) !important;
 }
 body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius: 999px !important; color: #1e293b !important; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(101,151,153,0.35) !important; border-radius: 99px; }
-body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(101,151,153,0.55) !important; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(107,125,149,0.35) !important; border-radius: 99px; }
+body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(107,125,149,0.55) !important; }
 
 /* MONTHLY STYLES */
 
@@ -3804,6 +3824,16 @@ body.theme-aurora-deep ::-webkit-scrollbar-thumb:hover {
 <style id="liquid-glass-theme">
 /* ── 🫧 Liquid Glass (Apple-inspired) ── */
 
+body.theme-liquid-glass .daily-preview-btn,
+body.theme-liquid-glass .save-token-btn {
+  background: linear-gradient(135deg, #6b7d95, #9fb1c7) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.58), inset 0 -2px 2px rgba(0,0,0,0.17), 0 8px 24px rgba(107, 125, 149, 0.25) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+}
+
+
 body.theme-liquid-glass {
   --bg-primary: linear-gradient(180deg, rgba(6,10,28,0) 0%, rgba(6,10,28,0) 100%);
   --bg-secondary: rgba(255,255,255,0.08);
@@ -3928,7 +3958,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,2
              font-size:0.84rem;font-family:monospace;outline:none;margin-bottom:14px;box-sizing:border-box">
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button onclick="closeTokenSetup()" style="padding:9px 18px;border:1.5px solid var(--border,#ddd);border-radius:10px;background:none;color:var(--text-secondary,#555);font-family:inherit;cursor:pointer;font-size:0.84rem">취소</button>
-      <button onclick="saveNotionToken()" style="padding:9px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-family:inherit;cursor:pointer;font-size:0.84rem;font-weight:700">저장 후 로드</button>
+      <button onclick="saveNotionToken()" class="save-token-btn" style="padding:9px 18px;border:none;border-radius:10px;color:#fff;font-family:inherit;cursor:pointer;font-size:0.84rem;font-weight:700">저장 후 로드</button>
     </div>
   </div>
 </div>
@@ -6776,7 +6806,7 @@ window.openDay = function(y, m, d) {
   document.getElementById('drawer-date').textContent = `${m}월 ${d}일 ${dow}요일`;
 
   const dateStr = `${y}-${padZ(m)}-${padZ(d)}`;
-  const dailyLink = `<a href="/daily?date=${dateStr}" style="display:block;margin-top:16px;padding:11px 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:0.88rem;text-decoration:none;">📋 일별 플래너 보기 →</a>`;
+  const dailyLink = `<a href="/daily?date=${dateStr}" class="daily-preview-btn" style="display:block;margin-top:16px;padding:11px 0;color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:0.88rem;text-decoration:none;">📋 일별 플래너 보기 →</a>`;
 
   if (!s || !s.sectionLines) {
     document.getElementById('drawer-meta').textContent = '기록 없음';
