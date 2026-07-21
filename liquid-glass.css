@@ -420,7 +420,7 @@ body.theme-liquid-glass * {
 
 /* Ensure fixed position buttons retain their layout when using glass-circle */
 .theme-toggle, .open-window-btn, .knowledge-btn, .timer-btn, .vocab-btn {
-  z-index: 9999 !important;
+  z-index: 999 !important;
   position: fixed !important;
 }
 
@@ -514,7 +514,7 @@ body.theme-liquid-glass .switch.dragging .lg-knob-specular {
   display: flex;
   gap: 16px;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
   /* Add entry animation */
   animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
