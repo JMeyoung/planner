@@ -39,6 +39,7 @@ body.theme-liquid-glass .dday-chip {
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
   text-shadow: none !important;
+  animation: none !important; /* Disable floating animation to stay centered */
 }
 
 /* ═══════════════════════════════════════
@@ -616,7 +617,7 @@ body:not(:has(.view-container)) {
 #overlay {
   position: fixed; inset: 0;
   background: var(--overlay-bg);
-  z-index: 200;
+  z-index: 2000;
   opacity: 0;
   pointer-events: none;
   transition: opacity .3s ease;
@@ -635,7 +636,7 @@ body:not(:has(.view-container)) {
   border-bottom: none;
   border-radius: 28px 28px 0 0;
   padding: 0 0 env(safe-area-inset-bottom);
-  z-index: 201;
+  z-index: 2001;
   max-height: 85vh;
   overflow-y: auto;
   box-shadow: 0 -20px 50px rgba(0,0,0,0.35), inset 0 1px 0 var(--border-highlight);
