@@ -826,15 +826,17 @@
       margin-top: 3px !important;
     }
 
-    .app-container.wide-mode #list-nav-container {
+    #list-nav-container {
+      display: flex !important;
       flex-direction: row !important;
-      justify-content: center !important;
-      gap: 16px !important;
+      gap: 12px !important;
+      width: 100% !important;
       margin-top: 10px !important;
     }
 
-    .app-container.wide-mode #list-nav-container .action-btn {
-      max-width: 300px !important;
+    #list-nav-container .action-btn {
+      flex: 1 !important;
+      margin: 0 !important;
     }
   </style>
 </head>
@@ -962,7 +964,7 @@
         <!-- Generated List Items -->
       </div>
       
-      <div id="list-nav-container" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+      <div id="list-nav-container">
         <!-- Nav buttons injected by JS -->
       </div>
     </div>
