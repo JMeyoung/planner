@@ -717,24 +717,23 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.8);
-      z-index: 100;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 9999 !important;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       opacity: 0;
-      transition: opacity 0.2s var(--ease-out), display 0.2s allow-discrete;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-out);
     }
 
     .settings-modal.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    @starting-style {
-      .settings-modal.active { opacity: 0; }
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
 
     .modal-content {
@@ -2423,7 +2422,6 @@
 
       if (dayBadge) dayBadge.innerText = `${currentBook} · DAY ${currentDay}`;
 
-      const resumeState = getResumeState();
       if (resumeState && resumeContainer) {
         resumeContainer.style.display = "block";
       } else if (resumeContainer) {
