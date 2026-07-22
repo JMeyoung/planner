@@ -1215,10 +1215,13 @@
         </div>
       </div>
 
-      <!-- Primary Launch Button (Simplified Home View) -->
-      <div style="margin-top: 6px;">
+      <!-- Primary Launch Buttons (Home View) -->
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
         <button class="action-btn" onclick="openModeSelectModal()" style="width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #3b82f6); justify-content: center; box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 12px 28px rgba(99, 102, 241, 0.35);">
           🚀 학습 시작하기 (4분할 모드 선택)
+        </button>
+        <button class="action-btn secondary" onclick="startListView()" style="width: 100%; padding: 11px; font-size: 0.92rem; justify-content: center;">
+          📋 25개씩 리스트 전체 보기
         </button>
       </div>
 
@@ -1514,13 +1517,8 @@
 
       </div>
 
-      <!-- Secondary: 25개 리스트 보기 -->
-      <button class="action-btn secondary" onclick="handleModalLaunch('list');" style="width: 100%; margin-top: 2px; justify-content: center; padding: 10px; font-size: 0.88rem;">
-        📋 25개씩 리스트 전체 보기
-      </button>
-
       <!-- Close Button -->
-      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="width: 100%; margin-top: -4px; justify-content: center; padding: 8px; font-size: 0.85rem; opacity: 0.8;">
+      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="width: 100%; margin-top: 4px; justify-content: center; padding: 10px; font-size: 0.9rem;">
         닫기
       </button>
 
