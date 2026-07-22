@@ -1821,10 +1821,22 @@
         appContainer.classList.remove("wide-mode");
       }
       
-      // Stop timers when exiting Quiz View
+      // Stop timers when exiting Quiz View or Memorize View
       if (viewId !== 'quiz-view') {
         stopTimer();
+        if (typeof quizAutoAdvanceTimer !== 'undefined' && quizAutoAdvanceTimer) {
+          clearTimeout(quizAutoAdvanceTimer);
+          quizAutoAdvanceTimer = null;
+        }
         isQuizActive = false;
+      }
+      
+      if (viewId !== 'memorize-view') {
+        if (typeof memorizeTimerId !== 'undefined' && memorizeTimerId) {
+          clearTimeout(memorizeTimerId);
+          memorizeTimerId = null;
+        }
+        isMemorizeActive = false;
       }
       
       // Show/Hide Home Nav in Header
@@ -2409,7 +2421,7 @@
             <!-- Row 1: Word & Star Button -->
             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; min-width: 0;">
               <div class="list-word" style="font-size: 1.25rem; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); word-break: break-all; overflow-wrap: anywhere; flex: 1; min-width: 0; padding-right: 6px;">${wordObj.word}</div>
-              <button onclick="toggleFavorite(event, '${wordObj.word.replace(/'/g, "\\'")}')" style="background:none; border:none; color:${getFavorites().includes(wordObj.word) ? '#f59e0b' : 'rgba(255,255,255,0.4)'}; font-size:1.3rem; pointer-events:auto; cursor:pointer; padding:0; line-height:1; flex-shrink: 0;">${getFavorites().includes(wordObj.word) ? '★' : '☆'}</button>
+              <button onclick="toggleFavorite(event, '${wordObj.word.replace(/'/g, "\\'").replace(/"/g, "&quot;")}')" style="background:none; border:none; color:${getFavorites().includes(wordObj.word) ? '#f59e0b' : 'rgba(255,255,255,0.4)'}; font-size:1.3rem; pointer-events:auto; cursor:pointer; padding:0; line-height:1; flex-shrink: 0;">${getFavorites().includes(wordObj.word) ? '★' : '☆'}</button>
             </div>
             
             <!-- Row 2: Pronunciation on dedicated line -->
@@ -2717,8 +2729,8 @@
       list = list.filter(w => !(w.word === wordObj.word && w.book === wordObj.book));
       localStorage.setItem(getKey("vocab_incorrect"), JSON.stringify(list));
       
-      // Refresh local list
-      incorrectWordsList = list;
+      // Refresh active filtered review list
+      incorrectWordsList = incorrectWordsList.filter(w => !(w.word === wordObj.word && w.book === wordObj.book));
       
       alert(`'${wordObj.word}' 단어를 마스터 리스트로 이동하고 오답에서 제외했습니다.`);
       
@@ -2906,8 +2918,8 @@
           goToNextWord();
         }
       } else if (e.key === ' ' || e.code === 'Space') {
-        e.preventDefault(); // Prevent default page scroll
         if (isMemorizeActive) {
+          e.preventDefault(); // Prevent default page scroll only during active study
           const hiddenArea = document.getElementById("memorize-hidden-area");
           if (hiddenArea.style.opacity === "1") {
             // Already flipped -> Go to next
@@ -2918,6 +2930,7 @@
             revealMeaning(true);
           }
         } else if (isQuizActive) {
+          e.preventDefault(); // Prevent default page scroll only during active study
           const nextBtn = document.getElementById("quiz-next-wrong-btn");
           if (nextBtn.style.display === "flex" || nextBtn.style.display === "block") {
             // Already flipped (incorrect or timed out) -> Go to next
@@ -2941,7 +2954,7 @@
     let currentSmartReviewDay = null;
 
     function getCompletedDays(book) {
-      return JSON.parse(localStorage.getItem(`vocab_completed_days_${book}_${currentUser}`) || "[]");
+      return JSON.parse(getLocalItem(`vocab_completed_days_${book}`) || "[]");
     }
 
     function markDayAsCompleted(book, day) {

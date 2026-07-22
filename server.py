@@ -305,7 +305,7 @@ def generate_sentence_with_gemini(word, meaning, api_key=None):
     if not api_key:
         return f"[No API Key] '{word}' means '{meaning}'. Please configure GEMINI_API_KEY.", f"예문 생성을 위해 환경 설정에서 API Key를 입력해주시거나 서버 환경변수를 설정해주세요."
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
     
     prompt = (
         f"Create a simple, clear, and practical English example sentence using the vocabulary word '{word}' "
@@ -580,8 +580,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 
                 if not sentence.startswith("[No API Key]") and not sentence.startswith("Failed to generate"):
                     sentences_cache[word_key] = result_data
-                    with open(sentences_path, 'w', encoding='utf-8') as sf:
-                        json.dump(sentences_cache, sf, ensure_ascii=False, indent=2)
+                    try:
+                        with open(sentences_path, 'w', encoding='utf-8') as sf:
+                            json.dump(sentences_cache, sf, ensure_ascii=False, indent=2)
+                    except Exception as fe:
+                        print(f"Warning: Failed to save sentences_cache to disk: {fe}")
                 
                 self._json(200, result_data)
             except Exception as e:
