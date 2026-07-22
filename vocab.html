@@ -1217,9 +1217,6 @@
 
       <!-- Primary Launch Button (Simplified Home View) -->
       <div style="margin-top: 6px;">
-        <button class="action-btn" id="resume-btn" onclick="resumeLearning()" style="width: 100%; display: none; margin-bottom: 8px; padding: 12px; font-size: 0.95rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(13, 148, 136, 0.95)); border: 1px solid rgba(255, 255, 255, 0.45); box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.65), 0 8px 22px rgba(16, 185, 129, 0.3); color: #ffffff; justify-content: center;">
-          🔄 이어서 학습하기
-        </button>
         <button class="action-btn" onclick="openModeSelectModal()" style="width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #3b82f6); justify-content: center; box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 12px 28px rgba(99, 102, 241, 0.35);">
           🚀 학습 시작하기 (4분할 모드 선택)
         </button>
@@ -1612,16 +1609,18 @@
       if (stateStr) {
         try {
           resumeState = JSON.parse(stateStr);
-          const resumeBtn = document.getElementById("resume-btn");
+          const modalResumeDesc = document.getElementById("modal-resume-desc");
           if (resumeState && resumeState.book && resumeState.day && resumeState.mode) {
-            resumeBtn.style.display = "flex";
-            resumeBtn.innerText = `🔄 이어서 학습하기 (${resumeState.book} Day ${resumeState.day})`;
+            if (modalResumeDesc) modalResumeDesc.innerText = `${resumeState.book} Day ${resumeState.day} (${(resumeState.index || 0) + 1}번부터)`;
           }
         } catch (e) {
           localStorage.removeItem(getKey("vocab_resume_state"));
+          resumeState = null;
         }
       } else {
-        document.getElementById("resume-btn").style.display = "none";
+        resumeState = null;
+        const modalResumeDesc = document.getElementById("modal-resume-desc");
+        if (modalResumeDesc) modalResumeDesc.innerText = "저장된 지점 없음";
       }
     }
 
