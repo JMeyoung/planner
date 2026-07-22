@@ -52,8 +52,9 @@
       z-index: 9998;
       display: none;
       opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: bottom right;
+      transform: translateY(10px) scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       color: #fff;
       font-family: inherit;
     `;
@@ -91,12 +92,12 @@
         panel.style.display = 'block';
         setTimeout(() => {
           panel.style.opacity = '1';
-          panel.style.transform = 'translateY(0)';
+          panel.style.transform = 'translateY(0) scale(1)';
         }, 10);
       } else {
         panel.style.opacity = '0';
-        panel.style.transform = 'translateY(10px)';
-        setTimeout(() => { panel.style.display = 'none'; }, 300);
+        panel.style.transform = 'translateY(10px) scale(0.95)';
+        setTimeout(() => { panel.style.display = 'none'; }, 200);
       }
     });
 

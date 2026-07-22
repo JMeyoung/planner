@@ -10,7 +10,7 @@
 .daily-preview-btn, .save-token-btn {
   background: linear-gradient(135deg, #667eea, #764ba2) !important;
   color: #fff !important;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .daily-preview-btn:hover, .save-token-btn:hover {
   opacity: 0.9;
@@ -54,7 +54,7 @@ body.theme-liquid-glass .ai-analyze-btn {
   border: 1px solid rgba(255, 255, 255, 0.28) !important;
   box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.58), inset 0 -2px 2px rgba(0, 0, 0, 0.17), 0 8px 24px rgba(107, 125, 149, 0.25) !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
-  transition: all 0.2s ease !important;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 body.theme-liquid-glass .ai-analyze-btn:hover {
   transform: translateY(-2px) !important;
@@ -67,6 +67,8 @@ body.theme-liquid-glass .ai-analyze-btn:hover {
    ══════════════════════════════════════════ */
 /* ── 🌆 Sunset Twilight Theme ── */
 :root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --glass-noise: none;
   --bg-primary: linear-gradient(180deg, #35235d 0%, #8c4272 50%, #d87056 100%);
   --bg-secondary: rgba(255, 255, 255, 0.18);
@@ -133,7 +135,7 @@ body.theme-liquid-glass .ai-analyze-btn:hover {
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -596,13 +598,13 @@ body::before, body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
 }
 .cb.on {
   background: var(--checkbox-done);
   border-color: var(--checkbox-done);
-  animation: springPop 0.5s var(--transition-spring) forwards;
+  animation: springPop 0.18s var(--ease-out) forwards;
 }
 .cb.on svg {
   animation: checkDraw 0.3s ease forwards;
@@ -950,7 +952,7 @@ body::before, body::after {
   flex: 1; padding: 7px 4px; border: none; border-radius: 10px;
   font-family: inherit; font-size: 0.78rem; font-weight: 700;
   cursor: pointer; background: var(--border); color: var(--text-secondary);
-  transition: all .2s;
+  transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .univ-tab.active { color: #fff; }
 .univ-tab.ku.active { background: #8B0000; }
@@ -1002,7 +1004,7 @@ body::before, body::after {
   width: 100%; padding: 7px; border: 1.5px dashed var(--border);
   border-radius: 8px; background: transparent; color: var(--text-muted);
   font-family: inherit; font-size: 0.78rem; cursor: pointer;
-  transition: all .15s;
+  transition: transform .15s, opacity .15s, background-color .15s, border-color .15s, box-shadow .15s;
 }
 .qa-btn:hover { border-color: var(--accent-math); color: var(--accent-math); background: hsla(220,70%,55%,.05); }
 .qa-form { padding: 6px 0 2px; animation: fadeSlideUp .2s ease; }
@@ -1052,7 +1054,7 @@ body::before, body::after {
   padding: 4px 10px; border: 1px solid #5c3318;
   border-radius: 8px; background: rgba(92,51,24,0.3);
   color: #c4a070; font-family: inherit; font-size: 0.7rem;
-  cursor: pointer; transition: all .2s;
+  cursor: pointer; transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .deca-view-btn:hover { background: rgba(92,51,24,0.6); color: #f0c060; }
 
@@ -1061,7 +1063,7 @@ body::before, body::after {
   position: relative; width: 100%; height: 160px;
   background: linear-gradient(180deg, #0d0500 0%, #1a0a02 40%, #2c1408 100%);
   overflow: hidden;
-  transition: all .8s ease;
+  transition: transform .8s ease, opacity .8s ease, background-color .8s ease, border-color .8s ease, box-shadow .8s ease;
 }
 .deca-overlay {
   position: absolute; inset: 0;
@@ -1108,7 +1110,7 @@ body::before, body::after {
   max-width: 64px;
   overflow: hidden;
   box-shadow: 2px 2px 6px rgba(0,0,0,.4);
-  transition: all 1s ease;
+  transition: transform 1s ease, opacity 1s ease, background-color 1s ease, border-color 1s ease, box-shadow 1s ease;
   z-index: 2;
 }
 .note-1 { width: 60px; height: 44px; bottom: 55px; left: 12px;
@@ -1156,7 +1158,7 @@ body::before, body::after {
 .desk-pen {
   position: absolute; width: 6px; border-radius: 3px;
   box-shadow: 1px 1px 4px rgba(0,0,0,.5);
-  transition: all 1s ease; z-index: 2;
+  transition: transform 1s ease, opacity 1s ease, background-color 1s ease, border-color 1s ease, box-shadow 1s ease; z-index: 2;
 }
 .pen-1 { height: 52px; bottom: 50px; right: 28px;
   background: linear-gradient(180deg,#2c2c4a,#1a1a30);
@@ -1204,7 +1206,7 @@ body::before, body::after {
   border-radius: 4px 6px 6px 4px;
   border: 1px solid #8b5030;
   box-shadow: 3px 3px 12px rgba(0,0,0,.6), inset 0 0 8px rgba(0,0,0,.3);
-  opacity: 0; transition: all 1s ease; z-index: 4;
+  opacity: 0; transition: transform 1s ease, opacity 1s ease, background-color 1s ease, border-color 1s ease, box-shadow 1s ease; z-index: 4;
 }
 .deca-notebook-title {
   padding: 8px 6px 4px;
@@ -1222,7 +1224,7 @@ body::before, body::after {
 .deca-scene[data-loops="7"] .deca-notebook,
 .deca-scene[data-loops="8"] .deca-notebook,
 .deca-scene[data-loops="9"] .deca-notebook { opacity: 1; transform: translateX(-50%) translateY(0); }
-.deca-scene[data-loops="10"] .deca-notebook { opacity: 0; transform: translateX(50%) translateY(-20px); transition: all .8s ease; }
+.deca-scene[data-loops="10"] .deca-notebook { opacity: 0; transform: translateX(50%) translateY(-20px); transition: transform .8s ease, opacity .8s ease, background-color .8s ease, border-color .8s ease, box-shadow .8s ease; }
 
 /* Candle glow */
 .deca-candle-glow {
@@ -1258,7 +1260,7 @@ body::before, body::after {
   width: 12px; height: 12px; border-radius: 50%;
   background: rgba(60,30,10,0.8);
   border: 1px solid #5c3318;
-  transition: all .4s ease;
+  transition: transform .4s ease, opacity .4s ease, background-color .4s ease, border-color .4s ease, box-shadow .4s ease;
 }
 .deca-bead.filled {
   background: radial-gradient(circle at 35% 35%, #fde68a, #d97706);
@@ -1308,7 +1310,7 @@ body::before, body::after {
   flex: 1; padding: 7px 4px; border: none; background: none;
   font-family: inherit; font-size: 0.78rem; color: var(--text-muted);
   cursor: pointer; border-bottom: 2px solid transparent;
-  margin-bottom: -1px; transition: all .15s;
+  margin-bottom: -1px; transition: transform .15s, opacity .15s, background-color .15s, border-color .15s, box-shadow .15s;
 }
 .memo-tab-btn.active {
   color: var(--accent-math); border-bottom-color: var(--accent-math);
@@ -1322,7 +1324,10 @@ body::before, body::after {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
   z-index: 9999; display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-out);
 }
+.retro-vault-overlay.modal-show { opacity: 1; }
 .retro-vault-modal {
   background: var(--bg-card);
   width: 90%; max-width: 500px; max-height: 80vh;
@@ -1331,7 +1336,20 @@ body::before, body::after {
   display: flex; flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--border-highlight);
+  transform: scale(0.95);
+  transition: transform 0.2s var(--ease-out);
 }
+.retro-vault-overlay.modal-show .retro-vault-modal { transform: scale(1); }
+#aiModal {
+  opacity: 0;
+  transition: opacity 0.2s var(--ease-out);
+}
+#aiModal.modal-show { opacity: 1; }
+#aiModal > div {
+  transform: scale(0.95);
+  transition: transform 0.2s var(--ease-out);
+}
+#aiModal.modal-show > div { transform: scale(1); }
 .retro-vault-header {
   padding: 16px; border-bottom: 1px solid var(--border);
   display: flex; justify-content: space-between; align-items: center;
@@ -1470,7 +1488,7 @@ body::before, body::after {
   justify-content: center;
   font-size: 1rem;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   text-decoration: none;
   color: var(--text-primary);
 }
@@ -1504,7 +1522,7 @@ body::before, body::after {
   font-size: 1rem;
   cursor: pointer;
   color: #fff;
-  transition: all 0.2s;
+  transition: transform 0.2s, opacity 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .pomo-btn:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -1540,7 +1558,7 @@ body::before, body::after {
 .loop-mode-btn {
   padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
   border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.6); cursor: pointer; transition: all .2s;
+  color: rgba(255,255,255,0.6); cursor: pointer; transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .loop-mode-btn.active {
   background: var(--accent-math); color: #35235d; border-color: var(--accent-math);
@@ -1667,13 +1685,14 @@ body::before, body::after {
 
 .style-lab-drawer {
   position: fixed;
-  top: 0; right: -320px;
+  top: 0; right: 0;
   width: 320px;
   height: 100vh;
   background: rgba(15, 10, 25, 0.7);
   box-shadow: -8px 0 32px rgba(0,0,0,0.4);
   z-index: 10000;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
@@ -1683,7 +1702,7 @@ body::before, body::after {
   overflow-y: auto;
 }
 .style-lab-drawer.open {
-  right: 0;
+  transform: translateX(0);
 }
 body.use-progressive-blur .style-lab-drawer {
   backdrop-filter: none;
@@ -1800,7 +1819,7 @@ input:checked + .slider:before {
   border-radius: 10px;
   cursor: pointer;
   color: #fff;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
 }
 .theme-btn:hover {
@@ -2686,7 +2705,7 @@ body::before, body::after {
   font-size: 1rem; color: var(--text-secondary);
   display: flex; align-items: center; justify-content: center;
   box-shadow: inset 0 1px 0 var(--border-highlight);
-  transition: all .2s;
+  transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .nav-btn:hover { background: var(--bg-secondary); transform: scale(1.05); }
 .nav-btn:active { transform: scale(0.95); }
@@ -2840,7 +2859,7 @@ body::before, body::after {
   display: flex; flex-direction: column; align-items: center;
   font-size: 0.8rem; position: relative;
   border: 1.5px solid transparent;
-  transition: all .2s ease;
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
   cursor: default;
 }
 .day-cell.clickable { cursor: pointer; }
@@ -3084,7 +3103,7 @@ body::before, body::after {
   display: flex; align-items: center; justify-content: center;
   color: var(--text-secondary);
   flex-shrink: 0;
-  transition: all .2s;
+  transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .drawer-close:hover { transform: scale(1.1); }
 .drawer-body { padding: 14px 18px 24px; }
@@ -3129,12 +3148,12 @@ body::before, body::after {
   border: 2px solid var(--text-muted);
   border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .d-cb.on {
   background: var(--accent-eng);
   border-color: var(--accent-eng);
-  animation: springPop 0.5s var(--transition-spring) forwards;
+  animation: springPop 0.18s var(--ease-out) forwards;
 }
 .d-text { color: var(--text-primary); }
 .d-empty {
@@ -3327,7 +3346,7 @@ body::before, body::after {
 }
 .radar-axis { stroke: rgba(255,255,255,0.1); stroke-width: 1; }
 .radar-grid { stroke: rgba(255,255,255,0.05); stroke-width: 1; fill: none; }
-.radar-polygon { fill: rgba(99, 102, 241, 0.3); stroke: #6366f1; stroke-width: 2; transition: all 0.5s ease; }
+.radar-polygon { fill: rgba(99, 102, 241, 0.3); stroke: #6366f1; stroke-width: 2; transition: transform 0.3s var(--ease-in-out), opacity 0.3s var(--ease-in-out), background-color 0.3s var(--ease-in-out), border-color 0.3s var(--ease-in-out), box-shadow 0.3s var(--ease-in-out); }
 .radar-label {
   font-size: 12px;
   fill: var(--text-muted);
@@ -3378,13 +3397,14 @@ body::before, body::after {
 
 .style-lab-drawer {
   position: fixed;
-  top: 0; right: -320px;
+  top: 0; right: 0;
   width: 320px;
   height: 100vh;
   background: rgba(15, 10, 25, 0.7);
   box-shadow: -8px 0 32px rgba(0,0,0,0.4);
   z-index: 10000;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
@@ -3394,7 +3414,7 @@ body::before, body::after {
   overflow-y: auto;
 }
 .style-lab-drawer.open {
-  right: 0;
+  transform: translateX(0);
 }
 /* Progressive Blur Toggle Effect */
 body.use-progressive-blur .style-lab-drawer {
@@ -3642,7 +3662,7 @@ body.use-gooey-blob .style-lab-toggle {
   border-radius: 10px;
   cursor: pointer;
   color: #fff;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .theme-btn:hover {
   background: rgba(255,255,255,0.12);
@@ -3960,6 +3980,15 @@ body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius:
 body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3) !important; border-radius: 99px; }
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5) !important; }
 
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
 </style>
   <link rel="stylesheet" href="liquid-glass.css?v=7">
 </head>
@@ -5714,36 +5743,54 @@ function initPomoDrag() {
     widget.style.top  = saved.top  + 'px';
   }
 
-  let dragging = false, ox = 0, oy = 0;
+  let dragging = false, ox = 0, oy = 0, baseLeft = 0, baseTop = 0, curLeft = 0, curTop = 0;
+
+  // Soft resistance once the pointer pushes past the clamp bound.
+  function withResistance(value, min, max) {
+    if (value < min) return min - Math.sqrt(min - value) * 4;
+    if (value > max) return max + Math.sqrt(value - max) * 4;
+    return value;
+  }
 
   function startDrag(cx, cy) {
     dragging = true;
     const r = widget.getBoundingClientRect();
     ox = cx - r.left;
     oy = cy - r.top;
+    baseLeft = r.left;
+    baseTop  = r.top;
+    curLeft = baseLeft;
+    curTop  = baseTop;
     widget.classList.add('dragging');
     widget.style.right = 'auto';
     widget.style.bottom = 'auto';
+    widget.style.left = baseLeft + 'px';
+    widget.style.top  = baseTop  + 'px';
     widget.style.transition = 'none';
+    widget.style.transform = 'translate3d(0, 0, 0)';
   }
   function moveDrag(cx, cy) {
     if (!dragging) return;
-    let left = cx - ox;
-    let top  = cy - oy;
-    // Clamp to viewport
-    left = Math.max(0, Math.min(window.innerWidth  - widget.offsetWidth,  left));
-    top  = Math.max(0, Math.min(window.innerHeight - widget.offsetHeight, top));
-    widget.style.left = left + 'px';
-    widget.style.top  = top  + 'px';
+    const rawLeft = cx - ox;
+    const rawTop  = cy - oy;
+    const minLeft = 0, maxLeft = window.innerWidth  - widget.offsetWidth;
+    const minTop  = 0, maxTop  = window.innerHeight - widget.offsetHeight;
+    curLeft = withResistance(rawLeft, minLeft, maxLeft);
+    curTop  = withResistance(rawTop,  minTop,  maxTop);
+    // Move via transform during the drag so we never touch layout at pointer rate.
+    widget.style.transform = `translate3d(${curLeft - baseLeft}px, ${curTop - baseTop}px, 0)`;
   }
   function endDrag() {
     if (!dragging) return;
     dragging = false;
     widget.classList.remove('dragging');
-    localStorage.setItem('pomo-pos', JSON.stringify({
-      left: parseFloat(widget.style.left),
-      top:  parseFloat(widget.style.top)
-    }));
+    // Bake the transform offset back into left/top once, then clamp for real.
+    const left = Math.max(0, Math.min(window.innerWidth  - widget.offsetWidth,  curLeft));
+    const top  = Math.max(0, Math.min(window.innerHeight - widget.offsetHeight, curTop));
+    widget.style.transform = 'none';
+    widget.style.left = left + 'px';
+    widget.style.top  = top  + 'px';
+    localStorage.setItem('pomo-pos', JSON.stringify({ left, top }));
   }
 
   // Mouse
@@ -6068,14 +6115,14 @@ function toggleRainNoise() { changeNoiseType(currentNoiseType === 'off' ? 'rain'
 function openAiModal() {
   const modal = document.getElementById('aiModal');
   const input = document.getElementById('apiKeyInput');
-  if(modal) modal.style.display = 'flex';
+  if(modal) { modal.style.display = 'flex'; requestAnimationFrame(() => modal.classList.add('modal-show')); }
   const key = localStorage.getItem('anthropic_api_key');
   if(input && key) input.value = key;
 }
 
 function closeAiModal() {
   const modal = document.getElementById('aiModal');
-  if(modal) modal.style.display = 'none';
+  if(modal) { modal.classList.remove('modal-show'); setTimeout(() => { modal.style.display = 'none'; }, 200); }
 }
 
 function saveApiKey() {
@@ -6397,12 +6444,16 @@ function archiveTask(text, isChecked) {
 }
 
 function openArchiveModal() {
-  document.getElementById('archiveVaultOverlay').style.display = 'flex';
+  const el = document.getElementById('archiveVaultOverlay');
+  el.style.display = 'flex';
+  requestAnimationFrame(() => el.classList.add('modal-show'));
   renderArchiveList();
 }
 function closeArchiveModal(e) {
   if (e && e.target !== e.currentTarget) return;
-  document.getElementById('archiveVaultOverlay').style.display = 'none';
+  const el = document.getElementById('archiveVaultOverlay');
+  el.classList.remove('modal-show');
+  setTimeout(() => { el.style.display = 'none'; }, 200);
 }
 function renderArchiveList() {
   const arr = JSON.parse(localStorage.getItem('archive-tasks') || '[]');
