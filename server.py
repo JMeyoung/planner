@@ -403,17 +403,20 @@ class Handler(http.server.BaseHTTPRequestHandler):
             # 영단어 목록 반환 API (파라미터: book, day)
             book = qs.get('book', [None])[0]
             day_str = qs.get('day', [None])[0]
-            if not book or not day_str:
-                return self._json(400, {'error': 'book과 day 파라미터가 필요합니다'})
+            if not book:
+                return self._json(400, {'error': 'book 파라미터가 필요합니다'})
             try:
-                day = int(day_str)
                 db_path = os.path.join(BASE_DIR, 'vocab_db.json')
                 if not os.path.exists(db_path):
-                    return self._json(404, {'error': 'vocab_db.json 파일이 존재하지 않습니다. 전처리를 수행하세요.'})
+                    return self._json(404, {'error': 'vocab_db.json 파일이 존재하지 않습니다.'})
                 with open(db_path, 'r', encoding='utf-8') as f:
                     all_words = json.load(f)
                 
-                filtered = [w for w in all_words if w.get('book') == book and w.get('day') == day]
+                if day_str and day_str != 'all':
+                    day = int(day_str)
+                    filtered = [w for w in all_words if w.get('book') == book and w.get('day') == day]
+                else:
+                    filtered = [w for w in all_words if w.get('book') == book]
                 
                 sentences_path = os.path.join(BASE_DIR, 'vocab_sentences.json')
                 sentences_cache = {}

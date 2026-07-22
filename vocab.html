@@ -2775,7 +2775,7 @@
       }
       
       try {
-        const response = await fetch(`/api/vocab/data?book=${currentBook}`);
+        const response = await fetch(`/api/vocab?book=${currentBook}&day=all&user=${currentUser}`);
         if (!response.ok) throw new Error("단어 데이터를 불러오는데 실패했습니다.");
         const data = await response.json();
         
