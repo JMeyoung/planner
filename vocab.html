@@ -1036,17 +1036,17 @@
     }
 
     body.theme-liquid-glass .choice-btn.correct {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.95)) !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.88), rgba(13, 148, 136, 0.95)) !important;
       color: #ffffff !important;
-      border-color: rgba(255, 255, 255, 0.6) !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 8px 20px rgba(16, 185, 129, 0.35) !important;
+      border-color: rgba(255, 255, 255, 0.65) !important;
+      box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.7), 0 8px 24px rgba(16, 185, 129, 0.35) !important;
     }
 
     body.theme-liquid-glass .choice-btn.incorrect {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.95)) !important;
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.88), rgba(190, 18, 60, 0.95)) !important;
       color: #ffffff !important;
-      border-color: rgba(255, 255, 255, 0.6) !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 8px 20px rgba(239, 68, 68, 0.35) !important;
+      border-color: rgba(255, 255, 255, 0.65) !important;
+      box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.7), 0 8px 24px rgba(225, 29, 72, 0.35) !important;
     }
 
     body.theme-liquid-glass .badge {
@@ -1173,7 +1173,7 @@
         </div>
 
         <div id="smart-review-container" style="display: none; margin-top: 2px;">
-          <button id="smart-review-btn" class="action-btn" style="width: 100%; font-size: 0.85rem; background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.15)); border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; padding: 6px 10px;" onclick="startSmartReview()">
+          <button id="smart-review-btn" class="action-btn" style="width: 100%; font-size: 0.85rem; background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(225, 29, 72, 0.12)); border: 1px solid rgba(244, 63, 94, 0.38); color: #ffe4e6; padding: 6px 10px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 4px 14px rgba(244, 63, 94, 0.15);" onclick="startSmartReview()">
             🔥 오늘 추천 복습: DAY X
           </button>
         </div>
@@ -1218,7 +1218,7 @@
 
       <!-- Primary Launch Button (Simplified Home View) -->
       <div style="margin-top: 6px;">
-        <button class="action-btn" id="resume-btn" onclick="resumeLearning()" style="width: 100%; display: none; margin-bottom: 8px; padding: 12px; font-size: 0.95rem; background: linear-gradient(135deg, #10b981, #059669); justify-content: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 8px 20px rgba(16, 185, 129, 0.3);">
+        <button class="action-btn" id="resume-btn" onclick="resumeLearning()" style="width: 100%; display: none; margin-bottom: 8px; padding: 12px; font-size: 0.95rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(13, 148, 136, 0.95)); border: 1px solid rgba(255, 255, 255, 0.45); box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.65), 0 8px 22px rgba(16, 185, 129, 0.3); color: #ffffff; justify-content: center;">
           🔄 이어서 학습하기
         </button>
         <button class="action-btn" onclick="openModeSelectModal()" style="width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #3b82f6); justify-content: center; box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 12px 28px rgba(99, 102, 241, 0.35);">
@@ -1487,7 +1487,7 @@
 
       <!-- Resume Button inside Modal if available -->
       <div id="modal-resume-container" style="display: none;">
-        <button class="action-btn" onclick="resumeLearning(); closeModeSelectModal();" style="width: 100%; padding: 10px; font-size: 0.92rem; background: linear-gradient(135deg, #10b981, #059669); justify-content: center;">
+        <button class="action-btn" onclick="resumeLearning(); closeModeSelectModal();" style="width: 100%; padding: 10px; font-size: 0.92rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(13, 148, 136, 0.95)); border: 1px solid rgba(255, 255, 255, 0.45); box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.65), 0 8px 22px rgba(16, 185, 129, 0.3); color: #ffffff; justify-content: center;">
           🔄 이어서 학습하기 (마지막 저장 지점)
         </button>
       </div>
