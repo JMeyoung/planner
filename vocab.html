@@ -912,23 +912,25 @@
     }
   
     /* ── 🫧 Apple Liquid Glass Design System Overrides ── */
+    /* ── 🫧 Apple Liquid Glass Design System ── */
     body.theme-liquid-glass {
       --bg-primary: transparent;
       --bg-secondary: rgba(255,255,255,0.08);
       --bg-card: rgba(255, 255, 255, 0.06);
       --border: rgba(255,255,255,0.28);
       --glass-blur: blur(15px) saturate(200%) brightness(1.1);
-      --text-main: #f8fafc;
-      --text-muted: #cbd5e1;
+      --text-main: #1e293b;
+      --text-muted: #475569;
       background: transparent !important;
-      color: #f8fafc !important;
+      color: #1e293b !important;
     }
 
+    /* 🌙 Word Cards ONLY (Dark Obsidian Glass Surface for Study Focus) */
     body.theme-liquid-glass .card,
     body.theme-liquid-glass .question-card,
     body.theme-liquid-glass .result-card,
     body.theme-liquid-glass .flip-face {
-      background-color: rgba(15, 23, 42, 0.92) !important;
+      background-color: rgba(15, 23, 42, 0.94) !important;
       background-image: 
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 45%),
         linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)) !important;
@@ -944,20 +946,42 @@
       transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
     }
 
+    /* ☀️ Home View Frosted Glass Surface Cards (.welcome-card) */
+    body.theme-liquid-glass .welcome-card {
+      background-color: rgba(255, 255, 255, 0.45) !important;
+      background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3)) !important;
+      backdrop-filter: var(--glass-blur) !important;
+      -webkit-backdrop-filter: var(--glass-blur) !important;
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
+      box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.8), 0 12px 30px rgba(0,0,0,0.08) !important;
+      border-radius: var(--radius-card, 24px) !important;
+      color: #1e293b !important;
+    }
+
+    /* Action Buttons (Primary Launch & Big Blue Buttons) */
     body.theme-liquid-glass .action-btn {
       border-radius: 999px !important;
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.95)) !important;
+      background: linear-gradient(135deg, #6366f1, #3b82f6) !important;
       color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.35) !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 8px 24px rgba(0,0,0,0.18) !important;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+      border: 1px solid rgba(255, 255, 255, 0.5) !important;
+      box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 10px 25px rgba(99, 102, 241, 0.35) !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
       transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    }
+
+    /* Secondary Action Buttons (e.g. 25개 리스트 전체 보기) */
+    body.theme-liquid-glass .action-btn.secondary {
+      background: rgba(255, 255, 255, 0.65) !important;
+      color: #1e293b !important;
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 4px 14px rgba(0,0,0,0.06) !important;
+      text-shadow: none !important;
     }
 
     @media (hover: hover) and (pointer: fine) {
       body.theme-liquid-glass .action-btn:hover {
         transform: translateY(-2px) scale(1.01) !important;
-        box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.7), 0 12px 30px rgba(0,0,0,0.22) !important;
+        box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.7), 0 12px 30px rgba(99, 102, 241, 0.45) !important;
       }
     }
 
@@ -966,21 +990,22 @@
       transition: transform 0.1s var(--ease-out) !important;
     }
 
+    /* Icon Buttons (Close ✕, etc.) */
     body.theme-liquid-glass .icon-btn {
       border-radius: 999px !important;
-      background: rgba(255, 255, 255, 0.22) !important;
-      border: 1px solid rgba(255, 255, 255, 0.42) !important;
-      color: #f8fafc !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 4px 14px rgba(0,0,0,0.12) !important;
+      background: rgba(255, 255, 255, 0.55) !important;
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      color: #1e293b !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 4px 12px rgba(0,0,0,0.06) !important;
       backdrop-filter: var(--glass-blur) !important;
       -webkit-backdrop-filter: var(--glass-blur) !important;
-      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out);
     }
 
     @media (hover: hover) and (pointer: fine) {
       body.theme-liquid-glass .icon-btn:hover {
         transform: scale(1.08) !important;
-        background: rgba(255, 255, 255, 0.35) !important;
+        background: rgba(255, 255, 255, 0.75) !important;
       }
     }
 
@@ -989,38 +1014,44 @@
       transition: transform 0.1s var(--ease-out) !important;
     }
 
+    /* Home Stat Box, Book Selector, Day Buttons */
     body.theme-liquid-glass .stat-box,
     body.theme-liquid-glass .selector-btn,
     body.theme-liquid-glass .day-btn {
-      background: rgba(255, 255, 255, 0.15) !important;
-      border: 1px solid rgba(255, 255, 255, 0.32) !important;
+      background: rgba(255, 255, 255, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
       border-radius: 16px !important;
-      color: #f8fafc !important;
+      color: #1e293b !important;
       backdrop-filter: blur(10px) !important;
       -webkit-backdrop-filter: blur(10px) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 4px 12px rgba(0,0,0,0.04) !important;
       transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
     }
 
     body.theme-liquid-glass .selector-btn.active,
     body.theme-liquid-glass .day-btn.active {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)) !important;
+      background: linear-gradient(135deg, #6366f1, #3b82f6) !important;
       color: #ffffff !important;
-      border-color: rgba(255, 255, 255, 0.5) !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 6px 18px rgba(0,0,0,0.18) !important;
+      border-color: rgba(255, 255, 255, 0.6) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 6px 18px rgba(99, 102, 241, 0.35) !important;
     }
 
     body.theme-liquid-glass .stat-box .val {
-      color: #38bdf8 !important;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+      color: #2563eb !important;
+      font-weight: 800 !important;
     }
 
     body.theme-liquid-glass .stat-box .lbl,
     body.theme-liquid-glass .section-title {
-      color: #cbd5e1 !important;
+      color: #475569 !important;
       font-weight: 700 !important;
     }
 
-    body.theme-liquid-glass .welcome-card h2,
+    body.theme-liquid-glass .welcome-card h2 {
+      color: #0f172a !important;
+    }
+
+    /* Inside Dark Cards ONLY */
     body.theme-liquid-glass .q-word,
     body.theme-liquid-glass #memorize-word,
     body.theme-liquid-glass #review-word {
@@ -1034,20 +1065,22 @@
       color: #a5f3fc !important;
     }
 
+    /* Quiz Choice Buttons */
     body.theme-liquid-glass .choice-btn {
-      background: rgba(255, 255, 255, 0.22) !important;
-      border: 1px solid rgba(255, 255, 255, 0.38) !important;
-      color: #f8fafc !important;
+      background: rgba(255, 255, 255, 0.55) !important;
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      color: #0f172a !important;
+      font-weight: 600 !important;
       border-radius: 18px !important;
       backdrop-filter: blur(12px) !important;
       -webkit-backdrop-filter: blur(12px) !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 4px 14px rgba(0,0,0,0.08) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.7), 0 4px 14px rgba(0,0,0,0.06) !important;
       transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
     }
 
     @media (hover: hover) and (pointer: fine) {
       body.theme-liquid-glass .choice-btn:hover {
-        background: rgba(255, 255, 255, 0.35) !important;
+        background: rgba(255, 255, 255, 0.8) !important;
         transform: translateY(-1px) !important;
       }
     }
@@ -1058,41 +1091,52 @@
     }
 
     body.theme-liquid-glass .choice-btn.correct {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.88), rgba(13, 148, 136, 0.95)) !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(13, 148, 136, 0.95)) !important;
       color: #ffffff !important;
       border-color: rgba(255, 255, 255, 0.65) !important;
       box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.7), 0 8px 24px rgba(16, 185, 129, 0.35) !important;
     }
 
     body.theme-liquid-glass .choice-btn.incorrect {
-      background: linear-gradient(135deg, rgba(225, 29, 72, 0.88), rgba(190, 18, 60, 0.95)) !important;
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.9), rgba(190, 18, 60, 0.95)) !important;
       color: #ffffff !important;
       border-color: rgba(255, 255, 255, 0.65) !important;
       box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.7), 0 8px 24px rgba(225, 29, 72, 0.35) !important;
     }
 
+    /* Badges */
     body.theme-liquid-glass .badge {
-      background: rgba(255, 255, 255, 0.12) !important;
-      border: 1px solid rgba(255, 255, 255, 0.25) !important;
-      color: #f8fafc !important;
+      background: rgba(30, 41, 59, 0.1) !important;
+      border: 1px solid rgba(30, 41, 59, 0.2) !important;
+      color: #1e293b !important;
       border-radius: 999px !important;
     }
 
+    /* App Title Header */
     body.theme-liquid-glass .app-title {
-      background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%) !important;
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
       -webkit-background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
     }
 
+    /* Modal Styling */
     body.theme-liquid-glass .settings-modal {
-      background: rgba(15, 23, 42, 0.5) !important;
+      background: rgba(15, 23, 42, 0.6) !important;
       backdrop-filter: blur(20px) saturate(180%) !important;
       -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     }
 
+    body.theme-liquid-glass .settings-modal .modal-content {
+      background-color: rgba(255, 255, 255, 0.8) !important;
+      background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)) !important;
+      border: 1.5.px solid rgba(255, 255, 255, 0.8) !important;
+      box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.9), 0 25px 60px rgba(0,0,0,0.25) !important;
+      color: #1e293b !important;
+    }
+
     body.theme-liquid-glass .mode-quad-btn {
-      background: rgba(255, 255, 255, 0.18) !important;
-      border: 1px solid rgba(255, 255, 255, 0.38) !important;
+      background: rgba(255, 255, 255, 0.65) !important;
+      border: 1px solid rgba(255, 255, 255, 0.8) !important;
       border-radius: 20px !important;
       padding: 16px 10px !important;
       display: flex !important;
@@ -1100,6 +1144,36 @@
       align-items: center !important;
       justify-content: center !important;
       gap: 4px !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      box-shadow: inset 0 1px 1.5px rgba(255,255,255,0.8), 0 6px 16px rgba(0,0,0,0.06) !important;
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body.theme-liquid-glass .mode-quad-btn:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        box-shadow: inset 0 1.5px 2px rgba(255,255,255,0.9), 0 10px 24px rgba(0,0,0,0.1) !important;
+      }
+    }
+
+    body.theme-liquid-glass .mode-quad-btn:active {
+      transform: scale(0.96) !important;
+      transition: transform 0.1s var(--ease-out) !important;
+    }
+
+    body.theme-liquid-glass .mode-quad-btn .mode-title {
+      font-size: 0.95rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+    }
+
+    body.theme-liquid-glass .mode-quad-btn .mode-sub {
+      font-size: 0.7rem !important;
+      color: #475569 !important;
+      font-weight: 500 !important;
+    }
       text-align: center !important;
       cursor: pointer !important;
       backdrop-filter: blur(16px) !important;
