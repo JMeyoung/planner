@@ -1237,20 +1237,25 @@
     <!-- [1] HOME VIEW (Single-Screen / Zero-Scroll Fit) -->
     <div id="home-view" class="view active" style="gap: 8px;">
       
-      <!-- Welcome & Stats Dashboard (Compact Single Glass Panel) -->
-      <div class="card welcome-card" style="padding: 12px 14px; gap: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h2 id="welcome-user-title" style="font-size: 1.05rem; font-weight: 700; margin: 0;">안녕하세요, 재영님!</h2>
-          <div style="display: flex; gap: 6px; align-items: center;">
-            <div class="stat-box" style="padding: 4px 8px; flex-direction: row; gap: 4px; align-items: center; border-radius: 999px;">
-              <span class="val" id="stats-correct-cnt" style="font-size: 0.95rem;">0</span>
-              <span class="lbl" style="font-size: 0.72rem;">정답</span>
-            </div>
-            <div class="stat-box" onclick="openReviewDashboard()" style="padding: 4px 10px; flex-direction: row; gap: 4px; align-items: center; border-radius: 999px; cursor: pointer; border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12);">
-              <span class="val" id="stats-incorrect-cnt" style="font-size: 0.95rem; color: var(--warning-color);">0</span>
-              <span class="lbl" style="font-size: 0.75rem; color: #fcd34d; font-weight: 700;">오답 📝</span>
-            </div>
+      <!-- Welcome & Stats Dashboard (Restored 2-Column Grid Layout) -->
+      <div class="card welcome-card" style="padding: 14px 16px; gap: 10px;">
+        <h2 id="welcome-user-title" style="font-size: 1.15rem; font-weight: 800; margin: 0; text-align: left; color: #0f172a;">안녕하세요, 재영님!</h2>
+        
+        <!-- 2-Column Stats Summary Grid -->
+        <div class="stats-summary" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 2px;">
+          
+          <!-- Correct Stat Box -->
+          <div class="stat-box" style="padding: 8px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 16px;">
+            <span class="val" id="stats-correct-cnt" style="font-size: 1.35rem; font-weight: 800; color: #2563eb;">0</span>
+            <span class="lbl" style="font-size: 0.78rem; font-weight: 700; color: #475569;">정답</span>
           </div>
+          
+          <!-- Incorrect Stat Box (Clickable for Review) -->
+          <div class="stat-box" onclick="openReviewDashboard()" style="padding: 8px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 16px; cursor: pointer; border-color: rgba(245, 158, 11, 0.45); background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.08));">
+            <span class="val" id="stats-incorrect-cnt" style="font-size: 1.35rem; font-weight: 800; color: #d97706;">0</span>
+            <span class="lbl" style="font-size: 0.78rem; font-weight: 700; color: #b45309;">오답 📝</span>
+          </div>
+
         </div>
         
         <!-- Progress Bar (Slim) -->
