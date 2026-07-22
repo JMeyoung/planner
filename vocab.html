@@ -1285,8 +1285,8 @@
         </div>
       </div>
 
-      <button class="action-btn" style="width: 100%; margin-top: 12px; opacity: 0; pointer-events: none; transition: opacity 0.3s;" id="memorize-next-btn" onclick="nextMemorizeWord()">
-        다음 단어 ➔
+      <button class="action-btn" style="width: 100%; margin-top: 14px; padding: 16px; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #3b82f6); color: #ffffff; box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 10px 25px rgba(99, 102, 241, 0.35); opacity: 0; pointer-events: none; transition: opacity 0.3s;" id="memorize-next-btn" onclick="nextMemorizeWord()">
+        다음 단어 ➔ (화면/카드 터치 시 이동)
       </button>
     </div>
 
@@ -1906,8 +1906,12 @@
       if (!isMemorizeActive) return;
       
       const hiddenArea = document.getElementById("memorize-hidden-area");
-      // Prevent multiple triggers if already visible
-      if (hiddenArea.style.opacity === "1") return; 
+      
+      // If meaning is already revealed, tapping anywhere on the card moves to next word!
+      if (hiddenArea.style.opacity === "1") {
+        nextMemorizeWord();
+        return;
+      }
 
       clearTimeout(memorizeTimerId);
       
