@@ -9,10 +9,11 @@
   <link rel="apple-touch-icon" href="/app-icon.png">
   <meta name="description" content="5초 타임어택 영단어 암기 웹앱 - V101, V201, V301 단어장 완벽 정복">
   
-  <!-- Fonts -->
+  <!-- Fonts & Apple Liquid Glass Design System -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="liquid-glass.css?v=11">
   
   <style>
     :root {
@@ -887,6 +888,186 @@
       margin: 0 !important;
     }
   
+    /* ── 🫧 Apple Liquid Glass Design System Overrides ── */
+    body.theme-liquid-glass {
+      --bg-primary: transparent;
+      --bg-secondary: rgba(255,255,255,0.08);
+      --bg-card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255,255,255,0.28);
+      --glass-blur: blur(15px) saturate(200%) brightness(1.1);
+      --text-main: #1e293b;
+      --text-muted: rgba(30,41,59,0.75);
+      background: transparent !important;
+      color: #1e293b !important;
+    }
+
+    body.theme-liquid-glass .card,
+    body.theme-liquid-glass .welcome-card,
+    body.theme-liquid-glass .question-card,
+    body.theme-liquid-glass .result-card,
+    body.theme-liquid-glass .flip-face,
+    body.theme-liquid-glass .modal-content {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      background-image: 
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.32), transparent 45%),
+        linear-gradient(to bottom, rgba(255,255,255,0.25), transparent 42%) !important;
+      backdrop-filter: var(--glass-blur) !important;
+      -webkit-backdrop-filter: var(--glass-blur) !important;
+      border: 1px solid rgba(255, 255, 255, 0.32) !important;
+      box-shadow: 
+        inset 0 1.5px 1px rgba(255,255,255,0.65),
+        inset 0 -2px 2px rgba(0,0,0,0.15),
+        0 22px 45px rgba(0,0,0,0.18) !important;
+      border-radius: var(--radius-card, 24px) !important;
+      transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    body.theme-liquid-glass .action-btn {
+      border-radius: 999px !important;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.95)) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 8px 24px rgba(0,0,0,0.18) !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body.theme-liquid-glass .action-btn:hover {
+        transform: translateY(-2px) scale(1.01) !important;
+        box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.7), 0 12px 30px rgba(0,0,0,0.22) !important;
+      }
+    }
+
+    body.theme-liquid-glass .action-btn:active {
+      transform: scale(0.96) !important;
+      transition: transform 0.1s var(--ease-out) !important;
+    }
+
+    body.theme-liquid-glass .icon-btn {
+      border-radius: 999px !important;
+      background: rgba(255, 255, 255, 0.22) !important;
+      border: 1px solid rgba(255, 255, 255, 0.42) !important;
+      color: #1e293b !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 4px 14px rgba(0,0,0,0.12) !important;
+      backdrop-filter: var(--glass-blur) !important;
+      -webkit-backdrop-filter: var(--glass-blur) !important;
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body.theme-liquid-glass .icon-btn:hover {
+        transform: scale(1.08) !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+      }
+    }
+
+    body.theme-liquid-glass .icon-btn:active {
+      transform: scale(0.92) !important;
+      transition: transform 0.1s var(--ease-out) !important;
+    }
+
+    body.theme-liquid-glass .stat-box,
+    body.theme-liquid-glass .selector-btn,
+    body.theme-liquid-glass .day-btn {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1px solid rgba(255, 255, 255, 0.32) !important;
+      border-radius: 16px !important;
+      color: #1e293b !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    }
+
+    body.theme-liquid-glass .selector-btn.active,
+    body.theme-liquid-glass .day-btn.active {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)) !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 6px 18px rgba(0,0,0,0.18) !important;
+    }
+
+    body.theme-liquid-glass .stat-box .val {
+      color: #0f172a !important;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+    }
+
+    body.theme-liquid-glass .stat-box .lbl,
+    body.theme-liquid-glass .section-title {
+      color: rgba(30, 41, 59, 0.8) !important;
+      font-weight: 700 !important;
+    }
+
+    body.theme-liquid-glass .welcome-card h2,
+    body.theme-liquid-glass .q-word,
+    body.theme-liquid-glass #memorize-word,
+    body.theme-liquid-glass #review-word {
+      color: #0f172a !important;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.5) !important;
+    }
+
+    body.theme-liquid-glass .q-pron,
+    body.theme-liquid-glass #memorize-pron,
+    body.theme-liquid-glass #review-pron {
+      color: rgba(30, 41, 59, 0.75) !important;
+    }
+
+    body.theme-liquid-glass .choice-btn {
+      background: rgba(255, 255, 255, 0.22) !important;
+      border: 1px solid rgba(255, 255, 255, 0.38) !important;
+      color: #1e293b !important;
+      border-radius: 18px !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 4px 14px rgba(0,0,0,0.08) !important;
+      transition: transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body.theme-liquid-glass .choice-btn:hover {
+        background: rgba(255, 255, 255, 0.35) !important;
+        transform: translateY(-1px) !important;
+      }
+    }
+
+    body.theme-liquid-glass .choice-btn:active {
+      transform: scale(0.97) !important;
+      transition: transform 0.1s var(--ease-out) !important;
+    }
+
+    body.theme-liquid-glass .choice-btn.correct {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.95)) !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.6) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 8px 20px rgba(16, 185, 129, 0.35) !important;
+    }
+
+    body.theme-liquid-glass .choice-btn.incorrect {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.95)) !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.6) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 8px 20px rgba(239, 68, 68, 0.35) !important;
+    }
+
+    body.theme-liquid-glass .badge {
+      background: rgba(30, 41, 59, 0.12) !important;
+      border: 1px solid rgba(30, 41, 59, 0.25) !important;
+      color: #1e293b !important;
+      border-radius: 999px !important;
+    }
+
+    body.theme-liquid-glass .app-title {
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    body.theme-liquid-glass .settings-modal {
+      background: rgba(15, 23, 42, 0.5) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -897,7 +1078,7 @@
     }
 </style>
 </head>
-<body>
+<body class="theme-liquid-glass">
 
   <div class="app-container">
     
@@ -908,8 +1089,8 @@
         <button class="icon-btn" onclick="toggleUser()" title="프로필 전환">
           <span id="profile-icon"></span>
         </button>
-        <button class="icon-btn" id="home-nav-btn" onclick="goToHome()" title="메인 홈"><text>🏠</span></button>
-        <button class="icon-btn" onclick="openSettings()" title="설정"><text>⚙️</span></button>
+        <button class="icon-btn" id="home-nav-btn" onclick="goToHome()" title="메인 홈"><span>🏠</span></button>
+        <button class="icon-btn" onclick="openSettings()" title="설정"><span>⚙️</span></button>
       </div>
     </header>
 
@@ -2650,5 +2831,6 @@
     }
 
   </script>
+  <script src="liquid-glass-settings.js?v=11"></script>
 </body>
 </html>
