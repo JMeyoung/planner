@@ -2424,7 +2424,7 @@ body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(107,1
     </div>
     <div class="hero-center" style="display:flex; flex-direction:row; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; margin: 0 12px;">
       <button class="theme-toggle glass-circle" id="themeToggle" onclick="toggleTheme()" aria-label="테마 전환" style="position: fixed !important; top: 14px !important; right: 14px !important;">🌙</button>
-      <a href="/" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">← 월별 플래너</a>
+      <a href="/" id="backToMonthly" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">← 월별 플래너</a>
       <a href="/knowledge.html" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">💡 오늘의 전공 지식</a>
       <a href="/timer.html" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">⏱️ 타임어택 타이머</a>
       <a href="/vocab.html" class="glass-pill" style="padding:4px 10px; font-size:0.75rem;">📅 영단어 퀴즈</a>
@@ -4759,6 +4759,27 @@ window.applyTheme = function(themeName, showToastNotify = true) {
 
 // Initialize theme first, then app
 initTheme();
+
+/* ── Theme Toggle & Persistence ── */
+function getKey(key) { return 'planner_' + key; }
+function loadTheme() {
+  const saved = localStorage.getItem(getKey('planner-theme')) || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem(getKey('planner-theme'), next);
+  updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+loadTheme();
+
 initStyleLab();
 // Restore theme preset
 (function() {
