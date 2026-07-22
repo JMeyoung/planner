@@ -1129,7 +1129,7 @@
     body.theme-liquid-glass .settings-modal .modal-content {
       background-color: rgba(255, 255, 255, 0.8) !important;
       background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)) !important;
-      border: 1.5.px solid rgba(255, 255, 255, 0.8) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
       box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.9), 0 25px 60px rgba(0,0,0,0.25) !important;
       color: #1e293b !important;
     }
@@ -1172,39 +1172,6 @@
     body.theme-liquid-glass .mode-quad-btn .mode-sub {
       font-size: 0.78rem !important;
       color: #334155 !important;
-      font-weight: 600 !important;
-    }
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 8px 22px rgba(0,0,0,0.12) !important;
-      transition: transform 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out) !important;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      body.theme-liquid-glass .mode-quad-btn:hover {
-        transform: translateY(-2px) scale(1.02) !important;
-        background: rgba(255, 255, 255, 0.32) !important;
-        border-color: rgba(255, 255, 255, 0.55) !important;
-        box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.7), 0 12px 28px rgba(0,0,0,0.18) !important;
-      }
-    }
-
-    body.theme-liquid-glass .mode-quad-btn:active {
-      transform: scale(0.95) !important;
-      transition: transform 0.1s var(--ease-out) !important;
-    }
-
-    body.theme-liquid-glass .mode-quad-btn .mode-icon {
-      font-size: 1.8rem !important;
-    }
-
-    body.theme-liquid-glass .mode-quad-btn .mode-title {
-      font-size: 0.95rem !important;
-      font-weight: 800 !important;
-      color: #ffffff !important;
-    }
-
-    body.theme-liquid-glass .mode-quad-btn .mode-sub {
-      font-size: 0.72rem !important;
-      color: #cbd5e1 !important;
       font-weight: 600 !important;
     }
 
@@ -1555,6 +1522,7 @@
   <div class="settings-modal" id="settings-modal">
     <div class="modal-content">
       <div class="modal-title">⚙️ API 환경 설정</div>
+      <div class="input-group">
         <label for="settings-api-key">Gemini API Key</label>
         <input type="password" id="settings-api-key" placeholder="AI 예문 생성을 위한 AI Studio API Key 입력">
         <p style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.4;">
@@ -2525,11 +2493,7 @@
 
       if (dayBadge) dayBadge.innerText = `${currentBook} · DAY ${currentDay}`;
 
-      if (resumeState && resumeContainer) {
-        resumeContainer.style.display = "block";
-      } else if (resumeContainer) {
-        resumeContainer.style.display = "none";
-      }
+      // resumeContainer is not used in current modal layout (removed)
 
       if (modal) modal.classList.add("active");
     }
