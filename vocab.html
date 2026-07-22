@@ -1068,6 +1068,54 @@
       -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     }
 
+    body.theme-liquid-glass .mode-quad-btn {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border: 1px solid rgba(255, 255, 255, 0.38) !important;
+      border-radius: 20px !important;
+      padding: 16px 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.55), 0 8px 22px rgba(0,0,0,0.12) !important;
+      transition: transform 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body.theme-liquid-glass .mode-quad-btn:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+        background: rgba(255, 255, 255, 0.32) !important;
+        border-color: rgba(255, 255, 255, 0.55) !important;
+        box-shadow: inset 0 1.5px 1.5px rgba(255,255,255,0.7), 0 12px 28px rgba(0,0,0,0.18) !important;
+      }
+    }
+
+    body.theme-liquid-glass .mode-quad-btn:active {
+      transform: scale(0.95) !important;
+      transition: transform 0.1s var(--ease-out) !important;
+    }
+
+    body.theme-liquid-glass .mode-quad-btn .mode-icon {
+      font-size: 1.8rem !important;
+    }
+
+    body.theme-liquid-glass .mode-quad-btn .mode-title {
+      font-size: 0.95rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+    }
+
+    body.theme-liquid-glass .mode-quad-btn .mode-sub {
+      font-size: 0.72rem !important;
+      color: rgba(30, 41, 59, 0.8) !important;
+      font-weight: 600 !important;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1168,22 +1216,13 @@
         </div>
       </div>
 
-      <!-- Action Button Grid (2x2 Grid for Zero-Scroll Fit) -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px;">
-        <button class="action-btn" style="background: var(--success-color); grid-column: span 2; display: none; padding: 8px 10px; font-size: 0.88rem;" id="resume-btn" onclick="resumeLearning()">
+      <!-- Primary Launch Button (Simplified Home View) -->
+      <div style="margin-top: 6px;">
+        <button class="action-btn" id="resume-btn" onclick="resumeLearning()" style="width: 100%; display: none; margin-bottom: 8px; padding: 12px; font-size: 0.95rem; background: linear-gradient(135deg, #10b981, #059669); justify-content: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 8px 20px rgba(16, 185, 129, 0.3);">
           🔄 이어서 학습하기
         </button>
-        <button class="action-btn" style="background: var(--warning-color); padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startMemorizeMode()">
-          📖 암기 학습
-        </button>
-        <button class="action-btn" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startQuiz()">
-          🎯 사지선다 퀴즈
-        </button>
-        <button class="action-btn secondary" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startListView()">
-          📋 25개 리스트
-        </button>
-        <button class="action-btn secondary" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center; color: #fcd34d; border-color: rgba(245, 158, 11, 0.4);" onclick="startFavoriteView()">
-          ★ 별표 단어만
+        <button class="action-btn" onclick="openModeSelectModal()" style="width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #3b82f6); justify-content: center; box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.6), 0 12px 28px rgba(99, 102, 241, 0.35);">
+          🚀 학습 시작하기 (4분할 모드 선택)
         </button>
       </div>
 
@@ -1433,22 +1472,64 @@
     </div>
   </div>
 
-  <!-- Mode Select Modal -->
+  <!-- 4-Quadrant Mode Select Modal -->
   <div class="settings-modal" id="mode-select-modal">
-    <div class="modal-content" style="text-align: center; gap: 20px;">
-      <h3 class="modal-title" id="modal-word-title">학습 모드 선택</h3>
-      <p style="font-size: 0.9rem; color: var(--text-muted); word-break: keep-all;">선택한 단어부터 시작할 학습 방식을 골라주세요.</p>
+    <div class="modal-content" style="text-align: center; gap: 16px; max-width: 400px; padding: 20px;">
       
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <button class="action-btn" id="modal-btn-memorize" style="background: var(--warning-color); justify-content: center;">
-          💡 암기 모드로 이어서 하기
-        </button>
-        <button class="action-btn" id="modal-btn-quiz" style="justify-content: center;">
-          🎯 퀴즈 모드로 이어서 하기
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 10px;">
+        <div style="text-align: left;">
+          <div style="font-size: 1.15rem; font-weight: 800; color: #1e293b;" id="modal-word-title">🚀 학습 모드 선택</div>
+          <div style="font-size: 0.78rem; color: rgba(30,41,59,0.75);" id="modal-sub-title">원하시는 공부 방식을 선택해 주세요.</div>
+        </div>
+        <span class="badge" id="modal-day-badge" style="padding: 4px 10px; font-size: 0.8rem; font-weight: 700;">DAY 1</span>
+      </div>
+
+      <!-- Resume Button inside Modal if available -->
+      <div id="modal-resume-container" style="display: none;">
+        <button class="action-btn" onclick="resumeLearning(); closeModeSelectModal();" style="width: 100%; padding: 10px; font-size: 0.92rem; background: linear-gradient(135deg, #10b981, #059669); justify-content: center;">
+          🔄 이어서 학습하기 (마지막 저장 지점)
         </button>
       </div>
 
-      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="margin-top: 10px; justify-content: center;">취소</button>
+      <!-- 4 Quadrants Grid (2x2 Layout) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        
+        <!-- Quadrant 1: 암기 학습 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('memorize');">
+          <span class="mode-icon">📖</span>
+          <span class="mode-title">암기 학습</span>
+          <span class="mode-sub">5초 카드 자동 넘김</span>
+        </button>
+
+        <!-- Quadrant 2: 사지선다 퀴즈 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('quiz');">
+          <span class="mode-icon">🎯</span>
+          <span class="mode-title">사지선다 퀴즈</span>
+          <span class="mode-sub">4지선다 타임어택</span>
+        </button>
+
+        <!-- Quadrant 3: 25개 리스트 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('list');">
+          <span class="mode-icon">📋</span>
+          <span class="mode-title">25개 리스트</span>
+          <span class="mode-sub">한눈에 보는 어휘</span>
+        </button>
+
+        <!-- Quadrant 4: 별표 단어만 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('fav');" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12);">
+          <span class="mode-icon">★</span>
+          <span class="mode-title" style="color: #d97706;">별표 단어만</span>
+          <span class="mode-sub" style="color: rgba(217, 119, 6, 0.85);">보관함 집중 복습</span>
+        </button>
+
+      </div>
+
+      <!-- Close Button -->
+      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="width: 100%; margin-top: 4px; justify-content: center; padding: 10px; font-size: 0.9rem;">
+        닫기
+      </button>
+
     </div>
   </div>
 
@@ -2316,28 +2397,55 @@
     }
 
     // Modal select launch
-    let selectedWordIndex = 0;
+    let selectedWordIndex = null;
 
     function openModeSelectModal(index) {
-      selectedWordIndex = index;
-      const wordObj = quizWords[index];
-      document.getElementById("modal-word-title").innerText = `${wordObj.word} [${wordObj.meaning}]`;
-      
-      // Bind actions
-      document.getElementById("modal-btn-memorize").onclick = () => {
-        closeModeSelectModal();
-        startMemorizeFromIndex(selectedWordIndex);
-      };
-      document.getElementById("modal-btn-quiz").onclick = () => {
-        closeModeSelectModal();
-        startQuizFromIndex(selectedWordIndex);
-      };
-      
-      document.getElementById("mode-select-modal").classList.add("active");
+      const modal = document.getElementById("mode-select-modal");
+      const modalTitle = document.getElementById("modal-word-title");
+      const modalSub = document.getElementById("modal-sub-title");
+      const dayBadge = document.getElementById("modal-day-badge");
+      const resumeContainer = document.getElementById("modal-resume-container");
+
+      if (typeof index === 'number' && quizWords && quizWords[index]) {
+        selectedWordIndex = index;
+        const wordObj = quizWords[index];
+        if (modalTitle) modalTitle.innerText = `🎯 '${wordObj.word}'부터 시작`;
+        if (modalSub) modalSub.innerText = `[${wordObj.meaning}] 단어부터 학습을 시작합니다.`;
+      } else {
+        selectedWordIndex = null;
+        if (modalTitle) modalTitle.innerText = "🚀 학습 모드 선택";
+        if (modalSub) modalSub.innerText = "원하시는 공부 방식을 선택해 주세요.";
+      }
+
+      if (dayBadge) dayBadge.innerText = `${currentBook} · DAY ${currentDay}`;
+
+      const resumeState = getResumeState();
+      if (resumeState && resumeContainer) {
+        resumeContainer.style.display = "block";
+      } else if (resumeContainer) {
+        resumeContainer.style.display = "none";
+      }
+
+      if (modal) modal.classList.add("active");
     }
 
     function closeModeSelectModal() {
       document.getElementById("mode-select-modal").classList.remove("active");
+    }
+
+    function handleModalLaunch(mode) {
+      closeModeSelectModal();
+      if (mode === 'memorize') {
+        if (selectedWordIndex !== null) startMemorizeFromIndex(selectedWordIndex);
+        else startMemorizeMode();
+      } else if (mode === 'quiz') {
+        if (selectedWordIndex !== null) startQuizFromIndex(selectedWordIndex);
+        else startQuiz();
+      } else if (mode === 'list') {
+        startListView();
+      } else if (mode === 'fav') {
+        startFavoriteView();
+      }
     }
 
     async function startMemorizeFromIndex(index) {
