@@ -16,6 +16,8 @@
   
   <style>
     :root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
       --bg-color: #0c0c0e;
       --card-bg: rgba(24, 24, 30, 0.7);
       --card-border: rgba(255, 255, 255, 0.08);
@@ -98,13 +100,18 @@
       cursor: pointer;
       color: var(--text-main);
       font-size: 1.1rem;
-      transition: all 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       backdrop-filter: blur(10px);
     }
 
     .icon-btn:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: scale(1.05);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+      transition: transform 0.12s var(--ease-out);
     }
 
     /* Views */
@@ -132,7 +139,7 @@
       padding: 16px;
       backdrop-filter: blur(16px);
       box-shadow: var(--shadow-lg);
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     /* Home View Elements */
@@ -206,7 +213,7 @@
       padding: 10px 6px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -215,6 +222,11 @@
     .selector-btn:hover {
       background: rgba(255, 255, 255, 0.05);
       border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .selector-btn:active {
+      transform: scale(0.97);
+      transition: transform 0.12s var(--ease-out);
     }
 
     .selector-btn.active {
@@ -267,12 +279,17 @@
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
       text-align: center;
     }
 
     .day-btn:hover {
       background: rgba(255, 255, 255, 0.08);
+    }
+
+    .day-btn:active {
+      transform: scale(0.95);
+      transition: transform 0.12s var(--ease-out);
     }
 
     .day-btn.active {
@@ -290,7 +307,7 @@
       font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -397,12 +414,17 @@
       gap: 4px;
       padding: 4px 10px;
       border-radius: 20px;
-      transition: all 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .hint-toggle-btn:hover {
       color: var(--text-main);
       background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hint-toggle-btn:active {
+      transform: scale(0.95);
+      transition: transform 0.12s var(--ease-out);
     }
 
     .hint-text-box {
@@ -446,7 +468,7 @@
       font-weight: 600;
       text-align: left;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -458,6 +480,11 @@
       background: rgba(255, 255, 255, 0.04);
       transform: translateX(2px);
       border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .choice-btn:active {
+      transform: scale(0.97);
+      transition: transform 0.12s var(--ease-out);
     }
 
     .choice-btn.correct {
@@ -620,11 +647,15 @@
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: transform 0.2s, opacity 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
     .dash-btn:hover {
       background: var(--primary-color);
       color: white;
+    }
+    .dash-btn:active {
+      transform: scale(0.96);
+      transition: transform 0.12s var(--ease-out);
     }
 
     /* Review View Elements */
@@ -644,7 +675,7 @@
       width: 100%;
       height: 200px;
       text-align: center;
-      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
     }
 
@@ -692,10 +723,17 @@
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.2s var(--ease-out), display 0.2s allow-discrete;
     }
 
     .settings-modal.active {
       display: flex;
+      opacity: 1;
+    }
+
+    @starting-style {
+      .settings-modal.active { opacity: 0; }
     }
 
     .modal-content {
@@ -709,6 +747,16 @@
       flex-direction: column;
       gap: 16px;
       box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.2s var(--ease-out);
+    }
+
+    .settings-modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    @starting-style {
+      .settings-modal.active .modal-content { transform: scale(0.95); }
     }
 
     .modal-title {
@@ -838,7 +886,16 @@
       flex: 1 !important;
       margin: 0 !important;
     }
-  </style>
+  
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+</style>
 </head>
 <body>
 
@@ -1000,7 +1057,7 @@
         </div>
 
         <!-- Hidden Meaning Area (Revealed after 10s or tap) -->
-        <div id="memorize-hidden-area" style="opacity: 0; transform: translateY(10px); transition: all 0.4s ease; width: 100%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: auto;">
+        <div id="memorize-hidden-area" style="opacity: 0; transform: translateY(10px); transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; width: 100%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: auto;">
           <div style="font-size: 1.6rem; font-weight: 800; color: #ccff00; text-shadow: 0 0 12px rgba(204, 255, 0, 0.4); margin-bottom: 16px;" id="memorize-meaning">변덕스러운</div>
           
           <div style="text-align: left; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">

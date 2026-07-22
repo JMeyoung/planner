@@ -18,7 +18,7 @@
 .daily-preview-btn, .save-token-btn {
   background: linear-gradient(135deg, #667eea, #764ba2) !important;
   color: #fff !important;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .daily-preview-btn:hover, .save-token-btn:hover {
   opacity: 0.9;
@@ -62,6 +62,8 @@ body.theme-liquid-glass #streakBadge .streak-badge {
    ═══════════════════════════════════════ */
 /* ── 🌆 Sunset Twilight Theme ── */
 :root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --glass-noise: none;
   --bg-primary: linear-gradient(180deg, #35235d 0%, #8c4272 50%, #d87056 100%);
   --bg-secondary: rgba(255, 255, 255, 0.18);
@@ -294,7 +296,7 @@ body:not(:has(.view-container)) {
   font-size: 1rem; color: var(--text-secondary);
   display: flex; align-items: center; justify-content: center;
   box-shadow: inset 0 1px 0 var(--border-highlight);
-  transition: all .2s;
+  transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .nav-btn:hover { background: var(--bg-secondary); transform: scale(1.05); }
 .nav-btn:active { transform: scale(0.95); }
@@ -448,7 +450,7 @@ body:not(:has(.view-container)) {
   display: flex; flex-direction: column; align-items: center;
   font-size: 0.8rem; position: relative;
   border: 1.5px solid transparent;
-  transition: all .2s ease;
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
   cursor: default;
 }
 .day-cell.clickable { cursor: pointer; }
@@ -692,7 +694,7 @@ body:not(:has(.view-container)) {
   display: flex; align-items: center; justify-content: center;
   color: var(--text-secondary);
   flex-shrink: 0;
-  transition: all .2s;
+  transition: transform .2s, opacity .2s, background-color .2s, border-color .2s, box-shadow .2s;
 }
 .drawer-close:hover { transform: scale(1.1); }
 .drawer-body { padding: 14px 18px 24px; }
@@ -737,12 +739,12 @@ body:not(:has(.view-container)) {
   border: 2px solid var(--text-muted);
   border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .d-cb.on {
   background: var(--accent-eng);
   border-color: var(--accent-eng);
-  animation: springPop 0.5s var(--transition-spring) forwards;
+  animation: springPop 0.18s var(--ease-out) forwards;
 }
 .d-text { color: var(--text-primary); }
 .d-empty {
@@ -836,7 +838,9 @@ body:not(:has(.view-container)) {
   cursor: default;
   position: relative;
 }
-.hm-cell:hover { transform: scale(1.5); z-index: 2; }
+@media (hover: hover) and (pointer: fine) {
+  .hm-cell:hover { transform: scale(1.2); z-index: 2; }
+}
 .hm-cell.l4 { box-shadow: 0 0 5px rgba(16, 185, 129, 0.45); }
 .hm-legend {
   display: flex;
@@ -935,7 +939,7 @@ body:not(:has(.view-container)) {
 }
 .radar-axis { stroke: rgba(255,255,255,0.1); stroke-width: 1; }
 .radar-grid { stroke: rgba(255,255,255,0.05); stroke-width: 1; fill: none; }
-.radar-polygon { fill: rgba(99, 102, 241, 0.3); stroke: #6366f1; stroke-width: 2; transition: all 0.5s ease; }
+.radar-polygon { fill: rgba(99, 102, 241, 0.3); stroke: #6366f1; stroke-width: 2; transition: transform 0.3s var(--ease-in-out), opacity 0.3s var(--ease-in-out), background-color 0.3s var(--ease-in-out), border-color 0.3s var(--ease-in-out), box-shadow 0.3s var(--ease-in-out); }
 .radar-label {
   font-size: 12px;
   fill: var(--text-muted);
@@ -986,13 +990,14 @@ body:not(:has(.view-container)) {
 
 .style-lab-drawer {
   position: fixed;
-  top: 0; right: -320px;
+  top: 0; right: 0;
   width: 320px;
   height: 100vh;
   background: rgba(15, 10, 25, 0.7);
   box-shadow: -8px 0 32px rgba(0,0,0,0.4);
   z-index: 10000;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
@@ -1002,7 +1007,7 @@ body:not(:has(.view-container)) {
   overflow-y: auto;
 }
 .style-lab-drawer.open {
-  right: 0;
+  transform: translateX(0);
 }
 /* Progressive Blur Toggle Effect */
 body.use-progressive-blur .style-lab-drawer {
@@ -1250,7 +1255,7 @@ body.use-gooey-blob .style-lab-toggle {
   border-radius: 10px;
   cursor: pointer;
   color: #fff;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .theme-btn:hover {
   background: rgba(255,255,255,0.12);
@@ -1517,7 +1522,7 @@ body.theme-liquid-glass .planner-layout {
     inset 0 1.5px 1px rgba(255,255,255,0.58),
     inset 0 -2px 2px rgba(0,0,0,0.17),
     0 22px 45px rgba(0,0,0,0.18) !important;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.theme-liquid-glass .card:hover {
@@ -1558,6 +1563,15 @@ body.theme-liquid-glass .active-block {
 body.theme-liquid-glass .btn, body.theme-liquid-glass .back-btn { border-radius: 999px !important; color: #1e293b !important; }
 body.theme-liquid-glass ::-webkit-scrollbar-thumb { background: rgba(107,125,149,0.35) !important; border-radius: 99px; }
 body.theme-liquid-glass ::-webkit-scrollbar-thumb:hover { background: rgba(107,125,149,0.55) !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
 </style>
 
 <link rel="stylesheet" href="liquid-glass.css?v=7">

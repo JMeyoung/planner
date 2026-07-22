@@ -10,6 +10,8 @@
 <style>
 /* ── 🌆 Sunset Twilight Theme ── */
 :root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --glass-noise: none;
   --bg-primary: linear-gradient(180deg, #35235d 0%, #8c4272 50%, #d87056 100%);
   --bg-secondary: rgba(255, 255, 255, 0.18);
@@ -96,7 +98,7 @@ header {
   padding: 8px 16px;
   border-radius: 20px;
   backdrop-filter: var(--glass-blur);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .back-btn:hover {
   background: var(--bg-card-hover);
@@ -122,7 +124,7 @@ header {
   justify-content: center;
   cursor: pointer;
   backdrop-filter: var(--glass-blur);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .icon-btn:hover {
   transform: scale(1.08);
@@ -269,7 +271,7 @@ header {
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -293,6 +295,11 @@ header {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+  transition: transform 0.12s var(--ease-out);
 }
 
 /* Settings Form */
@@ -418,7 +425,8 @@ select option {
   height: 6px;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 2px;
-  transition: height 0.15s ease;
+  transform-origin: bottom;
+  transition: transform 0.15s ease;
 }
 .wave-active .wave-bar {
   background-color: #34d399;
@@ -433,7 +441,7 @@ select option {
 .wave-active .wave-bar:nth-child(8) { animation-delay: 0.1s; }
 
 @keyframes bounce {
-  100% { height: 28px; }
+  100% { transform: scaleY(4.667); }
 }
 
 /* Toast */
@@ -487,6 +495,15 @@ body.theme-liquid-glass .btn-secondary {
 body.theme-liquid-glass .btn-secondary:hover {
   background: rgba(107, 125, 149, 0.25) !important;
 }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
 </style>
   <link rel="stylesheet" href="liquid-glass.css?v=7">
 </head>
