@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="liquid-glass.css?v=11">
+  <link rel="stylesheet" href="liquid-glass.css?v=999">
   
   <style>
     :root {
@@ -1256,8 +1256,8 @@
         <div id="memorize-timer-bar" style="height: 100%; width: 100%; background: var(--primary-light); transition: width 10s linear;"></div>
       </div>
 
-      <!-- Memorize Card -->
-      <div class="card" style="min-height: 400px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; position: relative;" onclick="revealMeaning(true)">
+      <!-- Memorize Card (Expanded Blue/Indigo Touch Target) -->
+      <div class="card" style="min-height: 400px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; position: relative; border: 2px solid rgba(99, 102, 241, 0.5) !important; box-shadow: 0 14px 40px rgba(99, 102, 241, 0.22) !important; cursor: pointer;" onclick="revealMeaning(true)">
         <span class="badge" style="position: absolute; top: 16px; left: 16px;" id="memorize-book-badge">V101</span>
         
         <div style="margin-top: 40px; text-align: center; width: 100%;">
@@ -1471,61 +1471,59 @@
     </div>
   </div>
 
-  <!-- 4-Quadrant Mode Select Modal -->
+  <!-- 4-Quadrant Mode Select Modal (Exact 4 Requested Options) -->
   <div class="settings-modal" id="mode-select-modal">
-    <div class="modal-content" style="text-align: center; gap: 16px; max-width: 400px; padding: 20px;">
+    <div class="modal-content" style="text-align: center; gap: 16px; max-width: 420px; padding: 22px;">
       
       <!-- Modal Header -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 10px;">
         <div style="text-align: left;">
-          <div style="font-size: 1.15rem; font-weight: 800; color: #1e293b;" id="modal-word-title">🚀 학습 모드 선택</div>
+          <div style="font-size: 1.18rem; font-weight: 800; color: #1e293b;" id="modal-word-title">🚀 학습 모드 선택</div>
           <div style="font-size: 0.78rem; color: rgba(30,41,59,0.75);" id="modal-sub-title">원하시는 공부 방식을 선택해 주세요.</div>
         </div>
         <span class="badge" id="modal-day-badge" style="padding: 4px 10px; font-size: 0.8rem; font-weight: 700;">DAY 1</span>
       </div>
 
-      <!-- Resume Button inside Modal if available -->
-      <div id="modal-resume-container" style="display: none;">
-        <button class="action-btn" onclick="resumeLearning(); closeModeSelectModal();" style="width: 100%; padding: 10px; font-size: 0.92rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(13, 148, 136, 0.95)); border: 1px solid rgba(255, 255, 255, 0.45); box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.65), 0 8px 22px rgba(16, 185, 129, 0.3); color: #ffffff; justify-content: center;">
-          🔄 이어서 학습하기 (마지막 저장 지점)
-        </button>
-      </div>
-
-      <!-- 4 Quadrants Grid (2x2 Layout) -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <!-- 4 Quadrants Grid (2x2 Layout: Resume / Memorize / Quiz / Starred) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px;">
         
-        <!-- Quadrant 1: 암기 학습 -->
+        <!-- Quadrant 1: 이어서 학습하기 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('resume');" style="border-color: rgba(99, 102, 241, 0.45); background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(79, 70, 229, 0.15));">
+          <span class="mode-icon">🔄</span>
+          <span class="mode-title" style="color: #4f46e5;">이어서 학습하기</span>
+          <span class="mode-sub" id="modal-resume-desc" style="color: rgba(79, 70, 229, 0.9);">마지막 학습 지점</span>
+        </button>
+
+        <!-- Quadrant 2: 암기 학습 -->
         <button class="mode-quad-btn" onclick="handleModalLaunch('memorize');">
           <span class="mode-icon">📖</span>
           <span class="mode-title">암기 학습</span>
           <span class="mode-sub">5초 카드 자동 넘김</span>
         </button>
 
-        <!-- Quadrant 2: 사지선다 퀴즈 -->
+        <!-- Quadrant 3: 사지선다 퀴즈 -->
         <button class="mode-quad-btn" onclick="handleModalLaunch('quiz');">
           <span class="mode-icon">🎯</span>
           <span class="mode-title">사지선다 퀴즈</span>
           <span class="mode-sub">4지선다 타임어택</span>
         </button>
 
-        <!-- Quadrant 3: 25개 리스트 -->
-        <button class="mode-quad-btn" onclick="handleModalLaunch('list');">
-          <span class="mode-icon">📋</span>
-          <span class="mode-title">25개 리스트</span>
-          <span class="mode-sub">한눈에 보는 어휘</span>
-        </button>
-
-        <!-- Quadrant 4: 별표 단어만 -->
-        <button class="mode-quad-btn" onclick="handleModalLaunch('fav');" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12);">
+        <!-- Quadrant 4: 별표 단어만 보기 -->
+        <button class="mode-quad-btn" onclick="handleModalLaunch('fav');" style="border-color: rgba(245, 158, 11, 0.45); background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.15));">
           <span class="mode-icon">★</span>
-          <span class="mode-title" style="color: #d97706;">별표 단어만</span>
-          <span class="mode-sub" style="color: rgba(217, 119, 6, 0.85);">보관함 집중 복습</span>
+          <span class="mode-title" style="color: #d97706;">별표 단어만 보기</span>
+          <span class="mode-sub" style="color: rgba(217, 119, 6, 0.9);">중요 보관함 복습</span>
         </button>
 
       </div>
 
+      <!-- Secondary: 25개 리스트 보기 -->
+      <button class="action-btn secondary" onclick="handleModalLaunch('list');" style="width: 100%; margin-top: 2px; justify-content: center; padding: 10px; font-size: 0.88rem;">
+        📋 25개씩 리스트 전체 보기
+      </button>
+
       <!-- Close Button -->
-      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="width: 100%; margin-top: 4px; justify-content: center; padding: 10px; font-size: 0.9rem;">
+      <button class="action-btn secondary" onclick="closeModeSelectModal()" style="width: 100%; margin-top: -4px; justify-content: center; padding: 8px; font-size: 0.85rem; opacity: 0.8;">
         닫기
       </button>
 
@@ -2939,6 +2937,6 @@
     }
 
   </script>
-  <script src="liquid-glass-settings.js?v=11"></script>
+  <script src="liquid-glass-settings.js?v=999"></script>
 </body>
 </html>
