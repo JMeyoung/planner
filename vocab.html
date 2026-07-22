@@ -1094,75 +1094,73 @@
       </div>
     </header>
 
-    <!-- [1] HOME VIEW -->
-    <div id="home-view" class="view active">
+    <!-- [1] HOME VIEW (Single-Screen / Zero-Scroll Fit) -->
+    <div id="home-view" class="view active" style="gap: 8px;">
       
-      <!-- Welcome & Stats -->
-      <div class="card welcome-card" style="position: relative;">
-        <h2 id="welcome-user-title">안녕하세요, 재영님!</h2>
-        <p>인스타/유튜브 대신 5초 타임어택 영단어를 외워보세요. 뇌 활성화에 아주 좋습니다!</p>
+      <!-- Welcome & Stats Dashboard (Compact Single Glass Panel) -->
+      <div class="card welcome-card" style="padding: 12px 14px; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2 id="welcome-user-title" style="font-size: 1.05rem; font-weight: 700; margin: 0;">안녕하세요, 재영님!</h2>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div class="stat-box" style="padding: 4px 8px; flex-direction: row; gap: 4px; align-items: center; border-radius: 999px;">
+              <span class="val" id="stats-correct-cnt" style="font-size: 0.95rem;">0</span>
+              <span class="lbl" style="font-size: 0.72rem;">정답</span>
+            </div>
+            <div class="stat-box" onclick="openReviewDashboard()" style="padding: 4px 10px; flex-direction: row; gap: 4px; align-items: center; border-radius: 999px; cursor: pointer; border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12);">
+              <span class="val" id="stats-incorrect-cnt" style="font-size: 0.95rem; color: var(--warning-color);">0</span>
+              <span class="lbl" style="font-size: 0.75rem; color: #fcd34d; font-weight: 700;">오답 📝</span>
+            </div>
+          </div>
+        </div>
         
-        <!-- NEW PROGRESS DASHBOARD HERE -->
-        <div style="margin-top: 16px; margin-bottom: 20px;">
-          <div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:6px; color:var(--text-muted); font-weight: 600;">
-            <span id="progress-book-lbl">V101 마스터 진행률</span>
+        <!-- Progress Bar (Slim) -->
+        <div style="margin-top: 2px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.78rem; margin-bottom:4px; color:var(--text-muted); font-weight: 600;">
+            <span id="progress-book-lbl">V101 진행률</span>
             <span id="progress-percent-lbl">0% (0 / 20 DAY)</span>
           </div>
-          <div style="width: 100%; background: rgba(255,255,255,0.05); border-radius: 8px; height: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);">
-            <div id="progress-bar-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(107,125,149,0.5);"></div>
-          </div>
-          <div id="smart-review-container" style="display: none; margin-top: 12px;">
-            <button id="smart-review-btn" class="action-btn" style="width: 100%; font-size: 0.95rem; background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1)); border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; padding: 10px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);" onclick="startSmartReview()">
-              🔥 오늘 추천 복습: DAY X (X일 전 학습)
-            </button>
+          <div style="width: 100%; background: rgba(255,255,255,0.08); border-radius: 999px; height: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15);">
+            <div id="progress-bar-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #6366f1, #10b981); transition: width 0.5s ease;"></div>
           </div>
         </div>
 
-        <div class="stats-summary" style="margin-top: 12px; gap: 8px;">
-          <div class="stat-box" style="flex: 1;">
-            <span class="val" id="stats-correct-cnt">0</span>
-            <span class="lbl" style="font-size: 0.8rem;">글로벌 정답 누적</span>
+        <div id="smart-review-container" style="display: none; margin-top: 2px;">
+          <button id="smart-review-btn" class="action-btn" style="width: 100%; font-size: 0.85rem; background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.15)); border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; padding: 6px 10px;" onclick="startSmartReview()">
+            🔥 오늘 추천 복습: DAY X
+          </button>
+        </div>
+      </div>
+
+      <!-- Book Selector (Segmented Glass Bar) -->
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span class="section-title" style="font-size: 0.78rem;">단어장 선택</span>
+        <div class="book-selector" style="gap: 6px;">
+          <div class="selector-btn active" onclick="selectBook('V101')" id="book-V101" style="padding: 6px 4px; border-radius: 12px; gap: 2px;">
+            <span class="name" style="font-size: 0.9rem; font-weight: 800;">V101</span>
+            <span class="desc" style="font-size: 0.68rem; opacity: 0.85;">1,982단어</span>
           </div>
-          <div class="stat-box" onclick="openReviewDashboard()" style="flex: 1.5; cursor: pointer; border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05);">
-            <div style="display:flex; justify-content:center; align-items:center; gap:8px;">
-               <span class="val" id="stats-incorrect-cnt" style="color: var(--warning-color);">0</span>
-               <span style="font-size: 1.2rem; margin-bottom: 4px;">📝</span>
-            </div>
-            <span class="lbl" style="color: #fcd34d;">누적 오답 퀴즈 풀기 ➔</span>
+          <div class="selector-btn" onclick="selectBook('V201')" id="book-V201" style="padding: 6px 4px; border-radius: 12px; gap: 2px;">
+            <span class="name" style="font-size: 0.9rem; font-weight: 800;">V201</span>
+            <span class="desc" style="font-size: 0.68rem; opacity: 0.85;">1,980단어</span>
+          </div>
+          <div class="selector-btn" onclick="selectBook('V301')" id="book-V301" style="padding: 6px 4px; border-radius: 12px; gap: 2px;">
+            <span class="name" style="font-size: 0.9rem; font-weight: 800;">V301</span>
+            <span class="desc" style="font-size: 0.68rem; opacity: 0.85;">2,324단어</span>
           </div>
         </div>
       </div>
 
-      <!-- Book Selector -->
-      <div class="input-group">
-        <span class="section-title">단어장 선택</span>
-        <div class="book-selector">
-          <div class="selector-btn active" onclick="selectBook('V101')" id="book-V101">
-            <span class="name">V101</span>
-            <span class="desc">1,982 단어</span>
-          </div>
-          <div class="selector-btn" onclick="selectBook('V201')" id="book-V201">
-            <span class="name">V201</span>
-            <span class="desc">1,980 단어</span>
-          </div>
-          <div class="selector-btn" onclick="selectBook('V301')" id="book-V301">
-            <span class="name">V301</span>
-            <span class="desc">2,324 단어</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day Selector -->
-      <div class="input-group">
+      <!-- Day Selector (Compact 2-Row Grid) -->
+      <div style="display: flex; flex-direction: column; gap: 4px;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="section-title" id="day-section-title">DAY 선택 (V101)</span>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <button id="shuffle-toggle-btn" class="badge" style="cursor:pointer; border-color:var(--card-border); background:rgba(255,255,255,0.05); color:var(--text-muted);" onclick="toggleShuffle()">🔀 순서 섞기: OFF</button>
-            <span class="badge" id="selected-day-badge">DAY 1</span>
+          <span class="section-title" id="day-section-title" style="font-size: 0.78rem;">DAY 선택 (V101)</span>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <button id="shuffle-toggle-btn" class="badge" style="cursor:pointer; padding: 2px 6px; font-size: 0.7rem;" onclick="toggleShuffle()">🔀 섞기: OFF</button>
+            <span class="badge" id="selected-day-badge" style="padding: 2px 6px; font-size: 0.7rem;">DAY 1</span>
           </div>
         </div>
-        <div class="card" style="padding: 16px;">
-          <div class="day-picker-container">
+        <div class="card" style="padding: 8px;">
+          <div class="day-picker-container" style="max-height: 84px; overflow-y: auto;">
             <div class="day-grid" id="day-grid-box">
               <!-- JS-generated Day buttons -->
             </div>
@@ -1170,22 +1168,22 @@
         </div>
       </div>
 
-      <!-- Action Button -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
-        <button class="action-btn" style="background: var(--success-color); grid-column: span 2; display: none;" id="resume-btn" onclick="resumeLearning()">
+      <!-- Action Button Grid (2x2 Grid for Zero-Scroll Fit) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px;">
+        <button class="action-btn" style="background: var(--success-color); grid-column: span 2; display: none; padding: 8px 10px; font-size: 0.88rem;" id="resume-btn" onclick="resumeLearning()">
           🔄 이어서 학습하기
         </button>
-        <button class="action-btn" style="background: var(--warning-color);" onclick="startMemorizeMode()">
+        <button class="action-btn" style="background: var(--warning-color); padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startMemorizeMode()">
           📖 암기 학습
         </button>
-        <button class="action-btn" onclick="startQuiz()">
+        <button class="action-btn" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startQuiz()">
           🎯 사지선다 퀴즈
         </button>
-        <button class="action-btn secondary" style="grid-column: span 2;" onclick="startListView()">
-          📋 25개씩 리스트 보기
+        <button class="action-btn secondary" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center;" onclick="startListView()">
+          📋 25개 리스트
         </button>
-        <button class="action-btn secondary" style="grid-column: span 2; color: var(--warning-color); border-color: var(--warning-color);" onclick="startFavoriteView()">
-          ★ 별표 단어만 보기
+        <button class="action-btn secondary" style="padding: 9px 8px; font-size: 0.88rem; justify-content: center; color: #fcd34d; border-color: rgba(245, 158, 11, 0.4);" onclick="startFavoriteView()">
+          ★ 별표 단어만
         </button>
       </div>
 
